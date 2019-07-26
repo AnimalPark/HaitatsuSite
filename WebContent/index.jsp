@@ -7,7 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 <p>test</p>
 <p>test2</p>
+=======
+<p>test3</p>
+>>>>>>> origin/ryun
 </body>
 </html>
