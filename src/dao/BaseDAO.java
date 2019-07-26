@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 public class BaseDAO {
 	String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	String URL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -20,34 +16,6 @@ public class BaseDAO {
 
 		Connection connection = null;
 
-<<<<<<< HEAD
-	public static String DRIVER = "oracle.jdbc.driver.OracleDriver";
-	public static String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	public static String USER = "madang";
-	public static String PASSWORD = "madang";
-
-	public Connection getConnection() {
-
-		Connection connection = null;
-
-		try {
-			Class.forName(DRIVER);
-			connection= DriverManager.getConnection(URL,USER,PASSWORD);
-
-		} catch (SQLException ex01) {
-
-			ex01.printStackTrace();
-
-		} catch (ClassNotFoundException ex02) {
-
-			ex02.printStackTrace();
-		}
-		return connection;
-	}
-
-	public void closeDBObject(ResultSet resultSet, Statement statement, Connection connection) {
-
-=======
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -63,51 +31,30 @@ public class BaseDAO {
 	}
 
 	public void closeDBObjects(ResultSet resultSet, Statement statement, Connection connection) {
->>>>>>> origin/master
 		if (resultSet != null) {
 			try {
 				resultSet.close();
 			} catch (SQLException e) {
-<<<<<<< HEAD
-				e.printStackTrace();
-			}
-
-=======
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
->>>>>>> origin/master
 		}
 		if (statement != null) {
 			try {
 				statement.close();
 			} catch (SQLException e) {
-<<<<<<< HEAD
-				e.printStackTrace();
-			}
-		}
-
-=======
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
->>>>>>> origin/master
 		if (connection != null) {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-<<<<<<< HEAD
-=======
 				// TODO Auto-generated catch block
->>>>>>> origin/master
 				e.printStackTrace();
 			}
 		}
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/master
 }
 
