@@ -8,6 +8,13 @@
 </head>
 <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
+<p>test3</p>
+=======
+<p>test</p>
+<p>test2</p>
+>>>>>>> origin/johnnoro
+=======
 <p>test</p>
 <p>test2</p>
 =======
@@ -18,5 +25,6 @@
 <p>test7</p>
 <p>test8</p>
 >>>>>>> origin/ryun
+>>>>>>> origin/AnimalPark
 </body>
 </html>
