@@ -24,7 +24,7 @@ public class MainController extends HttpServlet {
 		process(req, resp);
 
 	}
-
+	
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 
@@ -62,6 +62,11 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		}
+		else if (action.equals("search_link")) {
 
+			RequestDispatcher rd = req.getRequestDispatcher("main/search.jsp");
+			rd.forward(req, resp);
+
+		}
 	}
 }
