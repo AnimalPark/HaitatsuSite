@@ -18,7 +18,7 @@ import model.Ybbs;
 import page.PageManager;
 import page.PageSQL;
 
-@WebServlet(name = "YbbsController", urlPatterns = { "/ybbs_insert", "/ybbs_content","/ybbs_list","/ybbs_detail","/ybbs_delete","/ybbs_update","/ybbs_reply","/ybbs_reply_form","/ybbs_req_list"})
+@WebServlet(name = "YbbsController", urlPatterns = { "/ybbs_insert.do", "/ybbs_content","/ybbs_list","/ybbs_detail","/ybbs_delete.do","/ybbs_update.do","/ybbs_reply.do","/ybbs_reply_form.do","/ybbs_req_list"})
 
 public class YbbsController extends HttpServlet {
 
@@ -42,7 +42,7 @@ public class YbbsController extends HttpServlet {
 
 		if (action.equals("ybbs_insert.do")) {
 			
-			RequestDispatcher rd = req.getRequestDispatcher("board.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("board/qaboard.jsp");
 			rd.forward(req, resp);
 			
 		} else if (action.equals("ybbs_content")) {
@@ -56,7 +56,7 @@ public class YbbsController extends HttpServlet {
 			dao.Insert(ybbs);
 			
 			req.setAttribute("ybbs", ybbs);
-			RequestDispatcher rd = req.getRequestDispatcher("qaboard.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_list");
 			rd.forward(req, resp);
 
 		}else if (action.equals("ybbs_list")) {
@@ -65,9 +65,9 @@ public class YbbsController extends HttpServlet {
 			YbbsDAO dao = new YbbsDAOImpl();
 			ybbsList = dao.selectAll();
 
-			req.setAttribute("ybbsList", ybbsList);//
+			req.setAttribute("ybbsList", ybbsList);// 자바에서 화면으로 보내기 requst.setAttribute();
 			
-			RequestDispatcher rd = req.getRequestDispatcher("qaboard.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("boardList.jsp");
 			rd.forward(req, resp);
 
 		}else if (action.equals("ybbs_detail")) {
@@ -146,7 +146,7 @@ public class YbbsController extends HttpServlet {
 			req.setAttribute("ybbsList", ybbsList);// 자바에서 화면으로 보내기 requst.setAttribute();
 			req.setAttribute("pageGroupResult", pm.getPageGroupResult(PageSQL.YBBS_SELECT_ALL_COUNT));
 			
-			RequestDispatcher rd = req.getRequestDispatcher("board/qaboard.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("boardList.jsp");
 			rd.forward(req, resp);
 		}
 		
