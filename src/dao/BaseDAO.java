@@ -9,8 +9,8 @@ import java.sql.Statement;
 public class BaseDAO {
 	String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	String USER = "madang";
-	String PASSWORD = "madang";
+	String USER = "SCOTT";
+	String PASSWORD = "TIGER";
 
 	public Connection getConnection() {
 
