@@ -10,7 +10,13 @@ public class BaseDAO {
 	String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	String USER = "scott";
+=======
+>>>>>>> 9c906d4a82b71e3adf4cfd158f76943188b2522d
 	String USER = "SCOTT";
+>>>>>>> 7e2192997d1d4ea1628b26d25e15c7693d019638
 	String PASSWORD = "TIGER";
 =======
 	String USER = "madang";

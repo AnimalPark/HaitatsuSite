@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html >
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
+
+=======
 	<a href="login_link">로그인</a>
 	<a href="sign_link">회원가입</a>
 	<a href="home_link">홈화면</a>
@@ -31,5 +34,6 @@
 				</c:forEach>
 			</table>
 		</c:if>
+>>>>>>> 7e2192997d1d4ea1628b26d25e15c7693d019638
 </body>
 </html>

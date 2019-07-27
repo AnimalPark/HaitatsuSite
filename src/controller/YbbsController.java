@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.YbbsDAOImpl;
 import dao.Ybbs_QADAO;
+import dao.Ybbs_QADAOImpl;
 import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
@@ -39,7 +39,7 @@ public class YbbsController extends HttpServlet {
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
 
-		if (action.equals("ybbs_insert.do")) {
+		if (action.equals("ybbs_insert")) {
 			
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboard.jsp");
 			rd.forward(req, resp);
@@ -51,7 +51,7 @@ public class YbbsController extends HttpServlet {
 			ybbs.setQacomment(req.getParameter("qacomment"));
 			ybbs.setUserid(req.getParameter("userid"));
 
-			Ybbs_QADAO dao = new YbbsDAOImpl();
+			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			dao.Insert(ybbs);
 			
 			req.setAttribute("ybbs", ybbs);
@@ -63,7 +63,7 @@ public class YbbsController extends HttpServlet {
 			Ybbs_QA ybbs = new Ybbs_QA();
 			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
 			
-			Ybbs_QADAO dao = new YbbsDAOImpl();
+			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			
 			ybbs = dao.selectByNo(qanumber);
 			dao.updateVisited(qanumber);
@@ -73,8 +73,8 @@ public class YbbsController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("detail.jsp");
 			rd.forward(req, resp);
 
-		} else if (action.equals("ybbs_delete.do")) {
-			Ybbs_QADAO dao = new YbbsDAOImpl();
+		} else if (action.equals("ybbs_delete")) {
+			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			Ybbs_QA ybbs = new Ybbs_QA();
 
 			ybbs.setQanumber(Integer.parseInt(req.getParameter("qanumber")));
@@ -83,19 +83,19 @@ public class YbbsController extends HttpServlet {
 
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
 			rd.forward(req, resp);
-		} else if (action.equals("ybbs_update.do")) {
+		} else if (action.equals("ybbs_update")) {
 			Ybbs_QA ybbs = new Ybbs_QA();
 			
 			ybbs.setQanumber(Integer.parseInt(req.getParameter("qanumber")));
 			ybbs.setQasubject(req.getParameter("qasubject"));
 			ybbs.setQacomment(req.getParameter("qacomment"));
 			
-			Ybbs_QADAO dao = new YbbsDAOImpl();
+			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			dao.update(ybbs);
 
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
 			rd.forward(req, resp);
-		}  else if (action.equals("ybbs_reply.do")) {
+		}  else if (action.equals("ybbs_reply")) {
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
 			
@@ -104,14 +104,14 @@ public class YbbsController extends HttpServlet {
 			ybbs.setQagroup(Integer.parseInt(req.getParameter("qagroup")));
 			ybbs.setUserid(req.getParameter("userid"));
 			
-			Ybbs_QADAO dao = new YbbsDAOImpl();
+			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			
 			dao.insertReply(ybbs);
 			
 			
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
 			rd.forward(req, resp);
-		} else if (action.equals("ybbs_reply_form.do")) {
+		} else if (action.equals("ybbs_reply_form")) {
 			
 			int num = Integer.parseInt(req.getParameter("qanumber"));
 			
@@ -124,7 +124,7 @@ public class YbbsController extends HttpServlet {
 			
 			PageManager pm = new PageManager(requestPage);
 
-			Ybbs_QADAO dao = new YbbsDAOImpl();
+			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
 
 			ybbsList = dao.selectAll(pm.getPageRowResult().getRowStartNumber(),
@@ -139,11 +139,14 @@ public class YbbsController extends HttpServlet {
 		
 		} else if (action.equals("ybbs_eventlist")) {
 
-			List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
-			Ybbs_QADAO dao = new YbbsDAOImpl();
-			ybbsList = dao.selectAll();
+			
+			/*List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
+			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
+			
+			ybbsList = dao.selectAll();*/
+			
 
-			req.setAttribute("ybbsList", ybbsList);// 자바에서 화면으로 보내기 requst.setAttribute();
+			/*req.setAttribute("ybbsList", ybbsList);*/  // 자바에서 화면으로 보내기 requst.setAttribute();
 			
 			RequestDispatcher rd = req.getRequestDispatcher("eventboard.jsp");
 			rd.forward(req, resp);
