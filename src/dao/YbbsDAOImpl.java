@@ -8,21 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Ybbs;
+import sql.Sql;
 
 public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
-	private static final String YBBS_INSERT_SQL = "INSERT INTO YBBS_QA VALUES "
-			+ "(SEQ_QA_NO.NEXTVAL,?,?,SYSDATE,0,?,SEQ_QA_NO.CURRVAL,0)";
-	private static final String YBBS_INSERT_REPLY_SQL = "INSERT INTO YBBS_QA VALUES "
-			+ "(SEQ_QA_NO.NEXTVAL,?,?,SYSDATE,0,?,?,1)";
-	private static final String YBBS_SELECTALL_SQL = "SELECT NO,SUBJECT,ID,WDATE,GRP,LVL,VISITED "
-			+ "FROM YBBS "
-			+ "ORDER BY GRP DESC,LVL ASC,WDATE DESC";
-	private static final String YBBS_SELECTBYNO_SQL = "SELECT NO,ID,SUBJECT,CONTENT FROM YBBS WHERE NO = ?";
-	private static final String YBBS_UPDATE_SQL = "UPDATE YBBS SET SUBJECT = ? , CONTENT = ? WHERE NO = ?";
-	private static final String YBBS_DELETE_SQL = "DELETE FROM YBBS WHERE NO = ?";
-	private static final String YBBS_UPDATE_VISITED = "UPDATE ybbs SET visited = visited+1 where no = ?";
-	private static final String YBBS_PAGE_SQL = "SELECT * from (SELECT ROWNUM RN,ybbss.* FROM (SELECT * FROM YBBS ORDER BY GRP DESC,LVL ASC,WDATE DESC) ybbss) WHERE RN BETWEEN ? AND ?";
 	
 	@Override
 
@@ -34,7 +23,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(YBBS_INSERT_SQL);
+			preparedStatement = connection.prepareStatement(Sql.YBBS_INSERT_SQL);
 
 			preparedStatement.setString(1, ybbs.getSubject());
 			preparedStatement.setString(2, ybbs.getContent());
@@ -67,7 +56,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(YBBS_SELECTALL_SQL);
+			preparedStatement = connection.prepareStatement(Sql.YBBS_SELECTALL_SQL);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -89,7 +78,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		} finally {
 
-			closeDBObject(resultSet, preparedStatement, connection);
+			closeDBObjects(resultSet, preparedStatement, connection);
 		}
 
 		return ybbsList;
@@ -105,7 +94,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(YBBS_SELECTBYNO_SQL);
+			preparedStatement = connection.prepareStatement(Sql.YBBS_SELECTBYNO_SQL);
 			preparedStatement.setInt(1, no);
 			resultSet = preparedStatement.executeQuery();
 
@@ -121,7 +110,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 			e.printStackTrace();
 		} finally {
 
-			closeDBObject(resultSet, preparedStatement, connection);
+			closeDBObjects(resultSet, preparedStatement, connection);
 		}
 
 		return ybbs;
@@ -134,7 +123,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 		PreparedStatement preparedStatement = null;
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(YBBS_INSERT_REPLY_SQL);
+			preparedStatement = connection.prepareStatement(Sql.YBBS_INSERT_REPLY_SQL);
 
 			preparedStatement.setString(1, ybbs.getSubject());
 			preparedStatement.setString(2, ybbs.getContent());
@@ -147,7 +136,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 			e.printStackTrace();
 		} finally {
-			closeDBObject(null, preparedStatement, connection);
+			closeDBObjects(null, preparedStatement, connection);
 
 		}
 
@@ -161,7 +150,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(YBBS_DELETE_SQL);
+			preparedStatement = connection.prepareStatement(Sql.YBBS_DELETE_SQL);
 			preparedStatement.setInt(1, no);
 
 			preparedStatement.executeUpdate();
@@ -170,7 +159,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 			e.printStackTrace();
 		} finally {
-			closeDBObject(null, preparedStatement, connection);
+			closeDBObjects(null, preparedStatement, connection);
 		}
 
 	}
@@ -183,7 +172,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(YBBS_UPDATE_SQL);
+			preparedStatement = connection.prepareStatement(Sql.YBBS_UPDATE_SQL);
 			preparedStatement.setString(1, ybbs.getSubject());
 			preparedStatement.setString(2, ybbs.getContent());
 			preparedStatement.setInt(3, ybbs.getNo());
@@ -194,7 +183,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 			e.printStackTrace();
 		} finally {
-			closeDBObject(null, preparedStatement, connection);
+			closeDBObjects(null, preparedStatement, connection);
 		}
 
 	}
@@ -207,7 +196,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(YBBS_UPDATE_VISITED);
+			preparedStatement = connection.prepareStatement(Sql.YBBS_UPDATE_VISITED);
 			preparedStatement.setInt(1, no);
 			preparedStatement.executeQuery();
 
@@ -216,7 +205,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 			e.printStackTrace();
 		} finally {
 
-			closeDBObject(null, preparedStatement, connection);
+			closeDBObjects(null, preparedStatement, connection);
 		}
 	}
 
@@ -231,7 +220,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(YBBS_PAGE_SQL);
+			preparedStatement = connection.prepareStatement(Sql.YBBS_PAGE_SQL);
 			preparedStatement.setInt(1, rowStartNumber);
 			preparedStatement.setInt(2, rowEndNumber);
 			resultSet = preparedStatement.executeQuery();
@@ -255,7 +244,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		} finally {
 
-			closeDBObject(resultSet, preparedStatement, connection);
+			closeDBObjects(resultSet, preparedStatement, connection);
 		}
 
 		return ybbsList;
