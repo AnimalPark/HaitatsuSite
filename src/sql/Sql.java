@@ -13,7 +13,7 @@ public class Sql {
 	public static final String YBBS_DELETE_SQL = "DELETE FROM YBBS WHERE NO = ?";
 	public static final String YBBS_UPDATE_VISITED = "UPDATE ybbs SET visited = visited+1 where no = ?";
 	public static final String YBBS_PAGE_SQL = "SELECT * from (SELECT ROWNUM RN,ybbss.* FROM (SELECT * FROM YBBS ORDER BY GRP DESC,LVL ASC,WDATE DESC) ybbss) WHERE RN BETWEEN ? AND ?";
-	
+    public static final String YBBS_SELECT_ALL_COUNT ="SELECT COUNT(*) AS cnt FROM YBBS";
 	
 	//==========================¹Ú¼ºÇõ Sql=======================================
 	public static final String RESTAURANT_SELECT_BY_CATEGORY_SQL = "SELECT NAME FROM RESTAURANT WHERE CNUM = ?";
