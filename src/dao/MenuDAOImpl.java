@@ -6,15 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import model.Category;
+import model.Restaurant;
 import sql.Sql;
 
 public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
-	public List<Category> selectAll() {
-
-		List<Category> lists = new ArrayList<Category>();
+	@Override
+	public List<Restaurant> selectByCategory(int category) {
+		List<Restaurant> lists = new ArrayList<Restaurant>();
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -22,14 +21,16 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(Sql.YBBS_SELECTALL_SQL);
+			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_CATEGORY_SQL);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				Category categorys = new Category();
-				categorys.setCnum(resultSet.getInt("CNUM"));
-				categorys.setCname(resultSet.getString("CNAME"));
-				lists.add(categorys);
+				Restaurant restaurant = new Restaurant();
+				restaurant.setrName(resultSet.getString("RNAME"));
+				restaurant.setcNum(resultSet.getInt("CNUM"));
+				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
+				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
+				lists.add(restaurant);
 			}
 
 		} catch (SQLException e) {
