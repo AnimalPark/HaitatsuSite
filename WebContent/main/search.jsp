@@ -69,23 +69,6 @@ function itemChange(f) {
 		<select id="selectTown" ></select>
 		<input type="submit" name="Commit" value="검색" />
 	</form>
-	
-<%-- 	<form method="post" action="addr_search">
-
-		구 선택: <select name="city" id ="city">
-			<option value="">[구 선택]</option>
-			<c:forEach var="citys" items="${citylist}">
-				<option value="${citys.citynum}">${citys.cityname}</option>
-			</c:forEach>
-		</select> 도로명 선택: <select name="town" id = "town">
-			<option value="">[도로명 선택]</option>
-			<c:forEach var="towns" items="${townlist}">
-				<c:if test="${towns.citynum = cnum}">
-					<option value="${towns.townnum}">${towns.townname}</option>
-				</c:if>
-			</c:forEach>
-		</select> <input type="submit" name="Commit" value="검색" />
-	</form> --%>
 
 	<c:if test="${!empty lists}">
 		<table>
