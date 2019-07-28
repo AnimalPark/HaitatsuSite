@@ -1,39 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html >
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-<<<<<<< HEAD
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var citylist = new Array('영등포구', '동해시');
+var townlist = new Array();
+townlist[0] = new Array('영신로');
+townlist[1] = new Array('천곡동');
 
-=======
+function init(f) {
+	var city_sel = f.selectCity;
+	var town_sel = f.selectTown;
+
+	city_sel.options[0] = new Option("선택", "");
+	town_sel.options[0] = new Option("선택", "");
+
+	for (var i = 0; i < citylist.length; i++) {
+		city_sel.options[i + 1] = new Option(citylist[i], citylist[i]);
+	}
+}
+
+function itemChange(f) {
+	var city_sel = f.selectCity;
+	var town_sel = f.selectTown;
+
+	var selectedCity = city_sel.selectedIndex;
+	for (var i = town_sel.length; i >= 0; i--) {
+		town_sel.options[i] = null;
+	}
+
+	town_sel.options[0] = new Option("선택", "")
+	if (selectedCity != 0) {
+		for (var i = 0; i < townlist[selectedCity - 1].length; i++) {
+			town_sel.options[i + 1] = new Option(townlist[selectedCity - 1][i],
+					townlist[selectedCity - 1][i]);
+		}
+	}
+}
+</script>
+<meta charset="utf-8">
+</head>
+<body onload = "init(this.form);">
+
 	<a href="login_link">로그인</a>
 	<a href="sign_link">회원가입</a>
 	<a href="home_link">홈화면</a>
 	<a href="qa_board_link">Q/A 게시판</a>
-	<a href="event_board_link">이벤트 게시판</a>
+	<a href="ybbs_eventlist">이벤트 게시판</a>
+
+	<br />
+	<br />
+	
+	<button type = "button" name = "category" value = "1">한식</button>
+	<button type = "button" name = "category" value = "2">중식</button>
+	<button type = "button" name = "category" value = "3">일식</button>
+	<button type = "button" name = "category" value = "4">피자</button>
+	<button type = "button" name = "category" value = "5">치킨</button>
+	<button type = "button" name = "category" value = "6">분식</button>
+	<button type = "button" name = "category" value = "7">족발</button>
+	<button type = "button" name = "category" value = "8">간식</button>
+	
+	<form name ="form" action = "addr_search">
+		<select id="selectCity" onchange="itemChange(this.form);"></select>
+		<select id="selectTown" ></select>
+		<input type="submit" name="Commit" value="검색" />
+	</form>
+	
+<%-- 	<form method="post" action="addr_search">
+
+		구 선택: <select name="city" id ="city">
+			<option value="">[구 선택]</option>
+			<c:forEach var="citys" items="${citylist}">
+				<option value="${citys.citynum}">${citys.cityname}</option>
+			</c:forEach>
+		</select> 도로명 선택: <select name="town" id = "town">
+			<option value="">[도로명 선택]</option>
+			<c:forEach var="towns" items="${townlist}">
+				<c:if test="${towns.citynum = cnum}">
+					<option value="${towns.townnum}">${towns.townname}</option>
+				</c:if>
+			</c:forEach>
+		</select> <input type="submit" name="Commit" value="검색" />
+	</form> --%>
 
 	<c:if test="${!empty lists}">
-			<table class="table table-striped">
+		<table>
+			<tr>
+				<td>rName</td>
+				<td>cNum</td>
+				<td>starAvg</td>
+				<td>rNum</td>
+			</tr>
+			<c:forEach var="list" items="${lists}">
 				<tr>
-					<td>rName</td>
-					<td>cNum</td>
-					<td>starAvg</td>
-					<td></td>
+					<td>${list.rName}</td>
+					<td>${list.cNum}</td>
+					<td>${list.starAvg}</td>
+					<td><a href="restaurant_detail?rno=${list.rNum}">${list.rNum}</a></td>
 				</tr>
-				<c:forEach var="list" items="${lists}">
-					<tr>
-						<td>${list.rName}</td>
-						<td>${list.cNum}</td>
-						<td>${list.starAvg}</td>
-						<td><a href="restaurant_detail?rno=${list.memno}">상세보기</a></td>
-					</tr>
-				</c:forEach>
-			</table>
-		</c:if>
->>>>>>> 7e2192997d1d4ea1628b26d25e15c7693d019638
+			</c:forEach>
+		</table>
+	</c:if>
 </body>
 </html>
