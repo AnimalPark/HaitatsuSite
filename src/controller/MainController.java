@@ -17,7 +17,7 @@ import model.Restaurant;
 import model.Town;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/sign_link", "/qa_board_link", "/event_board_link", 
-		"/home_link","/search_link" })
+		"/home_link","/search_link","/addr_search" })
 
 public class MainController extends HttpServlet {
 
@@ -74,6 +74,7 @@ public class MainController extends HttpServlet {
 			Mimpl = new MenuDAOImpl();
 			
 			int category = Integer.parseInt(req.getParameter("category"));
+			req.setAttribute("categ", category);
 			List<Restaurant> lists = Mimpl.selectByCategory(category);
 			req.setAttribute("lists", lists);
 			
@@ -83,6 +84,17 @@ public class MainController extends HttpServlet {
 			List<Town> townlists = Mimpl.selectAllTown();
 			req.setAttribute("townlist", townlists);
 			
+			RequestDispatcher rd = req.getRequestDispatcher("main/search.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("addr_search")) {
+			String city = req.getParameter("selectCity");
+			String town = req.getParameter("selectTown");
+			String selctedCate = req.getParameter("catego");
+			System.out.println(selctedCate);
+			
+			req.setAttribute("categ", selctedCate);
 			RequestDispatcher rd = req.getRequestDispatcher("main/search.jsp");
 			rd.forward(req, resp);
 

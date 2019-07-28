@@ -63,12 +63,13 @@ function itemChange(f) {
 	<button type = "button" name = "category" value = "6">분식</button>
 	<button type = "button" name = "category" value = "7">족발</button>
 	<button type = "button" name = "category" value = "8">간식</button>
-	
-	<form name ="form" action = "addr_search">
-		<select id="selectCity" onchange="itemChange(this.form);"></select>
-		<select id="selectTown" ></select>
+	=${categ}=
+	<form method = "post" name ="form" action = "addr_search?catego=${categ}">
+		<select id="selectCity" name = "selectCity" onchange="itemChange(this.form);"></select>
+		<select id="selectTown" name = "selectTown" ></select>
 		<input type="submit" name="Commit" value="검색" />
 	</form>
+
 
 	<c:if test="${!empty lists}">
 		<table>
