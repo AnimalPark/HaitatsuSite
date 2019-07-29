@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 <p>test3</p>
+=======
+<p>test</p>
+<p>test2</p>
+>>>>>>> origin/johnnoro
 </body>
 </html>
