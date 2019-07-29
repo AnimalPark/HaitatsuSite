@@ -21,6 +21,7 @@
 <p>test3</p>
 <p>test4</p>
 <p>test5</p>
+<p>test6</p>
 >>>>>>> origin/ryun
 >>>>>>> origin/AnimalPark
 </body>
