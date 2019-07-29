@@ -1,5 +1,7 @@
 package page;
 
-public class PageDAO {
+public interface PageDAO {
+	
+	int getCount(String sql);
 
 }
