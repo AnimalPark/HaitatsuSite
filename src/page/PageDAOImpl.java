@@ -31,7 +31,7 @@ public class PageDAOImpl extends BaseDAO implements PageDAO {
 
 			e.printStackTrace();
 		} finally {
-			closeDBObject(resultSet, preparedStatement, connection);
+			closeDBObjects(resultSet, preparedStatement, connection);
 		}
 
 		return count;
