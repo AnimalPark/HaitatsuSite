@@ -8,10 +8,20 @@
 </head>
 <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <p>test3</p>
 =======
 <p>test</p>
 <p>test2</p>
 >>>>>>> origin/johnnoro
+=======
+<p>test</p>
+<p>test2</p>
+=======
+<p>test3</p>
+<p>test4</p>
+<p>test5</p>
+>>>>>>> origin/ryun
+>>>>>>> origin/AnimalPark
 </body>
 </html>
