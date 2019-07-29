@@ -6,8 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class BaseDAO {
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
+public class BaseDAO {
+	String DRIVER = "oracle.jdbc.driver.OracleDriver";
+	String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	String USER = "madang";
+	String PASSWORD = "madang";
+
+	public Connection getConnection() {
+
+		Connection connection = null;
+
+<<<<<<< HEAD
 	public static String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	public static String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 	public static String USER = "madang";
@@ -34,29 +47,67 @@ public class BaseDAO {
 
 	public void closeDBObject(ResultSet resultSet, Statement statement, Connection connection) {
 
+=======
+		try {
+			Class.forName(DRIVER);
+			connection = DriverManager.getConnection(URL, USER, PASSWORD);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return connection;
+	}
+
+	public void closeDBObjects(ResultSet resultSet, Statement statement, Connection connection) {
+>>>>>>> origin/master
 		if (resultSet != null) {
 			try {
 				resultSet.close();
 			} catch (SQLException e) {
+<<<<<<< HEAD
 				e.printStackTrace();
 			}
 
+=======
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+>>>>>>> origin/master
 		}
 		if (statement != null) {
 			try {
 				statement.close();
 			} catch (SQLException e) {
+<<<<<<< HEAD
 				e.printStackTrace();
 			}
 		}
 
+=======
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+>>>>>>> origin/master
 		if (connection != null) {
 			try {
 				connection.close();
 			} catch (SQLException e) {
+<<<<<<< HEAD
+=======
+				// TODO Auto-generated catch block
+>>>>>>> origin/master
 				e.printStackTrace();
 			}
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> origin/master
 }
+
