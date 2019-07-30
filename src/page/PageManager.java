@@ -1,5 +1,7 @@
 package page;
 
+import sql.Sql;
+
 public class PageManager {
 
 	private int requestPage;
@@ -44,7 +46,7 @@ public class PageManager {
 		
 		PageDAO dao = new PageDAOImpl();
 		//총 줄 수 가져오기
-		int count = dao.getCount(PageSQL.YBBS_SELECT_ALL_COUNT);
+		int count = dao.getCount(Sql.YBBS_SELECT_ALL_COUNT);
 		
 		//총링크 개수
 		int totalPageNumber = (count - 1) / (PageInfo.ROW_COUNT_PRE_PAGE) + 1;
