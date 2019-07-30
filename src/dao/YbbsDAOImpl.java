@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Ybbs;
+import model.Ybbs_QA;
 import sql.Sql;
 
-public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
+public class YbbsDAOImpl extends BaseDAO implements Ybbs_QADAO {
 
 	
 	@Override
 
-	public boolean Insert(Ybbs ybbs) {
+	public boolean Insert(Ybbs_QA ybbs) {
 
 		boolean result = false;
 		Connection connection = null;
@@ -25,9 +25,9 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.YBBS_INSERT_SQL);
 
-			preparedStatement.setString(1, ybbs.getSubject());
-			preparedStatement.setString(2, ybbs.getContent());
-			preparedStatement.setString(3, ybbs.getId());
+			preparedStatement.setString(1, ybbs.getQasubject());
+			preparedStatement.setString(2, ybbs.getQacomment());
+			preparedStatement.setString(3, ybbs.getUserid());
 
 			int rowCount = preparedStatement.executeUpdate();
 
@@ -46,9 +46,9 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 	}
 
 	@Override
-	public List<Ybbs> selectAll() {
+	public List<Ybbs_QA> selectAll() {
 
-		List<Ybbs> ybbsList = new ArrayList<Ybbs>();
+		List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -61,14 +61,14 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 			while (resultSet.next()) {
 
-				Ybbs ybbs = new Ybbs();
-				ybbs.setNo(resultSet.getInt("no"));
-				ybbs.setSubject(resultSet.getString("subject"));
-				ybbs.setId(resultSet.getString("id"));
-				ybbs.setWdate(resultSet.getString("wdate"));
-				ybbs.setGrp(resultSet.getInt("grp"));
-				ybbs.setLvl(resultSet.getInt("lvl"));
-				ybbs.setVisited(resultSet.getInt("visited"));
+				Ybbs_QA ybbs = new Ybbs_QA();
+				ybbs.setQanumber(resultSet.getInt("qanumber"));
+				ybbs.setQasubject(resultSet.getString("qasubject"));
+				ybbs.setUserid(resultSet.getString("userid"));
+				ybbs.setQadate(resultSet.getString("qadate"));
+				ybbs.setQagroup(resultSet.getInt("qagroup"));
+				ybbs.setQalevel(resultSet.getInt("qalevel"));
+				ybbs.setQavisited(resultSet.getInt("qavisited"));
 
 				ybbsList.add(ybbs);
 			}
@@ -85,8 +85,8 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 	}
 
 	@Override
-	public Ybbs selectByNo(int no) {
-		Ybbs ybbs = new Ybbs();
+	public Ybbs_QA selectByNo(int qanumber) {
+		Ybbs_QA ybbs = new Ybbs_QA();
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -95,15 +95,15 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.YBBS_SELECTBYNO_SQL);
-			preparedStatement.setInt(1, no);
+			preparedStatement.setInt(1, qanumber);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				if (resultSet.getInt("no") == no)
-					ybbs.setNo(resultSet.getInt("no"));
-				ybbs.setId(resultSet.getString("id"));
-				ybbs.setSubject(resultSet.getString("subject"));
-				ybbs.setContent(resultSet.getString("content"));
+				if (resultSet.getInt("qanumber") == qanumber)
+				ybbs.setQanumber(resultSet.getInt("qanumber"));
+				ybbs.setUserid(resultSet.getString("userid"));
+				ybbs.setQasubject(resultSet.getString("qasubject"));
+				ybbs.setQacomment(resultSet.getString("qacomment"));
 			}
 		} catch (SQLException e) {
 
@@ -117,7 +117,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 	}
 
 	@Override
-	public void insertReply(Ybbs ybbs) {
+	public void insertReply(Ybbs_QA ybbs) {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -125,10 +125,10 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.YBBS_INSERT_REPLY_SQL);
 
-			preparedStatement.setString(1, ybbs.getSubject());
-			preparedStatement.setString(2, ybbs.getContent());
-			preparedStatement.setInt(3, ybbs.getGrp());
-			preparedStatement.setString(4, ybbs.getId());
+			preparedStatement.setString(1, ybbs.getQasubject());
+			preparedStatement.setString(2, ybbs.getQacomment());
+			preparedStatement.setInt(3, ybbs.getQagroup());
+			preparedStatement.setString(4, ybbs.getUserid());
 
 			preparedStatement.executeUpdate();
 
@@ -143,7 +143,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 	}
 
 	@Override
-	public void delete(int no) {
+	public void delete(int qanumber) {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -151,7 +151,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.YBBS_DELETE_SQL);
-			preparedStatement.setInt(1, no);
+			preparedStatement.setInt(1, qanumber);
 
 			preparedStatement.executeUpdate();
 
@@ -165,7 +165,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 	}
 
 	@Override
-	public void update(Ybbs ybbs) {
+	public void update(Ybbs_QA ybbs) {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -173,9 +173,9 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.YBBS_UPDATE_SQL);
-			preparedStatement.setString(1, ybbs.getSubject());
-			preparedStatement.setString(2, ybbs.getContent());
-			preparedStatement.setInt(3, ybbs.getNo());
+			preparedStatement.setString(1, ybbs.getQasubject());
+			preparedStatement.setString(2, ybbs.getQacomment());
+			preparedStatement.setInt(3, ybbs.getQanumber());
 
 			preparedStatement.executeUpdate();
 
@@ -189,7 +189,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 	}
 
 	@Override
-	public void updateVisited(int no) {
+	public void updateVisited(int qanumber) {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -197,7 +197,7 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.YBBS_UPDATE_VISITED);
-			preparedStatement.setInt(1, no);
+			preparedStatement.setInt(1, qanumber);
 			preparedStatement.executeQuery();
 
 		} catch (SQLException e) {
@@ -210,9 +210,9 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 	}
 
 	@Override
-	public List<Ybbs> selectAll(int rowStartNumber, int rowEndNumber) {
+	public List<Ybbs_QA> selectAll(int rowStartNumber, int rowEndNumber) {
 		
-		List<Ybbs> ybbsList = new ArrayList<Ybbs>();
+		List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -227,14 +227,16 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 			while (resultSet.next()) {
 
-				Ybbs ybbs = new Ybbs();
-				ybbs.setNo(resultSet.getInt("no"));
-				ybbs.setSubject(resultSet.getString("subject"));
-				ybbs.setId(resultSet.getString("id"));
-				ybbs.setWdate(resultSet.getString("wdate"));
-				ybbs.setGrp(resultSet.getInt("grp"));
-				ybbs.setLvl(resultSet.getInt("lvl"));
-				ybbs.setVisited(resultSet.getInt("visited"));
+				Ybbs_QA ybbs = new Ybbs_QA();
+
+
+				ybbs.setQanumber(resultSet.getInt("qanumber"));
+				ybbs.setQasubject(resultSet.getString("qasubject"));
+				ybbs.setUserid(resultSet.getString("userid"));
+				ybbs.setQadate(resultSet.getString("qadate"));
+				ybbs.setQagroup(resultSet.getInt("qagroup"));
+				ybbs.setQalevel(resultSet.getInt("qalevel"));
+				ybbs.setQavisited(resultSet.getInt("qavisited"));
 
 				ybbsList.add(ybbs);
 			}
@@ -249,4 +251,5 @@ public class YbbsDAOImpl extends BaseDAO implements YbbsDAO {
 
 		return ybbsList;
 	}
+
 }
