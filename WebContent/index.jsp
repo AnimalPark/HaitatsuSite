@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-23
-
+<a href="board/qaboard.jsp">Q/A °Ô½ÃÆÇ</a>
 </body>
 </html>

@@ -16,9 +16,9 @@
 			</tr>
 			<c:forEach var="ybbsList" items="${ybbsList}">
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>{ybbsList.no}</td>
+					<td>{ybbsList.no}</td>
+					<td>{ybbsList.no}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

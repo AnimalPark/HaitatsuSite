@@ -72,9 +72,5 @@ public class PageManager {
 		return pageGroupResult;
 	}
 
-	
-	public static void main(String[] args) {
-		
-		
-	}
+
 }
