@@ -10,7 +10,7 @@ import java.util.List;
 import model.Ybbs_QA;
 import sql.Sql;
 
-public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
+public class YbbsDAOImpl extends BaseDAO implements Ybbs_QADAO {
 
 	
 	@Override
@@ -80,8 +80,7 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
-		
-		
+
 		return ybbsList;
 	}
 
@@ -252,4 +251,5 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 
 		return ybbsList;
 	}
+
 }

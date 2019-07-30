@@ -7,20 +7,20 @@
 <meta charset="utf-8">
 </head>
 <body>
-	<table>
+	<table data-text-content="true" class="table_board" spellcheck="false">
 		<tbody>
 			<tr>
 				<th>No.</th>
 				<th>Name</th>
 				<th>Value</th>
 			</tr>
-			<%-- <c:forEach var="ybbsList" items="${ybbsList}">
+			<c:forEach var="ybbsList" items="${ybbsList}">
 				<tr>
 					<td>{ybbsList.qanumber}</td>
 					<td>{ybbsList.qanumber}</td>
 					<td>{ybbsList.qanumber}</td>
 				</tr>
-			</c:forEach> --%>
+			</c:forEach>
 		</tbody>
 	</table>
 </body>
