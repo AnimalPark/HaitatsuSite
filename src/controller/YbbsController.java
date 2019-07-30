@@ -16,7 +16,7 @@ import dao.YbbsDAOImpl;
 
 import model.Ybbs;
 import page.PageManager;
-import page.PageSQL;
+import sql.Sql;
 
 @WebServlet(name = "YbbsController", urlPatterns = { "/ybbs_insert.do", "/ybbs_content","/ybbs_list","/ybbs_detail","/ybbs_delete.do","/ybbs_update.do","/ybbs_reply.do","/ybbs_reply_form.do","/ybbs_req_list"})
 
@@ -144,7 +144,7 @@ public class YbbsController extends HttpServlet {
 			
 			
 			req.setAttribute("ybbsList", ybbsList);// 자바에서 화면으로 보내기 requst.setAttribute();
-			req.setAttribute("pageGroupResult", pm.getPageGroupResult(PageSQL.YBBS_SELECT_ALL_COUNT));
+			req.setAttribute("pageGroupResult", pm.getPageGroupResult(Sql.YBBS_SELECT_ALL_COUNT));
 			
 			RequestDispatcher rd = req.getRequestDispatcher("boardList.jsp");
 			rd.forward(req, resp);
