@@ -17,7 +17,7 @@ import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
 
-@WebServlet(name = "YbbsController", urlPatterns = { "/ybbs_insert.do", "/ybbs_content","/ybbs_list","/ybbs_detail","/ybbs_delete.do","/ybbs_update.do","/ybbs_reply.do","/ybbs_reply_form.do","/ybbs_req_list"})
+@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_insert","/ybbs_content","/ybbs_detail","/ybbs_delete","/ybbs_update","/ybbs_reply","/ybbs_reply_form","/ybbs_req_list","/ybbs_eventlist"})
 
 public class YbbsController extends HttpServlet {
 
@@ -55,29 +55,18 @@ public class YbbsController extends HttpServlet {
 			dao.Insert(ybbs);
 			
 			req.setAttribute("ybbs", ybbs);
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_list");
-			rd.forward(req, resp);
-
-		}else if (action.equals("ybbs_list")) {
-
-			List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
-			Ybbs_QADAO dao = new YbbsDAOImpl();
-			ybbsList = dao.selectAll();
-
-			req.setAttribute("ybbsList", ybbsList);// 자바에서 화면으로 보내기 requst.setAttribute();
-			
-			RequestDispatcher rd = req.getRequestDispatcher("boardList.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
 			rd.forward(req, resp);
 
 		}else if (action.equals("ybbs_detail")) {
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
-			int no = Integer.parseInt(req.getParameter("no"));
+			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
 			
 			Ybbs_QADAO dao = new YbbsDAOImpl();
 			
-			ybbs = dao.selectByNo(no);
-			dao.updateVisited(no);
+			ybbs = dao.selectByNo(qanumber);
+			dao.updateVisited(qanumber);
 			
 			req.setAttribute("ybbs", ybbs);
 
@@ -92,7 +81,7 @@ public class YbbsController extends HttpServlet {
 
 			dao.delete(ybbs.getQanumber());
 
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_list");
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
 			rd.forward(req, resp);
 		} else if (action.equals("ybbs_update.do")) {
 			Ybbs_QA ybbs = new Ybbs_QA();
@@ -104,7 +93,7 @@ public class YbbsController extends HttpServlet {
 			Ybbs_QADAO dao = new YbbsDAOImpl();
 			dao.update(ybbs);
 
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_list");
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
 			rd.forward(req, resp);
 		}  else if (action.equals("ybbs_reply.do")) {
 			
@@ -120,11 +109,11 @@ public class YbbsController extends HttpServlet {
 			dao.insertReply(ybbs);
 			
 			
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_list");
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
 			rd.forward(req, resp);
 		} else if (action.equals("ybbs_reply_form.do")) {
 			
-			int num = Integer.parseInt(req.getParameter("no"));
+			int num = Integer.parseInt(req.getParameter("qanumber"));
 			
 			req.setAttribute("num", num);
 			RequestDispatcher rd = req.getRequestDispatcher("boardReply.jsp");
@@ -147,6 +136,18 @@ public class YbbsController extends HttpServlet {
 			
 			RequestDispatcher rd = req.getRequestDispatcher("boardList.jsp");
 			rd.forward(req, resp);
+		
+		} else if (action.equals("ybbs_eventlist")) {
+
+			List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
+			Ybbs_QADAO dao = new YbbsDAOImpl();
+			ybbsList = dao.selectAll();
+
+			req.setAttribute("ybbsList", ybbsList);// 자바에서 화면으로 보내기 requst.setAttribute();
+			
+			RequestDispatcher rd = req.getRequestDispatcher("eventboard.jsp");
+			rd.forward(req, resp);
+
 		}
 		
 	}
