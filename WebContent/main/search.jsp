@@ -13,14 +13,6 @@
 	<a href="qa_board_link">Q/A 게시판</a>
 	<a href="event_board_link">이벤트 게시판</a>
 
-	<a href = "search_link?category=1">한식</a>
-	<a href = "search_link?category=2">중식</a>
-	<a href = "search_link?category=3">일식</a>
-	<a href = "search_link?category=4">피자</a>
-	<a href = "search_link?category=5">치킨</a>
-	<a href = "search_link?category=6">분식</a>
-	<a href = "search_link?category=7">족발</a>
-	<a href = "search_link?category=8">간식</a>
 
 </body>
 </html>
