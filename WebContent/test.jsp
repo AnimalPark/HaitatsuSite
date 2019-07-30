@@ -7,10 +7,6 @@
 <meta charset="utf-8">
 </head>
 <body>
-<a href="login_link">로그인</a>
-<a href="sign_link">회원가입</a>
-<a href="home_link">홈화면</a>
-<a href="qa_board_link">Q/A 게시판</a>
-<a href="event_board_link">이벤트 게시판</a>
+	<p1>미구현입니다.</p1>
 </body>
 </html>
