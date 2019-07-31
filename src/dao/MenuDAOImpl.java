@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.City;
 import model.Restaurant;
+import model.Town;
 import sql.Sql;
 
 public class MenuDAOImpl extends BaseDAO implements MenuDAO {
@@ -22,14 +25,18 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_CATEGORY_SQL);
+			preparedStatement.setInt(1, category);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
 				Restaurant restaurant = new Restaurant();
+
+				restaurant.setrNum(resultSet.getInt("RNUM"));
 				restaurant.setrName(resultSet.getString("RNAME"));
 				restaurant.setcNum(resultSet.getInt("CNUM"));
 				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
+				
 				lists.add(restaurant);
 			}
 
@@ -37,7 +44,71 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			e.printStackTrace();
 
 		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
 
+		return lists;
+	}
+	
+	@Override
+	public List<City> selectAllCity() {
+		List<City> lists = new ArrayList<City>();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.CITY_SELECT_ALL_SQL);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				City city = new City();
+
+				city.setCitynum(resultSet.getInt("CITYNUM"));
+				city.setCityname(resultSet.getString("CITYNAME"));
+				
+				lists.add(city);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return lists;
+	}
+
+	@Override
+	public List<Town> selectAllTown() {
+		List<Town> lists = new ArrayList<Town>();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.TOWN_SELECT_ALL_SQL);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				Town town = new Town();
+
+				town.setCitynum(resultSet.getInt("CITYNUM"));
+				town.setTownnum(resultSet.getInt("TOWNNUM"));
+				town.setTownname(resultSet.getString("TOWNNAME"));
+				
+				lists.add(town);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
 

@@ -7,18 +7,20 @@
 <meta charset="utf-8">
 </head>
 <body>
-	<table data-text-content="true" class="table_board" spellcheck="false">
+<a href="ybbs_req_list?reqPage=1">Q/A게시판</a><br/>
+<a href="">로그인</a> <a href="">☆회원가입☆</a>
+	<table>
 		<tbody>
 			<tr>
-				<th>No.</th>
-				<th>Name</th>
-				<th>Value</th>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>날짜</th>
 			</tr>
-			<c:forEach var="ybbsList" items="${ybbsList}">
+			<c:forEach var="ybbs_QA" items="${ybbsList}">
 				<tr>
-					<td>{ybbsList.qanumber}</td>
-					<td>{ybbsList.qanumber}</td>
-					<td>{ybbsList.qanumber}</td>
+					<td>${ybbs_QA.qanumber}</td>
+					<td>${ybbs_QA.qasubject}</td>
+					<td>${ybbs_QA.qadate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

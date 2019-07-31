@@ -128,8 +128,9 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 
 			preparedStatement.setString(1, ybbs.getQasubject());
 			preparedStatement.setString(2, ybbs.getQacomment());
-			preparedStatement.setInt(3, ybbs.getQagroup());
-			preparedStatement.setString(4, ybbs.getUserid());
+			preparedStatement.setString(3, ybbs.getUserid());
+			preparedStatement.setInt(4, ybbs.getQagroup());
+			
 
 			preparedStatement.executeUpdate();
 
@@ -229,7 +230,6 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 			while (resultSet.next()) {
 
 				Ybbs_QA ybbs = new Ybbs_QA();
-
 
 				ybbs.setQanumber(resultSet.getInt("qanumber"));
 				ybbs.setQasubject(resultSet.getString("qasubject"));
