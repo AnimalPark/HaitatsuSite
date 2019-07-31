@@ -70,7 +70,7 @@ public class YbbsController extends HttpServlet {
 			
 			req.setAttribute("ybbs", ybbs);
 
-			RequestDispatcher rd = req.getRequestDispatcher("detail.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardDetail.jsp");
 			rd.forward(req, resp);
 
 		} else if (action.equals("ybbs_delete")) {
@@ -81,9 +81,10 @@ public class YbbsController extends HttpServlet {
 
 			dao.delete(ybbs.getQanumber());
 
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
 			rd.forward(req, resp);
 		} else if (action.equals("ybbs_update")) {
+			
 			Ybbs_QA ybbs = new Ybbs_QA();
 			
 			ybbs.setQanumber(Integer.parseInt(req.getParameter("qanumber")));
@@ -93,8 +94,9 @@ public class YbbsController extends HttpServlet {
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			dao.update(ybbs);
 
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
 			rd.forward(req, resp);
+			
 		}  else if (action.equals("ybbs_reply")) {
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
@@ -109,15 +111,20 @@ public class YbbsController extends HttpServlet {
 			dao.insertReply(ybbs);
 			
 			
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list");
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
 			rd.forward(req, resp);
+			
 		} else if (action.equals("ybbs_reply_form")) {
 			
 			int num = Integer.parseInt(req.getParameter("qanumber"));
+			String id = req.getParameter("userid");
 			
 			req.setAttribute("num", num);
-			RequestDispatcher rd = req.getRequestDispatcher("boardReply.jsp");
+			req.setAttribute("userid", id);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardReply.jsp");
 			rd.forward(req, resp);
+			
 		} else if (action.equals("ybbs_req_list")) {
 			
 			int requestPage = Integer.parseInt(req.getParameter("reqPage"));
@@ -125,30 +132,31 @@ public class YbbsController extends HttpServlet {
 			PageManager pm = new PageManager(requestPage);
 
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
+			
 			List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
 
 			ybbsList = dao.selectAll(pm.getPageRowResult().getRowStartNumber(),
 					pm.getPageRowResult().getRowEndNumber());
 			
 			
-			req.setAttribute("ybbsList", ybbsList);// 자바에서 화면으로 보내기 requst.setAttribute();
+			req.setAttribute("ybbsList", ybbsList);
 			req.setAttribute("pageGroupResult", pm.getPageGroupResult(Sql.YBBS_SELECT_ALL_COUNT));
 			
-			RequestDispatcher rd = req.getRequestDispatcher("boardList.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("board/qaboard.jsp");
 			rd.forward(req, resp);
 		
 		} else if (action.equals("ybbs_eventlist")) {
 
 			
-			/*List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
+			List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			
-			ybbsList = dao.selectAll();*/
+			ybbsList = dao.selectAll();
 			
-
-			/*req.setAttribute("ybbsList", ybbsList);*/  // 자바에서 화면으로 보내기 requst.setAttribute();
 			
-			RequestDispatcher rd = req.getRequestDispatcher("eventboard.jsp");
+			req.setAttribute("ybbsList", ybbsList);  // 자바에서 화면으로 보내기 requst.setAttribute();
+			
+			RequestDispatcher rd = req.getRequestDispatcher("board/eventboard.jsp");
 			rd.forward(req, resp);
 
 		}

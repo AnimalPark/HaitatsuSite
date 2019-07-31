@@ -4,66 +4,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-table {
-	border-collapse: collapse;
-	width: 70%;
-	margin: auto;
-	text-align: center;
-}
-span {
-  font-size: 30px;
-  background-color: red;
-  -webkit-animation-name: example;
-  -webkit-animation-duration: 1s;
-  animation-name: example;
-  animation-duration: 1s;
-}
-
-th, td {
-	text-align: left;
-	padding: 8px;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2
-}
-
-th {
-	background-color: #4CAF50;
-	color: white;
-}
-
-#back {
-	position: absolute;
-	top: 50px;
-	left: 50px;	
-}
-
-#select{
-	margin : auto;
-	text-align : center;
-}
-
-a:link {
-	color: red;
-	text-decoration: none;
-}
-
-a:visited {
-	color: black;
-	text-decoration: none;
-}
-
-a:hover {
-	color: blue;
-	text-decoration: underline;
-}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+a:link {text-decoration: none; color: #333333;}
+a:visited {text-decoration: none; color: #333333;}
+a:active {text-decoration: none; color: #333333;}
+a:hover {text-decoration: underline; color: red;}
 </style>
 </head>
 <body>
-	<a href="index.jsp">뒤로가기</a>
-	<table>
+<br/>
+<div class="container">
+<a href="index.jsp">저를눌러주세요</a>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="ybbs_eventlist">이벤트게시판</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">로그인</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">로그아웃</a>
+    </li>
+  </ul>
+</div>
+<br />
+	<table class="table table-hover">
+	 <tbody>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -71,39 +41,45 @@ a:hover {
 			<th>작성일자</th>
 			<th>조회</th>
 		</tr>
+	</tbody>
 		<c:forEach var="ybbsList" items="${ybbsList}">
 			<tr>
-				<td>${ybbsList.no}</td>
-				<c:if test="${ybbsList.lvl eq 0}">
-					<td><a href="ybbs_detail?no=${ybbsList.no}">${ybbsList.subject}</a></td>
+				<td>${ybbsList.qanumber}</td>
+				<c:if test="${ybbsList.qalevel eq 0}">
+					<td><a href="ybbs_detail?qanumber=${ybbsList.qanumber}">${ybbsList.qasubject}</a></td>
 				</c:if>
-				<c:if test="${ybbsList.lvl eq 1}">
-					<td><a href="ybbs_detail?no=${ybbsList.no}">ㄴ${ybbsList.subject}</a></td>
+				<c:if test="${ybbsList.qalevel eq 1}">
+					<td><a href="ybbs_detail?qanumber=${ybbsList.qanumber}">└&nbsp;${ybbsList.qasubject}</a></td>
 				</c:if>
-				<td>${ybbsList.id}</td>
-				<td>${ybbsList.wdate}</td>
-				<td>${ybbsList.visited}</td>
+				<td>${ybbsList.userid}</td>
+				<td>${ybbsList.qadate}</td>
+				<td>${ybbsList.qavisited}</td>
 			</tr>
 		</c:forEach>
 	</table>
-	<div id="select">
-			<c:if test="${pageGroupResult.beforePage}">
-				<a href="ybbs_req_list?reqPage=${pageGroupResult.groupStartNumber-1}">◁</a>
-				</c:if>
-			<c:forEach var="index" begin="${pageGroupResult.groupStartNumber}"
-				end="${pageGroupResult.groupEndNumber}">
-				<c:choose>
-					<c:when test="${pageGroupResult.selectPageNumber==index}">
-						<span><a href="ybbs_req_list?reqPage=${index}">${index}</a></span>
-					</c:when>
-					<c:otherwise>
-						<a href="ybbs_req_list?reqPage=${index}">${index}</a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		<c:if test="${pageGroupResult.afterPage}">
-			<a href="ybbs_req_list?reqPage=${pageGroupResult.groupEndNumber+1}">▷</a>
-		</c:if>
-	</div>
+	
+	
+<div class="container">
+  <ul class="pagination">
+    <c:if test="${pageGroupResult.beforePage}">
+    	<li class="page-item disabled">
+    		<a class="page-link" href="ybbs_req_list?reqPage=${pageGroupResult.groupStartNumber-1}">Previous</a>
+    	</li>
+    </c:if>
+  	<c:forEach var="index" begin="${pageGroupResult.groupStartNumber}" end="${pageGroupResult.groupEndNumber}">
+		<c:choose>	
+			<c:when test="${pageGroupResult.selectPageNumber==index}"> 
+   				 <li class="page-item"><a class="page-link" href="ybbs_req_list?reqPage=${index}">${index}</a></li>
+    		</c:when>
+			<c:otherwise>
+				    <li class="page-item"><a class="page-link" href="ybbs_req_list?reqPage=${index}">${index}</a></li>
+			</c:otherwise>		 
+ 		 </c:choose>
+		</c:forEach>
+	 <c:if test="${pageGroupResult.afterPage}">
+	 <li class="page-item"><a class="page-link" href="ybbs_req_list?reqPage=${pageGroupResult.groupEndNumber+1}">Next</a></li>
+	</c:if>
+	</ul>
+</div>
 </body>
 </html>
