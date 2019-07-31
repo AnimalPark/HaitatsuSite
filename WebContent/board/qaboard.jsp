@@ -18,7 +18,7 @@ a:hover {text-decoration: underline; color: red;}
 <body>
 <br/>
 <div class="container">
-<a href="index.jsp">저를눌러주세요</a>
+<a href="index.jsp">저를눌러주세요</a>	
   <ul class="nav justify-content-end">
     <li class="nav-item">
       <a class="nav-link" href="ybbs_eventlist">이벤트게시판</a>
