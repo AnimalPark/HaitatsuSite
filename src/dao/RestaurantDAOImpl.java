@@ -9,7 +9,7 @@ import java.util.List;
 import model.Restaurant;
 import sql.Sql;
 
-public class RestaurantDAOImp extends BaseDAO implements RestaurantDAO {
+public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 
 	@Override
 	public List<Restaurant> selectAll() {
