@@ -107,10 +107,10 @@
             return false;
         }
         //연락처 입력여부 체크
-        if (join.uPhonenumber.value == "")
+        if (join.uPhonenum.value == "")
         {
             alert("연락처를 입력하세요.")
-            join.uPhonenumber.focus();
+            join.uPhonenum.focus();
             return false;
         }
         alert("회원가입이 완료되었습니다.");
@@ -152,7 +152,7 @@
 				</tr>
 				<tr>
 					연락처 :
-					<input type="text" id="uPhonenumber" name="uPhonenumber" placeholder="연락처를 입력해주세요. (010-0000-0000)"><br />
+					<input type="text" id="uPhonenum" name="uPhonenum" placeholder="연락처를 입력해주세요. (010-0000-0000)"><br />
 				</tr>
 				<tr>
 					<button class="btn btn-primary" type="submit" value="회원가입">회원가입</button>
