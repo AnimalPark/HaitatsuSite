@@ -27,6 +27,6 @@ public class Sql {
 	public static final String RESTAURANT_DELETE_RESTAURANT_SQL = "DELETE FROM restaurant WHERE rNum=?";
 	
 	//==========================Ãµ´Ù¿¬ Sql¡é=======================================
-
+	private static final String USERS_INSERT_SQL = "INSERT INTO users VALUES(?, ?, ?, ?, ?)";
 
 }
