@@ -1,45 +1,47 @@
 package model;
 
-public class Users {
-	private String userid;
-	private String upwd;
-	private String uname;
-	private String uaddr;
-	private String uphonenum;
+public class Users
+{
+	private String userId;
+	private String uPwd;
+	private String uName;
+	private String uAddr;
+	private String uPhonenum;
 	
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getUpwd() {
-		return upwd;
+	public String getuPwd() {
+		return uPwd;
 	}
-	public void setUpwd(String upwd) {
-		this.upwd = upwd;
+	public void setuPwd(String uPwd) {
+		this.uPwd = uPwd;
 	}
-	public String getUname() {
-		return uname;
+	public String getuName() {
+		return uName;
 	}
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setuName(String uName) {
+		this.uName = uName;
 	}
-	public String getUaddr() {
-		return uaddr;
+	public String getuAddr() {
+		return uAddr;
 	}
-	public void setUaddr(String uaddr) {
-		this.uaddr = uaddr;
+	public void setuAddr(String uAddr) {
+		this.uAddr = uAddr;
 	}
-	public String getUphonenum() {
-		return uphonenum;
+	public String getuPhonenum() {
+		return uPhonenum;
 	}
-	public void setUphonenum(String uphonenum) {
-		this.uphonenum = uphonenum;
+	public void setuPhonenum(String uPhonenum) {
+		this.uPhonenum = uPhonenum;
 	}
+	
 	@Override
 	public String toString() {
-		return "Users [userid=" + userid + ", upwd=" + upwd + ", uname=" + uname + ", uaddr=" + uaddr + ", uphonenum="
-				+ uphonenum + "]";
+		return "Users [userId=" + userId + ", uPwd=" + uPwd + ", uName=" + uName + ", uAddr=" + uAddr + ", uPhonenum="
+				+ uPhonenum + "]";
 	}
 }
