@@ -16,8 +16,13 @@ import model.City;
 import model.Restaurant;
 import model.Town;
 
+<<<<<<< HEAD
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
 		"/home_link","/search_link","/addr_search", "/logout_link" })
+=======
+@WebServlet(name = "MainController", urlPatterns = { "/login_link", "/sign_link", "/qa_board_link", "/event_board_link", 
+		"/home_link","/search_link","/addr_search","/idcheck"})
+>>>>>>> a9ebfe1421d94b41adf947b67035b9025745c1e3
 
 public class MainController extends HttpServlet {
 
@@ -95,15 +100,34 @@ public class MainController extends HttpServlet {
 
 		}
 		else if (action.equals("addr_search")) {
+			Mimpl = new MenuDAOImpl();
 			String city = req.getParameter("selectCity");
 			String town = req.getParameter("selectTown");
 			String selctedCate = req.getParameter("catego");
+			
 			System.out.println(selctedCate);
 			
-			req.setAttribute("categ", selctedCate);
+			List<Restaurant> lists = Mimpl.selectByTownnum(city, town);
+			
+			req.setAttribute("lists", lists);
 			RequestDispatcher rd = req.getRequestDispatcher("main/search.jsp");
 			rd.forward(req, resp);
 
 		}
+		else if (action.equals("idcheck")) {
+
+			boolean chk = true;
+			if(chk) {
+				System.out.println("check");
+				req.setAttribute("msg", "사용할 수 있는 아이디입니다.");
+			}
+			else {
+				req.setAttribute("msg", "사용할 수 없는 아이디입니다.");
+			}
+			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+			rd.forward(req, resp);
+
+		}
+		
 	}
 }

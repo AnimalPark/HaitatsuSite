@@ -4,7 +4,11 @@
 <!DOCTYPE html >
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
 	<!-- 로그인하면 로그인 버튼 대신에 로그아웃 버튼이 뜨게 하고 싶은데 잘 안 되네요 -->
@@ -29,6 +33,6 @@
 	<a href = "search_link?category=6">분식</a>
 	<a href = "search_link?category=7">족발</a>
 	<a href = "search_link?category=8">간식</a>
-
+	
 </body>
 </html>

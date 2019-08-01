@@ -4,6 +4,8 @@
 <!DOCTYPE html >
 <html>
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	var f_selbox = new Array('1', '2', '3', '4');
 
@@ -24,7 +26,7 @@
 			f_sel.options[i + 1] = new Option(f_selbox[i], f_selbox[i]);
 		}
 	}
-	
+
 	function itemChange(f) {
 		var f_sel = f.first;
 		var s_sel = f.second;
@@ -43,13 +45,40 @@
 		}
 	}
 </script>
+<script type="text/javascript">
+	$(function() {
+		$("#checkid").click(function() {
+			var input_val = $("#id").val();
+			if (!input_val) {
+				alert("아이디를 입력하세요");
+				return false;
+			}
+
+			var url = "idcheck";
+			$.get(url, {"id" : input_val}, function(xml) {
+				var result = $(xml).find("result").text();
+				$(".console").html(result);
+			});
+		});
+	});
+</script>
+
 <meta charset="utf-8">
 </head>
-<body onload = "init(this.form);">
-	<form name ="form">
-		<select id="first" onchange="itemChange(this.form);"></select>
-		<select id="second" ></select>
+<body onload="init(this.form);">
+	
+	<form name="form">
+		${msg}
+		<select id="first" onchange="itemChange(this.form);"></select> <select
+			id="second"></select>
 	</form>
+		<h1>아이디 중복검사</h1>
+	<form action="idcheck">
+		<input type="text" name="id" id="id" /> <input type="button"
+			id="checkid" value="중복검사" />
+	</form>
+	<div class="console"></div>
+	<p>${msgs}<p>
 	<p1>미구현입니다.</p1>
 </body>
 </html>
