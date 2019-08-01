@@ -14,6 +14,7 @@
 	</head>
 	<body>
 		
+<<<<<<< HEAD
 		<form action="" method="post">
 			<input type="text" name="name" placeholder="찾는 이름을 입력하세요">
 			<input type="submit" value="찾기">
@@ -63,5 +64,8 @@
 	<button type="button" onclick="location.href='' " >처음으로</button>
     <button type="button" onclick="location.href='' " >회원가입</button>
     <button type="button" onclick="location.href='' ">게시판</button>
+=======
+
+>>>>>>> 34dd60f34601f4d32ff97155aa3321eaf9287755
 	</body>
 </html>

@@ -14,8 +14,8 @@ import dao.RestaurantDAO;
 import dao.RestaurantDAOImpl;
 import model.Restaurant;
 
-@WebServlet(name = "RestaurantController", urlPatterns = { "/home_link", "/rtrt_list", "/rtrt_search", "/rtrt_detail",
-		"/rtrt_insert", "/rtrt_update", "/rtrt_delete" })
+@WebServlet(name = "RestaurantController", urlPatterns = { "/admin_rtrt_list", "/admin_rtrt_search",
+		"/admin_rtrt_detail", "/admin_rtrt_insert", "/admin_rtrt_update", "/admin_rtrt_delete" })
 public class RestaurantController extends HttpServlet {
 
 	@Override
@@ -37,13 +37,7 @@ public class RestaurantController extends HttpServlet {
 		String uri = req.getRequestURI();
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
-
-		if (action.equals("home_link")) {
-
-			RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
-			rd.forward(req, resp);
-
-		} else if (action.equals("rtrt_list")) {
+		if (action.equals("admin_rtrt_list")) {
 
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			List<Restaurant> restaurant = dao.selectAll();
@@ -52,7 +46,7 @@ public class RestaurantController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_list.jsp");
 			rd.forward(req, resp);
 
-		} else if (action.equals("rtrt_search")) {
+		} else if (action.equals("admin_rtrt_search")) {
 
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			String name = req.getParameter("rname");
@@ -62,7 +56,7 @@ public class RestaurantController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_list.jsp");
 			rd.forward(req, resp);
 		
-		} else if (action.equals("rtrt_detail")) {
+		} else if (action.equals("admin_rtrt_detail")) {
 
 			int rnum = Integer.parseInt(req.getParameter("rnum"));
 			RestaurantDAO dao = new RestaurantDAOImpl();
@@ -72,7 +66,7 @@ public class RestaurantController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_detail.jsp");
 			rd.forward(req, resp);
 		
-		}  else if (action.equals("rtrt_insert")) {
+		}  else if (action.equals("admin_rtrt_insert")) {
 			
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			Restaurant restaurant = new Restaurant();
@@ -89,7 +83,7 @@ public class RestaurantController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_list.jsp");
 			rd.forward(req, resp);
 		
-		} else if (action.equals("rtrt_update")) {
+		} else if (action.equals("admin_rtrt_update")) {
 			
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			Restaurant restaurant = new Restaurant();
@@ -107,7 +101,7 @@ public class RestaurantController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_list.jsp");
 			rd.forward(req, resp);
 		
-		} else if (action.equals("rtrt_delete")) {
+		} else if (action.equals("admin_rtrt_delete")) {
 			
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			Restaurant restaurant = new Restaurant();
