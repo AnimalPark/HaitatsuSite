@@ -6,10 +6,12 @@
 <title>로그인 페이지</title>
 </head>
 <body>
+	<a href="join_link">회원가입</a>
 	<form method="post" action="user_login" >
-		<input type="text" name="userid" id="userid" placeholder="username"/> <br />
-		<input type="pwd" name="upwd" id="upwd" placeholder="●●●●"/> <br />
+		<input type="text" name="userId" id="userId" placeholder="username"/> <br />
+		<input type="password" name="uPwd" id="uPwd" placeholder="●●●●"/> <br />
 		<input type="submit" value="로그인 하기">
 	</form>
+	${message}
 </body>
 </html>

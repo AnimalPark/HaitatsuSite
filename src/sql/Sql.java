@@ -42,6 +42,7 @@ public class Sql {
 	//==========================황호영 Sql↓=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
 	public static final String RESTAURANT_SELECT_BY_NAME_SQL = "SELECT * FROM restaurant WHERE rName like ?";
+	public static final String RESTAURANT_SELECT_BY_RNUM_SQL = "SELECT * FROM restaurant WHERE rNum = ?";
 	public static final String RESTAURANT_INSERT_RESTAURANT_SQL = "INSERT INTO restaurant values(seq_restaurant.nextval, ?,?,?,?,?,?)";
 	public static final String RESTAURANT_UPDATE_RESTAURANT_SQL = "UPDATE restaurant SET rName=?, rPhoneNum=?, cNum=?, townNum=?, starAvg=?, rAddr=? WHERE rNum=?";
 	public static final String RESTAURANT_DELETE_RESTAURANT_SQL = "DELETE FROM restaurant WHERE rNum=?";
@@ -49,5 +50,6 @@ public class Sql {
 	
 	//==========================천다연 Sql↓=======================================
 	private static final String USERS_INSERT_SQL = "INSERT INTO users VALUES(?, ?, ?, ?, ?)";
+	private static final String USERS_SELECT_BY_USERID_PWD_SQL = "SELECT userId, uPwd, uName, uAddr, uPhonenum FROM users WHERE userId = ? AND uPwd = ?";
 
 }
