@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.City;
+import model.Menu;
 import model.Restaurant;
 import model.Town;
 import sql.Sql;
@@ -153,7 +154,35 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 	}
 
 	@Override
-	public Restaurant selectByRnum(int rnum) {
+	public List<Menu> selectAllMenu() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Menu selectByMnum(int mNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean insertMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteMenu(int mNum) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+		public Restaurant selectByRnum(int rnum) {
 		Restaurant restaurant = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

@@ -21,7 +21,7 @@
 		</form>
 	</c:if>
 	<a href="join_link">회원가입</a>
-	<a href="home_link">홈화면</a>
+	<a href="admin_home_link">홈화면</a>
 	<a href="ybbs_req_list?reqPage=1">Q/A 게시판</a>
 	<a href="ybbs_eventList?reqPage=1">이벤트 게시판</a>
 
@@ -33,9 +33,6 @@
 	<a href = "search_link?category=6">분식</a>
 	<a href = "search_link?category=7">족발</a>
 	<a href = "search_link?category=8">간식</a>
-	
-	<a href = "admin_home_link">관리자 모드로 가기</a>
-	
 	
 </body>
 </html>
