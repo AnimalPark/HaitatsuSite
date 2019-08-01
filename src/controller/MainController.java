@@ -16,8 +16,8 @@ import model.City;
 import model.Restaurant;
 import model.Town;
 
-@WebServlet(name = "MainController", urlPatterns = { "/login_link", "/sign_link", "/qa_board_link", "/event_board_link", 
-		"/home_link","/search_link","/addr_search" })
+@WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
+		"/home_link","/search_link","/addr_search", "/logout_link" })
 
 public class MainController extends HttpServlet {
 
@@ -42,13 +42,19 @@ public class MainController extends HttpServlet {
 
 		if (action.equals("login_link")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("test.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
 
 		}
-		else if (action.equals("sign_link")) {
+		else if (action.equals("logout_link")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("test.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("join_link")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
 			rd.forward(req, resp);
 
 		}

@@ -29,5 +29,6 @@ public class Sql {
 	
 	//==========================Ãµ´Ù¿¬ Sql¡é=======================================
 	private static final String USERS_INSERT_SQL = "INSERT INTO users VALUES(?, ?, ?, ?, ?)";
+	private static final String USERS_SELECT_BY_USERID_PWD_SQL = "SELECT userId, uPwd, uName, uAddr, uPhonenum FROM users WHERE userId = ? AND uPwd = ?";
 
 }
