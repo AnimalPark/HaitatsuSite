@@ -73,6 +73,46 @@ public class PageManager {
 		
 		return pageGroupResult;
 	}
+	
+	public PageGroupResult getPageGroupResultEvent(String sql) {
+		
+		PageGroupResult pageGroupResult = new PageGroupResult();
 
+		int requestPageGroupNumber = ((requestPage-1)/PageInfo.SHOW_PAGE_COUNT) + 1;
+		
+		// PageGroupResult의 객체변수 값 셋팅
+		pageGroupResult.setGroupStartNumber((PageInfo.SHOW_PAGE_COUNT) * (requestPageGroupNumber - 1) + 1);
+		pageGroupResult.setGroupEndNumber((requestPageGroupNumber) * (PageInfo.SHOW_PAGE_COUNT));
+		
+		
+		PageDAO dao = new PageDAOImpl();
+		//총 줄 수 가져오기
+		int count = dao.getCount(Sql.YBBS_SELECT_ALL_EVENT_COUNT);
+		
+		//총링크 개수
+		int totalPageNumber = (count - 1) / (PageInfo.ROW_COUNT_PRE_PAGE) + 1;
+		
+		//last 페이지 링크값 변경하기
+		if(totalPageNumber < pageGroupResult.getGroupEndNumber()) {
+			pageGroupResult.setGroupEndNumber(totalPageNumber);
+		}
+		//before, after 유무
+	
+		if(pageGroupResult.getGroupStartNumber() == 1) {
+			
+			pageGroupResult.setBeforePage(false);
+		}
+		
+		
+		if(pageGroupResult.getGroupEndNumber() == totalPageNumber) {
+			
+			pageGroupResult.setAfterPage(false);
+		}
+		
+		
+		pageGroupResult.setSelectPageNumber(requestPage);
+		
+		return pageGroupResult;
+	}
 
 }

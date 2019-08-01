@@ -69,7 +69,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 				restaurant.setrName(resultSet.getString("rName"));
 				restaurant.setrPhoneNum(resultSet.getString("rPhoneNum"));
 				restaurant.setStarAvg(resultSet.getInt("starAvg"));
-
+				restaurant.setrAddr(resultSet.getString("raddr"));
 				restaurants.add(restaurant);
 			}
 		} catch (Exception e) {
@@ -79,6 +79,41 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 		}
 
 		return restaurants;
+	}
+
+	@Override
+	public Restaurant selectByNum(int rnum) {
+		Restaurant restaurant = new Restaurant();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_RNUM_SQL);
+			preparedStatement.setInt(1, rnum);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				restaurant = new Restaurant();
+
+				restaurant.setrNum(resultSet.getInt("rNum"));
+				restaurant.setrName(resultSet.getString("rName"));
+				restaurant.setrPhoneNum(resultSet.getString("rPhoneNum"));
+				restaurant.setcNum(resultSet.getInt("cNum"));
+				restaurant.setTownNum(resultSet.getInt("townNum"));
+				restaurant.setStarAvg(resultSet.getInt("starAve"));
+				restaurant.setrAddr(resultSet.getString("raddr"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return restaurant;
 	}
 
 	@Override
@@ -152,7 +187,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 
 	@Override
 	public boolean deleteRestaurant(int rNum) {
-		
+
 		boolean result = false;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
