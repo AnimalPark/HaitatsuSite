@@ -14,8 +14,8 @@ import dao.MenuDAO;
 import dao.MenuDAOImpl;
 import model.Menu;
 
-@WebServlet(name = "MenuController", urlPatterns = { "/home_link", "/menu_list", "/menu_search", "/menu_detail",
-		"/menu_insert", "/menu_update", "/menu_delete" })
+@WebServlet(name = "MenuController", urlPatterns = {"/admin_menu_list", "/admin_menu_search", "/admin_menu_detail",
+		"/admin_menu_insert", "/admin_menu_update", "/admin_menu_delete" })
 public class MenuController extends HttpServlet {
 
 	@Override
@@ -36,41 +36,36 @@ public class MenuController extends HttpServlet {
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
 
-		if (action.equals("home_link")) {
-
-			RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
-			rd.forward(req, resp);
-
-		} else if (action.equals("menu_list")) {
+		if (action.equals("admin_menu_list")) {
 			
 			MenuDAO dao = new MenuDAOImpl();
 			List<Menu> menu = dao.selectAllMenu();
 			
-			req.setAttribute("menu", menu);
+			req.setAttribute("admin_menu", menu);
 			RequestDispatcher rd = req.getRequestDispatcher("");
 			rd.forward(req, resp);
 
-		} else if (action.equals("menu_search")) {
-
-			RequestDispatcher rd = req.getRequestDispatcher("");
-			rd.forward(req, resp);
-
-		} else if (action.equals("menu_detail")) {
+		} else if (action.equals("admin_menu_search")) {
 
 			RequestDispatcher rd = req.getRequestDispatcher("");
 			rd.forward(req, resp);
 
-		} else if (action.equals("menu_insert")) {
+		} else if (action.equals("admin_menu_detail")) {
 
 			RequestDispatcher rd = req.getRequestDispatcher("");
 			rd.forward(req, resp);
 
-		} else if (action.equals("menu_update")) {
+		} else if (action.equals("admin_menu_insert")) {
 
 			RequestDispatcher rd = req.getRequestDispatcher("");
 			rd.forward(req, resp);
 
-		} else if (action.equals("menu_delete")) {
+		} else if (action.equals("admin_menu_update")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("");
+			rd.forward(req, resp);
+
+		} else if (action.equals("admin_menu_delete")) {
 
 			RequestDispatcher rd = req.getRequestDispatcher("");
 			rd.forward(req, resp);
