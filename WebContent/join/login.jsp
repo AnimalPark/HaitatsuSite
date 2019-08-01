@@ -13,5 +13,6 @@
 		<input type="submit" value="로그인 하기">
 	</form>
 	${message}
+	<a href="findId_link">아이디 찾기</a>/<a href="findPwd_link">비밀번호 찾기</a>
 </body>
 </html>

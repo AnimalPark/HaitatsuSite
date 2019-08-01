@@ -16,13 +16,8 @@ import model.City;
 import model.Restaurant;
 import model.Town;
 
-<<<<<<< HEAD
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
 		"/home_link","/search_link","/addr_search", "/logout_link" })
-=======
-@WebServlet(name = "MainController", urlPatterns = { "/login_link", "/sign_link", "/qa_board_link", "/event_board_link", 
-		"/home_link","/search_link","/addr_search","/idcheck"})
->>>>>>> a9ebfe1421d94b41adf947b67035b9025745c1e3
 
 public class MainController extends HttpServlet {
 
@@ -34,7 +29,6 @@ public class MainController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		process(req, resp);
-
 	}
 	
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
