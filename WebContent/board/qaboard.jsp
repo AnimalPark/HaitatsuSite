@@ -13,12 +13,17 @@ a:link {text-decoration: none; color: #333333;}
 a:visited {text-decoration: none; color: #333333;}
 a:active {text-decoration: none; color: #333333;}
 a:hover {text-decoration: underline; color: red;}
+p{
+	vertical-aline:top; 
+	text-aline:left;	
+}
+
 </style>
 </head>
 <body>
 <br/>
-<div class="container">
-<a href="index.jsp">저를눌러주세요</a>	
+<div>
+<a href="index.jsp"><img alt="로고" src="image/bikeman.png"></a>
   <ul class="nav justify-content-end">
     <li class="nav-item">
       <a class="nav-link" href="ybbs_eventlist">이벤트게시판</a>
