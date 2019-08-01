@@ -4,7 +4,11 @@
 <!DOCTYPE html >
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
 	<a href="login_link">로그인</a>
@@ -21,6 +25,6 @@
 	<a href = "search_link?category=6">분식</a>
 	<a href = "search_link?category=7">족발</a>
 	<a href = "search_link?category=8">간식</a>
-
+	
 </body>
 </html>
