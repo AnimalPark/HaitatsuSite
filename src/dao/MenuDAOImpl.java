@@ -154,7 +154,6 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public List<Menu> selectAllMenu() {
 		// TODO Auto-generated method stub
 		return null;
@@ -182,8 +181,8 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 	public boolean deleteMenu(int mNum) {
 		// TODO Auto-generated method stub
 		return false;
-=======
-	public Restaurant selectByRnum(int rnum) {
+	}
+		public Restaurant selectByRnum(int rnum) {
 		Restaurant restaurant = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -215,7 +214,6 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		}
 
 		return restaurant;
->>>>>>> 4f2c42f677c89d92d8fc859753fc7347cf1d8ffb
 	}
 
 }
