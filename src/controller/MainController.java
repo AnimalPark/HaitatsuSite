@@ -109,7 +109,20 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		}
-		else if (action.equals("idcheck")) {
+		
+		else if (action.equals("restaurant_detail")) {
+			Mimpl = new MenuDAOImpl();
+			Restaurant r = new Restaurant();
+			int rno = Integer.parseInt(req.getParameter("rno"));
+
+			r = Mimpl.selectByRnum(rno);
+			req.setAttribute("detailR", r);
+			RequestDispatcher rd = req.getRequestDispatcher("jsp/detail/memDetail.jsp");
+			rd.forward(req, resp);
+
+		}
+		
+		/*else if (action.equals("idcheck")) {
 
 			boolean chk = true;
 			if(chk) {
@@ -122,7 +135,7 @@ public class MainController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 			rd.forward(req, resp);
 
-		}
+		}*/
 		
 	}
 }
