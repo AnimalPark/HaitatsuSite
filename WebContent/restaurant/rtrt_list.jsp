@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 
 <html>
-<<<<<<< HEAD
+
 	<head>
 		<meta charset="utf-8">
 		<title>Restaurant List</title>
@@ -21,7 +21,7 @@
 			<input type="submit" value="찾기">
 		</form>
 		
-<%-- 	<c:if test="${empty  ">
+<%-- <%-- 	<c:if test="${empty  ">
 =======
 <head>
 <meta charset="utf-8">
@@ -41,13 +41,13 @@
 	</form>
 	<%-- 		
 	<c:if test="${empty  }">
->>>>>>> 603a1687c4cd144c72caffab8f5099bf2062becf
+
 		<hr />
 			검색된 결과가 존재하지 않습니다.
 		<hr />
 	</c:if>
 	<c:if test="${!empty }"></c:if>
-	 --%>
+
 	<table>
 		<thead>
 			<tr>
@@ -59,20 +59,15 @@
 			</tr>
 		</thead>
 		<tbody>
-<%-- 			<c:forEach var="member" items="${}">
+ 			<c:forEach var="member" items="${}">
 				<tr>
 					<td><a href="mbr_detail?no=${member.no}">${member.id}</a></td>
 					<td>${member.name}</td>
 					<td>${member.gender}</td>
 					<td>${member.birth}</td>
-<<<<<<< HEAD
+
 			</c:forEach> --%>
-=======
-			</c:forEach> 
->>>>>>> 603a1687c4cd144c72caffab8f5099bf2062becf
-		</tbody>
-	</table>
-	 --%>
+
 	<c:if test="${pageGroupResult.beforePage}">
 		<a href="memo_req_list?reqPage=${pageGroupResult.groupStartNumber-1}">앞</a>
 	</c:if>
