@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Ybbs_Event;
 import model.Ybbs_QA;
 import sql.Sql;
 
@@ -251,5 +252,44 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 		}
 
 		return ybbsList;
+	
 	}
+	public List<Ybbs_Event> selectAllEvent() {
+
+		List<Ybbs_Event> ybbsList = new ArrayList<Ybbs_Event>();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.YBBS_SELECT_ALL_EVENT_SQL);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+
+				Ybbs_Event ybbs = new Ybbs_Event();
+				ybbs.setEvNumber(resultSet.getInt("evnumber"));
+				ybbs.setEvSubject(resultSet.getString("qasubject"));
+				ybbs.setEvDate(resultSet.getString("evdate"));
+				ybbs.setEvVisited(resultSet.getInt("evvisited"));
+				ybbs.setUserId(resultSet.getString("userid"));
+				ybbsList.add(ybbs);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		
+		
+		return ybbsList;
+	}
+	
+	
+	
 }

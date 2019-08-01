@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.City;
+import model.Menu;
 import model.Restaurant;
 import model.Town;
 import sql.Sql;
@@ -150,6 +151,69 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		}
 
 		return lists;
+	}
+
+	@Override
+	public List<Menu> selectAllMenu() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Menu selectByMnum(int mNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean insertMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteMenu(int mNum) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+		public Restaurant selectByRnum(int rnum) {
+		Restaurant restaurant = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_RNUM_SQL);
+			preparedStatement.setInt(1, rnum);
+			resultSet = preparedStatement.executeQuery();
+
+			if(resultSet.next()) {
+				restaurant = new Restaurant();
+
+				restaurant.setrNum(resultSet.getInt("RNUM"));
+				restaurant.setrName(resultSet.getString("RNAME"));
+				restaurant.setcNum(resultSet.getInt("CNUM"));
+				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
+				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
+				restaurant.setrAddr(resultSet.getString("RADDR"));
+				restaurant.setrPhoneNum(resultSet.getString("RPHONENUM"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return restaurant;
 	}
 
 }
