@@ -231,10 +231,10 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			preparedStatement.setInt(1, rnum);
 			resultSet = preparedStatement.executeQuery();
 
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				Menu menu = new Menu();
 
-				menu.setrNum(resultSet.getInt("mNum"));
+				menu.setmNum(resultSet.getInt("mNum"));
 				menu.setrNum(resultSet.getInt("rNum"));
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
