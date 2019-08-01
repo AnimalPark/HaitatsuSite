@@ -16,8 +16,8 @@ import model.City;
 import model.Restaurant;
 import model.Town;
 
-@WebServlet(name = "MainController", urlPatterns = { "/login_link", "/sign_link", "/qa_board_link", "/event_board_link", 
-		"/home_link","/search_link","/addr_search","/idcheck"})
+@WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
+		"/home_link","/search_link","/addr_search", "/logout_link" })
 
 public class MainController extends HttpServlet {
 
@@ -42,13 +42,19 @@ public class MainController extends HttpServlet {
 
 		if (action.equals("login_link")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("test.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
 
 		}
-		else if (action.equals("sign_link")) {
+		else if (action.equals("logout_link")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("test.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("join_link")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
 			rd.forward(req, resp);
 
 		}
@@ -103,7 +109,20 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		}
-		else if (action.equals("idcheck")) {
+		
+		else if (action.equals("restaurant_detail")) {
+			Mimpl = new MenuDAOImpl();
+			Restaurant r = new Restaurant();
+			int rno = Integer.parseInt(req.getParameter("rno"));
+
+			r = Mimpl.selectByRnum(rno);
+			req.setAttribute("detailR", r);
+			RequestDispatcher rd = req.getRequestDispatcher("jsp/detail/memDetail.jsp");
+			rd.forward(req, resp);
+
+		}
+		
+		/*else if (action.equals("idcheck")) {
 
 			boolean chk = true;
 			if(chk) {
@@ -116,7 +135,7 @@ public class MainController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 			rd.forward(req, resp);
 
-		}
+		}*/
 		
 	}
 }

@@ -10,7 +10,7 @@
 	<title>board.jsp</title>
 <style>
 body{
-	background-image:url(image/bikewaiter-icon1.png);
+	background-image:url(image/image/Haitatsu.jpg);
 	background-repeat:no-repeat;
 	background-size:cover;
 }
@@ -20,7 +20,7 @@ body{
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">	
   <ul class="navbar-nav">
     <li class="nav">
-   	 <a class="nav-link" href="ybbs_eventlist">이벤트게시판 </a>
+   	 <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판 </a>
     </li>
     <li class="nav1">
       <a class="nav-link" href="#">로그인</a>
