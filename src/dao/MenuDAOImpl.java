@@ -37,7 +37,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				restaurant.setcNum(resultSet.getInt("CNUM"));
 				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
-				
+
 				lists.add(restaurant);
 			}
 
@@ -50,7 +50,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 		return lists;
 	}
-	
+
 	@Override
 	public List<City> selectAllCity() {
 		List<City> lists = new ArrayList<City>();
@@ -69,7 +69,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 				city.setCitynum(resultSet.getInt("CITYNUM"));
 				city.setCityname(resultSet.getString("CITYNAME"));
-				
+
 				lists.add(city);
 			}
 
@@ -102,7 +102,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				town.setCitynum(resultSet.getInt("CITYNUM"));
 				town.setTownnum(resultSet.getInt("TOWNNUM"));
 				town.setTownname(resultSet.getString("TOWNNAME"));
-				
+
 				lists.add(town);
 			}
 
@@ -139,7 +139,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				restaurant.setcNum(resultSet.getInt("CNUM"));
 				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
-				
+
 				lists.add(restaurant);
 			}
 
@@ -182,7 +182,8 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
-		public Restaurant selectByRnum(int rnum) {
+
+	public Restaurant selectByRnum(int rnum) {
 		Restaurant restaurant = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -194,7 +195,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			preparedStatement.setInt(1, rnum);
 			resultSet = preparedStatement.executeQuery();
 
-			if(resultSet.next()) {
+			if (resultSet.next()) {
 				restaurant = new Restaurant();
 
 				restaurant.setrNum(resultSet.getInt("RNUM"));
@@ -216,4 +217,39 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		return restaurant;
 	}
 
+	@Override
+	public List<Menu> menuSelectByRnum(int rnum) {
+		List<Menu> lists = new ArrayList<Menu>();
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.MENU_SELECT_BY_RNUM_SQL);
+			preparedStatement.setInt(1, rnum);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				Menu menu = new Menu();
+
+				menu.setrNum(resultSet.getInt("mNum"));
+				menu.setrNum(resultSet.getInt("rNum"));
+				menu.setmName(resultSet.getString("mName"));
+				menu.setmPrice(resultSet.getInt("mPrice"));
+				menu.setmSales(resultSet.getInt("mSales"));
+				
+				lists.add(menu);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return lists;
+	}
 }

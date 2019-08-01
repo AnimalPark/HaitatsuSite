@@ -13,11 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.MenuDAOImpl;
 import model.City;
+import model.Menu;
 import model.Restaurant;
 import model.Town;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
-		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link"})
+		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail"})
 
 public class MainController extends HttpServlet {
 
@@ -107,8 +108,6 @@ public class MainController extends HttpServlet {
 			String town = req.getParameter("selectTown");
 			String selctedCate = req.getParameter("catego");
 			
-			System.out.println(selctedCate);
-			
 			List<Restaurant> lists = Mimpl.selectByTownnum(city, town);
 			
 			req.setAttribute("lists", lists);
@@ -121,10 +120,14 @@ public class MainController extends HttpServlet {
 			Mimpl = new MenuDAOImpl();
 			Restaurant r = new Restaurant();
 			int rno = Integer.parseInt(req.getParameter("rno"));
-
+			
+			List<Menu> lists = Mimpl.menuSelectByRnum(rno);
 			r = Mimpl.selectByRnum(rno);
+			
+			
 			req.setAttribute("detailR", r);
-			RequestDispatcher rd = req.getRequestDispatcher("jsp/detail/memDetail.jsp");
+			req.setAttribute("lists", lists);
+			RequestDispatcher rd = req.getRequestDispatcher("main/restaurant_detail.jsp");
 			rd.forward(req, resp);
 
 		}
