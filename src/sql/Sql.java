@@ -30,6 +30,14 @@ public class Sql {
 	public static final String RESTAURANT_SELECT_BY_CATEGORY_SQL = "SELECT * FROM RESTAURANT WHERE CNUM = ?";
 	public static final String CITY_SELECT_ALL_SQL = "SELECT * FROM CITY";
 	public static final String TOWN_SELECT_ALL_SQL = "SELECT * FROM TOWN";
+	public static final String RESTAURANT_SELECT_BY_TOWNNUM_SQL = 	
+			"SELECT * " + 
+			"FROM RESTAURANT " + 
+			"WHERE TOWNNUM = (SELECT TOWNNUM " + 
+							"FROM TOWN " + 
+							"WHERE CITYNUM = (SELECT CITYNUM " + 
+											"FROM CITY " + 
+											"WHERE CITYNAME = ? ) AND TOWNNAME = ? )";	
 	
 	//==========================È²È£¿µ Sql¡é=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
