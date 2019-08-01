@@ -25,7 +25,8 @@ public class Sql {
 							"FROM TOWN " + 
 							"WHERE CITYNUM = (SELECT CITYNUM " + 
 											"FROM CITY " + 
-											"WHERE CITYNAME = ? ) AND TOWNNAME = ? )";	
+											"WHERE CITYNAME = ? ) AND TOWNNAME = ? )";
+	public static final String RESTAURANT_SELECT_BY_RNUM_SQL = "SELECT * FROM RESTAURANT WHERE RNUM = ?";
 	
 	//==========================È²È£¿µ Sql¡é=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
