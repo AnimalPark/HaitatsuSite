@@ -15,7 +15,7 @@
 	<a href="sign_link">회원가입</a>
 	<a href="home_link">홈화면</a>
 	<a href="ybbs_req_list?reqPage=1">Q/A 게시판</a>
-	<a href="ybbs_eventlist?reqPage=1">이벤트 게시판</a>
+	<a href="ybbs_eventList?reqPage=1">이벤트 게시판</a>
 
 	<a href = "search_link?category=1">한식</a>
 	<a href = "search_link?category=2">중식</a>

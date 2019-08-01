@@ -25,7 +25,7 @@ div {
 
   <ul class="navbar-nav">
     <li class="nav">
-   	 <a class="nav-link" href="ybbs_eventlist">이벤트게시판 </a>
+   	 <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판 </a>
     </li>
     <li class="nav1">
       <a class="nav-link" href="#">로그인</a>
@@ -46,7 +46,7 @@ div {
 			<input type="text" name="userid" value="${ybbs.userid}"/>
 			<input type="submit" class="btn btn-primary" value="응답쓰러가기">
 		</form>
-			<a href="ybbs_delete?qanumber?${ybbs.qanumber}">삭제</a><br />
+			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">삭제</a><br />
 			<a href="ybbs_req_list?reqPage=1">뒤로가기</a>	
 	<%-- </c:if> --%>
 	

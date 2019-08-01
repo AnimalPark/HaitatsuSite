@@ -51,7 +51,7 @@ div {
 			<div>
 				<h1>${ybbs.userId}</h1>
 			</div>
-			<a href="ybbs_delete?evNumber?${ybbs.evNumber}">글 내리기</a><br />
+			<a href="ybbs_delete_event?evNumber=${ybbs.evNumber}">글 내리기</a><br />
 			<a href="ybbs_req_list?reqPage=1">뒤로가기</a>	
 
 </body>

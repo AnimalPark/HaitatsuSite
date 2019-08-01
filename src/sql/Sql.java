@@ -22,7 +22,7 @@ public class Sql {
     public static final String YBBS_PAGE_SQL = "SELECT * from (SELECT ROWNUM RN,ybbss.* FROM (SELECT * FROM YBBS_QA ORDER BY QAGROUP DESC,QALEVEL ASC,QADATE DESC) ybbss) WHERE RN BETWEEN ? AND ?";
     public static final String YBBS_PAGE_EVENT_SQL = "SELECT * from (SELECT ROWNUM RN,ybbss.* FROM (SELECT * FROM YBBS_EVENT ORDER BY EVDATE DESC) ybbss) WHERE RN BETWEEN ? AND ?";
     public static final String YBBS_SELECT_ALL_COUNT ="SELECT COUNT(*) AS cnt FROM YBBS_QA";
-    public static final String YBBS_SELECT_ALL_EVENT_COUNT ="SELECT COUNT(*) AS cnt FROM YBBS_QA";
+    public static final String YBBS_SELECT_ALL_EVENT_COUNT ="SELECT COUNT(*) AS cnt FROM YBBS_EVENT";
     
     
 	

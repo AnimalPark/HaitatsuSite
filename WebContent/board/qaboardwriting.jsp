@@ -7,11 +7,11 @@
 </head>
 <body>
 	<h1>글작성</h1>
-	<form action="ybbs_content" method="post">
-		<input type="hidden" name="id" value="${member.id}"/>
-		<div id='writer'>작성자:${member.name}</div><br />
-		제목<input type="text" name="subject" id="subject"><br />
-		내용<textarea rows="10" cols="50" name="content"></textarea><br />
+	<form action="ybbs_insert" method="post">
+		<input type="hidden" name="userid" value="존노로"/>
+		<div id='writer'>작성자:존노로</div><br />
+		제목<input type="text" name="qasubject" id="subject"><br />
+		내용<textarea rows="10" cols="50" name="qacomment"></textarea><br />
 		<input type="submit" value="등록">
 	</form>
 </body>

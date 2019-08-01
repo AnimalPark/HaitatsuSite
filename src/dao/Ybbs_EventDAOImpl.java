@@ -32,7 +32,7 @@ public class Ybbs_EventDAOImpl extends BaseDAO implements Ybbs_EventDAO {
 			while (resultSet.next()) {
 
 				Ybbs_Event ybbs = new Ybbs_Event();
-				
+
 				ybbs.setEvNumber(resultSet.getInt("evNumber"));
 				ybbs.setEvSubject(resultSet.getString("evSubject"));
 				ybbs.setEvComment(resultSet.getString("evComment"));
@@ -55,7 +55,7 @@ public class Ybbs_EventDAOImpl extends BaseDAO implements Ybbs_EventDAO {
 
 	@Override
 	public Ybbs_Event selectByNo(int evNumber) {
-		
+
 		Ybbs_Event ybbs = new Ybbs_Event();
 
 		Connection connection = null;
@@ -70,7 +70,7 @@ public class Ybbs_EventDAOImpl extends BaseDAO implements Ybbs_EventDAO {
 
 			while (resultSet.next()) {
 				if (resultSet.getInt("evNumber") == evNumber)
-				ybbs.setEvNumber(resultSet.getInt("evNumber"));
+					ybbs.setEvNumber(resultSet.getInt("evNumber"));
 				ybbs.setUserId(resultSet.getString("userId"));
 				ybbs.setEvSubject(resultSet.getString("evSubject"));
 				ybbs.setEvComment(resultSet.getString("evComment"));
@@ -85,7 +85,7 @@ public class Ybbs_EventDAOImpl extends BaseDAO implements Ybbs_EventDAO {
 
 		return ybbs;
 	}
-	
+
 	public void updateVisited(int evNumber) {
 
 		Connection connection = null;
@@ -108,7 +108,7 @@ public class Ybbs_EventDAOImpl extends BaseDAO implements Ybbs_EventDAO {
 
 	@Override
 	public boolean Insert(Ybbs_Event ybbs) {
-		
+
 		boolean result = false;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -139,7 +139,7 @@ public class Ybbs_EventDAOImpl extends BaseDAO implements Ybbs_EventDAO {
 
 	@Override
 	public void update(Ybbs_Event ybbs) {
-		
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -162,7 +162,7 @@ public class Ybbs_EventDAOImpl extends BaseDAO implements Ybbs_EventDAO {
 
 	@Override
 	public void delete(int evNumber) {
-		
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 

@@ -18,44 +18,60 @@ a:hover {text-decoration: underline; color: red;}
 </style>
 </head>
 <body>
-<a href="ybbs_req_list?reqPage=1">Q/A게시판</a><br/>
-<a href="">로그인</a> <a href="">☆회원가입☆</a>
-	<table>
+<div>
+<a href="index.jsp"><img alt="로고" src="image/Haitatsu.jpg"></a>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="ybbs_req_list?reqPage=1">Q/A게시판으로</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">로그인</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">로그아웃</a>
+    </li>
+  </ul>
+</div>
+<br />
+	<table class="table table-hover">
 		<tbody>
 			<tr>
 				<th>글번호</th>
 				<th>제목</th>
 				<th>날짜</th>
+				<th>조회수</th>
 			</tr>
 			<c:forEach var="ybbsList" items="${ybbsList}">
 				<tr>
 					<td>${ybbsList.evNumber}</td>
 					<td><a href="ybbs_eventDetail?evNumber=${ybbsList.evNumber}">${ybbsList.evSubject}</a></td>
 					<td>${ybbsList.evDate}</td>
+					<td>${ybbsList.evVisited}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<a href="ybbs_go_to_insert_event">글쓰러가기♥</a>
 	<div class="container">
   <ul class="pagination">
     <c:if test="${pageGroupResult.beforePage}">
     	<li class="page-item disabled">
-    		<a class="page-link" href="ybbs_eventlist?reqPage=${pageGroupResult.groupStartNumber-1}">Previous</a>
+    		<a class="page-link" href="ybbs_eventList?reqPage=${pageGroupResult.groupStartNumber-1}">Previous</a>
     	</li>
     </c:if>
   	
   	<c:forEach var="index" begin="${pageGroupResult.groupStartNumber}" end="${pageGroupResult.groupEndNumber}">
 		<c:choose>	
 			<c:when test="${pageGroupResult.selectPageNumber==index}"> 
-   				 <li class="page-item"><a class="page-link" href="ybbs_eventlist?reqPage=${index}">${index}</a></li>
+   				 <li class="page-item"><a class="page-link" href="ybbs_eventList?reqPage=${index}">${index}</a></li>
     		</c:when>
 			<c:otherwise>
-				    <li class="page-item"><a class="page-link" href="ybbs_eventlist?reqPage=${index}">${index}</a></li>
+				    <li class="page-item"><a class="page-link" href="ybbs_eventList?reqPage=${index}">${index}</a></li>
 			</c:otherwise>		 
  		 </c:choose>
 		</c:forEach>
 	 <c:if test="${pageGroupResult.afterPage}">
-	 <li class="page-item"><a class="page-link" href="ybbs_eventlist?reqPage=${pageGroupResult.groupEndNumber+1}">Next</a></li>
+	 <li class="page-item"><a class="page-link" href="ybbs_eventList?reqPage=${pageGroupResult.groupEndNumber+1}">Next</a></li>
 	</c:if>
 	</ul>
 </div>
