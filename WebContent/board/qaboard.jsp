@@ -23,7 +23,7 @@ p{
 <body>
 <br/>
 <div>
-<a href="index.jsp"><img alt="로고" src="image/bikeman.png"></a>
+<a href="index.jsp"><img alt="로고" src="image/Haitatsu.jpg"></a>
   <ul class="nav justify-content-end">
     <li class="nav-item">
       <a class="nav-link" href="ybbs_eventlist">이벤트게시판</a>
@@ -62,6 +62,7 @@ p{
 			</tr>
 		</c:forEach>
 	</table>
+	<a href="ybbs_insert">글쓰기러 가기</a>
 	
 	
 <div class="container">

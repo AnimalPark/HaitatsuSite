@@ -25,7 +25,7 @@ div {
 
   <ul class="navbar-nav">
     <li class="nav">
-   	 <a class="nav-link" href="ybbs_eventlist">이벤트게시판 </a>
+   	 <a class="nav-link" href="ybbs_req_list?reqPage=1">Q/A게시판 </a>
     </li>
     <li class="nav1">
       <a class="nav-link" href="#">로그인</a>
@@ -38,35 +38,21 @@ div {
 	<%-- <c:if test="${ybbs.userid}"> --%>
 		
 		<!-- <form action="ybbs_update" method="post"> -->
-		<form action="ybbs_reply_form" method="post">
-			<div>작성자 :${ybbs.userid}</div>
-			<input type="hidden"  name="qanumber" value="${ybbs.qanumber}"/><br />
-			<input type="text"  name="qasubject" value="${ybbs.qasubject}" /><br />
-			<input type="text"  name="qacomment" value="${ybbs.qacomment}" /><br />
-			<input type="text" name="userid" value="${ybbs.userid}"/>
-			<input type="submit" class="btn btn-primary" value="응답쓰러가기">
-		</form>
-			<a href="ybbs_delete?qanumber?${ybbs.qanumber}">삭제</a><br />
+			<%-- <div>작성자 :${ybbs.userid}</div> --%>
+			<div>
+				<h1>${ybbs.evNumber}</h1>
+			</div>
+			<div>
+				<h1>${ybbs.evSubject}</h1>
+			</div>
+			<div>
+				<h1>${ybbs.evComment}</h1>
+			</div>
+			<div>
+				<h1>${ybbs.userId}</h1>
+			</div>
+			<a href="ybbs_delete?evNumber?${ybbs.evNumber}">글 내리기</a><br />
 			<a href="ybbs_req_list?reqPage=1">뒤로가기</a>	
-	<%-- </c:if> --%>
-	
-	<%-- <c:if test="${ybbs.userid != member.id}">
-		
-	<form action="ybbs_reply_form.do" method="post">
-		<div>작성자 :${ybbs.userid}</div>
-		
-		<input type="hidden"  name="qanumber" value="${ybbs.qanumber}"/><br />
-		<input type="text"  name="qasubject" value="${ybbs.qasubject}" disabled="disabled"/><br />
-		<input type="text"  name="qacomment" value="${ybbs.qacomment}" disabled="disabled"/><br />
-		
-		<a href="ybbs_req_list?reqPage=1">페이징처리된 뒤로가기ㅎ</a>
-		<c:if test="${member.id != null}">
-			<input type="submit" class="btn btn-primary" value="응답쓰러가기">
-		</c:if>
-	
-	 </form>
-	
-	</c:if> --%>
 
 </body>
 </html>

@@ -11,13 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.Ybbs_EventDAO;
+import dao.Ybbs_EventDAOImpl;
 import dao.Ybbs_QADAO;
 import dao.Ybbs_QADAOImpl;
+import model.Ybbs_Event;
 import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
 
-@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_insert","/ybbs_content","/ybbs_detail","/ybbs_delete","/ybbs_update","/ybbs_reply","/ybbs_reply_form","/ybbs_req_list","/ybbs_eventlist"})
+@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_insert","/ybbs_content","/ybbs_detail","/ybbs_delete","/ybbs_update","/ybbs_reply","/ybbs_reply_form",
+		"/ybbs_req_list","/ybbs_eventlist","/ybbs_eventDetail"})
 
 public class YbbsController extends HttpServlet {
 
@@ -41,7 +45,8 @@ public class YbbsController extends HttpServlet {
 
 		if (action.equals("ybbs_insert")) {
 			
-			RequestDispatcher rd = req.getRequestDispatcher("board/qaboard.jsp");
+			
+			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardwriting.jsp");
 			rd.forward(req, resp);
 			
 		} else if (action.equals("ybbs_content")) {
@@ -78,7 +83,7 @@ public class YbbsController extends HttpServlet {
 			Ybbs_QA ybbs = new Ybbs_QA();
 
 			ybbs.setQanumber(Integer.parseInt(req.getParameter("qanumber")));
-
+			
 			dao.delete(ybbs.getQanumber());
 
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
@@ -147,20 +152,38 @@ public class YbbsController extends HttpServlet {
 		
 		} else if (action.equals("ybbs_eventlist")) {
 
+			List<Ybbs_Event> ybbsList = new ArrayList<Ybbs_Event>();
+			Ybbs_EventDAO dao = new Ybbs_EventDAOImpl();
 			
-			List<Ybbs_QA> ybbsList = new ArrayList<Ybbs_QA>();
-			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
+			int requestPage = Integer.parseInt(req.getParameter("reqPage"));
 			
-			ybbsList = dao.selectAll();
+			PageManager pm = new PageManager(requestPage);
 			
+			ybbsList = dao.selectAllEvent(pm.getPageRowResult().getRowStartNumber(),
+					pm.getPageRowResult().getRowEndNumber());
 			
-			req.setAttribute("ybbsList", ybbsList);  // 자바에서 화면으로 보내기 requst.setAttribute();
+			req.setAttribute("ybbsList", ybbsList);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("board/eventboard.jsp");
 			rd.forward(req, resp);
 
-		}
-		
-	}
+		}else if (action.equals("ybbs_eventDetail")) {
 
+			Ybbs_Event ybbs = new Ybbs_Event();
+			int evNumber = Integer.parseInt(req.getParameter("evNumber"));
+			
+			Ybbs_EventDAO dao = new Ybbs_EventDAOImpl();
+			
+			
+			ybbs = dao.selectByNo(evNumber);
+			System.out.println(ybbs.getEvNumber());
+			dao.updateVisited(evNumber);
+			
+			req.setAttribute("ybbs", ybbs);
+
+			RequestDispatcher rd = req.getRequestDispatcher("board/eventboardDetail.jsp");
+			rd.forward(req, resp);
+		
+		}
+	}
 }

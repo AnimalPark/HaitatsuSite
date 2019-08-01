@@ -10,7 +10,7 @@
 	<title>board.jsp</title>
 <style>
 body{
-	background-image:url(image/bikewaiter-icon1.png);
+	background-image:url(image/image/Haitatsu.jpg);
 	background-repeat:no-repeat;
 	background-size:cover;
 }
