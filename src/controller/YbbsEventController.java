@@ -13,10 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Ybbs_EventDAO;
 import dao.Ybbs_EventDAOImpl;
-import dao.Ybbs_QADAO;
-import dao.Ybbs_QADAOImpl;
 import model.Ybbs_Event;
-import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
 
