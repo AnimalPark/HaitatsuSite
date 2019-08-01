@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 
 <html>
-<<<<<<< HEAD
 	<head>
 		<meta charset="utf-8">
 		<title>Restaurant List</title>
@@ -20,34 +19,6 @@
 			<input type="text" name="name" placeholder="찾는 이름을 입력하세요">
 			<input type="submit" value="찾기">
 		</form>
-		
-<%-- 	<c:if test="${empty  ">
-=======
-<head>
-<meta charset="utf-8">
-<title>Restaurant List</title>
-<style type="text/css">
-#select {
-	font-size: 20px;
-}
-</style>
-</head>
-<body>
-
-
-	<form action="" method="post">
-		<input type="text" name="name" placeholder="찾는 이름을 입력하세요"> <input
-			type="submit" value="찾기">
-	</form>
-	<%-- 		
-	<c:if test="${empty  }">
->>>>>>> 603a1687c4cd144c72caffab8f5099bf2062becf
-		<hr />
-			검색된 결과가 존재하지 않습니다.
-		<hr />
-	</c:if>
-	<c:if test="${!empty }"></c:if>
-	 --%>
 	<table>
 		<thead>
 			<tr>
@@ -65,14 +36,9 @@
 					<td>${member.name}</td>
 					<td>${member.gender}</td>
 					<td>${member.birth}</td>
-<<<<<<< HEAD
 			</c:forEach> --%>
-=======
-			</c:forEach> 
->>>>>>> 603a1687c4cd144c72caffab8f5099bf2062becf
 		</tbody>
 	</table>
-	 --%>
 	<c:if test="${pageGroupResult.beforePage}">
 		<a href="memo_req_list?reqPage=${pageGroupResult.groupStartNumber-1}">앞</a>
 	</c:if>
@@ -95,6 +61,5 @@
 	<button type="button" onclick="location.href='' ">처음으로</button>
 	<button type="button" onclick="location.href='' ">회원가입</button>
 	<button type="button" onclick="location.href='' ">게시판</button>
-
 </body>
 </html>
