@@ -18,14 +18,14 @@
 			<input type="text" name="name" placeholder="찾는 이름을 입력하세요">
 			<input type="submit" value="찾기">
 		</form>
-<%-- 		
+ <%-- 		
 	<c:if test="${empty  }">
 		<hr />
 			검색된 결과가 존재하지 않습니다.
 		<hr />
 	</c:if>
 	<c:if test="${!empty }"></c:if>
-	 --%>
+	
 	<table>
 		<thead>
 			<tr>
@@ -37,16 +37,16 @@
 			</tr>
 		</thead>
 		<tbody>
-	<%-- 		<c:forEach var="member" items="${}">
+			<c:forEach var="member" items="${}">
 				<tr>
 					<td><a href="mbr_detail?no=${member.no}">${member.id}</a></td>
 					<td>${member.name}</td>
 					<td>${member.gender}</td>
 					<td>${member.birth}</td>
-			</c:forEach> --%>
+			</c:forEach> 
 		</tbody>
 	</table>
-	
+	 --%>
 	<c:if test="${pageGroupResult.beforePage}"><a href="memo_req_list?reqPage=${pageGroupResult.groupStartNumber-1}">앞</a></c:if>
 	<c:forEach var="index" begin="${pageGroupResult.groupStartNumber}" end="${pageGroupResult.groupEndNumber}">
 		<c:choose>
