@@ -20,7 +20,7 @@ div {
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
 	<a class="navbar-brand" href="index.jsp">
-	 <img src="image/Haitatsu.jpg" alt="Haitatsu" style="width:100px;">
+	 <img src="image/Haitatsu.png" alt="Haitatsu" style="width:100px;">
 	</a>
 
   <ul class="navbar-nav">

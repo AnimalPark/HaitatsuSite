@@ -20,7 +20,7 @@ import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
 
-@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_go_to_insert","/ybbs_insert","/ybbs_detail","/ybbs_delete","/ybbs_update","/ybbs_reply","/ybbs_reply_form",
+@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_go_to_insert.do","/ybbs_insert","/ybbs_detail","/ybbs_delete","/ybbs_update","/ybbs_reply","/ybbs_reply_form",
 		"/ybbs_req_list"})
 
 public class YbbsController extends HttpServlet {
@@ -43,7 +43,7 @@ public class YbbsController extends HttpServlet {
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
 
-		if (action.equals("ybbs_go_to_insert")) {
+		if (action.equals("ybbs_go_to_insert.do")) {
 			
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardwriting.jsp");
 			rd.forward(req, resp);

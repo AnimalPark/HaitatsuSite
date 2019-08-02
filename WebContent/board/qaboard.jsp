@@ -22,7 +22,7 @@ p{
 </head>
 <body>
 <div>
-<a href="index.jsp"><img alt="로고" src="image/Haitatsu.jpg"></a>
+<a href="index.jsp"><img alt="로고" src="image/Haitatsu.png"></a>
   <ul class="nav justify-content-end">
     <li class="nav-item">
       <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판</a>
