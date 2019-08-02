@@ -20,6 +20,5 @@
 					  <input type="submit" class="btn btn-primary" value="수정"/><br />
 			</form>
 		<a href="admin_rtrt_delete?rNum=${restaurant.rNum}">가게 정보 삭제</a>
-
 	</body>
 </html>

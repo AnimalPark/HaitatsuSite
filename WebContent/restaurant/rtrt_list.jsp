@@ -4,25 +4,23 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-<meta charset="utf-8">
-<title>Restaurant List</title>
-</head>
-<body>
-	
-	
-	<form action="" method="post">
-		<input type="text" name="name" placeholder="찾는 이름을 입력하세요"> <input
-			type="submit" value="찾기">
-	</form>
-		
-	<c:if test="${empty restaurant}">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Restaurant List</title>
+	</head>
+	<body>		
+		<form action="" method="post">
+			<input type="text" name="name" placeholder="찾는 이름을 입력하세요">
+			<input type="submit" value="찾기">
+		</form>	
+	<c:if test="${empty restaurant}">	
 		<hr />
 			검색된 결과가 존재하지 않습니다.
 		<hr />
 	</c:if>
+
 	<c:if test="${!empty restaurant}"></c:if>
-	
 	<table>
 		<thead>
 			<tr>
@@ -46,6 +44,5 @@
 	</table>
 
 	<button type="button" onclick="location.href='admin/adminScreen.jsp' ">관리자화면 메인</button>
-	<button type="button" onclick="location.href='restaurant/rtrt_form.jsp' ">가게 추가</button>
 </body>
 </html>
