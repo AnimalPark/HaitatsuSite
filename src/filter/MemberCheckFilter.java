@@ -33,7 +33,7 @@ public class MemberCheckFilter implements Filter {
 		if (login) {
 			chain.doFilter(req, res);
 		} else {
-			((HttpServletResponse) res).sendRedirect("/HaitatsuSite/login.jsp");
+			((HttpServletResponse) res).sendRedirect("/HaitatsuSite/join/login.jsp");
 		}
 	}
 }
