@@ -21,18 +21,26 @@ p{
 </style>
 </head>
 <body>
+<h1>Q/A게시판</h1>
+<c:if test="${users.authority eq 1}">
+	<h1>${users.userId}관리자 계정으로 로그인됨</h1>
+</c:if>
 <div>
 <a href="index.jsp"><img alt="로고" src="image/Haitatsu.jpg"></a>
   <ul class="nav justify-content-end">
     <li class="nav-item">
       <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">로그인</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">로그아웃</a>
-    </li>
+    <c:if test="${users == null}">
+	    <li class="nav1">
+	    	<a class="nav-link" href="user_login">로그인</a>
+	    </li>
+    </c:if>
+    <c:if test="${users != null}">
+		<li class="nav1">
+	    	<a class="nav-link" href="user_logout">로그아웃</a>
+	    </li>
+	</c:if>
   </ul>
 </div>
 <br />
@@ -61,13 +69,13 @@ p{
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="ybbs_go_to_insert">글쓰기러 가기</a>
+	<a href="ybbs_go_to_insert.do">글쓰기</a>
 	
 	
 <div class="container">
   <ul class="pagination">
     <c:if test="${pageGroupResult.beforePage}">
-    	<li class="page-item disabled">
+    	<li class="page-item">
     		<a class="page-link" href="ybbs_req_list?reqPage=${pageGroupResult.groupStartNumber-1}">Previous</a>
     	</li>
     </c:if>

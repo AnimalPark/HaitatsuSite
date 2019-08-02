@@ -14,22 +14,30 @@
 a:link {text-decoration: none; color: #333333;}
 a:visited {text-decoration: none; color: #333333;}
 a:active {text-decoration: none; color: #333333;}
-a:hover {text-decoration: underline; color: red;}
+a:hover {text-d"WebContent/board/eventboard.jsp"ecoration: underline; color: red;}
 </style>
 </head>
 <body>
+<h1>이벤트게시판</h1>
+<c:if test="${users.authority eq 1}">
+	<h1>${users.userId}관리자 계정으로 로그인됨</h1>
+</c:if>
 <div>
 <a href="index.jsp"><img alt="로고" src="image/Haitatsu.jpg"></a>
   <ul class="nav justify-content-end">
     <li class="nav-item">
       <a class="nav-link" href="ybbs_req_list?reqPage=1">Q/A게시판으로</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">로그인</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">로그아웃</a>
-    </li>
+    <c:if test="${users == null}">
+	    <li class="nav1">
+	    	<a class="nav-link" href="user_login">로그인</a>
+	    </li>
+    </c:if>
+    <c:if test="${users != null}">
+		<li class="nav1">
+	    	<a class="nav-link" href="user_logout">로그아웃</a>
+	    </li>
+	</c:if>
   </ul>
 </div>
 <br />
@@ -44,36 +52,39 @@ a:hover {text-decoration: underline; color: red;}
 			<c:forEach var="ybbsList" items="${ybbsList}">
 				<tr>
 					<td>${ybbsList.evNumber}</td>
-					<td><a href="ybbs_eventDetail?evNumber=${ybbsList.evNumber}">${ybbsList.evSubject}</a></td>
+					<td><a href="ybbs_eventDetail.do?evNumber=${ybbsList.evNumber}">${ybbsList.evSubject}</a></td>
 					<td>${ybbsList.evDate}</td>
 					<td>${ybbsList.evVisited}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="ybbs_go_to_insert_event">글쓰러가기♥</a>
-	<div class="container">
-  <ul class="pagination">
-    <c:if test="${pageGroupResult.beforePage}">
-    	<li class="page-item disabled">
-    		<a class="page-link" href="ybbs_eventList?reqPage=${pageGroupResult.groupStartNumber-1}">Previous</a>
-    	</li>
-    </c:if>
-  	
-  	<c:forEach var="index" begin="${pageGroupResult.groupStartNumber}" end="${pageGroupResult.groupEndNumber}">
-		<c:choose>	
-			<c:when test="${pageGroupResult.selectPageNumber==index}"> 
-   				 <li class="page-item"><a class="page-link" href="ybbs_eventList?reqPage=${index}">${index}</a></li>
-    		</c:when>
-			<c:otherwise>
-				    <li class="page-item"><a class="page-link" href="ybbs_eventList?reqPage=${index}">${index}</a></li>
-			</c:otherwise>		 
- 		 </c:choose>
-		</c:forEach>
-	 <c:if test="${pageGroupResult.afterPage}">
-	 <li class="page-item"><a class="page-link" href="ybbs_eventList?reqPage=${pageGroupResult.groupEndNumber+1}">Next</a></li>
+	<c:if test="${users.authority eq 1}">
+		<a href="ybbs_go_to_insert_event.do">글쓰러가기♥</a>
 	</c:if>
-	</ul>
-</div>
+	<div class="container">
+ 	 	<ul class="pagination">
+    		<c:if test="${pageGroupResult.beforePage}">
+    			<li class="page-item">
+    				<a class="page-link" href="ybbs_eventList?reqPage=${pageGroupResult.groupStartNumber-1}">Previous</a>
+    			</li>
+    		</c:if>
+  	
+  			<c:forEach var="index" begin="${pageGroupResult.groupStartNumber}" end="${pageGroupResult.groupEndNumber}">
+				<c:choose>	
+					<c:when test="${pageGroupResult.selectPageNumber==index}"> 
+   						 <li class="page-item"><a class="page-link" href="ybbs_eventList?reqPage=${index}">${index}</a></li>
+    				</c:when>
+			
+					<c:otherwise>
+				  	  <li class="page-item"><a class="page-link" href="ybbs_eventList?reqPage=${index}">${index}</a></li>
+					</c:otherwise>		 
+ 				</c:choose>
+		</c:forEach>
+		 <c:if test="${pageGroupResult.afterPage}">
+		 	<li class="page-item"><a class="page-link" href="ybbs_eventList?reqPage=${pageGroupResult.groupEndNumber+1}">Next</a></li>
+		 </c:if>
+		</ul>
+	</div>
 </body>
 </html>

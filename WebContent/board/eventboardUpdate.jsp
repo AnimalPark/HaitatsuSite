@@ -3,22 +3,31 @@
 <!DOCTYPE html >
 <html>
 <head>
+<meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<meta charset="utf-8">
-	<title>QA게시판/ 답변달기 게시판</title>
+<title>이벤트게시판/수정페이지</title>
 <style>
-body{
-	background-image:url(image/image/Haitatsu.jpg);
-	background-repeat:no-repeat;
-	background-size:cover;
+div {
+	border: 2px solid #bcbcbc;
+	width : 20%
 }
-</style>
+.mybox {
+	height: 200px;
+	width: 800px;
+	padding: 20px 20px 20px 20px; 
+
+}
+</style>	
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">	
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<a class="navbar-brand" href="index.jsp">
+	 <img src="image/Haitatsu.png" alt="Haitatsu" style="width:100px;">
+	</a>
+
   <ul class="navbar-nav">
     <li class="nav">
    	 <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판 </a>
@@ -35,14 +44,13 @@ body{
 	</c:if>
   </ul>
 </nav>
-	<h1>댓글작성</h1>
-	<form action="ybbs_reply" method="post">
-		<div>작성자:${users.userId}</div><br />
-		제목<br/><input type="text" name="qasubject" id="qasubject"><br />
-		내용<br/><textarea rows="10" cols="50" name="qacomment"></textarea><br />
-		<input type="hidden" name="userid" id="userid" value="${users.userId}"><br />
-		<input type="hidden" name="qagroup" id="qagroup" value="${num}" /><br />
-		<input type="submit" value="댓글달기">
-	</form>
-</body>
+		<form action="ybbs_event_update" method="post">
+			<div>작성자 :${ybbs.userId}</div>
+			<input type="hidden"  name="evNumber" value="${ybbs.evNumber}"/><br />
+			<input type="text"  name="evSubject" value="${ybbs.evSubject}" class="mybox"/><br />
+			<input type="text"  name="evComment" value="${ybbs.evComment}" class="mybox"/><br />
+			<input type="submit" class="btn btn-primary" value="수정하기">
+		</form>
+			<a href="ybbs_eventDetail.do?evNumber=${ybbs.evNumber}">글 수정 취소하기</a>	
+	</body>
 </html>

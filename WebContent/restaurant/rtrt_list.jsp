@@ -8,6 +8,7 @@
 		<title>Restaurant Form</title>
 	</head>
 	<body>
+<<<<<<< HEAD
 		<form action="admin_rtrt_insert" method="post">
 		<h2>가게 등록</h2>
 			<hr>
@@ -51,6 +52,49 @@
  			<input type="submit" value="가게 등록">
             <hr />
     	</form>
+=======
+		<h3>Restaurant List</h3>
+	
+		<form action="admin_rtrt_search"method="post">
+			<input type="text" name="rName" placeholder="가게 이름 검색...">
+			<input type="submit" value="검색">
+		</form>
+			
+		<c:if test="${empty restaurant}">
+			<hr />
+			검색된 결과가 존재하지 않습니다
+			<hr />
+		</c:if>
+		<c:if test="${!empty restaurant}"></c:if>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Restaurant name</td>
+					<td>/ Phone number</td>
+					<td>/ Category number</td>
+					<td>/ Town number</td>
+					<td>/ Star average</td>
+					<td>/ Address</td>
+				</tr>
+			</thead>
+				
+		<c:forEach var="restaurant" items="${restaurant}">
+			<tr>
+				<td><a href="admin_rtrt_detail?rNum=${restaurant.rNum}">${restaurant.rName}</a></td>
+				<td>${restaurant.rPhoneNum}</td>
+				<td>${restaurant.cNum}</td>
+				<td>${restaurant.townNum}</td>
+				<td>${restaurant.starAvg}</td>
+				<td>${restaurant.rAddr}</td>
+				<td></td>
+			</tr>
+		</c:forEach>
+		</table>
+
+   		<button type="button" onclick="location.href='index.jsp' " >처음화면으로</button>
+   	 	<button type="button" onclick="location.href='member_save' ">회원가입</button>
+>>>>>>> 3c1991270be441e7616a5d7823b6204bbb59a1ff
 
 	</body>
 </html>

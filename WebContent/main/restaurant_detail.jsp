@@ -7,6 +7,8 @@
 <meta content="utf-8">
 <title>멤 버 수 정 창</title>
 <meta charset="utf-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -25,9 +27,10 @@
 	<span>${detailR.townNum}</span>
 	<span>${detailR.rAddr}</span>
 	<span>${detailR.rPhoneNum}</span>
-
+	<hr />
+	<p>메 뉴 리 스 트</p>
 	<c:if test="${!empty lists}">
-		<table>
+		<!-- <table>
 			<tr>
 				<td>MNUM</td>
 				<td>RNUM</td>
@@ -35,17 +38,17 @@
 				<td>MPRICE</td>
 				<td>MSALES</td>
 			</tr>
-	
-			<c:forEach var="list" items="${lists}">
-				<tr>
-					<td>${list.mNum}</td>
-					<td>${list.rNum}</td>
-					<td>${list.mName}</td>
-					<td>${list.mPrice}</td>
-					<td>${list.mSales}</td>
-				</tr>
-			</c:forEach>
-		</table>
+ -->
+		<c:forEach var="list" items="${lists}">
+			<span>${list.mNum}</span>
+			<span>${list.rNum}</span>
+			<a href="test2.jsp?mnum=${list.mNum}">${list.mName}</a>
+			<span>${list.mPrice}</span>
+			<span>${list.mSales}</span>
+			<br />
+		</c:forEach>
 	</c:if>
+
+	<ul></ul>
 </body>
 </html>

@@ -48,7 +48,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 	}
 
 	@Override
-	public List<Restaurant> selectByName(String name) {
+	public List<Restaurant> selectByName(String rName) {
 
 		List<Restaurant> restaurants = new ArrayList<Restaurant>();
 		Connection connection = null;
@@ -59,7 +59,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_NAME_SQL);
-			preparedStatement.setString(1, "%" + name + "%");
+			preparedStatement.setString(1, "%" + rName + "%");
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -82,7 +82,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 	}
 
 	@Override
-	public Restaurant selectByNum(int rnum) {
+	public Restaurant selectByNum(int rNum) {
 		Restaurant restaurant = new Restaurant();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -92,7 +92,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_RNUM_SQL);
-			preparedStatement.setInt(1, rnum);
+			preparedStatement.setInt(1, rNum);
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -128,13 +128,12 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_INSERT_RESTAURANT_SQL);
 
-			preparedStatement.setInt(1, restaurant.getrNum());
-			preparedStatement.setString(2, restaurant.getrName());
-			preparedStatement.setString(3, restaurant.getrPhoneNum());
-			preparedStatement.setInt(4, restaurant.getcNum());
-			preparedStatement.setInt(5, restaurant.getTownNum());
-			preparedStatement.setInt(6, restaurant.getStarAvg());
-			preparedStatement.setString(7, restaurant.getrAddr());
+			preparedStatement.setString(1, restaurant.getrName());
+			preparedStatement.setString(2, restaurant.getrPhoneNum());
+			preparedStatement.setInt(3, restaurant.getcNum());
+			preparedStatement.setInt(4, restaurant.getTownNum());
+			preparedStatement.setInt(5, restaurant.getStarAvg());
+			preparedStatement.setString(6, restaurant.getrAddr());
 
 			int rowCount = preparedStatement.executeUpdate();
 
