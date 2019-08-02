@@ -26,7 +26,7 @@
 					<option value="8">간식</option>
 			</select><br />
        		Town number
-			<select name="cNum">
+			<select name="townNum">
 					<option>-------지역선택-------</option>
 					<option value="1">안양1동</option>
 					<option value="2">안양2동</option>
@@ -38,7 +38,7 @@
 					<option value="8">춘하추동</option>
 			</select><br />
 			Star average
-			<select name="cNum">
+			<select name="starAvg">
 					<option>-------별점-------</option>
 					<option value="1">0점</option>
 					<option value="1">1점</option>
@@ -54,3 +54,4 @@
 
 	</body>
 </html>
+
