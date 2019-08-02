@@ -4,10 +4,7 @@
 <!DOCTYPE html>
 
 <html>
-<<<<<<< HEAD
-=======
 
->>>>>>> e2db480c67861cc189ce5263a38064c51c76f8a6
 	<head>
 		<meta charset="utf-8">
 		<title>Restaurant List</title>
@@ -23,8 +20,7 @@
 			<input type="text" name="name" placeholder="찾는 이름을 입력하세요">
 			<input type="submit" value="찾기">
 		</form>
-<<<<<<< HEAD
-=======
+
 		
 <%-- <%-- 	<c:if test="${empty  ">
 =======
@@ -75,11 +71,7 @@
 			</c:forEach> --%>
 		</tbody>
 	</table>
-=======
 
-			</c:forEach> --%>
-
->>>>>>> e2db480c67861cc189ce5263a38064c51c76f8a6
 	<c:if test="${pageGroupResult.beforePage}">
 		<a href="memo_req_list?reqPage=${pageGroupResult.groupStartNumber-1}">앞</a>
 	</c:if>

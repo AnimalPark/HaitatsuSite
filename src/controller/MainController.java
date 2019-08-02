@@ -18,12 +18,7 @@ import model.Restaurant;
 import model.Town;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
-<<<<<<< HEAD
-		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link"})
-
-=======
 		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail"})
->>>>>>> e2db480c67861cc189ce5263a38064c51c76f8a6
 
 public class MainController extends HttpServlet {
 
@@ -82,8 +77,14 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		}
+		else if (action.equals("admin_home_link")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("admin/adminScreen.jsp");
+			rd.forward(req, resp);
+
+		}
+		
 		else if (action.equals("search_link")) {
-			
 			Mimpl = new MenuDAOImpl();
 			
 			int category = Integer.parseInt(req.getParameter("category"));
