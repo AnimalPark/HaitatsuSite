@@ -133,7 +133,7 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		}
-		
+
 		/*else if (action.equals("idcheck")) {
 
 			boolean chk = true;
