@@ -14,8 +14,8 @@ import dao.MenuDAO;
 import dao.MenuDAOImpl;
 import model.Menu;
 
-@WebServlet(name = "MenuController", urlPatterns = {"/admin_menu_list", "/admin_menu_search", "/admin_menu_detail",
-		"/admin_menu_insert", "/admin_menu_update", "/admin_menu_delete" })
+@WebServlet(name = "MenuController", urlPatterns = { "/admin_menu_list", "/admin_menu_detail", "/admin_menu_insert",
+		"/admin_menu_update", "/admin_menu_delete" })
 public class MenuController extends HttpServlet {
 
 	@Override
@@ -37,37 +37,65 @@ public class MenuController extends HttpServlet {
 		String action = uri.substring(lastIndex + 1);
 
 		if (action.equals("admin_menu_list")) {
-			
+
 			MenuDAO dao = new MenuDAOImpl();
 			List<Menu> menu = dao.selectAllMenu();
-			
-			req.setAttribute("admin_menu", menu);
-			RequestDispatcher rd = req.getRequestDispatcher("");
-			rd.forward(req, resp);
 
-		} else if (action.equals("admin_menu_search")) {
-
+			req.setAttribute("menu", menu);
 			RequestDispatcher rd = req.getRequestDispatcher("");
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_menu_detail")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("");
+			int mNum = Integer.parseInt(req.getParameter("mNum"));
+			MenuDAO dao = new MenuDAOImpl();
+			Menu menu = dao.selectByMnum(mNum);
+
+			req.setAttribute("menu", menu);
+			RequestDispatcher rd = req.getRequestDispatcher("/menu/menu_detail.jsp");
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_menu_insert")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("");
+			MenuDAO dao = new MenuDAOImpl();
+			Menu menu = new Menu();
+
+			menu.setrNum(Integer.parseInt(req.getParameter("rNum")));
+			menu.setmName(req.getParameter("mName"));
+			menu.setmPrice(Integer.parseInt(req.getParameter("mPrice")));
+			menu.setmSales(Integer.parseInt(req.getParameter("mSales")));
+
+			boolean result = dao.insertMenu(menu);
+
+			RequestDispatcher rd = req.getRequestDispatcher("menu/menu_list.jsp");
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_menu_update")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("");
+			MenuDAO dao = new MenuDAOImpl();
+			Menu menu = new Menu();
+
+			menu.setmNum(Integer.parseInt(req.getParameter("mNum")));
+			menu.setrNum(Integer.parseInt(req.getParameter("rNum")));
+			menu.setmName(req.getParameter("mName"));
+			menu.setmPrice(Integer.parseInt(req.getParameter("mPrice")));
+			menu.setmSales(Integer.parseInt(req.getParameter("mSales")));
+
+			boolean result = dao.insertMenu(menu);
+
+			RequestDispatcher rd = req.getRequestDispatcher("menu/menu_list.jsp");
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_menu_delete")) {
 
-			RequestDispatcher rd = req.getRequestDispatcher("");
+			MenuDAO dao = new MenuDAOImpl();
+			Menu menu = new Menu();
+
+			menu.setmNum(Integer.parseInt(req.getParameter("mNum")));
+
+			boolean result = dao.deleteMenu(Integer.parseInt(req.getParameter("mNum")));
+
+			RequestDispatcher rd = req.getRequestDispatcher("menu/menu_list.jsp");
 			rd.forward(req, resp);
 
 		}
