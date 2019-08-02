@@ -25,7 +25,7 @@ public class MemberCheckFilter implements Filter {
 		boolean login = false;
 
 		if (session != null) {
-			if (session.getAttribute("member") != null) {
+			if (session.getAttribute("users") != null) {
 				login = true;
 			}
 		}
@@ -33,7 +33,7 @@ public class MemberCheckFilter implements Filter {
 		if (login) {
 			chain.doFilter(req, res);
 		} else {
-			((HttpServletResponse) res).sendRedirect("/08.MemberManage/login.jsp");
+			((HttpServletResponse) res).sendRedirect("/HaitatsuSite/login.jsp");
 		}
 	}
 }

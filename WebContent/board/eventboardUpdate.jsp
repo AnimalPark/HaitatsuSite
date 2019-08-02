@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<title>이벤트게시판/디테일 페이지</title>
+<title>이벤트게시판/수정페이지</title>
 <style>
 div {
 	border: 1px solid #bcbcbc;
@@ -18,15 +18,14 @@ div {
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
 	<a class="navbar-brand" href="index.jsp">
-	 <img src="image/Haitatsu.jpg" alt="Haitatsu" style="width:100px;">
+	 <img src="image/Haitatsu.png" alt="Haitatsu" style="width:100px;">
 	</a>
 
   <ul class="navbar-nav">
     <li class="nav">
-   	 <a class="nav-link" href="ybbs_req_list?reqPage=1">Q/A게시판 </a>
-    </li>    
+   	 <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판 </a>
+    </li>
     <c:if test="${users == null}">
 	    <li class="nav1">
 	    	<a class="nav-link" href="user_login">로그인</a>
@@ -39,40 +38,13 @@ div {
 	</c:if>
   </ul>
 </nav>
-	<c:if test="${ybbs.userId != null && ybbs.userId == users.userId}">
-		<form action="ybbs_update" method="post">
+		<form action="ybbs_event_update" method="post">
 			<div>작성자 :${ybbs.userId}</div>
-			<div>
-				<h1>${ybbs.evNumber}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.evSubject}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.evComment}</h1>
-			</div>
-			<a href="ybbs_event_goTo_update?evNumber=${ybbs.evNumber}">수정하러가기</a><br/>	
-			<a href="ybbs_delete_event?evNumber=${ybbs.evNumber}">글 내리기</a><br />
-			<a href="ybbs_eventList?reqPage=1">뒤로가기</a>	
+			<input type="hidden"  name="evNumber" value="${ybbs.evNumber}"/><br />
+			<input type="text"  name="evSubject" value="${ybbs.evSubject}" /><br />
+			<input type="text"  name="evComment" value="${ybbs.evComment}" /><br />
+			<input type="submit" class="btn btn-primary" value="수정하기">
 		</form>
-	</c:if>
-	<c:if test="${ybbs.userId != null && ybbs.userId != users.userId}">
-		<form action="ybbs_update" method="post">
-			<div>작성자 :${ybbs.userId}</div>
-			<div>
-				<h1>${ybbs.evNumber}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.evSubject}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.evComment}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.userId}</h1>
-			</div>
-			<a href="ybbs_eventList?reqPage=1">뒤로가기</a>	
-		</form>
-	</c:if>
-</body>
+			<a href="ybbs_eventDetail?evNumber=${ybbs.evNumber}">글 수정 취소하기</a>	
+	</body>
 </html>

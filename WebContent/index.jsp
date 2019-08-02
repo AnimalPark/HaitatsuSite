@@ -36,6 +36,5 @@
 	
 	<a href = "admin_home_link">관리자 모드로 가기</a>
 	
-	
 </body>
 </html>

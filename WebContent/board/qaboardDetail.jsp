@@ -27,46 +27,44 @@ div {
     <li class="nav">
    	 <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판 </a>
     </li>
-    <li class="nav1">
-      <a class="nav-link" href="#">로그인</a>
-    </li>
-    <li class="nav1">
-      <a class="nav-link" href="#">로그아웃</a>
-    </li>
+    <c:if test="${users == null}">
+	    <li class="nav1">
+	    	<a class="nav-link" href="user_login">로그인</a>
+	    </li>
+    </c:if>
+    <c:if test="${users != null}">
+		<li class="nav1">
+	    	<a class="nav-link" href="user_logout">로그아웃</a>
+	    </li>
+	</c:if>
   </ul>
 </nav>
-	<%-- <c:if test="${ybbs.userid}"> --%>
-		
-		<!-- <form action="ybbs_update" method="post"> -->
-		<form action="ybbs_reply_form" method="post">
-			<div>작성자 :${ybbs.userid}</div>
-			<input type="hidden"  name="qanumber" value="${ybbs.qanumber}"/><br />
-			<input type="text"  name="qasubject" value="${ybbs.qasubject}" /><br />
-			<input type="text"  name="qacomment" value="${ybbs.qacomment}" /><br />
-			<input type="text" name="userid" value="${ybbs.userid}"/>
-			<input type="submit" class="btn btn-primary" value="응답쓰러가기">
+	<c:if test="${ybbs.userid == users.userId}">
+		<form action="ybbs_goTo_update" method="post">
+			<div>작성자 : ${ybbs.userid}</div>
+			<div>${ybbs.qanumber}</div>
+			<div>${ybbs.qasubject}</div>
+			<div>${ybbs.qacomment}</div>
+			<input type="hidden" name ="qanumber" value="${ybbs.qanumber}">
+			<input type="submit" class="btn btn-primary" value="수정">
 		</form>
-			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">삭제</a><br />
+			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제</a><br />
 			<a href="ybbs_req_list?reqPage=1">뒤로가기</a>	
-	<%-- </c:if> --%>
-	
-	<%-- <c:if test="${ybbs.userid != member.id}">
+	</c:if>
+	<c:if test="${ybbs.userid != users.userId}">
 		
 	<form action="ybbs_reply_form.do" method="post">
 		<div>작성자 :${ybbs.userid}</div>
+			<div>${ybbs.qanumber}</div>
+			<div>${ybbs.qasubject}</div>
+			<div>${ybbs.qacomment}</div>
+			<input type="hidden" name ="qanumber" value="${ybbs.qanumber}">
+		<a href="ybbs_req_list?reqPage=1">뒤로가기</a><br/>
 		
-		<input type="hidden"  name="qanumber" value="${ybbs.qanumber}"/><br />
-		<input type="text"  name="qasubject" value="${ybbs.qasubject}" disabled="disabled"/><br />
-		<input type="text"  name="qacomment" value="${ybbs.qacomment}" disabled="disabled"/><br />
-		
-		<a href="ybbs_req_list?reqPage=1">페이징처리된 뒤로가기ㅎ</a>
-		<c:if test="${member.id != null}">
+		<c:if test="${users.userId != null}">
 			<input type="submit" class="btn btn-primary" value="응답쓰러가기">
 		</c:if>
-	
 	 </form>
-	
-	</c:if> --%>
-
+	</c:if>
 </body>
 </html>
