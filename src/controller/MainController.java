@@ -18,7 +18,11 @@ import model.Restaurant;
 import model.Town;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
+<<<<<<< HEAD
+		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link"})
+=======
 		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail"})
+>>>>>>> f0b7fd70f8c1ff9aee6dd3c8310e8d663608922e
 
 public class MainController extends HttpServlet {
 
@@ -107,6 +111,8 @@ public class MainController extends HttpServlet {
 			String city = req.getParameter("selectCity");
 			String town = req.getParameter("selectTown");
 			String selctedCate = req.getParameter("catego");
+			
+			System.out.println(selctedCate);
 			
 			List<Restaurant> lists = Mimpl.selectByTownnum(city, town);
 			

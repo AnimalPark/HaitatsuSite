@@ -20,7 +20,7 @@ a:hover {text-decoration: underline; color: red;}
 <body>
 <h1>이벤트게시판</h1>
 <div>
-<a href="index.jsp"><img alt="로고" src="image/Haitatsu.png"></a>
+<a href="index.jsp"><img alt="로고" src="image/Haitatsu.jpg"></a>
   <ul class="nav justify-content-end">
     <li class="nav-item">
       <a class="nav-link" href="ybbs_req_list?reqPage=1">Q/A게시판으로</a>

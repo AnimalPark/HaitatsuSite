@@ -37,6 +37,7 @@ public class Sql {
 											"FROM CITY " + 
 											"WHERE CITYNAME = ? ) AND TOWNNAME = ? )";
 	public static final String MENU_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE RNUM = ? ";
+	
 	//==========================황호영 Sql↓=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
 	public static final String RESTAURANT_SELECT_BY_NAME_SQL = "SELECT * FROM restaurant WHERE rName like ?";
@@ -54,5 +55,8 @@ public class Sql {
 	//==========================천다연 Sql↓=======================================
 	private static final String USERS_INSERT_SQL = "INSERT INTO users VALUES(?, ?, ?, ?, ?)";
 	private static final String USERS_SELECT_BY_USERID_PWD_SQL = "SELECT userId, uPwd, uName, uAddr, uPhonenum FROM users WHERE userId = ? AND uPwd = ?";
+	private static final String USERS_SELECT_BY_UNAME_UPHONE_SQL = "SELECT * FROM users WHERE uName = ? AND uPhonenum = ?";
+	private static final String USERS_SELECT_BY_USERID_UNAME_UPHONE_SQL_SQL = "SELECT * FROM users WHERE userId= ? AND uName= ? AND uPhonenum = ?";
+	private static final String USERS_UPDATE_PWD_SQL = "UPDATE users SET uPwd = ? WHERE userId = ?";
 
 }

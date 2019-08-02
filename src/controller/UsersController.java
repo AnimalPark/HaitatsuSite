@@ -21,7 +21,8 @@ import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
 
-@WebServlet(name = "UsersController", urlPatterns = {"/user_join", "/user_login", "/user_logout"})
+@WebServlet(name = "UsersController", urlPatterns = {"/user_join", "/user_login", "/user_logout", "/find_userId", "/findId_link",
+		"/findPwd_link", "/find_uPwd", "/change_uPwd"})
 
 public class UsersController extends HttpServlet
 {
@@ -98,6 +99,80 @@ public class UsersController extends HttpServlet
 			session.removeAttribute("users");
 			
 			//login.jsp 페이지로 이동
+			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("findId_link")) {
+			
+			RequestDispatcher rd = req.getRequestDispatcher("join/findUserId.jsp");
+			rd.forward(req, resp);
+		}
+		else if(action.equals("find_userId"))
+		{
+			String uName = req.getParameter("uName");
+			String uPhonenum = req.getParameter("uPhonenum");
+
+			UsersDAO dao = new UsersDAOImpl();
+			Users users = dao.selectByuNameuPhonenum(uName, uPhonenum);
+			
+			req.setAttribute("users", users);
+			
+			if(users != null)
+			{
+				req.setAttribute("message", "회원님의 아이디는 다음과 같습니다.");
+				
+				RequestDispatcher rd = req.getRequestDispatcher("join/findUserId.jsp");
+				rd.forward(req, resp);
+			}
+			else
+			{
+				req.setAttribute("message", "입력하신 정보로 가입 된 회원 아이디는 존재하지 않습니다.");
+				
+				RequestDispatcher rd = req.getRequestDispatcher("join/findUserId.jsp");
+				rd.forward(req, resp);
+			}
+		}
+		else if (action.equals("findPwd_link")) {
+			
+			RequestDispatcher rd = req.getRequestDispatcher("join/finduPwd.jsp");
+			rd.forward(req, resp);
+		}
+		else if(action.equals("find_uPwd"))
+		{
+			String userId = req.getParameter("userId");
+			String uName = req.getParameter("uName");
+			String uPhonenum = req.getParameter("uPhonenum");
+
+			UsersDAO dao = new UsersDAOImpl();
+			Users users = dao.selectByuserIduNameuPhonenum(userId, uName, uPhonenum);
+			
+			req.setAttribute("users", users);
+			
+			if(users != null)
+			{
+				req.setAttribute("userId", userId);
+				
+				RequestDispatcher rd = req.getRequestDispatcher("join/changeuPwd.jsp");
+				rd.forward(req, resp);
+			}
+			else
+			{
+				req.setAttribute("message", "입력하신 정보로 가입 된 회원 정보가 존재하지 않습니다.");
+				
+				RequestDispatcher rd = req.getRequestDispatcher("join/finduPwd.jsp");
+				rd.forward(req, resp);
+			}
+		}
+		else if(action.equals("change_uPwd"))
+		{
+			Users users = new Users();
+			
+			users.setuPwd(req.getParameter("uPwd"));
+			users.setUserId(req.getParameter("userId"));
+			
+			UsersDAO dao = new UsersDAOImpl();
+			boolean result = dao.update(users);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
 		}

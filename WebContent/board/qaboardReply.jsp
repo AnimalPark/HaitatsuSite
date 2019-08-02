@@ -11,7 +11,7 @@
 	<title>QA게시판/ 답변달기 게시판</title>
 <style>
 body{
-	background-image:url(image/image/Haitatsu.png);
+	background-image:url(image/image/Haitatsu.jpg);
 	background-repeat:no-repeat;
 	background-size:cover;
 }

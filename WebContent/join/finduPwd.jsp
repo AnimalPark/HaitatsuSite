@@ -3,17 +3,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>아이디 찾기</title>
+<title>비밀번호 찾기</title>
 </head>
 <body>
-	<h3>아이디 찾기</h3>
+	<h3>비밀번호 찾기</h3>
 	<a href="login_link">로그인 화면으로</a>
-	<form method="post" action="find_userId" >
+	<form method="post" action="find_uPwd" >
+		아이디 <input type="text" name="userId" id="userId"/><br />
 		이름 <input type="text" name="uName" id="uName"/><br />
 		연락처 <input type="text" name="uPhonenum" id="uPhonenum" placeholder="ex) 010-0000-0000"/><br />
-		<input type="submit" value="아이디 찾기">
+		<input type="submit" value="비밀번호 찾기">
 	</form>
 	${message}<br />
-	${users.userId}
+	${users.uPwd}
 </body>
 </html>
