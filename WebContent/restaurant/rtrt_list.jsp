@@ -1,83 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 
 <html>
-<<<<<<< HEAD
-<head>
-<meta charset="utf-8">
-<title>Restaurant List</title>
-<style type="text/css">
-#select {
-	font-size: 20px;
-}
-</style>
-</head>
-<body>
-
-
-	<form action="" method="post">
-		<input type="text" name="name" placeholder="찾는 이름을 입력하세요"> <input
-			type="submit" value="찾기">
-	</form>
-	<%-- 		
-	<c:if test="${empty  }">
-=======
-
 	<head>
 		<meta charset="utf-8">
-		<title>Restaurant List</title>
+		<title>Restaurant Form</title>
 	</head>
-	<body>		
-		<form action="" method="post">
-			<input type="text" name="name" placeholder="찾는 이름을 입력하세요">
-			<input type="submit" value="찾기">
-		</form>	
-	<c:if test="${empty restaurant}">	
->>>>>>> f0b7fd70f8c1ff9aee6dd3c8310e8d663608922e
-		<hr />
-			검색된 결과가 존재하지 않습니다.
-		<hr />
-	</c:if>
-<<<<<<< HEAD
-	<c:if test="${!empty }"></c:if>
-	
-=======
+	<body>
+		<form action="admin_rtrt_insert" method="post">
+		<h2>가게 등록</h2>
+			<hr>
+	        Restaurant name<input type="text" name="rName" placeholder="가게명을 입력하세요"><br />
+	        Phone number<input type="text" name="rPhoneNum" placeholder="대표전화번호를 입력하세요"><br />
+			Category number
+			<select name="cNum">
+					<option>-------업종선택-------</option>
+					<option value="1">한식</option>
+					<option value="2">중식</option>
+					<option value="3">일식</option>
+					<option value="4">피자</option>
+					<option value="5">치킨</option>
+					<option value="6">분식</option>
+					<option value="7">족발</option>
+					<option value="8">간식</option>
+			</select><br />
+       		Town number
+			<select name="townNum">
+					<option>-------지역선택-------</option>
+					<option value="1">안양1동</option>
+					<option value="2">안양2동</option>
+					<option value="3">안양3동</option>
+					<option value="4">호계동</option>
+					<option value="5">비산동</option>
+					<option value="6">모택동</option>
+					<option value="7">고길동</option>
+					<option value="8">춘하추동</option>
+			</select><br />
+			Star average
+			<select name="starAvg">
+					<option>-------별점-------</option>
+					<option value="1">0점</option>
+					<option value="1">1점</option>
+					<option value="2">2점</option>
+					<option value="3">3점</option>
+					<option value="4">4점</option>
+					<option value="5">5점</option>
+			</select><br />
+			Address<input type="text" name="rAddr"placeholder="이름을입력하세요"><br />
+ 			<input type="submit" value="가게 등록">
+            <hr />
+    	</form>
 
-	<c:if test="${!empty restaurant}"></c:if>
->>>>>>> f0b7fd70f8c1ff9aee6dd3c8310e8d663608922e
-	<table>
-		<thead>
-			<tr>
-				<th>Restaurant name</th>
-				<th>/ Phone number</th>
-				<th>/ Category</th>
-				<th>/ Star average</th>
-				<th>/ Restaurant Address</th>
-			</tr>
-		</thead>
-		<tbody>
-<<<<<<< HEAD
-			<c:forEach var="member" items="${}">
-				<tr>
-					<td><a href="mbr_detail?no=${member.no}">${member.id}</a></td>
-					<td>${member.name}</td>
-					<td>${member.gender}</td>
-					<td>${member.birth}</td>
-=======
-			<c:forEach var="restaurant" items="${restaurant}">
-				<tr>
-					<td><a href="admin_rtrt_detail?rNum=${restaurant.rNum}">${restaurant.rName}</a></td>
-					<td>${restaurant.rPhoneNum}</td>
-					<td>${restaurant.cNum}</td>
-					<td>${restaurant.starAvg}</td>
-					<td>${restaurant.rAddr}</td>
->>>>>>> f0b7fd70f8c1ff9aee6dd3c8310e8d663608922e
-			</c:forEach> 
-		</tbody>
-	</table>
-
-	<button type="button" onclick="location.href='admin/adminScreen.jsp' ">관리자화면 메인</button>
-</body>
+	</body>
 </html>

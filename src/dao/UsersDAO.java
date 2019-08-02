@@ -1,5 +1,9 @@
 package dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
 import model.Users;
 
 public interface UsersDAO
