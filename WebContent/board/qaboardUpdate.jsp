@@ -14,6 +14,12 @@ div {
 	border: 1px solid #bcbcbc;
 	width : 10%
 }
+.mybox {
+	height: 200px;
+	width: 800px;
+	padding: 20px 20px 20px 20px; 
+
+}
 </style>
 </head>
 <body>
@@ -40,8 +46,8 @@ div {
 </nav>
 		<form action="ybbs_update" method="post">
 			<div>작성자 :${ybbs.userid}</div>
-			<input type="text"  name="qasubject" value="${ybbs.qasubject}" /><br />
-			<input type="text"  name="qacomment" value="${ybbs.qacomment}" /><br />
+			<input type="text"  name="qasubject" value="${ybbs.qasubject}" class="mybox" /><br />
+			<input type="text"  name="qacomment" value="${ybbs.qacomment}" class="mybox" /><br />
 			<input type="hidden"  name="qanumber" value="${ybbs.qanumber}"/><br />
 			<input type="submit" class="btn btn-primary" value="수정하기">
 		</form>
