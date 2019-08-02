@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<title>안녕하세요</title>
+<title>QA게시판/수정페이지</title>
 <style>
 div {
 	border: 1px solid #bcbcbc;
@@ -18,14 +18,13 @@ div {
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
 	<a class="navbar-brand" href="index.jsp">
 	 <img src="image/Haitatsu.png" alt="Haitatsu" style="width:100px;">
 	</a>
 
   <ul class="navbar-nav">
     <li class="nav">
-   	 <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판 </a>
+   	 <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판</a>
     </li>
     <c:if test="${users == null}">
 	    <li class="nav1">
@@ -39,32 +38,13 @@ div {
 	</c:if>
   </ul>
 </nav>
-	<c:if test="${ybbs.userid == users.userId}">
-		<form action="ybbs_goTo_update" method="post">
-			<div>작성자 : ${ybbs.userid}</div>
-			<div>${ybbs.qanumber}</div>
-			<div>${ybbs.qasubject}</div>
-			<div>${ybbs.qacomment}</div>
-			<input type="hidden" name ="qanumber" value="${ybbs.qanumber}">
-			<input type="submit" class="btn btn-primary" value="수정">
+		<form action="ybbs_update" method="post">
+			<div>작성자 :${ybbs.userid}</div>
+			<input type="text"  name="qasubject" value="${ybbs.qasubject}" /><br />
+			<input type="text"  name="qacomment" value="${ybbs.qacomment}" /><br />
+			<input type="hidden"  name="qanumber" value="${ybbs.qanumber}"/><br />
+			<input type="submit" class="btn btn-primary" value="수정하기">
 		</form>
-			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제</a><br />
-			<a href="ybbs_req_list?reqPage=1">뒤로가기</a>	
-	</c:if>
-	<c:if test="${ybbs.userid != users.userId}">
-		
-	<form action="ybbs_reply_form.do" method="post">
-		<div>작성자 :${ybbs.userid}</div>
-			<div>${ybbs.qanumber}</div>
-			<div>${ybbs.qasubject}</div>
-			<div>${ybbs.qacomment}</div>
-			<input type="hidden" name ="qanumber" value="${ybbs.qanumber}">
-		<a href="ybbs_req_list?reqPage=1">뒤로가기</a><br/>
-		
-		<c:if test="${users.userId != null}">
-			<input type="submit" class="btn btn-primary" value="응답쓰러가기">
-		</c:if>
-	 </form>
-	</c:if>
-</body>
+			<a href="ybbs_detail?qanumber=${ybbs.qanumber}">글로 돌아가기</a>	
+	</body>
 </html>

@@ -20,8 +20,8 @@ import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
 
-@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_go_to_insert.do","/ybbs_insert","/ybbs_detail","/ybbs_delete","/ybbs_update","/ybbs_reply","/ybbs_reply_form",
-		"/ybbs_req_list"})
+@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_go_to_insert.do","/ybbs_insert","/ybbs_detail","/ybbs_delete","/ybbs_update","/ybbs_reply","/ybbs_reply_form.do",
+		"/ybbs_req_list", "/ybbs_goTo_update"})
 
 public class YbbsController extends HttpServlet {
 
@@ -114,18 +114,15 @@ public class YbbsController extends HttpServlet {
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			
 			dao.insertReply(ybbs);
-			
-			
+						
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
 			rd.forward(req, resp);
 			
-		} else if (action.equals("ybbs_reply_form")) {
+		} else if (action.equals("ybbs_reply_form.do")) {
 			
-			int num = Integer.parseInt(req.getParameter("qanumber"));
-			String id = req.getParameter("userid");
+			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
 			
-			req.setAttribute("num", num);
-			req.setAttribute("userid", id);
+			req.setAttribute("num", qanumber);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardReply.jsp");
 			rd.forward(req, resp);
@@ -146,6 +143,20 @@ public class YbbsController extends HttpServlet {
 			req.setAttribute("pageGroupResult", pm.getPageGroupResult(Sql.YBBS_SELECT_ALL_COUNT));
 			
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboard.jsp");
+			rd.forward(req, resp);
+		
+		}else if (action.equals("ybbs_goTo_update")) {
+			
+			int num = Integer.parseInt(req.getParameter("qanumber"));
+			
+			Ybbs_QA ybbs = new Ybbs_QA();
+			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
+			
+			ybbs = dao.selectByNo(num);
+			
+			req.setAttribute("ybbs", ybbs);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardUpdate.jsp");
 			rd.forward(req, resp);
 		
 		}

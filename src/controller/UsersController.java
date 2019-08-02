@@ -80,7 +80,7 @@ public class UsersController extends HttpServlet
 				HttpSession session = req.getSession();
 				session.setAttribute("users", users);
 				
-				RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 				rd.forward(req, resp);
 			}
 			else

@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<title>안녕하세요</title>
+<title>이벤트게시판/수정페이지</title>
 <style>
 div {
 	border: 1px solid #bcbcbc;
@@ -18,7 +18,6 @@ div {
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
 	<a class="navbar-brand" href="index.jsp">
 	 <img src="image/Haitatsu.png" alt="Haitatsu" style="width:100px;">
 	</a>
@@ -39,32 +38,13 @@ div {
 	</c:if>
   </ul>
 </nav>
-	<c:if test="${ybbs.userid == users.userId}">
-		<form action="ybbs_goTo_update" method="post">
-			<div>작성자 : ${ybbs.userid}</div>
-			<div>${ybbs.qanumber}</div>
-			<div>${ybbs.qasubject}</div>
-			<div>${ybbs.qacomment}</div>
-			<input type="hidden" name ="qanumber" value="${ybbs.qanumber}">
-			<input type="submit" class="btn btn-primary" value="수정">
+		<form action="ybbs_event_update" method="post">
+			<div>작성자 :${ybbs.userId}</div>
+			<input type="hidden"  name="evNumber" value="${ybbs.evNumber}"/><br />
+			<input type="text"  name="evSubject" value="${ybbs.evSubject}" /><br />
+			<input type="text"  name="evComment" value="${ybbs.evComment}" /><br />
+			<input type="submit" class="btn btn-primary" value="수정하기">
 		</form>
-			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제</a><br />
-			<a href="ybbs_req_list?reqPage=1">뒤로가기</a>	
-	</c:if>
-	<c:if test="${ybbs.userid != users.userId}">
-		
-	<form action="ybbs_reply_form.do" method="post">
-		<div>작성자 :${ybbs.userid}</div>
-			<div>${ybbs.qanumber}</div>
-			<div>${ybbs.qasubject}</div>
-			<div>${ybbs.qacomment}</div>
-			<input type="hidden" name ="qanumber" value="${ybbs.qanumber}">
-		<a href="ybbs_req_list?reqPage=1">뒤로가기</a><br/>
-		
-		<c:if test="${users.userId != null}">
-			<input type="submit" class="btn btn-primary" value="응답쓰러가기">
-		</c:if>
-	 </form>
-	</c:if>
-</body>
+			<a href="ybbs_eventDetail?evNumber=${ybbs.evNumber}">글 수정 취소하기</a>	
+	</body>
 </html>
