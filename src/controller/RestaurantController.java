@@ -15,7 +15,7 @@ import dao.RestaurantDAOImpl;
 import model.Restaurant;
 
 @WebServlet(name = "RestaurantController", urlPatterns = { "/admin_rtrt_list", "/admin_rtrt_search",
-		"/admin_rtrt_detail", "/admin_rtrt_insert", "/admin_rtrt_update", "/admin_rtrt_delete" })
+		"/admin_rtrt_detail", "/admin_rtrt_insert", "/admin_rtrt_update", "/admin_rtrt_delete", "/admin_rtrt_save" })
 public class RestaurantController extends HttpServlet {
 
 	@Override
@@ -43,27 +43,27 @@ public class RestaurantController extends HttpServlet {
 			List<Restaurant> restaurant = dao.selectAll();
 
 			req.setAttribute("restaurant", restaurant);
-			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_list.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_list.jsp");
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_rtrt_search")) {
 
 			RestaurantDAO dao = new RestaurantDAOImpl();
-			String name = req.getParameter("rname");
+			String name = req.getParameter("rName");
 			List<Restaurant> restaurant = dao.selectByName(name);
 
 			req.setAttribute("restaurant", restaurant);
-			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_list.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_list.jsp");
 			rd.forward(req, resp);
 		
 		} else if (action.equals("admin_rtrt_detail")) {
 
-			int rnum = Integer.parseInt(req.getParameter("rnum"));
+			int rnum = Integer.parseInt(req.getParameter("rNum"));
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			Restaurant restaurant = dao.selectByNum(rnum);
 
 			req.setAttribute("restaurant", restaurant);
-			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_detail.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_detail.jsp");
 			rd.forward(req, resp);
 		
 		}  else if (action.equals("admin_rtrt_insert")) {
@@ -80,7 +80,7 @@ public class RestaurantController extends HttpServlet {
 
 			boolean result = dao.insertRestaurant(restaurant);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_list.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("admin_rtrt_list");
 			rd.forward(req, resp);
 		
 		} else if (action.equals("admin_rtrt_update")) {
@@ -98,7 +98,7 @@ public class RestaurantController extends HttpServlet {
 
 			boolean result = dao.updateRestaurant(restaurant);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_list.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("admin_rtrt_list");
 			rd.forward(req, resp);
 		
 		} else if (action.equals("admin_rtrt_delete")) {
@@ -109,7 +109,12 @@ public class RestaurantController extends HttpServlet {
 			restaurant.setrNum(Integer.parseInt(req.getParameter("rNum")));
 			boolean result = dao.deleteRestaurant(Integer.parseInt(req.getParameter("no")));
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/retaurant/rtrt_list.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_list.jsp");
+			rd.forward(req, resp);
+		
+		}	else if (action.equals("admin_rtrt_save")) {
+			
+			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_form.jsp");
 			rd.forward(req, resp);
 		
 		}
