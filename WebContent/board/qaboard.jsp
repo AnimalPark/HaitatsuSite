@@ -22,6 +22,9 @@ p{
 </head>
 <body>
 <h1>Q/A게시판</h1>
+<c:if test="${users.authority eq 1}">
+	<h1>${users.userId}관리자 계정으로 로그인됨</h1>
+</c:if>
 <div>
 <a href="index.jsp"><img alt="로고" src="image/Haitatsu.jpg"></a>
   <ul class="nav justify-content-end">

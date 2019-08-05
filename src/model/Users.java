@@ -7,7 +7,11 @@ public class Users
 	private String uName;
 	private String uAddr;
 	private String uPhonenum;
+	private int authority;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 3c1991270be441e7616a5d7823b6204bbb59a1ff
 	public String getUserId() {
 		return userId;
 	}
@@ -38,10 +42,17 @@ public class Users
 	public void setuPhonenum(String uPhonenum) {
 		this.uPhonenum = uPhonenum;
 	}
-	
+	public int getAuthority() {
+		return authority;
+	}
+	public void setAuthority(int authority) {
+		this.authority = authority;
+	}
 	@Override
 	public String toString() {
 		return "Users [userId=" + userId + ", uPwd=" + uPwd + ", uName=" + uName + ", uAddr=" + uAddr + ", uPhonenum="
-				+ uPhonenum + "]";
+				+ uPhonenum + ", authority=" + authority + "]";
 	}
+	
+	
 }

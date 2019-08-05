@@ -11,10 +11,16 @@
 <title>이벤트게시판/수정페이지</title>
 <style>
 div {
-	border: 1px solid #bcbcbc;
-	width : 10%
+	border: 2px solid #bcbcbc;
+	width : 20%
 }
-</style>
+.mybox {
+	height: 200px;
+	width: 800px;
+	padding: 20px 20px 20px 20px; 
+
+}
+</style>	
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -41,10 +47,10 @@ div {
 		<form action="ybbs_event_update" method="post">
 			<div>작성자 :${ybbs.userId}</div>
 			<input type="hidden"  name="evNumber" value="${ybbs.evNumber}"/><br />
-			<input type="text"  name="evSubject" value="${ybbs.evSubject}" /><br />
-			<input type="text"  name="evComment" value="${ybbs.evComment}" /><br />
+			<input type="text"  name="evSubject" value="${ybbs.evSubject}" class="mybox"/><br />
+			<input type="text"  name="evComment" value="${ybbs.evComment}" class="mybox"/><br />
 			<input type="submit" class="btn btn-primary" value="수정하기">
 		</form>
-			<a href="ybbs_eventDetail?evNumber=${ybbs.evNumber}">글 수정 취소하기</a>	
+			<a href="ybbs_eventDetail.do?evNumber=${ybbs.evNumber}">글 수정 취소하기</a>	
 	</body>
 </html>

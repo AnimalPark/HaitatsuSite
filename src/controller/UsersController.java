@@ -94,12 +94,10 @@ public class UsersController extends HttpServlet
 		}
 		else if(action.equals("user_logout"))
 		{
-			//session 객체에서 member 속성을 제거
-			HttpSession session = req.getSession(); //session에 저장해야 함
+			HttpSession session = req.getSession();
 			session.removeAttribute("users");
 			
-			//login.jsp 페이지로 이동
-			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
 			rd.forward(req, resp);
 		}
 		else if (action.equals("findId_link")) {
