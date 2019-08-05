@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-인간은똥이야
+그윽한냄새가풍기는코드
 </body>
 </html>
