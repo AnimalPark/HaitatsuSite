@@ -11,8 +11,8 @@
 <title>QA게시판/수정페이지</title>
 <style>
 div {
-	border: 2px solid #bcbcbc;
-	width : 50%
+	border: 1px solid #bcbcbc;
+	width : 10%
 }
 .mybox {
 	height: 200px;
@@ -51,6 +51,6 @@ div {
 			<input type="hidden"  name="qanumber" value="${ybbs.qanumber}"/><br />
 			<input type="submit" class="btn btn-primary" value="수정하기">
 		</form>
-			<a href="ybbs_detail?qanumber=${ybbs.qanumber}">해당 글로 돌아가기</a>
+			<a href="ybbs_detail?qanumber=${ybbs.qanumber}">글로 돌아가기</a>	
 	</body>
 </html>
