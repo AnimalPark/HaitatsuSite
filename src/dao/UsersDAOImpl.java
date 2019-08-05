@@ -15,7 +15,7 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 	= "INSERT INTO users VALUES(?, ?, ?, ?, ?)";
 	
 	private static final String USERS_SELECT_BY_USERID_PWD_SQL
-	= "SELECT userId, uPwd, uName, uAddr, uPhonenum, authority FROM users WHERE userId = ? AND uPwd = ?";
+	= "SELECT userId, uPwd, uName, uAddr, uPhonenum FROM users WHERE userId = ? AND uPwd = ?";
 	
 	private static final String USERS_SELECT_BY_UNAME_UPHONE_SQL
 	= "SELECT * FROM users WHERE uName = ? AND uPhonenum = ?";
@@ -25,6 +25,9 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 	
 	private static final String USERS_UPDATE_PWD_SQL
 	= "UPDATE users SET uPwd = ? WHERE userId = ?";
+	
+	private static final String USERS_SELECT_BY_USERID
+	= "SELECT * FROM users WHERE userId = ?";
 	
 	/*private static final String USERS_SELECT_ALL_SQL
 	= "SELECT * FROM users WHERE userId = ?";*/
@@ -92,7 +95,6 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 				users.setuName(resultSet.getString("uName"));
 				users.setuAddr(resultSet.getString("uAddr"));
 				users.setuPhonenum(resultSet.getString("uPhonenum"));
-				users.setAuthority(resultSet.getInt("authority"));
 			}
 		}
 		catch(SQLException e)
@@ -184,7 +186,6 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		}
 		return users;
 	}
-	
 
 	@Override
 	public boolean update(Users users)
@@ -220,7 +221,47 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		return result;
 	}
 
-	public int registerCheck(String userId)
+	@Override
+	public Users selectByUserId(String userId)
+	{
+		Users users = null;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try
+		{
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(USERS_SELECT_BY_USERID);
+			preparedStatement.setString(1, userId);
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next())
+			{
+				users = new Users();
+				
+				users.setUserId(resultSet.getString("userId"));
+				users.setuPwd(resultSet.getString("uPwd"));
+				users.setuName(resultSet.getString("uName"));
+				users.setuAddr(resultSet.getString("uAddr"));
+				users.setuPhonenum(resultSet.getString("uPhonenum"));
+				users.setAuthority(resultSet.getInt("authority"));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		System.out.println(users);
+		return users;
+	}
+
+/*	public int registerCheck(String userId)
 	{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -260,5 +301,5 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 			}
 		}
 		return -1; //데이터베이스 오류
-	}
+	}*/
 }
