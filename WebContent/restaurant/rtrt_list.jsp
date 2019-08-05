@@ -91,7 +91,7 @@
 		</table>
 
    		<button type="button" onclick="location.href='index.jsp' " >처음화면으로</button>
-   	 	<button type="button" onclick="location.href='member_save' ">회원가입</button>
+   	 	<button type="button" onclick="location.href='restaurant/rtrt_form.jsp' ">가게 정보 추가</button>
 
 	</body>
 </html>

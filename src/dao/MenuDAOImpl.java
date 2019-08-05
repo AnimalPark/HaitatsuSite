@@ -155,32 +155,144 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 	@Override
 	public List<Menu> selectAllMenu() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Menu> menus = new ArrayList<Menu>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.MENU_SELECT_ALL_MENU_SQL);
+			
+			while (resultSet.next()) {
+				Menu menu = new Menu();
+				
+				menu.setmNum(resultSet.getInt("mNum"));
+				menu.setrNum(resultSet.getInt("rNum"));
+				menu.setmName(resultSet.getString("mName"));
+				menu.setmPrice(resultSet.getInt("mPrice"));
+				menu.setmSales(resultSet.getInt("mSales"));
+				
+				menus.add(menu);				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		
+		return menus;
 	}
 
 	@Override
 	public Menu selectByMnum(int mNum) {
-		// TODO Auto-generated method stub
-		return null;
+		Menu menu = new Menu();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.MENU_SELECT_BY_MNUM_SQL);
+			preparedStatement.setInt(1, mNum);
+			resultSet = preparedStatement.executeQuery();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		return menu;
 	}
 
 	@Override
 	public boolean insertMenu(Menu menu) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.MENU_INSERT_MENU_SQL);
+			
+			preparedStatement.setInt(1, menu.getrNum());
+			preparedStatement.setString(2, menu.getmName());
+			preparedStatement.setInt(3, menu.getmPrice());
+			preparedStatement.setInt(4, menu.getmSales());
+			
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				result = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public boolean updateMenu(Menu menu) {
-		// TODO Auto-generated method stub
-		return false;
+
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.MENU_UPDATE_MENU_SQL);
+			
+			preparedStatement.setInt(1, menu.getrNum());
+			preparedStatement.setString(2, menu.getmName());
+			preparedStatement.setInt(3, menu.getmPrice());
+			preparedStatement.setInt(4, menu.getmSales());
+			preparedStatement.setInt(5, menu.getmNum());
+			
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				result = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public boolean deleteMenu(int mNum) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.MENU_DELETE_MENU_SQL);
+			preparedStatement.setInt(1, mNum);
+			
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				result = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+		return result;
 	}
 
 	public Restaurant selectByRnum(int rnum) {
