@@ -55,9 +55,8 @@ public class RestaurantController extends HttpServlet {
 			String rName = req.getParameter("rName");
 			List<Restaurant> restaurant = dao.selectByName(rName);
 
-			System.out.println(rName);
 			req.setAttribute("restaurant", restaurant);
-			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_list.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("admin_rtrt_list");
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_rtrt_detail")) {

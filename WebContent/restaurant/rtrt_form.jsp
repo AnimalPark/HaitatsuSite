@@ -47,7 +47,6 @@
 		<input type="submit" value="가게 등록">
 		<hr />
 	</form>
-
 </body>
 </html>
 
