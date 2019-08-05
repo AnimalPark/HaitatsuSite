@@ -11,11 +11,10 @@
 
 </head>
 <body>
-	<!-- 로그인하면 로그인 버튼 대신에 로그아웃 버튼이 뜨게 하고 싶은데 잘 안 되네요 -->
-	<c:if test="${Users == null}">
+	<c:if test="${users == null}">
 		<a href="login_link">로그인</a>
 	</c:if>
-	<c:if test="${Users != null}">
+	<c:if test="${users != null}">
 		<form action="user_logout">
 			<a href="logout_link">로그아웃</a>
 		</form>
@@ -35,6 +34,5 @@
 	<a href = "search_link?category=8">간식</a>
 	
 	<a href = "admin_home_link">관리자 모드로 가기</a>
-	
 </body>
 </html>
