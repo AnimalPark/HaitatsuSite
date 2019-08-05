@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-그윽한냄새가풍기는코드
+쓰레기코드
 </body>
 </html>
