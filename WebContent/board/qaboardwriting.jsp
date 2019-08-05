@@ -14,5 +14,6 @@
 		내용<textarea rows="10" cols="50" name="qacomment"></textarea><br />
 		<input type="submit" value="등록">
 	</form>
+	<a href="ybbs_req_list?reqPage=1">뒤로가기</a>
 </body>
 </html>
