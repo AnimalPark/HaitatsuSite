@@ -8,6 +8,7 @@ public class Users
 	private String uAddr;
 	private String uPhonenum;
 	private int authority;
+
 	public String getUserId() {
 		return userId;
 	}
@@ -47,6 +48,8 @@ public class Users
 	@Override
 	public String toString() {
 		return "Users [userId=" + userId + ", uPwd=" + uPwd + ", uName=" + uName + ", uAddr=" + uAddr + ", uPhonenum="
-				+ uPhonenum + "]";
+				+ uPhonenum + ", authority=" + authority + "]";
 	}
+	
+	
 }

@@ -115,6 +115,30 @@
         }
         alert("회원가입이 완료되었습니다.");
     }
+/*     function registerCheckFunction()
+    {
+    	var userId = ${'#userId'}.val();
+    	$.ajax({
+    		type : 'POST',
+    		url : './UserRegisterheckServlet',
+    		data : {userId : userId},
+    		success : function(result)
+    		{
+    			if(result == 1)
+    			{
+    				$('checkMessage').html('사용할 수 있는 아이디입니다.');
+    				$('checkType').attr('class', 'modal-content panel-success');
+    			}
+    			else
+    			{
+    				$('checkMessage').html('사용할 수 없는 아이디입니다.');
+    				$('checkType').attr('class', 'modal-content panel-warning');
+    			}
+    			$('#checkModal').modal("show");
+    		}
+    	})
+    } */
+
 </script>
 <title>회원가입</title>
 </head>
@@ -125,8 +149,7 @@
 				<tr>
 					아이디 :
 					<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요.">&nbsp;
-					<button class="btn btn-primary" type="button" id="checkid" value ="중복확인">중복 확인</button>※6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.<br />
-					<div class = "console"></div>
+					<button class="btn btn-primary" type="button" id="idcheck" name="idcheck" value ="중복확인">중복 확인</button>※6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.<br />
 				</tr>
 				<tr>
 					비밀번호 :

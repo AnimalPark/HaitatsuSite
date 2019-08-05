@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Users;
 
@@ -23,6 +25,9 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 	
 	private static final String USERS_UPDATE_PWD_SQL
 	= "UPDATE users SET uPwd = ? WHERE userId = ?";
+	
+	/*private static final String USERS_SELECT_ALL_SQL
+	= "SELECT * FROM users WHERE userId = ?";*/
 	
 	@Override
 	public boolean insert(Users users)
@@ -213,5 +218,47 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 			closeDBObjects(null, preparedStatement, connection);
 		}
 		return result;
+	}
+
+	public int registerCheck(String userId)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection connection = null;
+		String SQL = "SELECT * FROM users WHERE userId = ?";
+		
+		try
+		{
+			connection = getConnection();
+			pstmt = connection.prepareStatement(SQL);
+			
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if (rs.next() || userId.equals(""))
+			{
+				return 0; //이미 존재하는 회원
+			}
+			else
+			{
+				return 1; //가입 가능한 회원 아이디
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return -1; //데이터베이스 오류
 	}
 }
