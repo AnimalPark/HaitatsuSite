@@ -48,7 +48,6 @@
 			<br />
 		</c:forEach>
 	</c:if>
-
 	<ul></ul>
 </body>
 </html>

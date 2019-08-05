@@ -56,7 +56,6 @@ div {
 			<a href="ybbs_eventList?reqPage=1">뒤로가기</a>	
 		</form>
 	</c:if>
-	
 	<c:if test="${users.authority != 1 && ybbs.userId != users.userId}">
 		<form>
 			<div>작성자 :${ybbs.userId}</div>

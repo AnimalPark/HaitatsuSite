@@ -103,7 +103,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 				restaurant.setrPhoneNum(resultSet.getString("rPhoneNum"));
 				restaurant.setcNum(resultSet.getInt("cNum"));
 				restaurant.setTownNum(resultSet.getInt("townNum"));
-				restaurant.setStarAvg(resultSet.getInt("starAve"));
+				restaurant.setStarAvg(resultSet.getInt("starAvg"));
 				restaurant.setrAddr(resultSet.getString("raddr"));
 			}
 

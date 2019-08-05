@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.MenuDAOImpl;
 import model.City;
@@ -18,7 +19,12 @@ import model.Restaurant;
 import model.Town;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
+<<<<<<< HEAD
 		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail"})
+=======
+		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail","/order_confirm"})
+
+>>>>>>> 6032e21e595b3f52523d858f8abc98fd9ae09648
 
 public class MainController extends HttpServlet {
 
@@ -122,16 +128,27 @@ public class MainController extends HttpServlet {
 			Mimpl = new MenuDAOImpl();
 			Restaurant r = new Restaurant();
 			int rno = Integer.parseInt(req.getParameter("rno"));
+			List<Menu> order_lists = new ArrayList<Menu>();
 			
 			List<Menu> lists = Mimpl.menuSelectByRnum(rno);
 			r = Mimpl.selectByRnum(rno);
 			
-			
-			req.setAttribute("detailR", r);
-			req.setAttribute("lists", lists);
+			HttpSession session = req.getSession();
+			session.setAttribute("detailR", r);
+			session.setAttribute("lists", lists);
+			session.setAttribute("order_lists", order_lists);
+
 			RequestDispatcher rd = req.getRequestDispatcher("main/restaurant_detail.jsp");
 			rd.forward(req, resp);
-
+		}
+		
+		else if (action.equals("order_confirm")) {
+			
+			int mno = Integer.parseInt(req.getParameter("mnum"));
+			req.setAttribute("mno", mno);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("test2.jsp");
+			rd.forward(req, resp);
 		}
 
 		/*else if (action.equals("idcheck")) {

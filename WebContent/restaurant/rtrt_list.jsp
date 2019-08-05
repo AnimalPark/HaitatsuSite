@@ -8,7 +8,6 @@
 		<title>Restaurant Form</title>
 	</head>
 	<body>
-<<<<<<< HEAD
 		<form action="admin_rtrt_insert" method="post">
 		<h2>가게 등록</h2>
 			<hr>
@@ -52,7 +51,6 @@
  			<input type="submit" value="가게 등록">
             <hr />
     	</form>
-=======
 		<h3>Restaurant List</h3>
 	
 		<form action="admin_rtrt_search"method="post">
@@ -93,8 +91,7 @@
 		</table>
 
    		<button type="button" onclick="location.href='index.jsp' " >처음화면으로</button>
-   	 	<button type="button" onclick="location.href='member_save' ">회원가입</button>
->>>>>>> 3c1991270be441e7616a5d7823b6204bbb59a1ff
+   	 	<button type="button" onclick="location.href='restaurant/rtrt_form.jsp' ">가게 정보 추가</button>
 
 	</body>
 </html>
