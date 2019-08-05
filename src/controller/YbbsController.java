@@ -121,9 +121,8 @@ public class YbbsController extends HttpServlet {
 		} else if (action.equals("ybbs_reply_form.do")) {
 			
 			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
-			
+	
 			req.setAttribute("num", qanumber);
-			
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardReply.jsp");
 			rd.forward(req, resp);
 			

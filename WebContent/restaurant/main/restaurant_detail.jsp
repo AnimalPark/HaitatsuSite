@@ -42,13 +42,12 @@
 		<c:forEach var="list" items="${lists}">
 			<span>${list.mNum}</span>
 			<span>${list.rNum}</span>
-			<a href="test2.jsp?mnum=${list.mNum}">${list.mName}</a>
+			<a href="order_confirm?mnum=${list.mNum}">${list.mName}</a>
 			<span>${list.mPrice}</span>
 			<span>${list.mSales}</span>
 			<br />
 		</c:forEach>
 	</c:if>
-
 	<ul></ul>
 </body>
 </html>

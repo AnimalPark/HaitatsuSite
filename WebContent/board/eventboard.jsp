@@ -14,11 +14,14 @@
 a:link {text-decoration: none; color: #333333;}
 a:visited {text-decoration: none; color: #333333;}
 a:active {text-decoration: none; color: #333333;}
-a:hover {text-decoration: underline; color: red;}
+a:hover {text-d"WebContent/board/eventboard.jsp"ecoration: underline; color: red;}
 </style>
 </head>
 <body>
 <h1>이벤트게시판</h1>
+<c:if test="${users.authority eq 1}">
+	<h1>${users.userId}관리자 계정으로 로그인됨</h1>
+</c:if>
 <div>
 <a href="index.jsp"><img alt="로고" src="image/Haitatsu.jpg"></a>
   <ul class="nav justify-content-end">
@@ -49,14 +52,16 @@ a:hover {text-decoration: underline; color: red;}
 			<c:forEach var="ybbsList" items="${ybbsList}">
 				<tr>
 					<td>${ybbsList.evNumber}</td>
-					<td><a href="ybbs_eventDetail?evNumber=${ybbsList.evNumber}">${ybbsList.evSubject}</a></td>
+					<td><a href="ybbs_eventDetail.do?evNumber=${ybbsList.evNumber}">${ybbsList.evSubject}</a></td>
 					<td>${ybbsList.evDate}</td>
 					<td>${ybbsList.evVisited}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="ybbs_go_to_insert_event.do">글쓰러가기♥</a>
+	<c:if test="${users.authority eq 1}">
+		<a href="ybbs_go_to_insert_event.do">글쓰러가기♥</a>
+	</c:if>
 	<div class="container">
  	 	<ul class="pagination">
     		<c:if test="${pageGroupResult.beforePage}">
