@@ -8,11 +8,7 @@ public class Users
 	private String uAddr;
 	private String uPhonenum;
 	private int authority;
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 6032e21e595b3f52523d858f8abc98fd9ae09648
 	public String getUserId() {
 		return userId;
 	}

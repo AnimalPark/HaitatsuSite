@@ -19,12 +19,8 @@ import model.Restaurant;
 import model.Town;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
-<<<<<<< HEAD
-		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail"})
-=======
 		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail","/order_confirm"})
 
->>>>>>> 6032e21e595b3f52523d858f8abc98fd9ae09648
 
 public class MainController extends HttpServlet {
 
