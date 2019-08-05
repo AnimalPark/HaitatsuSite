@@ -252,4 +252,39 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 		return lists;
 	}
+
+	@Override
+	public Menu menuSelectByMnum(int mnum) {
+		Menu menu = null;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.MENU_SELECT_BY_MNUM_SQL);
+			preparedStatement.setInt(1, mnum);
+			resultSet = preparedStatement.executeQuery();
+
+			if(resultSet.next()) {
+				menu = new Menu();
+
+				menu.setmNum(resultSet.getInt("mNum"));
+				menu.setrNum(resultSet.getInt("rNum"));
+				menu.setmName(resultSet.getString("mName"));
+				menu.setmPrice(resultSet.getInt("mPrice"));
+				menu.setmSales(resultSet.getInt("mSales"));
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return menu;
+	}
 }
