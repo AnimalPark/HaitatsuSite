@@ -15,6 +15,10 @@ body{
 	background-repeat:no-repeat;
 	background-size:cover;
 }
+div {
+	border: 2px solid #bcbcbc;
+	width : 50%
+}
 </style>
 </head>
 <body>
@@ -44,5 +48,6 @@ body{
 		<input type="hidden" name="qagroup" id="qagroup" value="${num}" /><br />
 		<input type="submit" value="댓글달기">
 	</form>
+	<a href="ybbs_req_list?reqPage=1">뒤로가기</a>
 </body>
 </html>

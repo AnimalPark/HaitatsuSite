@@ -11,8 +11,8 @@
 <title>안녕하세요</title>
 <style>
 div {
-	border: 1px solid #bcbcbc;
-	width : 10%
+	border: 2px solid #bcbcbc;
+	width : 50%
 }
 </style>
 </head>

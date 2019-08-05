@@ -11,8 +11,8 @@
 <title>이벤트게시판/디테일 페이지</title>
 <style>
 div {
-	border: 1px solid #bcbcbc;
-	width : 10%
+	border: 2px solid #bcbcbc;
+	width : 50%
 }
 </style>
 </head>

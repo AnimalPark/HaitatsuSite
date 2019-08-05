@@ -12,7 +12,7 @@
 <style>
 div {
 	border: 2px solid #bcbcbc;
-	width : 20%
+	width : 50%
 }
 .mybox {
 	height: 200px;
