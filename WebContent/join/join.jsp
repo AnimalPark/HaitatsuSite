@@ -238,6 +238,7 @@
 			연락처 :
 			<input type="text" id="uPhonenum" name="uPhonenum" placeholder="연락처를 입력해주세요. (010-0000-0000)"><br />
 			<button class="btn btn-primary" type="submit" value="회원가입">회원가입</button>
+			
 		</form>
 	</div>
 </body>

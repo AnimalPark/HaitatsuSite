@@ -12,10 +12,10 @@ import model.Users;
 public class UsersDAOImpl extends BaseDAO implements UsersDAO
 {
 	private static final String USERS_INSERT_SQL
-	= "INSERT INTO users VALUES(?, ?, ?, ?, ?)";
+	= "INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)";
 	
 	private static final String USERS_SELECT_BY_USERID_PWD_SQL
-	= "SELECT userId, uPwd, uName, uAddr, uPhonenum FROM users WHERE userId = ? AND uPwd = ?";
+	= "SELECT userId, uPwd, uName, uAddr, uPhonenum, authority FROM users WHERE userId = ? AND uPwd = ?";
 	
 	private static final String USERS_SELECT_BY_UNAME_UPHONE_SQL
 	= "SELECT * FROM users WHERE uName = ? AND uPhonenum = ?";
@@ -50,7 +50,8 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 			preparedStatement.setString(3, users.getuName());
 			preparedStatement.setString(4, users.getuAddr());
 			preparedStatement.setString(5, users.getuPhonenum());
-				
+			preparedStatement.setInt(6, users.getAuthority());
+			
 			int rowCount = preparedStatement.executeUpdate();
 				
 			if(rowCount > 0)
@@ -95,6 +96,7 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 				users.setuName(resultSet.getString("uName"));
 				users.setuAddr(resultSet.getString("uAddr"));
 				users.setuPhonenum(resultSet.getString("uPhonenum"));
+				users.setAuthority(resultSet.getInt("authority"));
 			}
 		}
 		catch(SQLException e)
