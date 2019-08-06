@@ -243,7 +243,7 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		}
 		catch(SQLException e)
 		{
-			System.out.println("check_userId err : " + e);
+			/*System.out.println("check_userId err : " + e);*/
 			e.printStackTrace();
 		}
 		finally
@@ -253,45 +253,4 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		return result;
 	}
 
-/*	public int registerCheck(String userId)
-	{
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Connection connection = null;
-		String SQL = "SELECT * FROM users WHERE userId = ?";
-		
-		try
-		{
-			connection = getConnection();
-			pstmt = connection.prepareStatement(SQL);
-			
-			pstmt.setString(1, userId);
-			rs = pstmt.executeQuery();
-			if (rs.next() || userId.equals(""))
-			{
-				return 0; //이미 존재하는 회원
-			}
-			else
-			{
-				return 1; //가입 가능한 회원 아이디
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-		return -1; //데이터베이스 오류
-	}*/
 }
