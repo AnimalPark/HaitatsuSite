@@ -181,17 +181,17 @@ public class UsersController extends HttpServlet
 			System.out.println("과연 출력이?" + chkId);
 			boolean chk = impl.check_userId(chkId);
 			System.out.println(chk);
-			if(chk) {
+			if(!chk) {
 				System.out.println("true in");
-				req.setAttribute("chk_msg", "사용할 수 있는 아이디입니다.");
-				RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
+				req.setAttribute("msg", "사용할 수 있는 아이디입니다.");
+				RequestDispatcher rd = req.getRequestDispatcher("join/result.jsp");
 				rd.forward(req, resp);
 				
 			}
 			else {
 				System.out.println("false in");
-				req.setAttribute("chk_msg", "사용할 수 없는 아이디입니다.");
-				RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
+				req.setAttribute("msg", "사용할 수 없는 아이디입니다.");
+				RequestDispatcher rd = req.getRequestDispatcher("join/result.jsp");
 				rd.forward(req, resp);
 			}
 			

@@ -146,21 +146,5 @@ public class MainController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("test2.jsp");
 			rd.forward(req, resp);
 		}
-
-		/*else if (action.equals("idcheck")) {
-
-			boolean chk = true;
-			if(chk) {
-				System.out.println("check");
-				req.setAttribute("msg", "사용할 수 있는 아이디입니다.");
-			}
-			else {
-				req.setAttribute("msg", "사용할 수 없는 아이디입니다.");
-			}
-			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
-			rd.forward(req, resp);
-
-		}*/
-		
 	}
 }
