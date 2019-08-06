@@ -117,6 +117,27 @@
         alert("회원가입이 완료되었습니다.");
     }
     
+    function check_userId()
+    {
+    	if(join.userId.value == "")
+    	{
+    		alert("아이디를 입력하세요.");
+    		regForm.userId.focus();
+
+    	}
+    	else
+    	{
+    		url = "check_id.jsp?id=" + join.userId.value;
+    		window.open(url, "id check", "toolbar=no, width=350, height=150, top=150, left=150");
+    	}
+	}
+    
+    window.onload = function()
+    {
+    	join.userId.focus();
+    	document.getElementByuserId("btn_userId").onclick = check_userId;
+    }
+    
 	function sample4_execDaumPostcode()
 	{
         new daum.Postcode(
@@ -196,7 +217,7 @@
 
 			아이디 :
 			<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요.">&nbsp;
-			<input type="submit" onclick="" value="중복 확인 ">※6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.<br />
+			<input type="button" value="중복 확인 " id="btn_userId">※6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.<br />
 			
 			비밀번호 :
 			<input type="password" id="uPwd" name="uPwd" placeholder="비밀번호를 입력해주세요.">※6~18자리의 영문 대소문자, 숫자를 조합하여 사용하실 수 있습니다.<br />

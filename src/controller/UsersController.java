@@ -22,7 +22,7 @@ import page.PageManager;
 import sql.Sql;
 
 @WebServlet(name = "UsersController", urlPatterns = {"/user_join", "/user_login", "/user_logout", "/find_userId", "/findId_link",
-		"/findPwd_link", "/find_uPwd", "/change_uPwd", "/check_userId"})
+		"/findPwd_link", "/find_uPwd", "/change_uPwd"})
 
 public class UsersController extends HttpServlet
 {
@@ -173,30 +173,6 @@ public class UsersController extends HttpServlet
 			
 			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
-		}
-		else if(action.equals("check_userId"))
-		{
-			String userId = req.getParameter("userId");//화면단 userId 가져옴
-
-			UsersDAO dao = new UsersDAOImpl();
-			Users users = dao.selectByUserId(userId);
-			
-			req.setAttribute("users", users);
-			
-			if(users != null)
-			{
-				req.setAttribute("message", "사용 가능한 아이디입니다.");
-				
-				RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
-				rd.forward(req, resp);
-			}
-			else
-			{
-				req.setAttribute("message", "이미 사용중인 아이디입니다.");
-				
-				RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
-				rd.forward(req, resp);
-			}
 		}
 	}
 }

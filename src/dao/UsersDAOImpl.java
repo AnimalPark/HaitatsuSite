@@ -27,7 +27,7 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 	= "UPDATE users SET uPwd = ? WHERE userId = ?";
 	
 	private static final String USERS_SELECT_BY_USERID
-	= "SELECT * FROM users WHERE userId = ?";
+	= "SELECT userId FROM users WHERE userId LIKE ?";
 	
 	/*private static final String USERS_SELECT_ALL_SQL
 	= "SELECT * FROM users WHERE userId = ?";*/
@@ -221,10 +221,9 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		return result;
 	}
 
-	@Override
-	public Users selectByUserId(String userId)
+	public boolean check_userId(String userId)
 	{
-		Users users = null;
+		boolean result = false;
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -234,31 +233,23 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		{
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(USERS_SELECT_BY_USERID);
+			
 			preparedStatement.setString(1, userId);
+			
 			resultSet = preparedStatement.executeQuery();
 			
-			if (resultSet.next())
-			{
-				users = new Users();
-				
-				users.setUserId(resultSet.getString("userId"));
-				users.setuPwd(resultSet.getString("uPwd"));
-				users.setuName(resultSet.getString("uName"));
-				users.setuAddr(resultSet.getString("uAddr"));
-				users.setuPhonenum(resultSet.getString("uPhonenum"));
-				users.setAuthority(resultSet.getInt("authority"));
-			}
+			result = resultSet.next();
 		}
 		catch(SQLException e)
 		{
+			System.out.println("check_userId err : " + e);
 			e.printStackTrace();
 		}
 		finally
 		{
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
-		System.out.println(users);
-		return users;
+		return result;
 	}
 
 /*	public int registerCheck(String userId)
