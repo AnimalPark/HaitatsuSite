@@ -8,49 +8,6 @@
 		<title>Restaurant Form</title>
 	</head>
 	<body>
-		<form action="admin_rtrt_insert" method="post">
-		<h2>가게 등록</h2>
-			<hr>
-	        Restaurant name<input type="text" name="rName" placeholder="가게명을 입력하세요"><br />
-	        Phone number<input type="text" name="rPhoneNum" placeholder="대표전화번호를 입력하세요"><br />
-			Category number
-			<select name="cNum">
-					<option>-------업종선택-------</option>
-					<option value="1">한식</option>
-					<option value="2">중식</option>
-					<option value="3">일식</option>
-					<option value="4">피자</option>
-					<option value="5">치킨</option>
-					<option value="6">분식</option>
-					<option value="7">족발</option>
-					<option value="8">간식</option>
-			</select><br />
-       		Town number
-			<select name="townNum">
-					<option>-------지역선택-------</option>
-					<option value="1">안양1동</option>
-					<option value="2">안양2동</option>
-					<option value="3">안양3동</option>
-					<option value="4">호계동</option>
-					<option value="5">비산동</option>
-					<option value="6">모택동</option>
-					<option value="7">고길동</option>
-					<option value="8">춘하추동</option>
-			</select><br />
-			Star average
-			<select name="starAvg">
-					<option>-------별점-------</option>
-					<option value="1">0점</option>
-					<option value="1">1점</option>
-					<option value="2">2점</option>
-					<option value="3">3점</option>
-					<option value="4">4점</option>
-					<option value="5">5점</option>
-			</select><br />
-			Address<input type="text" name="rAddr"placeholder="이름을입력하세요"><br />
- 			<input type="submit" value="가게 등록">
-            <hr />
-    	</form>
 		<h3>Restaurant List</h3>
 	
 		<form action="admin_rtrt_search"method="post">
@@ -68,12 +25,17 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<td>Restaurant name</td>
-					<td>/ Phone number</td>
-					<td>/ Category number</td>
-					<td>/ Town number</td>
-					<td>/ Star average</td>
-					<td>/ Address</td>
+					<td>가게이름</td>
+					
+					<td>/  전화번호</td>
+					
+					<td>/  카테고리</td>
+					
+					<td>/  동네번호</td>
+					
+					<td>/  평균별점</td>
+					
+					<td>/  주소</td>
 				</tr>
 			</thead>
 				
@@ -85,13 +47,12 @@
 				<td>${restaurant.townNum}</td>
 				<td>${restaurant.starAvg}</td>
 				<td>${restaurant.rAddr}</td>
-				<td></td>
-			</tr>
+			</tr>	
 		</c:forEach>
 		</table>
 
-   		<button type="button" onclick="location.href='index.jsp' " >처음화면으로</button>
-   	 	<button type="button" onclick="location.href='restaurant/rtrt_form.jsp' ">가게 정보 추가</button>
+   		<button type="button" onclick="location.href='index.jsp'" >처음화면으로</button>
+   	 	<button type="button" onclick="location.href='restaurant_add'">가게 정보 추가</button>
 
 	</body>
 </html>

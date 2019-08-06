@@ -10,15 +10,16 @@
 	<body>
 			<h4>상세보기</h4>
 			<form action="admin_rtrt_update" method="post">
-			   	Restaurant number<input type="hidden" name="rNum" value= "${restaurant.rNum}"/><br />
-				Restaurant name<input type="text"  name="rName" value="${restaurant.rName}"/><br />
-				Phone number<input type="text"  name="rPhoneNum" value= "${restaurant.rPhoneNum}"/><br />
-				Category number<input type="text"  name="cNum" value= "${restaurant.cNum}"/><br />
-				Town number<input type="text"  name="townNum" value= "${restaurant.townNum}"/><br />
-				Star average<input type="text"  name="starAvg" value= "${restaurant.starAvg}"/><br />
-				Address<input type="text"  name="rAddr" value= "${restaurant.rAddr}"/><br />
+			   	가게고유번호<input type="hidden" name="rNum" value= "${restaurant.rNum}"/><br />
+				가게이름 <input type="text"  name="rName" value="${restaurant.rName}"/><br />
+				전화번호 <input type="text"  name="rPhoneNum" value= "${restaurant.rPhoneNum}"/><br />
+				카테고리 <input type="text"  name="cNum" value= "${restaurant.cNum}"/><br />
+				동네번호 <input type="text"  name="townNum" value= "${restaurant.townNum}"/><br />
+				평균별점 <input type="text"  name="starAvg" value= "${restaurant.starAvg}"/><br />
+				주소 <input type="text"  name="rAddr" value= "${restaurant.rAddr}"/><br />
 					  <input type="submit" class="btn btn-primary" value="수정"/><br />
 			</form>
-		<a href="admin_rtrt_delete?rNum=${restaurant.rNum}">가게 정보 삭제</a>
+		<a href="admin_rtrt_delete?rNum=${restaurant.rNum}">가게 정보 삭제</a><br/>
+		<a href="index.jsp">처음으로 돌아가기</a>
 	</body>
 </html>
