@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -142,17 +142,17 @@
         alert("회원가입이 완료되었습니다.");
     }
     
-    function check_userId()
+/*     function check_userId()
     {
     	if(join.userId.value == "")
     	{
     		alert("아이디를 입력하세요.");
-    		regForm.userId.focus();
+    		join.userId.focus();
 
     	}
     	else
     	{
-    		url = "check_id.jsp?id=" + join.userId.value;
+    		url = "checkUserId.jsp?userId=" + join.userId.value;
     		window.open(url, "id check", "toolbar=no, width=350, height=150, top=150, left=150");
     	}
 	}
@@ -161,7 +161,7 @@
     {
     	join.userId.focus();
     	document.getElementByuserId("btn_userId").onclick = check_userId;
-    }
+    } */
     
 	function sample4_execDaumPostcode()
 	{
@@ -208,30 +208,6 @@
             }
         }).open();
 	}
-
-/*     function registerCheckFunction()
-    {
-    	var userId = ${'#userId'}.val();
-    	$.ajax({
-    		type : 'POST',
-    		url : './UserRegisterheckServlet',
-    		data : {userId : userId},
-    		success : function(result)
-    		{
-    			if(result == 1)
-    			{
-    				$('checkMessage').html('사용할 수 있는 아이디입니다.');
-    				$('checkType').attr('class', 'modal-content panel-success');
-    			}
-    			else
-    			{
-    				$('checkMessage').html('사용할 수 없는 아이디입니다.');
-    				$('checkType').attr('class', 'modal-content panel-warning');
-    			}
-    			$('#checkModal').modal("show");
-    		}
-    	})
-    } */
 
 </script>
 <title>회원가입</title>
