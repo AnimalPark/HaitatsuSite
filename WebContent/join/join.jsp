@@ -18,15 +18,12 @@
 									alert("아이디를 입력하세요");
 									return false;
 								}
-								var u = $("input:eq(0)").val();
-								alert(u);
 
 								var url = "id_check";
-								$.get(url, {"id" : input_val}, function(){
-									alert("체크완료");
-									return false;
-									/* var result = $(xml).find("result").text();
-									$(".console").html(result); */
+								$.get(url, {"id" : input_val}, function(xml){
+									var result = $(xml).find("result").text();
+									alert(result);
+									$(".console").html(result);
 								});
 							};
 						});
@@ -202,11 +199,8 @@
 			아이디 : <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요.">&nbsp; 
 			<input type="button" value="중복 확인 " id="btn_userId">
 			※6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.<br /> 
-			${chk_msg}
-			<!-- <div class="console">
-			</div> -->
+			<div class="console">
 			
-			<br/>
 			비밀번호 : <input type="password" id="uPwd" name="uPwd" placeholder="비밀번호를 입력해주세요.">
 			※6~18자리의 영문 대소문자, 숫자를 조합하여 사용하실 수 있습니다.<br /> 
 			비밀번호 확인 : <input type="password" id="uPwd1" name="uPwd1" placeholder="비밀번호를 다시 한 번 입력해주세요."><br />
@@ -219,7 +213,7 @@
 			연락처 : <input type="text" id="uPhonenum" name="uPhonenum" placeholder="연락처를 입력해주세요. (010-0000-0000)"><br />
 			<button class="btn btn-primary" type="submit" value="회원가입">회원가입</button>
 
-<!-- 		</form>
-	</div> -->
+		</form>
+	</div>
 </body>
 </html>
