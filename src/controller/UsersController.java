@@ -22,7 +22,7 @@ import page.PageManager;
 import sql.Sql;
 
 @WebServlet(name = "UsersController", urlPatterns = {"/user_join", "/user_login", "/user_logout", "/find_userId", "/findId_link",
-		"/findPwd_link", "/find_uPwd", "/change_uPwd"})
+		"/findPwd_link", "/find_uPwd", "/change_uPwd","/id_check"})
 
 public class UsersController extends HttpServlet
 {
@@ -173,6 +173,28 @@ public class UsersController extends HttpServlet
 			
 			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
+		}
+		
+		else if (action.equals("id_check")) {
+			UsersDAOImpl impl = new UsersDAOImpl();
+			String chkId = req.getParameter("id");
+			System.out.println("과연 출력이?" + chkId);
+			boolean chk = impl.check_userId(chkId);
+			System.out.println(chk);
+			if(chk) {
+				System.out.println("true in");
+				req.setAttribute("chk_msg", "사용할 수 있는 아이디입니다.");
+				RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
+				rd.forward(req, resp);
+				
+			}
+			else {
+				System.out.println("false in");
+				req.setAttribute("chk_msg", "사용할 수 없는 아이디입니다.");
+				RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
+				rd.forward(req, resp);
+			}
+			
 		}
 	}
 }
