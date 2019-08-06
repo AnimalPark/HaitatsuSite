@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-충돌 일부러 내봅니다.
+존노로
 </body>
 </html>
