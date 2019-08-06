@@ -13,13 +13,14 @@
 <body>
 	<c:if test="${users == null}">
 		<a href="login_link">로그인</a>
+		<a href="join_link">회원가입</a>
 	</c:if>
 	<c:if test="${users != null}">
 		<form action="user_logout">
 			<a href="logout_link">로그아웃</a>
 		</form>
 	</c:if>
-	<a href="join_link">회원가입</a>
+	
 	<a href="home_link">홈화면</a>
 	<a href="ybbs_req_list?reqPage=1">Q/A 게시판</a>
 	<a href="ybbs_eventList?reqPage=1">이벤트 게시판</a>

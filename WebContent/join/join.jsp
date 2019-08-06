@@ -117,17 +117,17 @@
         alert("회원가입이 완료되었습니다.");
     }
     
-    function check_userId()
+/*     function check_userId()
     {
     	if(join.userId.value == "")
     	{
     		alert("아이디를 입력하세요.");
-    		regForm.userId.focus();
+    		join.userId.focus();
 
     	}
     	else
     	{
-    		url = "check_id.jsp?id=" + join.userId.value;
+    		url = "checkUserId.jsp?userId=" + join.userId.value;
     		window.open(url, "id check", "toolbar=no, width=350, height=150, top=150, left=150");
     	}
 	}
@@ -136,7 +136,7 @@
     {
     	join.userId.focus();
     	document.getElementByuserId("btn_userId").onclick = check_userId;
-    }
+    } */
     
 	function sample4_execDaumPostcode()
 	{
@@ -184,30 +184,6 @@
         }).open();
 	}
 
-/*     function registerCheckFunction()
-    {
-    	var userId = ${'#userId'}.val();
-    	$.ajax({
-    		type : 'POST',
-    		url : './UserRegisterheckServlet',
-    		data : {userId : userId},
-    		success : function(result)
-    		{
-    			if(result == 1)
-    			{
-    				$('checkMessage').html('사용할 수 있는 아이디입니다.');
-    				$('checkType').attr('class', 'modal-content panel-success');
-    			}
-    			else
-    			{
-    				$('checkMessage').html('사용할 수 없는 아이디입니다.');
-    				$('checkType').attr('class', 'modal-content panel-warning');
-    			}
-    			$('#checkModal').modal("show");
-    		}
-    	})
-    } */
-
 </script>
 <title>회원가입</title>
 </head>
@@ -216,8 +192,11 @@
 		<form method="post" action="user_join" name="join" onsubmit="return validation();">
 
 			아이디 :
-			<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요.">&nbsp;
-			<input type="button" value="중복 확인 " id="btn_userId">※6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.<br />
+			<form method="post" action = idcheck" name="idcheck">
+				<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요.">&nbsp;
+				<input type="button" value="중복 확인 " id="checkid">※6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.<br />
+			</form>
+			<div class = "console"></div>
 			
 			비밀번호 :
 			<input type="password" id="uPwd" name="uPwd" placeholder="비밀번호를 입력해주세요.">※6~18자리의 영문 대소문자, 숫자를 조합하여 사용하실 수 있습니다.<br />
