@@ -16,7 +16,7 @@ import model.Restaurant;
 
 @WebServlet(name = "RestaurantController", urlPatterns = { "/admin_rtrt_list", "/admin_rtrt_search",
 		"/admin_rtrt_detail", "/admin_rtrt_update", "/admin_rtrt_delete", "/admin_rtrt_save", "/admin_rtrt_insert",
-		"/restaurant_add" })
+		"/restaurant_add"})
 public class RestaurantController extends HttpServlet {
 
 	@Override
@@ -71,6 +71,7 @@ public class RestaurantController extends HttpServlet {
 
 		} else if (action.equals("admin_rtrt_insert")) {
 			System.out.println("==============");
+			
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			Restaurant restaurant = new Restaurant();
 			restaurant.setrName(req.getParameter("rName"));
@@ -124,7 +125,8 @@ public class RestaurantController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_form.jsp");
 			rd.forward(req, resp);
 
-		}
+		} 
+		
 
 	}
 

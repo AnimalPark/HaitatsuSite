@@ -15,7 +15,7 @@ import dao.MenuDAOImpl;
 import model.Menu;
 
 @WebServlet(name = "MenuController", urlPatterns = { "/admin_menu_list", "/admin_menu_detail", "/admin_menu_insert",
-		"/admin_menu_update", "/admin_menu_delete" })
+		"/admin_menu_update", "/admin_menu_delete" ,"/menu_add"})
 public class MenuController extends HttpServlet {
 
 	@Override
@@ -98,8 +98,13 @@ public class MenuController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("menu/menu_list.jsp");
 			rd.forward(req, resp);
 
-		}
+		}  else if (action.equals("menu_add")) {
 
+			RequestDispatcher rd = req.getRequestDispatcher("menu/menu_form.jsp");
+			rd.forward(req, resp);
+
+		}
+		
 	}
 
 }

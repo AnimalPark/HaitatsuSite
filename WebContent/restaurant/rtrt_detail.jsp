@@ -20,6 +20,7 @@
 					  <input type="submit" class="btn btn-primary" value="수정"/><br />
 			</form>
 		<a href="admin_rtrt_delete?rNum=${restaurant.rNum}">가게 정보 삭제</a><br/>
+		<a href="menu_add/">메뉴추가하기</a>
 		<a href="index.jsp">처음으로 돌아가기</a>
 	</body>
 </html>

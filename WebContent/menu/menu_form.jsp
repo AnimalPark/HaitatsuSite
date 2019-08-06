@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Restaurant Form</title>
+<title>Menu Form</title>
 </head>
 <body>
 	<form action="admin_rtrt_insert">
