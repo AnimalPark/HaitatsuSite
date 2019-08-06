@@ -13,7 +13,7 @@
 <body>
 	<c:if test="${users == null}">
 		<a href="login_link">로그인</a>
-	</c:if>
+	</c:if>`	
 	<c:if test="${users != null}">
 		<form action="user_logout">
 			<a href="logout_link">로그아웃</a>
