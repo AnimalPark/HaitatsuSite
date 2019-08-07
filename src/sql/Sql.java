@@ -48,7 +48,8 @@ public class Sql {
 	
 	public static final String MENU_SELECT_ALL_MENU_SQL = "SELECT * FROM menu";
 	public static final String MENU_SELECT_BY_MNUM_SQL = "SELECT * FROM menu WHERE mnum = ?";
-	public static final String MENU_INSERT_MENU_SQL = "INSERT INTO menu values(seq_menu.nextval, ?, ?, ?, ?)";
+	public static final String MENU_DETAIL_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE rnum = ?";
+	public static final String MENU_INSERT_MENU_SQL = "INSERT INTO menu values(seq_menu.nextval, ?, ?, ?, 0)";
 	public static final String MENU_UPDATE_MENU_SQL = "UPDATE menu SET rNum=?, mName=?, mPrice=?, mSales=? WHERE  mNum=?";
 	public static final String MENU_DELETE_MENU_SQL = "DELETE FROM menu WHERE mNum=?";
 	
