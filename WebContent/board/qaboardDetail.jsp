@@ -54,7 +54,7 @@ div {
 			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제</a><br />
 			<a href="ybbs_req_list?reqPage=1">목록으로</a>	<br/>
 	</c:if>
-	<c:if test="${ybbs_id == users.userId}">
+	<c:if test="${ybbs_id == users.userId && ybbs.userid != users.userId }">
 			<div>작성자 : ${ybbs.userid}</div>
 			<div>${ybbs.qanumber}</div>
 			<div>${ybbs.qasubject}</div>
