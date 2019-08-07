@@ -487,4 +487,16 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		
 		return menuList;
 	}
+
+	@Override
+	public boolean insertUserOrder(String userid, int delichk) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertOrderMenu(int mnum, int onum, int count) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

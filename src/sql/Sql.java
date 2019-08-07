@@ -41,7 +41,9 @@ public class Sql {
 							"WHERE CITYNUM = (SELECT CITYNUM " + 
 											"FROM CITY " + 
 											"WHERE CITYNAME = ? ) AND TOWNNAME = ? )";
-	public static final String MENU_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE RNUM = ? "; 
+	public static final String MENU_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE RNUM = ? ";
+	public static final String INSERT_USERORDER_SQL	 = "INSERT INTO USERORDER VALUES(SEQ_USERORDER.NEXTVAL, ?, SYSDATE, ?)";
+	public static final String INSERT_ORDERMENU_SQL	 = "INSERT INTO ORDERMENU VALUES(?, ?, ?)";
 	
 	//==========================È²È£¿µ Sql¡é=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
