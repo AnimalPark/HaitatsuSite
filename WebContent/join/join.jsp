@@ -125,6 +125,20 @@
             join.postcode.focus();
             return false;
         }
+        //우편번호 입력여부 체크
+        if (join.postcode.value == "")
+        {
+            alert("우편번호를 입력하세요.")
+            join.postcode.focus();
+            return false;
+        }
+        //도로명주소 입력여부 체크
+        if (join.roadAddress.value == "")
+        {
+            alert("도로명 주소를 입력하세요.")
+            join.roadAddress.focus();
+            return false;
+        }
         //상세주소 입력여부 체크
         if (join.detailAddress.value == "")
         {
@@ -192,25 +206,25 @@
 <title>회원가입</title>
 </head>
 <body>
-<!-- 	<div class="container">
+	<div class="container">
 		<form method="post" action="user_join" name="join"
-			onsubmit="return validation();"> -->
+			onsubmit="return validation();"> 
 
 			아이디 : <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요.">&nbsp; 
 			<input type="button" value="중복 확인 " id="btn_userId">
 			※6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.<br /> 
-			<div class="console">
+			<div class="console"></div>
 			
 			비밀번호 : <input type="password" id="uPwd" name="uPwd" placeholder="비밀번호를 입력해주세요.">
 			※6~18자리의 영문 대소문자, 숫자를 조합하여 사용하실 수 있습니다.<br /> 
 			비밀번호 확인 : <input type="password" id="uPwd1" name="uPwd1" placeholder="비밀번호를 다시 한 번 입력해주세요."><br />
 			이름 : <input type="text" id="uName" name="uName" placeholder="이름을 입력해주세요."><br /> 
-			주소 : <input type="text" name="postcode" id="sample4_postcode" placeholder="우편번호">&nbsp;
+			주소 : <input type="text" name="postcode" id="sample4_postcode" placeholder="주소를 검색해주세요.">&nbsp;
 			<input type="button" onclick="sample4_execDaumPostcode()" value="주소 검색"><br> 
 			<input type="text" name="roadAddress" id="sample4_roadAddress" placeholder="도로명 주소"><br />
 			<span id="guide" style="color: #999; display: none"></span> 
 			<input type="text" name="detailAddress" id="sample4_detailAddress" placeholder="상세주소를 입력하세요."><br /> 
-			연락처 : <input type="text" id="uPhonenum" name="uPhonenum" placeholder="연락처를 입력해주세요. (010-0000-0000)"><br />
+			연락처 : <input type="text" id="uPhonenum" name="uPhonenum" placeholder="연락처를 입력해주세요. (01000000000)"><br />
 			<button class="btn btn-primary" type="submit" value="회원가입">회원가입</button>
 
 		</form>

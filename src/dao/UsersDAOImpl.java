@@ -26,8 +26,14 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 	private static final String USERS_UPDATE_PWD_SQL
 	= "UPDATE users SET uPwd = ? WHERE userId = ?";
 	
+	private static final String USERS_UPDATE_SQL
+	= "UPDATE users SET uName = ?, uAddr = ?, uPhonenum = ? WHERE userId = ?";
+	
 	private static final String USERS_SELECT_BY_USERID
 	= "SELECT userId FROM users WHERE userId LIKE ?";
+	
+	private static final String USERS_DELETE_SQL
+	= "DELETE FROM users WHERE userId = ?";
 	
 	/*private static final String USERS_SELECT_ALL_SQL
 	= "SELECT * FROM users WHERE userId = ?";*/
@@ -189,7 +195,7 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 	}
 
 	@Override
-	public boolean update(Users users)
+	public boolean update_pwd(Users users)
 	{
 		boolean result = false;
 		
@@ -249,6 +255,70 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		finally
 		{
 			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		return result;
+	}
+
+	@Override
+	public boolean deleteByUserId(String userId)
+	{
+		boolean result = false;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try
+		{
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(USERS_DELETE_SQL);
+			
+			preparedStatement.setString(1, userId);
+			preparedStatement.execute();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			closeDBObjects(null, preparedStatement, connection);
+		}
+		return result;
+	}
+	
+
+	@Override
+	public boolean update(Users users)
+	{
+		boolean result = false;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try
+		{
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(USERS_UPDATE_SQL);
+			
+			preparedStatement.setString(1, users.getuName());
+			preparedStatement.setString(2, users.getuAddr());
+			preparedStatement.setString(3, users.getuPhonenum());
+			preparedStatement.setString(4, users.getUserId());
+			
+			int rowCount = preparedStatement.executeUpdate();
+			
+			if(rowCount > 0)
+			{
+				result = true;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			closeDBObjects(null, preparedStatement, connection);
 		}
 		return result;
 	}

@@ -19,7 +19,8 @@ import model.Restaurant;
 import model.Town;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
-		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail","/order_confirm"})
+		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail","/order_confirm",
+		"/myPage_link"})
 
 
 public class MainController extends HttpServlet {
@@ -145,6 +146,12 @@ public class MainController extends HttpServlet {
 			
 			RequestDispatcher rd = req.getRequestDispatcher("test2.jsp");
 			rd.forward(req, resp);
+		}
+		else if (action.equals("myPage_link")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("join/myPage.jsp");
+			rd.forward(req, resp);
+
 		}
 	}
 }

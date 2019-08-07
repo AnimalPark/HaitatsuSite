@@ -60,4 +60,5 @@ public class Sql {
 	private static final String USERS_UPDATE_PWD_SQL = "UPDATE users SET uPwd = ? WHERE userId = ?";
 	private static final String USERS_SELECT_ALL_SQL = "SELECT * FROM users WHERE userId = ?";
 	private static final String USERS_SELECT_BY_USERID_SQL = "SELECT userId FROM users";
+	private static final String USERS_DELETE_SQL = "DELETE FROM users WHERE userId = ?";
 }

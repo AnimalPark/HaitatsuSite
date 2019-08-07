@@ -22,7 +22,8 @@ import page.PageManager;
 import sql.Sql;
 
 @WebServlet(name = "UsersController", urlPatterns = {"/user_join", "/user_login", "/user_logout", "/find_userId", "/findId_link",
-		"/findPwd_link", "/find_uPwd", "/change_uPwd","/id_check"})
+		"/findPwd_link", "/find_uPwd", "/change_uPwd","/id_check", "/orderList_link", "/usersInfo_link", "/changewPwd_mp_link",
+		"/users_delete", "/users_update"})
 
 public class UsersController extends HttpServlet
 {
@@ -169,7 +170,7 @@ public class UsersController extends HttpServlet
 			users.setUserId(req.getParameter("userId"));
 			
 			UsersDAO dao = new UsersDAOImpl();
-			boolean result = dao.update(users);
+			boolean result = dao.update_pwd(users);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
@@ -195,6 +196,51 @@ public class UsersController extends HttpServlet
 				rd.forward(req, resp);
 			}
 			
+		}
+		else if (action.equals("orderList_link")) {
+			
+			RequestDispatcher rd = req.getRequestDispatcher("");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("usersInfo_link")) {
+			
+			RequestDispatcher rd = req.getRequestDispatcher("join/usersInfo.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("changewPwd_mp_link")) {
+			
+			RequestDispatcher rd = req.getRequestDispatcher("join/changeuPwd_mp.jsp");
+			rd.forward(req, resp);
+		}
+		else if(action.equals("users_delete"))
+		{
+			String userId = req.getParameter("userId");
+			
+			UsersDAO dao = new UsersDAOImpl();
+			boolean result = dao.deleteByUserId(userId);
+			
+			HttpSession session = req.getSession();
+			session.removeAttribute("users");
+			
+			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+			rd.forward(req, resp);	
+		}
+		else if(action.equals("users_update"))
+		{
+			Users users = new Users();
+			
+			users.setuName(req.getParameter("uName"));
+			String[] uAddrs = {req.getParameter("postcode"),req.getParameter("roadAddress"),req.getParameter("detailAddress")};
+			String addr = uAddrs[0]+" "+uAddrs[1]+" "+uAddrs[2];
+			users.setuAddr(addr);
+			users.setuPhonenum(req.getParameter("uPhonenum"));
+			users.setUserId(req.getParameter("userId"));
+			
+			UsersDAO dao = new UsersDAOImpl();
+			boolean result = dao.update(users);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("join/myPage.jsp");
+			rd.forward(req, resp);
 		}
 	}
 }

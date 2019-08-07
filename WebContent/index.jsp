@@ -19,6 +19,7 @@
 		<form action="user_logout">
 			<a href="logout_link">로그아웃</a>
 		</form>
+			<a href="myPage_link">마이페이지</a>
 	</c:if>
 	
 	<a href="home_link">홈화면</a>
