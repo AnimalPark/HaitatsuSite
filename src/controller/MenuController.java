@@ -47,12 +47,13 @@ public class MenuController extends HttpServlet {
 
 		} else if (action.equals("admin_menu_detail")) {
 
-			int mNum = Integer.parseInt(req.getParameter("mNum"));
+			int rNum = Integer.parseInt(req.getParameter("rNum"));
 			MenuDAO dao = new MenuDAOImpl();
-			Menu menu = dao.selectByMnum(mNum);
+			
+			List<Menu> menu = dao.menuDetailSelectByRnum(rNum);
 
 			req.setAttribute("menu", menu);
-			RequestDispatcher rd = req.getRequestDispatcher("/menu/menu_detail.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("menu/menu_detail.jsp");
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_menu_insert")) {
@@ -63,7 +64,7 @@ public class MenuController extends HttpServlet {
 			menu.setrNum(Integer.parseInt(req.getParameter("rNum")));
 			menu.setmName(req.getParameter("mName"));
 			menu.setmPrice(Integer.parseInt(req.getParameter("mPrice")));
-			menu.setmSales(Integer.parseInt(req.getParameter("mSales")));
+			//menu.setmSales(Integer.parseInt(req.getParameter("mSales")));
 
 			boolean result = dao.insertMenu(menu);
 

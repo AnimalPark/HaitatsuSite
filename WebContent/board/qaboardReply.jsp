@@ -35,14 +35,15 @@ body{
 	</c:if>
   </ul>
 </nav>
-	<h1>댓글작성</h1>
+	<h1>댓글작성</h1><br/>
 	<form action="ybbs_reply" method="post">
-		<div>작성자:${users.userId}</div><br />
-		제목<br/><input type="text" name="qasubject" id="qasubject"><br />
-		내용<br/><textarea rows="10" cols="50" name="qacomment"></textarea><br />
+		<div><h3>작성자: ${users.userId}</h3></div><br />
 		<input type="hidden" name="userid" id="userid" value="${users.userId}"><br />
 		<input type="hidden" name="qagroup" id="qagroup" value="${num}" /><br />
-		<input type="submit" value="댓글달기">
-	</form>
+		제목<br/><input type="text" name="qasubject" id="qasubject"><br />
+		내용<br/><textarea rows="10" cols="50" name="qacomment"></textarea><br />
+		<input type="submit" value="답변 작성">
+	</form><br/>
+	<a href="ybbs_req_list?reqPage=1">목록으로</a>
 </body>
 </html>

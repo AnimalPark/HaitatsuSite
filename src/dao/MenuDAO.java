@@ -15,9 +15,13 @@ public interface MenuDAO {
 	List<Town> selectAllTown();
 	
 	Menu menuSelectByMnum(int mnum);
+	List<Menu> menuDetailSelectByRnum(int rNum);
 	List<Menu> menuSelectByRnum(int rnum);
 	List<Menu> selectAllMenu();
 	Menu selectByMnum(int mNum);
+	
+	public String MnumToMname(int mnum);
+	public int priceOfMenu(int mnum);
 	
 	boolean insertMenu(Menu menu);
 	boolean updateMenu(Menu menu);

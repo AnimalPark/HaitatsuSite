@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.MenuDAO;
+import dao.MenuDAOImpl;
 import dao.RestaurantDAO;
 import dao.RestaurantDAOImpl;
+import model.Menu;
 import model.Restaurant;
 
 @WebServlet(name = "RestaurantController", urlPatterns = { "/admin_rtrt_list", "/admin_rtrt_search",
@@ -38,8 +42,7 @@ public class RestaurantController extends HttpServlet {
 		String uri = req.getRequestURI();
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
-		System.out.println(action);
-
+	
 		if (action.equals("admin_rtrt_list")) {
 
 			RestaurantDAO dao = new RestaurantDAOImpl();
@@ -63,9 +66,13 @@ public class RestaurantController extends HttpServlet {
 
 			int rnum = Integer.parseInt(req.getParameter("rNum"));
 			RestaurantDAO dao = new RestaurantDAOImpl();
+			MenuDAOImpl impl = new MenuDAOImpl();
 			Restaurant restaurant = dao.selectByNum(rnum);
-
+			List<Menu> menus = impl.menuDetailSelectByRnum(rnum);
+		
 			req.setAttribute("restaurant", restaurant);
+			req.setAttribute("menulist", menus);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_detail.jsp");
 			rd.forward(req, resp);
 
@@ -83,7 +90,7 @@ public class RestaurantController extends HttpServlet {
 
 			boolean result = dao.insertRestaurant(restaurant);
 
-			RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_form.jsp");
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_rtrt_update")) {
