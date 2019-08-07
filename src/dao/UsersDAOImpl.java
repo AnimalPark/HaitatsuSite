@@ -12,7 +12,7 @@ import model.Users;
 public class UsersDAOImpl extends BaseDAO implements UsersDAO
 {
 	private static final String USERS_INSERT_SQL
-	= "INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)";
+	= "INSERT INTO users VALUES(?, ?, ?, ?, ?, 0)";
 	
 	private static final String USERS_SELECT_BY_USERID_PWD_SQL
 	= "SELECT userId, uPwd, uName, uAddr, uPhonenum, authority FROM users WHERE userId = ? AND uPwd = ?";
@@ -27,7 +27,7 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 	= "UPDATE users SET uPwd = ? WHERE userId = ?";
 	
 	private static final String USERS_SELECT_BY_USERID
-	= "SELECT * FROM users WHERE userId = ?";
+	= "SELECT userId FROM users WHERE userId LIKE ?";
 	
 	/*private static final String USERS_SELECT_ALL_SQL
 	= "SELECT * FROM users WHERE userId = ?";*/
@@ -50,7 +50,6 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 			preparedStatement.setString(3, users.getuName());
 			preparedStatement.setString(4, users.getuAddr());
 			preparedStatement.setString(5, users.getuPhonenum());
-			preparedStatement.setInt(6, users.getAuthority());
 			
 			int rowCount = preparedStatement.executeUpdate();
 				
@@ -223,10 +222,9 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		return result;
 	}
 
-	@Override
-	public Users selectByUserId(String userId)
+	public boolean check_userId(String userId)
 	{
-		Users users = null;
+		boolean result = false;
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -236,72 +234,23 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		{
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(USERS_SELECT_BY_USERID);
+			
 			preparedStatement.setString(1, userId);
+			
 			resultSet = preparedStatement.executeQuery();
 			
-			if (resultSet.next())
-			{
-				users = new Users();
-				
-				users.setUserId(resultSet.getString("userId"));
-				users.setuPwd(resultSet.getString("uPwd"));
-				users.setuName(resultSet.getString("uName"));
-				users.setuAddr(resultSet.getString("uAddr"));
-				users.setuPhonenum(resultSet.getString("uPhonenum"));
-				users.setAuthority(resultSet.getInt("authority"));
-			}
+			result = resultSet.next();
 		}
 		catch(SQLException e)
 		{
+			/*System.out.println("check_userId err : " + e);*/
 			e.printStackTrace();
 		}
 		finally
 		{
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
-		System.out.println(users);
-		return users;
+		return result;
 	}
 
-/*	public int registerCheck(String userId)
-	{
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Connection connection = null;
-		String SQL = "SELECT * FROM users WHERE userId = ?";
-		
-		try
-		{
-			connection = getConnection();
-			pstmt = connection.prepareStatement(SQL);
-			
-			pstmt.setString(1, userId);
-			rs = pstmt.executeQuery();
-			if (rs.next() || userId.equals(""))
-			{
-				return 0; //이미 존재하는 회원
-			}
-			else
-			{
-				return 1; //가입 가능한 회원 아이디
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-		return -1; //데이터베이스 오류
-	}*/
 }
