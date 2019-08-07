@@ -15,6 +15,7 @@ public interface MenuDAO {
 	List<Town> selectAllTown();
 	
 	Menu menuSelectByMnum(int mnum);
+	List<Menu> menuDetailSelectByRnum(int rNum);
 	List<Menu> menuSelectByRnum(int rnum);
 	List<Menu> selectAllMenu();
 	Menu selectByMnum(int mNum);

@@ -1,4 +1,4 @@
-package dao;
+﻿package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -219,7 +219,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			preparedStatement.setInt(1, menu.getrNum());
 			preparedStatement.setString(2, menu.getmName());
 			preparedStatement.setInt(3, menu.getmPrice());
-			preparedStatement.setInt(4, menu.getmSales());
+			//preparedStatement.setInt(4, menu.getmSales());
 			
 			int rowCount = preparedStatement.executeUpdate();
 
@@ -447,5 +447,44 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		}
 
 		return price;
+	}
+	
+	@Override
+	public List<Menu> menuDetailSelectByRnum(int rNum) {
+		
+		List<Menu> menuList = new ArrayList<Menu>();
+		Menu menu = null;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.MENU_DETAIL_SELECT_BY_RNUM_SQL);
+			preparedStatement.setInt(1, rNum);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				
+				menu = new Menu();
+
+				menu.setmNum(resultSet.getInt("mNum"));
+				menu.setrNum(resultSet.getInt("rNum"));
+				menu.setmName(resultSet.getString("mName"));
+				menu.setmPrice(resultSet.getInt("mPrice"));
+				menu.setmSales(resultSet.getInt("mSales"));
+				
+				menuList.add(menu);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		
+		return menuList;
 	}
 }

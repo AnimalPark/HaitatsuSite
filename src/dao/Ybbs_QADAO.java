@@ -10,6 +10,7 @@ public interface Ybbs_QADAO {
 
 	List<Ybbs_QA> selectAll();
 	List<Ybbs_QA> selectAll(int rowStartNumber , int rowEndNumber);
+	String validChk(int qanumber);
 	
 	Ybbs_QA selectByNo(int no);
 
