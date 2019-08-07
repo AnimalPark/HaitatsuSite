@@ -289,7 +289,34 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 		
 		return ybbsList;
 	}
-	
-	
+
+	@Override
+	public String validChk(int qanumber) {
+		
+		String id = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.YBBS_CHK_VALID);
+			preparedStatement.setInt(1, qanumber);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+					id = resultSet.getString("userid");
+			   }
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		
+			return id;
+	}	
 	
 }
