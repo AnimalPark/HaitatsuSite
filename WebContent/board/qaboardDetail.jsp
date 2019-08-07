@@ -39,7 +39,7 @@ div {
 	</c:if>
   </ul>
 </nav>
-	<c:if test="${ybbs.userid == users.userId || users.authority eq 1 || ybbs_id == users.userId}">
+	<c:if test="${ybbs.userid == users.userId || users.authority eq 1}">
 		<form action="ybbs_goTo_update" method="post">
 			<div>작성자 : ${ybbs.userid}</div>
 			<div>${ybbs.qanumber}</div>
@@ -52,6 +52,13 @@ div {
 			<a href="ybbs_reply_form.do?qanumber=${ybbs.qanumber}">답변 작성</a>
 		</c:if>
 			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제</a><br />
+			<a href="ybbs_req_list?reqPage=1">목록으로</a>	<br/>
+	</c:if>
+	<c:if test="${ybbs_id == users.userId}">
+			<div>작성자 : ${ybbs.userid}</div>
+			<div>${ybbs.qanumber}</div>
+			<div>${ybbs.qasubject}</div>
+			<div>${ybbs.qacomment}</div>
 			<a href="ybbs_req_list?reqPage=1">목록으로</a>	<br/>
 	</c:if>
 </body>
