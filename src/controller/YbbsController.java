@@ -65,18 +65,19 @@ public class YbbsController extends HttpServlet {
 		}else if (action.equals("ybbs_detail")) {
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
-			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
-			
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
-			
+			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
+
 			ybbs = dao.selectByNo(qanumber);
-			dao.updateVisited(qanumber);
+			dao.updateVisited(qanumber);		
+			String ybbsId = dao.validChk(qanumber);
 			
 			req.setAttribute("ybbs", ybbs);
-
+			req.setAttribute("ybbs_id", ybbsId);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardDetail.jsp");
 			rd.forward(req, resp);
-
+			
 		} else if (action.equals("ybbs_delete")) {
 			
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
@@ -114,15 +115,16 @@ public class YbbsController extends HttpServlet {
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			
 			dao.insertReply(ybbs);
-						
+			
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
 			rd.forward(req, resp);
 			
 		} else if (action.equals("ybbs_reply_form.do")) {
 			
 			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
-	
+			
 			req.setAttribute("num", qanumber);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardReply.jsp");
 			rd.forward(req, resp);
 			

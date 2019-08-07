@@ -49,8 +49,8 @@ div {
 			<input type="text"  name="qasubject" value="${ybbs.qasubject}" class="mybox" /><br />
 			<input type="text"  name="qacomment" value="${ybbs.qacomment}" class="mybox" /><br />
 			<input type="hidden"  name="qanumber" value="${ybbs.qanumber}"/><br />
-			<input type="submit" class="btn btn-primary" value="수정하기">
+			<input type="submit" class="btn btn-primary" value="글 수정">
 		</form>
-			<a href="ybbs_detail?qanumber=${ybbs.qanumber}">글로 돌아가기</a>	
+			<a href="ybbs_detail?qanumber=${ybbs.qanumber}">글 수정 취소</a>	
 	</body>
 </html>

@@ -39,20 +39,20 @@ div {
 	</c:if>
   </ul>
 </nav>
-	<c:if test="${ybbs.userid == users.userId || users.authority eq 1 }">
+	<c:if test="${ybbs.userid == users.userId || users.authority eq 1 || ybbs_id == users.userId}">
 		<form action="ybbs_goTo_update" method="post">
 			<div>작성자 : ${ybbs.userid}</div>
 			<div>${ybbs.qanumber}</div>
 			<div>${ybbs.qasubject}</div>
 			<div>${ybbs.qacomment}</div>
 			<input type="hidden" name ="qanumber" value="${ybbs.qanumber}">
-			<input type="submit" class="btn btn-primary" value="수정">
+			<input type="submit" class="btn btn-primary" value="글 수정">
 		</form>
-			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제하기</a><br />
-			<a href="ybbs_req_list?reqPage=1">뒤로가기</a>	<br/>
 		<c:if test="${users.authority eq 1}">
-			<a href="ybbs_reply_form.do?qanumber=${ybbs.qanumber}">응답쓰러가기</a>
+			<a href="ybbs_reply_form.do?qanumber=${ybbs.qanumber}">답변 작성</a>
 		</c:if>
+			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제</a><br />
+			<a href="ybbs_req_list?reqPage=1">목록으로</a>	<br/>
 	</c:if>
 </body>
 </html>
