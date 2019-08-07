@@ -1,4 +1,4 @@
-﻿癤�<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
 							function id_check() {
 								var input_val = $("input:eq(0)").val();
 								if(!input_val){
-									alert("�꾩씠�붾� �낅젰�섏꽭��");
+									alert("아이디를 입력하세요");
 									return false;
 								}
 
@@ -32,128 +32,135 @@
 <script type="text/javascript">
     function validation()
     {
-       //�꾩씠�� �낅젰�щ� 寃��
+       //아이디 입력여부 검사
 		if (join.userId.value == "")
 		{
-			alert("�꾩씠�붾� �낅젰�섏꽭��.")
+			alert("아이디를 입력하세요.")
 			join.userId.focus();
 			return false;
 		}
-        //�꾩씠�� �좏슚�� 寃�� (�곷Ц�뚮Ц��, �レ옄留� �덉슜)
+        //아이디 유효성 검사 (영문소문자, 숫자만 허용)
 		for (var i = 0; i < join.userId.value.length; i++)
 		{
             ch = join.userId.value.charAt(i)
             if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z'))
             {
-                alert("�꾩씠�붾뒗 �곷Ц �뚮Ц��, �レ옄留� �낅젰 媛�ν빀�덈떎.")
+                alert("아이디는 영문 소문자, 숫자만 입력 가능합니다.")
                 join.userId.focus();
                 join.userId.select();
                 return false;
             }
         }
-        //�꾩씠�� 怨듬갚 泥댄겕
+        //아이디 공백 체크
         if (join.userId.value.indexOf(" ") >= 0)
         {
-            alert("�꾩씠�붿뿉 怨듬갚�� �ъ슜�� �� �놁뒿�덈떎.")
+            alert("아이디에 공백을 사용할 수 없습니다.")
             join.userId.focus();
             join.userId.select()
             return false;
         }
-        //�꾩씠�� 湲몄씠 泥댄겕 (6~12��)
+        //아이디 길이 체크 (6~12자)
 		if (join.userId.value.length < 6 || join.userId.value.length > 12)
 		{
-			alert("�꾩씠�붾� 6~12�먭퉴吏 �낅젰�댁＜�몄슂.")
+			alert("아이디를 6~12자까지 입력해주세요.")
             join.userId.focus();
             join.userId.select();
             return false;
 		}
-        //鍮꾨�踰덊샇 �낅젰�щ� 泥댄겕
+        //비밀번호 입력여부 체크
         if (join.uPwd.value == "")
         {
-            alert("鍮꾨�踰덊샇瑜� �낅젰�섏꽭��.")
+            alert("비밀번호를 입력하세요.")
             join.uPwd.focus();
             return false;
         }
-        //鍮꾨�踰덊샇 �좏슚�� 寃�� (�곷Ц ��뚮Ц��, �レ옄留� �덉슜)
+        //비밀번호 유효성 검사 (영문 대소문자, 숫자만 허용)
         for (var i = 0; i < join.uPwd.value.length; i++)
         {
              ch = join.uPwd.value.charAt(i)
              if (!(ch >= '0' && ch <= '9') &&! (ch >= 'a' && ch <= 'z') &&! (ch >= 'A' && ch <= 'Z'))
              {
-                 alert("�꾩씠�붾뒗 �곷Ц ��뚮Ц��, �レ옄留� �낅젰媛�ν빀�덈떎.")
+                 alert("아이디는 영문 대소문자, 숫자만 입력가능합니다.")
                  join.uPwd.focus();
                  join.uPwd.select();
                  return false;
              }
          }
-        //鍮꾨�踰덊샇 怨듬갚 泥댄겕
+        //비밀번호 공백 체크
         if (join.uPwd.value.indexOf(" ") >= 0)
         {
-            alert("鍮꾨�踰덊샇�� 怨듬갚�� �ъ슜�� �� �놁뒿�덈떎.")
+            alert("비밀번호에 공백을 사용할 수 없습니다.")
             join.uPwd.focus();
             join.uPwd.select()
             return false;
         }
-        //鍮꾨�踰덊샇 湲몄씠 泥댄겕(6~18�� 源뚯� �덉슜)
+        //비밀번호 길이 체크(6~18자 까지 허용)
         if (join.uPwd.value.length < 6 || join.uPwd.value.length > 18)
         {
-            alert("鍮꾨�踰덊샇瑜� 6~18�먭퉴吏 �낅젰�댁＜�몄슂.")
+            alert("비밀번호를 6~18자까지 입력해주세요.")
             join.uPwd.focus();
             join.uPwd.select();
             return false;
         }
-        //鍮꾨�踰덊샇� 鍮꾨�踰덊샇 �뺤씤 �쇱튂�щ� 泥댄겕
+        //비밀번호와 비밀번호 확인 일치여부 체크
         if (join.uPwd.value != join.uPwd1.value)
         {
-            alert("鍮꾨�踰덊샇媛 �쇱튂�섏� �딆뒿�덈떎")
+            alert("비밀번호가 일치하지 않습니다")
             join.uPwd1.value = ""
             join.uPwd1.focus();
             return false;
         }
-        //�대쫫 �낅젰�щ� 泥댄겕
+        //이름 입력여부 체크
         if (join.uName.value == "")
         {
-            alert("�대쫫�� �낅젰�섏꽭��.")
+            alert("이름을 입력하세요.")
             join.uName.focus();
             return false;
         }
-        //�고렪踰덊샇 �낅젰�щ� 泥댄겕
+        //우편번호 입력여부 체크
         if (join.postcode.value == "")
         {
-            alert("二쇱냼瑜� �낅젰�섏꽭��.")
+            alert("주소를 입력하세요.")
             join.postcode.focus();
             return false;
         }
-        //�고렪踰덊샇 �낅젰�щ� 泥댄겕
-        if (join.postcode.value == "")
-        {
-            alert("�고렪踰덊샇瑜� �낅젰�섏꽭��.")
-            join.postcode.focus();
-            return false;
-        }
-        //�꾨줈紐낆＜�� �낅젰�щ� 泥댄겕
-        if (join.roadAddress.value == "")
-        {
-            alert("�꾨줈紐� 二쇱냼瑜� �낅젰�섏꽭��.")
-            join.roadAddress.focus();
-            return false;
-        }
-        //�곸꽭二쇱냼 �낅젰�щ� 泥댄겕
+        //상세주소 입력여부 체크
         if (join.detailAddress.value == "")
         {
-            alert("二쇱냼瑜� �낅젰�섏꽭��.")
+            alert("주소를 입력하세요.")
             join.detailAddress.focus();
             return false;
         }
-        //�곕씫泥� �낅젰�щ� 泥댄겕
+        //연락처 입력여부 체크
         if (join.uPhonenum.value == "")
         {
-            alert("�곕씫泥섎� �낅젰�섏꽭��.")
+            alert("연락처를 입력하세요.")
             join.uPhonenum.focus();
             return false;
         }
-        alert("�뚯썝媛�낆씠 �꾨즺�섏뿀�듬땲��.");
+        alert("회원가입이 완료되었습니다.");
     }
+    
+/*     function check_userId()
+    {
+    	if(join.userId.value == "")
+    	{
+    		alert("아이디를 입력하세요.");
+    		join.userId.focus();
+
+    	}
+    	else
+    	{
+    		url = "checkUserId.jsp?userId=" + join.userId.value;
+    		window.open(url, "id check", "toolbar=no, width=350, height=150, top=150, left=150");
+    	}
+	}
+    
+    window.onload = function()
+    {
+    	join.userId.focus();
+    	document.getElementByuserId("btn_userId").onclick = check_userId;
+    } */
     
 	function sample4_execDaumPostcode()
 	{
@@ -164,7 +171,7 @@
                 var roadAddr = data.roadAddress;
                 var extraRoadAddr = '';
 
-                if(data.bname !== '' && /[��濡�媛]$/g.test(data.bname))
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname))
                 {
                     extraRoadAddr += data.bname;
                 }
@@ -184,13 +191,13 @@
                 if(data.autoRoadAddress)
                 {
                     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(�덉긽 �꾨줈紐� 二쇱냼 : ' + expRoadAddr + ')';
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
                     guideTextBox.style.display = 'block';
 
                 } else if(data.autoJibunAddress)
                 {
                     var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(�덉긽 吏踰� 二쇱냼 : ' + expJibunAddr + ')';
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
                     guideTextBox.style.display = 'block';
                 } else
                 {
@@ -202,29 +209,30 @@
 	}
 
 </script>
-<title>�뚯썝媛��</title>
+<title>회원가입</title>
 </head>
 <body>
+	<div class="container">
 		<form method="post" action="user_join" name="join"
 			onsubmit="return validation();">
 
-			�꾩씠�� : <input type="text" id="userId" name="userId" placeholder="�꾩씠�붾� �낅젰�댁＜�몄슂.">&nbsp; 
-			<input type="button" value="以묐났 �뺤씤 " id="btn_userId">
-			��6~12�먮━�� �곷Ц �뚮Ц��, �レ옄瑜� 議고빀�섏뿬 �ъ슜�섏떎 �� �덉뒿�덈떎.<br /> 
-			<div class="console"></div>
+			아이디 : <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요.">&nbsp; 
+			<input type="button" value="중복 확인 " id="btn_userId">
+			※6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.<br /> 
+			<div class="console">
 			
 			</div>
-			鍮꾨�踰덊샇 : <input type="password" id="uPwd" name="uPwd" placeholder="鍮꾨�踰덊샇瑜� �낅젰�댁＜�몄슂.">
-			��6~18�먮━�� �곷Ц ��뚮Ц��, �レ옄瑜� 議고빀�섏뿬 �ъ슜�섏떎 �� �덉뒿�덈떎.<br /> 
-			鍮꾨�踰덊샇 �뺤씤 : <input type="password" id="uPwd1" name="uPwd1" placeholder="鍮꾨�踰덊샇瑜� �ㅼ떆 �� 踰� �낅젰�댁＜�몄슂."><br />
-			�대쫫 : <input type="text" id="uName" name="uName" placeholder="�대쫫�� �낅젰�댁＜�몄슂."><br /> 
-			二쇱냼 : <input type="text" name="postcode" id="sample4_postcode" placeholder="二쇱냼瑜� 寃�됲빐二쇱꽭��.">&nbsp;
-			<input type="button" onclick="sample4_execDaumPostcode()" value="二쇱냼 寃��"><br> 
-			<input type="text" name="roadAddress" id="sample4_roadAddress" placeholder="�꾨줈紐� 二쇱냼"><br />
+			비밀번호 : <input type="password" id="uPwd" name="uPwd" placeholder="비밀번호를 입력해주세요.">
+			※6~18자리의 영문 대소문자, 숫자를 조합하여 사용하실 수 있습니다.<br /> 
+			비밀번호 확인 : <input type="password" id="uPwd1" name="uPwd1" placeholder="비밀번호를 다시 한 번 입력해주세요."><br />
+			이름 : <input type="text" id="uName" name="uName" placeholder="이름을 입력해주세요."><br /> 
+			주소 : <input type="text" name="postcode" id="sample4_postcode" placeholder="주소를 검색해주세요.">&nbsp;
+			<input type="button" onclick="sample4_execDaumPostcode()" value="주소 검색"><br> 
+			<input type="text" name="roadAddress" id="sample4_roadAddress" placeholder="도로명 주소"><br />
 			<span id="guide" style="color: #999; display: none"></span> 
-			<input type="text" name="detailAddress" id="sample4_detailAddress" placeholder="�곸꽭二쇱냼瑜� �낅젰�섏꽭��."><br /> 
-			�곕씫泥� : <input type="text" id="uPhonenum" name="uPhonenum" placeholder="�곕씫泥섎� �낅젰�댁＜�몄슂. (01000000000)"><br />
-			<button class="btn btn-primary" type="submit" value="�뚯썝媛��">�뚯썝媛��</button>
+			<input type="text" name="detailAddress" id="sample4_detailAddress" placeholder="상세주소를 입력하세요."><br /> 
+			연락처 : <input type="text" id="uPhonenum" name="uPhonenum" placeholder="연락처를 입력해주세요. (01000000000)"><br />
+			<button class="btn btn-primary" type="submit" value="회원가입">회원가입</button>
 
 		</form>
 	</div>
