@@ -19,6 +19,9 @@ public interface MenuDAO {
 	List<Menu> selectAllMenu();
 	Menu selectByMnum(int mNum);
 	
+	public String MnumToMname(int mnum);
+	public int priceOfMenu(int mnum);
+	
 	boolean insertMenu(Menu menu);
 	boolean updateMenu(Menu menu);
 	boolean deleteMenu(int mNum);
