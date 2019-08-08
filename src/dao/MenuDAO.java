@@ -29,4 +29,6 @@ public interface MenuDAO {
 	
 	boolean insertUserOrder(String userid, int delichk);
 	boolean insertOrderMenu(int mnum, int onum, int count);
+	
+	int nowOrderOnum();
 }

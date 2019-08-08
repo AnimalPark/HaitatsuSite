@@ -44,6 +44,13 @@ public class Sql {
 	public static final String MENU_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE RNUM = ? ";
 	public static final String INSERT_USERORDER_SQL	 = "INSERT INTO USERORDER VALUES(SEQ_USERORDER.NEXTVAL, ?, SYSDATE, ?)";
 	public static final String INSERT_ORDERMENU_SQL	 = "INSERT INTO ORDERMENU VALUES(?, ?, ?)";
+	public static final String NOW_ORDER_ONUM_SQL = 
+			"SELECT ONUM " + 
+			"FROM    (SELECT ONUM, ROWNUM " + 
+					"FROM USERORDER " + 
+					"ORDER BY ONUM DESC) " + 
+			"WHERE ROWNUM = 1";
+	
 	
 	//==========================È²È£¿µ Sql¡é=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
