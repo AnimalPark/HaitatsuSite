@@ -17,12 +17,15 @@
 				동네번호 <input type="text"  name="townNum" value= "${restaurant.townNum}"/><br />
 				평균별점 <input type="text"  name="starAvg" value= "${restaurant.starAvg}"/><br />
 				주소 <input type="text"  name="rAddr" value= "${restaurant.rAddr}"/><br />
-					  <input type="submit" class="btn btn-primary" value="수정"/><br />
+			<c:if test="${users.authority eq 1}">
+				 <input type="submit" class="btn btn-primary" value="수정"/>
+				<button type="button" onclick="location.href='admin_rtrt_delete?rNum=${restaurant.rNum}'" >가게 정보 삭제</button>
+			</c:if>
 			</form>
-		<a href="admin_rtrt_delete?rNum=${restaurant.rNum}">가게 정보 삭제</a><br/>
-		<a href="menu_add/">메뉴추가하기</a>
 		<a href="index.jsp">처음으로 돌아가기</a>
-		
+		<c:if test="${users.authority eq 1}">
+		<button type="button" onclick="location.href='menu_add?rNum=${restaurant.rNum}'" >메뉴추가</button>
+		</c:if>
 		<table>
 			<thead>
 				<tr>
@@ -33,12 +36,15 @@
 		
 		<c:forEach var="menu" items="${menulist}">
 			<tr>
-				<td><a href="admin_menu_detail?rNum=${restaurant.rNum}">${menu.mName}</a></td>
+			<c:if test="${users.authority eq 0 || users == null}">
+				<td>${menu.mName}</td>
+			</c:if>
+			<c:if test="${users.authority eq 1}">
+				<td><a href="admin_menu_detail?mNum=${menu.mNum}">${menu.mName}</a></td>
+			</c:if>
 				<td>${menu.mPrice}</td>
 			</tr>
 		</c:forEach>
 		</table>
-		<button type="button" onclick="location.href='admin_home_link' " >처음으로</button>
-    	<button type="button" onclick="location.href='menu_add' " >메뉴 추가</button>
 	</body>
 </html>

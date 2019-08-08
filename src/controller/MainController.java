@@ -18,10 +18,11 @@ import model.Menu;
 import model.Restaurant;
 import model.Selected_menu;
 import model.Town;
+import model.Users;
 
-@WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link", 
-		"/home_link","/search_link","/addr_search", "/logout_link" ,"/admin_home_link","/restaurant_detail","/order_confirm",
-		"/myPage_link"})
+@WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link",
+		"/home_link", "/search_link", "/addr_search", "/logout_link", "/admin_home_link", "/restaurant_detail",
+		"/order_confirm", "/ordermenu_add", "/return_detail","/order_final","/confirm_orders","/myPage_link","/order_end"})
 
 public class MainController extends HttpServlet {
 
@@ -184,9 +185,49 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		}
+		else if (action.equals("order_final")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("order/order_confirm.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if(action.equals("confirm_orders")) {
+			HttpSession session = req.getSession();
+			
+			int chk = Integer.parseInt(req.getParameter("delichk"));
+			session.setAttribute("delivery_check", chk);
+			
+		}
 		else if (action.equals("myPage_link")) {
 
 			RequestDispatcher rd = req.getRequestDispatcher("join/myPage.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("order_end")) {
+			System.out.println("test");
+			Mimpl = new MenuDAOImpl();
+			HttpSession session = req.getSession();
+			Users user = (Users) session.getAttribute("users");
+			int chk = (int) session.getAttribute("delivery_check");
+			ArrayList<Selected_menu> order_lists = (ArrayList<Selected_menu>) session.getAttribute("order_lists");
+			
+			System.out.println("========");
+			System.out.println(user.getUserId());
+			for(Selected_menu m: order_lists) {
+				System.out.println(m.toString());
+			}
+			System.out.println("========");
+			
+			Mimpl.insertUserOrder(user.getUserId(), chk);
+			
+			int orderNumber = Mimpl.nowOrderOnum();
+			
+			for(int i = 0; i < order_lists.size(); i++) {
+				Mimpl.insertOrderMenu(order_lists.get(i).getmNum(),orderNumber, order_lists.get(i).getCount());
+			}
+			
+			RequestDispatcher rd = req.getRequestDispatcher("order/finish.jsp");
 			rd.forward(req, resp);
 
 		}
