@@ -10,6 +10,7 @@ public interface Ybbs_QADAO {
 
 	List<Ybbs_QA> selectAll();
 	List<Ybbs_QA> selectAll(int rowStartNumber , int rowEndNumber);
+	List<Integer> selectById(String userid);
 	String validChk(int qanumber);
 	
 	Ybbs_QA selectByNo(int no);
@@ -19,6 +20,7 @@ public interface Ybbs_QADAO {
 	void update(Ybbs_QA ybbs);
 
 	void delete(int qanumber);
-
+	void deleteByGroup(List<Integer> qagroup);
+	
 	void updateVisited(int qanumber);
 }

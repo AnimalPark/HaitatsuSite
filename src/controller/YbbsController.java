@@ -160,6 +160,6 @@ public class YbbsController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardUpdate.jsp");
 			rd.forward(req, resp);
 		
-		}
+		} 	
 	}
 }

@@ -211,7 +211,6 @@ public class MainController extends HttpServlet {
 			int chk = (int) session.getAttribute("delivery_check");
 			ArrayList<Selected_menu> order_lists = (ArrayList<Selected_menu>) session.getAttribute("order_lists");
 			
-			Mimpl.
 			
 			RequestDispatcher rd = req.getRequestDispatcher("order/finish.jsp");
 			rd.forward(req, resp);

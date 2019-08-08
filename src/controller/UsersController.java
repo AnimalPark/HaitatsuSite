@@ -217,11 +217,14 @@ public class UsersController extends HttpServlet
 			String userId = req.getParameter("userId");
 			
 			UsersDAO dao = new UsersDAOImpl();
-			boolean result = dao.deleteByUserId(userId);
+			Ybbs_QADAO dao1 = new Ybbs_QADAOImpl();
 			
+			List<Integer> gNum = dao1.selectById(userId);
+			dao1.deleteByGroup(gNum);
+			boolean result = dao.deleteByUserId(userId);
+		
 			HttpSession session = req.getSession();
 			session.removeAttribute("users");
-			
 			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 			rd.forward(req, resp);	
 		}
