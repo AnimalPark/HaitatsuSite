@@ -11,7 +11,7 @@
 			<h4>메뉴 등록</h4>
 			<form action="admin_menu_update" method="post">
 			<input type="hidden" name="mNum" value= "${menu.mNum}"/><br />
-			<input type="text"  name="rNum" value="${menu.rNum}"/><br />
+			<input type="hidden"  name="rNum" value="${menu.rNum}"/><br />
 			메뉴이름<input type="text"  name="mName" value= "${menu.mName}"/><br />
 			가격<input type="text"  name="mPrice" value= "${menu.mPrice}"/><br />
 

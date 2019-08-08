@@ -8,6 +8,9 @@
 		<title>Restaurant Form</title>
 	</head>
 	<body>
+	<c:if test="${users.authority eq 1}">
+	<h1>${users.userId}관리자 계정으로 로그인됨</h1>
+	</c:if>
 		<h3>Restaurant List</h3>
 	
 		<form action="admin_rtrt_search"method="post">
@@ -52,7 +55,8 @@
 		</table>
 
    		<button type="button" onclick="location.href='index.jsp'" >처음화면으로</button>
+   		<c:if test="${users.authority eq 1}">
    	 	<button type="button" onclick="location.href='restaurant_add'">가게 정보 추가</button>
-
+		</c:if>
 	</body>
 </html>
