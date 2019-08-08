@@ -57,10 +57,8 @@ public class YbbsController extends HttpServlet {
 
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			dao.Insert(ybbs);
-			
-			req.setAttribute("ybbs", ybbs);
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
-			rd.forward(req, resp);
+	
+			resp.sendRedirect("ybbs_req_list?reqPage=1");
 
 		}else if (action.equals("ybbs_detail")) {
 			
@@ -100,8 +98,7 @@ public class YbbsController extends HttpServlet {
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			dao.update(ybbs);
 
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
-			rd.forward(req, resp);
+			resp.sendRedirect("ybbs_req_list?reqPage=1");
 			
 		}  else if (action.equals("ybbs_reply")) {
 			
