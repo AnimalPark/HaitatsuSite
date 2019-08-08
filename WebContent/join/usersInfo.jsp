@@ -7,6 +7,30 @@
 <script type="text/javascript">
 	function validation()
 	{
+        //비밀번호 공백 체크
+        if (update.uPwd1.value.indexOf(" ") >= 0)
+        {
+            alert("비밀번호에 공백을 사용할 수 없습니다.")
+            update.uPwd.focus();
+            update.uPwd.select();
+            return false;
+        }
+        //비밀번호 길이 체크(6~18자 까지 허용)
+        if (update.uPwd1.value.length < 6 || update.uPwd1.value.length > 18)
+        {
+            alert("비밀번호를 6~18자까지 입력해주세요.")
+            update.uPwd1.focus();
+            update.uPwd1.select();
+            return false;
+        }
+        //비밀번호와 비밀번호 확인 일치여부 체크
+        if (update.uPwd1.value != join.uPwd2.value)
+        {
+            alert("비밀번호가 일치하지 않습니다")
+            update.uPwd2.value = ""
+            update.uPwd2.focus();
+            return false;
+        }
 	    //이름 입력여부 체크
 	    if (update.uName.value == "")
 	    {
@@ -57,10 +81,13 @@
 		if(confirm("정말 탈퇴하시겠습니까?") == true)
 		{
 			alert("정상적으로 탈퇴되었습니다.");
-			document.form.submit();
+			location.href = "users_delete?userId=${users.userId}";
+			return false;
 		}
 		else
 		{
+			alert("탈퇴 되지 않았습니다.");
+			location.href="home_link";
 			return;
 		}
 	}
@@ -119,11 +146,10 @@
 		<form method="post" action="users_update?userId=${users.userId}" name="update" onsubmit="return validation();"> 
 
 			아이디 : ${users.userId}<br />	
-			비밀번호 : <a href="changewPwd_mp_link">비밀번호 변경하기</a><br />	
 			이름 : <input type="text" id="uName" name="uName" value="${users.uName}"><br />
-			주소 : <input type="text" name="postcode" id="sample4_postcode" placeholder="주소를 검색해주세요.">&nbsp;
+			주소 : <input type="text" name="postcode" id="sample4_postcode" placeholder="주소를 검색해주세요." readonly="readonly">&nbsp;
 			<input type="button" onclick="sample4_execDaumPostcode()" value="주소 검색"><br />
-			<input type="text" name="roadAddress" id="sample4_roadAddress" placeholder="도로명 주소"><br />
+			<input type="text" name="roadAddress" id="sample4_roadAddress" placeholder="도로명 주소" readonly="readonly"><br />
 			<span id="guide" style="color: #999; display: none"></span> 
 			<input type="text" name="detailAddress" id="sample4_detailAddress" placeholder="상세주소를 입력하세요."><br /> 
 			연락처 : <input type="text" id="uPhonenum" name="uPhonenum" value="${users.uPhonenum}"><br />
@@ -131,6 +157,6 @@
 
 		</form>
 	</div>
-	<a href="users_delete?userId=${users.userId}" onclick="delete_check();">탈퇴하기</a>
+	<button onclick="delete_check();">탈퇴하기</button>
 </body>
 </html>

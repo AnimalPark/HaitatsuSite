@@ -20,4 +20,6 @@ public interface UsersDAO
 	boolean check_userId(String userId);
 	
 	boolean deleteByUserId(String userId);
+	
+	boolean confirmuPwd(String userId, String uPwd);
 }
