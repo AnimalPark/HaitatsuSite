@@ -11,10 +11,12 @@ public class Sql {
     public static final String YBBS_SELECT_ALL_EVENT_SQL ="SELECT * FROM YBBS_EVENT ORDER BY EVDATE DESC";
     public static final String YBBS_SELECTBYNO_SQL = "SELECT QANUMBER,USERID,QASUBJECT,QACOMMENT FROM YBBS_QA WHERE QANUMBER = ?";
     public static final String YBBS_SELECTBY_EVNUM_SQL = "SELECT * FROM YBBS_EVENT WHERE EVNUMBER = ?";
+    public static final String YBBS_SELECTBY_ID_SQL = "SELECT * FROM YBBS_QA WHERE USERID = ?";
     public static final String YBBS_UPDATE_SQL = "UPDATE YBBS_QA SET QASUBJECT = ? , QACOMMENT = ? WHERE QANUMBER = ?";
     public static final String YBBS_UPDATE_EVENT_SQL = "UPDATE YBBS_EVENT SET EVSUBJECT = ? , EVCOMMENT = ? WHERE EVNUMBER = ?";
     public static final String YBBS_DELETE_SQL = "DELETE FROM YBBS_QA WHERE QANUMBER = ?";
     public static final String YBBS_DELETE_EVENT_SQL = "DELETE FROM YBBS_EVENT WHERE EVNUMBER = ?";
+    public static final String YBBS_DELETE_BY_GROUP_SQL = "DELETE FROM YBBS_QA WHERE QAGROUP = ?";
     public static final String YBBS_UPDATE_VISITED = "UPDATE YBBS_QA SET QAVISITED = QAVISITED+1 WHERE QANUMBER = ?";
     public static final String YBBS_UPDATE_EVENT_VISITED = "UPDATE YBBS_EVENT SET EVVISITED = EVVISITED+1 WHERE EVNUMBER = ?";
     public static final String YBBS_PAGE_SQL = "SELECT * from (SELECT ROWNUM RN,ybbss.* FROM (SELECT * FROM YBBS_QA ORDER BY QAGROUP DESC,QALEVEL ASC,QADATE DESC) ybbss) WHERE RN BETWEEN ? AND ?";
@@ -41,7 +43,16 @@ public class Sql {
 							"WHERE CITYNUM = (SELECT CITYNUM " + 
 											"FROM CITY " + 
 											"WHERE CITYNAME = ? ) AND TOWNNAME = ? )";
-	public static final String MENU_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE RNUM = ? "; 
+	public static final String MENU_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE RNUM = ? ";
+	public static final String INSERT_USERORDER_SQL	 = "INSERT INTO USERORDER VALUES(SEQ_USERORDER.NEXTVAL, ?, SYSDATE, ?)";
+	public static final String INSERT_ORDERMENU_SQL	 = "INSERT INTO ORDERMENU VALUES(?, ?, ?)";
+	public static final String NOW_ORDER_ONUM_SQL = 
+			"SELECT ONUM " + 
+			"FROM    (SELECT ONUM, ROWNUM " + 
+					"FROM USERORDER " + 
+					"ORDER BY ONUM DESC) " + 
+			"WHERE ROWNUM = 1";
+	
 	
 	//==========================È²È£¿µ Sql¡é=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
@@ -66,4 +77,5 @@ public class Sql {
 	private static final String USERS_UPDATE_PWD_SQL = "UPDATE users SET uPwd = ? WHERE userId = ?";
 	private static final String USERS_SELECT_ALL_SQL = "SELECT * FROM users WHERE userId = ?";
 	private static final String USERS_SELECT_BY_USERID_SQL = "SELECT userId FROM users";
+	private static final String USERS_DELETE_SQL = "DELETE FROM users WHERE userId = ?";
 }

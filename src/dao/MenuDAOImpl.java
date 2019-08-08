@@ -487,4 +487,88 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		
 		return menuList;
 	}
+
+	@Override
+	public boolean insertUserOrder(String userid, int delichk) {
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.INSERT_USERORDER_SQL);
+
+			preparedStatement.setString(1, userid);
+			preparedStatement.setInt(2, delichk);
+
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				result = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+		return result;
+	}
+
+	@Override
+	public boolean insertOrderMenu(int mnum, int onum, int count) {
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.INSERT_ORDERMENU_SQL);
+
+			preparedStatement.setInt(1, mnum);
+			preparedStatement.setInt(2, onum);
+			preparedStatement.setInt(3, count);
+
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				result = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+		return result;
+	}
+
+	@Override
+	public int nowOrderOnum() {
+		int onum = -1;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.NOW_ORDER_ONUM_SQL);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				onum = resultSet.getInt("oNum");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		
+		return onum;
+	}
 }

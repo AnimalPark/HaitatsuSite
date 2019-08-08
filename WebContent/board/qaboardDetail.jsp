@@ -49,12 +49,16 @@ div {
 			<input type="submit" class="btn btn-primary" value="글 수정">
 		</form>
 		<c:if test="${users.authority eq 1}">
-			<a href="ybbs_reply_form.do?qanumber=${ybbs.qanumber}">답변 작성</a>
+			<a href="ybbs_reply_form.do?qanumber=${ybbs.qanumber}">답변 작성</a><br />
 		</c:if>
 			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제</a><br />
-			<a href="ybbs_req_list?reqPage=1">목록으로</a>	<br/>
+			<a href="ybbs_req_list?reqPage=1">목록으로</a>	<br/>	
 	</c:if>
-	<c:if test="${ybbs_id == users.userId}">
+	<c:if test="${ybbs.userid != users.userId && ybbs_id != users.userId }">
+			<div>글 작성자만 읽을 수 있습니다</div>
+			<a href = "ybbs_req_list?reqPage=1">목록으로</a>
+		</c:if>
+	<c:if test="${ybbs_id == users.userId && ybbs.userid != users.userId }">
 			<div>작성자 : ${ybbs.userid}</div>
 			<div>${ybbs.qanumber}</div>
 			<div>${ybbs.qasubject}</div>

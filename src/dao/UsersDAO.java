@@ -14,7 +14,10 @@ public interface UsersDAO
 	Users selectByuNameuPhonenum(String uName, String uPhonenum);
 	Users selectByuserIduNameuPhonenum(String userId, String uName, String uPhonenum);
 	
+	boolean update_pwd(Users users);
 	boolean update(Users users);
 	
 	boolean check_userId(String userId);
+	
+	boolean deleteByUserId(String userId);
 }
