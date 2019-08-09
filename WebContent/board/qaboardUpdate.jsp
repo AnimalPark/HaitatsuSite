@@ -51,6 +51,6 @@ div {
 			<input type="hidden"  name="qanumber" value="${ybbs.qanumber}"/><br />
 			<input type="submit" class="btn btn-primary" value="글 수정">
 		</form>
-			<a href="ybbs_detail?qanumber=${ybbs.qanumber}">글 수정 취소</a>	
+			<a href="ybbs_detail.do?qanumber=${ybbs.qanumber}">글 수정 취소</a>	
 	</body>
 </html>

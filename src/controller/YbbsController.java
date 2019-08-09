@@ -20,7 +20,7 @@ import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
 
-@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_go_to_insert.do","/ybbs_insert","/ybbs_detail","/ybbs_delete","/ybbs_update","/ybbs_reply","/ybbs_reply_form.do",
+@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_go_to_insert.do","/ybbs_insert","/ybbs_detail.do","/ybbs_delete","/ybbs_update","/ybbs_reply.ad","/ybbs_reply_form.ad",
 		"/ybbs_req_list", "/ybbs_goTo_update"})
 
 public class YbbsController extends HttpServlet {
@@ -60,7 +60,7 @@ public class YbbsController extends HttpServlet {
 	
 			resp.sendRedirect("ybbs_req_list?reqPage=1");
 
-		}else if (action.equals("ybbs_detail")) {
+		}else if (action.equals("ybbs_detail.do")) {
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
@@ -100,7 +100,7 @@ public class YbbsController extends HttpServlet {
 
 			resp.sendRedirect("ybbs_req_list?reqPage=1");
 			
-		}  else if (action.equals("ybbs_reply")) {
+		}  else if (action.equals("ybbs_reply.ad")) {
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
 			
@@ -116,7 +116,7 @@ public class YbbsController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
 			rd.forward(req, resp);
 			
-		} else if (action.equals("ybbs_reply_form.do")) {
+		} else if (action.equals("ybbs_reply_form.ad")) {
 			
 			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
 			

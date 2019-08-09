@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h1>글작성</h1>
-	<form action="ybbs_insert" method="post">
+	<form action="ybbs_insert.ad" method="post">
 		<input type="hidden" name="userid" value="${users.userId}"/>
 		<div id='writer'>작성자명 : ${users.userId}</div><br />
 		제목<input type="text" name="qasubject" id="qasubject"><br />

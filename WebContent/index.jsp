@@ -11,6 +11,11 @@
 
 </head>
 <body>
+<c:if test="${warning eq 0}">
+<script type="text/javascript">
+	alert("관리자 계정으로 로그인시에만 가능한 행동입니다.");
+</script>
+</c:if>
 	<c:if test="${users == null}">
 		<a href="login_link">로그인</a>
 		<a href="join_link">회원가입</a>

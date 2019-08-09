@@ -40,7 +40,7 @@ div {
   </ul>
 </nav>
 	<c:if test="${ybbs.userId == users.userId || users.authority == 1}">
-		<form action="ybbs_update" method="post">
+		<form action="ybbs_update.ad" method="post">
 			<div>작성자 :${ybbs.userId}</div>
 			<div>
 				<h1>${ybbs.evNumber}</h1>
@@ -52,7 +52,7 @@ div {
 				<h1>${ybbs.evComment}</h1>
 			</div>
 			<a href="ybbs_event_goTo_update?evNumber=${ybbs.evNumber}">수정하러가기</a><br/>	
-			<a href="ybbs_delete_event?evNumber=${ybbs.evNumber}">글 삭제하기</a><br />
+			<a href="ybbs_delete_event.ad?evNumber=${ybbs.evNumber}">글 삭제하기</a><br />
 			<a href="ybbs_eventList?reqPage=1">뒤로가기</a>	
 		</form>
 	</c:if>

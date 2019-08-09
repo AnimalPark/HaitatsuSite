@@ -49,7 +49,7 @@ div {
 			<input type="submit" class="btn btn-primary" value="글 수정">
 		</form>
 		<c:if test="${users.authority eq 1}">
-			<a href="ybbs_reply_form.do?qanumber=${ybbs.qanumber}">답변 작성</a><br />
+			<a href="ybbs_reply_form.ad?qanumber=${ybbs.qanumber}">답변 작성</a><br />
 		</c:if>
 			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제</a><br />
 			<a href="ybbs_req_list?reqPage=1">목록으로</a>	<br/>	
