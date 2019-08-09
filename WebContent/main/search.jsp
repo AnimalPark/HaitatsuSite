@@ -4,6 +4,26 @@
 <!DOCTYPE html >
 <html>
 <head>
+<style>
+.button {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.button1 {
+	background-color: white;
+	color: black;
+	border: 2px solid #4CAF50;
+}
+</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -55,7 +75,15 @@
 
 	<br />
 	<br />
-
+	<input type="button" class = "button button1" value="한식" onclick="category1()">
+	<input type="button" class = "button button1" value="중식" onclick="category2()">
+	<input type="button" class = "button button1" value="일식" onclick="category3()">
+	<input type="button" class = "button button1" value="피자" onclick="category4()">
+	<input type="button" class = "button button1" value="치킨" onclick="category5()">
+	<input type="button" class = "button button1" value="분식" onclick="category6()">
+	<input type="button" class = "button button1" value="족발" onclick="category7()">
+	<input type="button" class = "button button1" value="간식" onclick="category8()">
+	<br />
 	<form method="post" name="form" action="addr_search?catego=${categ}">
 		<select id="selectCity" name="selectCity"
 			onchange="itemChange(this.form);"></select> <select id="selectTown"
@@ -80,5 +108,40 @@
 			</c:forEach>
 		</table>
 	</c:if>
+
+	<script>
+		function category1() {
+			location.href = "search_link?category=1";
+			return false;
+		}
+		function category2() {
+			location.href = "search_link?category=2";
+			return false;
+		}
+		function category3() {
+			location.href = "search_link?category=3";
+			return false;
+		}
+		function category4() {
+			location.href = "search_link?category=4";
+			return false;
+		}
+		function category5() {
+			location.href = "search_link?category=5";
+			return false;
+		}
+		function category6() {
+			location.href = "search_link?category=6";
+			return false;
+		}
+		function category7() {
+			location.href = "search_link?category=7";
+			return false;
+		}
+		function category8() {
+			location.href = "search_link?category=8";
+			return false;
+		}
+	</script>
 </body>
 </html>

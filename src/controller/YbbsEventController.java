@@ -20,8 +20,8 @@ import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
 
-@WebServlet(name = "YbbsEventController", urlPatterns = { "/ybbs_eventList", "/ybbs_eventDetail.do", "/ybbs_delete_event",
-		"/ybbs_go_to_insert_event.do", "/ybbs_insert_event", "/ybbs_event_update", "/ybbs_event_goTo_update" })
+@WebServlet(name = "YbbsEventController", urlPatterns = { "/ybbs_eventList", "/ybbs_eventDetail.do", "/ybbs_delete_event.ad",
+		"/ybbs_go_to_insert_event.ad", "/ybbs_insert_event.ad", "/ybbs_event_update.ad", "/ybbs_event_goTo_update.ad" })
 
 public class YbbsEventController extends HttpServlet {
 
@@ -43,12 +43,12 @@ public class YbbsEventController extends HttpServlet {
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
 
-		if (action.equals("ybbs_go_to_insert_event.do")) {
+		if (action.equals("ybbs_go_to_insert_event.ad")) {
 
 			RequestDispatcher rd = req.getRequestDispatcher("board/eventWritting.jsp");
 			rd.forward(req, resp);
 
-		} else if (action.equals("ybbs_insert_event")) {
+		} else if (action.equals("ybbs_insert_event.ad")) {
 
 			Ybbs_Event ybbs = new Ybbs_Event();
 			ybbs.setEvSubject(req.getParameter("evSubject"));
@@ -93,7 +93,7 @@ public class YbbsEventController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("board/eventboardDetail.jsp");
 			rd.forward(req, resp);
 
-		} else if (action.equals("ybbs_delete_event")) {
+		} else if (action.equals("ybbs_delete_event.ad")) {
 
 			Ybbs_EventDAO dao = new Ybbs_EventDAOImpl();
 			Ybbs_Event ybbs = new Ybbs_Event();
@@ -105,7 +105,7 @@ public class YbbsEventController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_eventList?reqPage=1");
 			rd.forward(req, resp);
 
-		} else if (action.equals("ybbs_event_update")) {
+		} else if (action.equals("ybbs_event_update.ad")) {
 
 			Ybbs_Event ybbs = new Ybbs_Event();
 
@@ -118,7 +118,7 @@ public class YbbsEventController extends HttpServlet {
 			
 			resp.sendRedirect("ybbs_eventList?reqPage=1");
 
-		} else if (action.equals("ybbs_event_goTo_update")) {
+		} else if (action.equals("ybbs_event_goTo_update.ad")) {
 
 			Ybbs_Event ybbs = new Ybbs_Event();
 			int evNumber = Integer.parseInt(req.getParameter("evNumber"));
