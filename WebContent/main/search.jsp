@@ -27,10 +27,10 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-	var citylist = new Array('영등포구', '동해시');
+	var citylist = new Array('만안구', '동안구');
 	var townlist = new Array();
-	townlist[0] = new Array('영신로');
-	townlist[1] = new Array('천곡동');
+	townlist[0] = new Array('안양1동','안양2동','안양3동');
+	townlist[1] = new Array('호계동','비산동');
 
 	function init(f) {
 		var city_sel = f.selectCity;

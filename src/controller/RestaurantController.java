@@ -20,7 +20,7 @@ import model.Restaurant;
 
 @WebServlet(name = "RestaurantController", urlPatterns = { "/admin_rtrt_list", "/admin_rtrt_search",
 		"/admin_rtrt_detail", "/admin_rtrt_update", "/admin_rtrt_delete", "/admin_rtrt_save", "/admin_rtrt_insert",
-		"/restaurant_add"})
+		"/restaurant_add", "/admin_rtrt_mdf"})
 public class RestaurantController extends HttpServlet {
 
 	@Override
@@ -57,8 +57,9 @@ public class RestaurantController extends HttpServlet {
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			String rName = req.getParameter("rName");
 			List<Restaurant> restaurant = dao.selectByName(rName);
-
+			System.out.println(rName);
 			req.setAttribute("restaurant", restaurant);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("admin_rtrt_list");
 			rd.forward(req, resp);
 
@@ -132,7 +133,21 @@ public class RestaurantController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_form.jsp");
 			rd.forward(req, resp);
 
-		} 
+		}  else if (action.equals("admin_rtrt_mdf")) {
+			
+			int rnum = Integer.parseInt(req.getParameter("rNum"));
+			RestaurantDAO dao = new RestaurantDAOImpl();
+			MenuDAOImpl impl = new MenuDAOImpl();
+			Restaurant restaurant = dao.selectByNum(rnum);
+			List<Menu> menus = impl.menuDetailSelectByRnum(rnum);
+		
+			req.setAttribute("restaurant", restaurant);
+			req.setAttribute("menulist", menus);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_modify.jsp");
+			rd.forward(req, resp);
+
+		}
 		
 
 	}
