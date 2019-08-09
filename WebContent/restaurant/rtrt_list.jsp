@@ -13,7 +13,7 @@
 	</c:if>
 		<h3>Restaurant List</h3>
 	
-		<form action="admin_rtrt_search"method="post">
+		<form action="admin_rtrt_search"method="get">
 			<input type="text" name="rName" placeholder="가게 이름 검색...">
 			<input type="submit" value="검색">
 		</form>
