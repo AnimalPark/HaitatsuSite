@@ -13,6 +13,7 @@ public interface UsersDAO
 	Users selectByUserIdPwd(String userId, String uPwd);
 	Users selectByuNameuPhonenum(String uName, String uPhonenum);
 	Users selectByuserIduNameuPhonenum(String userId, String uName, String uPhonenum);
+	int selectAuthorityByUserId(String userId);
 	
 	boolean update_pwd(Users users);
 	boolean update(Users users);
@@ -22,4 +23,6 @@ public interface UsersDAO
 	boolean deleteByUserId(String userId);
 	
 	boolean confirmuPwd(String userId, String uPwd);
+	
+	
 }

@@ -76,12 +76,14 @@ public class UsersController extends HttpServlet
 			
 			UsersDAO dao = new UsersDAOImpl();
 			Users users = dao.selectByUserIdPwd(userId, uPwd);
+			int auth = dao.selectAuthorityByUserId(userId);
 			
 			if(users != null)
 			{
 				HttpSession session = req.getSession();
 				session.setAttribute("users", users);
-				
+				session.setAttribute("auth", auth);
+			
 				RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 				rd.forward(req, resp);
 			}

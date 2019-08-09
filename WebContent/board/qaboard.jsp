@@ -58,10 +58,10 @@ p{
 			<tr>
 				<td>${ybbsList.qanumber}</td>
 				<c:if test="${ybbsList.qalevel eq 0}">
-					<td><a href="ybbs_detail?qanumber=${ybbsList.qanumber}">${ybbsList.qasubject}</a></td>
+					<td><a href="ybbs_detail.do?qanumber=${ybbsList.qanumber}">${ybbsList.qasubject}</a></td>
 				</c:if>
 				<c:if test="${ybbsList.qalevel eq 1}">
-					<td><a href="ybbs_detail?qanumber=${ybbsList.qanumber}">└&nbsp;${ybbsList.qasubject}</a></td>
+					<td><a href="ybbs_detail.do?qanumber=${ybbsList.qanumber}">└&nbsp;${ybbsList.qasubject}</a></td>
 				</c:if>
 				<td>${ybbsList.userid}</td>
 				<td>${ybbsList.qadate}</td>

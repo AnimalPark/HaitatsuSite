@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -21,19 +22,25 @@ public class AdminCheckFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpSession session = request.getSession(false);
-
-		boolean login = false;
+		int auth = (int) session.getAttribute("auth");
+		boolean authority = false;
 
 		if (session != null) {
-			if (session.getAttribute("users") != null) {
-				login = true;
+			
+			if (auth == 1) {
+					authority = true;
 			}
 		}
 
-		if (login) {
+		if (authority == true || auth != 0) {
 			chain.doFilter(req, res);
 		} else {
-			((HttpServletResponse) res).sendRedirect("/HaitatsuSite/user_join");
+			
+			int warning = 0;
+			req.setAttribute("warning", warning);
+			
+			RequestDispatcher rd  = ((HttpServletRequest) req).getRequestDispatcher("index.jsp");
+			rd.forward(req, ((HttpServletResponse) res));
 		}
 	}
 }

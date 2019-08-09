@@ -60,7 +60,7 @@ a:hover {text-d"WebContent/board/eventboard.jsp"ecoration: underline; color: red
 		</tbody>
 	</table>
 	<c:if test="${users.authority eq 1}">
-		<a href="ybbs_go_to_insert_event.do">글쓰러가기♥</a>
+		<a href="ybbs_go_to_insert_event.ad">글쓰러가기♥</a>
 	</c:if>
 	<div class="container">
  	 	<ul class="pagination">

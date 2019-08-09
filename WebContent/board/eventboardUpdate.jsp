@@ -44,7 +44,7 @@ div {
 	</c:if>
   </ul>
 </nav>
-		<form action="ybbs_event_update" method="post">
+		<form action="ybbs_event_update.ad" method="post">
 			<div>작성자 :${ybbs.userId}</div>
 			<input type="hidden"  name="evNumber" value="${ybbs.evNumber}"/><br />
 			<input type="text"  name="evSubject" value="${ybbs.evSubject}" class="mybox"/><br />

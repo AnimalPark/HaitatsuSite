@@ -57,10 +57,9 @@ public class RestaurantController extends HttpServlet {
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			String rName = req.getParameter("rName");
 			List<Restaurant> restaurant = dao.selectByName(rName);
-			System.out.println(rName);
 			req.setAttribute("restaurant", restaurant);
-			
-			RequestDispatcher rd = req.getRequestDispatcher("admin_rtrt_list");
+
+			RequestDispatcher rd = req.getRequestDispatcher("/restaurant/rtrt_list.jsp");
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_rtrt_detail")) {
@@ -108,8 +107,8 @@ public class RestaurantController extends HttpServlet {
 			restaurant.setrAddr(req.getParameter("rAddr"));
 
 			boolean result = dao.updateRestaurant(restaurant);
-
-			RequestDispatcher rd = req.getRequestDispatcher("admin_rtrt_list");
+			int rNum = Integer.parseInt(req.getParameter("rNum"));
+			RequestDispatcher rd = req.getRequestDispatcher("admin_rtrt_detail?rNum="+rNum);
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_rtrt_delete")) {

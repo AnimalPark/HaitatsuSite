@@ -36,7 +36,7 @@ body{
   </ul>
 </nav>
 	<h1>댓글작성</h1><br/>
-	<form action="ybbs_reply" method="post">
+	<form action="ybbs_reply.ad" method="post">
 		<div><h3>작성자: ${users.userId}</h3></div><br />
 		<input type="hidden" name="userid" id="userid" value="${users.userId}"><br />
 		<input type="hidden" name="qagroup" id="qagroup" value="${num}" /><br />
