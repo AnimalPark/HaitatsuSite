@@ -42,10 +42,7 @@
 
 					var menu_num = $("#order_menu").val();
 					var menu_cnt = $("#order_cnt").val();
-					
-					var url = "ordermenu_add";
-					$.get(url, {"num" : menu_num , "cnt" : menu_cnt}, function(){
-						location.href = "return_detail"; 
+					location.href = "return_detail?"; 
 						return false;
 				});
 			};

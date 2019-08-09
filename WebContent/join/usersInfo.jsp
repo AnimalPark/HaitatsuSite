@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
+
 	function validation()
 	{
 	    //이름 입력여부 체크
@@ -56,12 +57,14 @@
 	{
 		if(confirm("정말 탈퇴하시겠습니까?") == true)
 		{
-			alert("정상적으로 탈퇴되었습니다.");
-			document.form.submit();
+			location.href = "users_delete?userId=${users.userId}"; 
+			return false;
 		}
 		else
 		{
-			return;
+			alert("정상적으로 탈퇴가 안됨."); 
+			location.href = "home_link"; 
+			return false; 
 		}
 	}
 	
@@ -108,7 +111,7 @@
 	                guideTextBox.style.display = 'block';
 	            }
 	        }
-	    }).open();
+	    }).open();	    
 	}
 </script>
 
@@ -131,6 +134,8 @@
 
 		</form>
 	</div>
-	<a href="users_delete?userId=${users.userId}" onclick="delete_check();">탈퇴하기</a>
+	<button onclick="delete_check();">탈퇴하기</button> 	
+	<%-- <a href="users_delete?userId=${users.userId}" onclick="delete_check();">탈퇴하기</a> --%>
+	
 </body>
 </html>

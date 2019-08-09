@@ -214,8 +214,9 @@ public class UsersController extends HttpServlet
 		}
 		else if(action.equals("users_delete"))
 		{
+			System.out.println("test");
 			String userId = req.getParameter("userId");
-			
+			System.out.println(userId);
 			UsersDAO dao = new UsersDAOImpl();
 			boolean result = dao.deleteByUserId(userId);
 			
