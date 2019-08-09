@@ -71,6 +71,57 @@
 		});
 	});
 </script>
+<script>
+	function getRecentDate() {
+		var dt = new Date();
+
+		var recentYear = dt.getFullYear();
+		var recentMonth = dt.getMonth() + 1;
+		var recentDay = dt.getDate();
+		var recentHour = dt.getHours();
+		var recentMinute = dt.getMinutes();
+		var recentSecond = dt.getSeconds();
+
+		if (recentMonth < 10)
+			recentMonth = "0" + recentMonth;
+		if (recentDay < 10)
+			recentDay = "0" + recentDay;
+		if (recentHour < 10)
+			recentHour = "0" + recentHour;
+		if (recentMinute < 10)
+			recentMinute = "0" + recentMinute;
+		if (recentSecond < 10)
+			recentSecond = "0" + recentSecond;
+
+		return recentYear + "-" + recentMonth + "-" + recentDay + " "
+				+ recentHour + ":" + recentMinute + ":" + recentSecond;
+	}
+	$(function() {
+		$("#save")
+				.click(
+						function() {
+							commentform();
+
+							function commentform() {
+								var recent = getRecentDate();
+								var u = $("input:eq(0)").val();
+								var c = $("textarea:eq(0)").val();
+
+								var remove = '<input type="button" name="rev" value="삭제하기" class = "delete_btn"/>';
+								var list = $("<strong>").html(
+										u + " / " + recent + " " + remove
+												+ "<br />" + c + "<hr />");
+
+								$("ul").append(list);
+							}
+							;
+
+							$(document).on("click", ".delete_btn", function() {
+								$(this).parent("strong").remove();
+							});
+						});
+	});
+</script>
 <meta charset="utf-8">
 
 </head>
@@ -88,27 +139,30 @@
 		<hr />
 
 		<div
-			style="width: 500px; height: 500px;  float: left; margin-right: 10px;">
+			style="width: 500px; height: 500px; float: left; margin-right: 10px;">
+			<input type="button" value="메뉴" class="btn btn-secondary"
+				id="change1"> <input type="button" value="댓글"
+				class="btn btn-primary" id="change2">
 
-			<input type="button" value="메뉴" class="btn btn-primary" id="change1">
-			<input type="button" value="댓글" class="btn btn-secondary"
-				id="change2">
 
-
-			<p>메 뉴 리 스 트</p>
-			<c:if test="${!empty lists}">
-				<c:forEach var="list" items="${lists}">
-					<span>${list.mNum}</span>
-					<span>${list.rNum}</span>
-					<a href="order_confirm?mnum=${list.mNum}">${list.mName}</a>
-					<span>${list.mPrice}</span>
-					<span>${list.mSales}</span>
-					<br />
-				</c:forEach>
-			</c:if>
+			<div class="container mt-3">
+				<h3>후기 남기기</h3>
+			</div>
+			<div class="container mt-3">
+				<label for="user">작성자:</label> <input type="text" id="user" /> <input
+					type="button" id="save" value="저장하기" />
+			</div>
+			<div class="container mt-3">
+				<label for="commenttext">덧글 내용:</label> <br />
+				<textarea id="comment" cols="60" rows="6"></textarea>
+			</div>
+			<div class="container mt-3">
+				<ul></ul>
+			</div>
 		</div>
 		<div
-			style="width: 500px; height: 500px;  float: left;">
+			style="width: 500px; height: 500px; float: left;">
+
 			<c:if test="${!empty order_lists}">
 				<p>=============장바구니============</p>
 				<c:forEach var="o_list" items="${order_lists}">
@@ -127,5 +181,6 @@
 			</c:if>
 		</div>
 	</div>
+
 </body>
 </html>

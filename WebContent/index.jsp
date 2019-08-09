@@ -11,7 +11,7 @@
 	background-color: #008CBA;
 	border: none;
 	color: white;
-	padding: 60px 60px;
+	padding: 70px 70px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
