@@ -153,10 +153,11 @@ public class MainController extends HttpServlet {
 			HttpSession session = req.getSession();
 			ArrayList<Selected_menu> order_lists = (ArrayList<Selected_menu>) session.getAttribute("order_lists");
 			int price = 0;
-			
+			MenuDAOImpl impl = new MenuDAOImpl();
 			for (int i = 0; i < order_lists.size(); i++) {
 				if (menuNum == order_lists.get(i).getmNum()) {
 					order_lists.get(i).setCount(order_lists.get(i).getCount() + menuCnt);
+					order_lists.get(i).setPrice(order_lists.get(i).getCount()*impl.priceOfMenu(menuNum));
 					cnt_plus_chk = true;
 					break;
 				}
@@ -164,7 +165,7 @@ public class MainController extends HttpServlet {
 			if(cnt_plus_chk)
 				;
 			else {
-				MenuDAOImpl impl = new MenuDAOImpl();
+				
 				m.setPrice(menuCnt*impl.priceOfMenu(menuNum));
 				m.setmName(impl.MnumToMname(menuNum));
 				m.setmNum(menuNum);
