@@ -34,7 +34,9 @@
 	<a href = "search_link?category=6">분식</a>
 	<a href = "search_link?category=7">족발</a>
 	<a href = "search_link?category=8">간식</a>
-	
+	<c:if test="${users.authority eq 1}">
 	<a href = "admin_home_link">관리자 모드로 가기</a>
+	</c:if>
+	<a href = "admin_home_link">비로그인</a>
 </body>
 </html>

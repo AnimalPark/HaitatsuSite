@@ -323,4 +323,37 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO
 		return result;
 	}
 
+	@Override
+	public boolean confirmuPwd(String userId, String uPwd)
+	{
+		boolean result = false;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try
+		{
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(USERS_SELECT_BY_USERID_PWD_SQL);
+			preparedStatement.setString(1, userId);
+			preparedStatement.setString(2, uPwd);
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next())
+			{
+				result= true;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		return result;
+	}
+
 }

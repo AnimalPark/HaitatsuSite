@@ -22,8 +22,8 @@ import page.PageManager;
 import sql.Sql;
 
 @WebServlet(name = "UsersController", urlPatterns = {"/user_join", "/user_login", "/user_logout", "/find_userId", "/findId_link",
-		"/findPwd_link", "/find_uPwd", "/change_uPwd","/id_check", "/orderList_link", "/usersInfo_link", "/changewPwd_mp_link",
-		"/users_delete", "/users_update"})
+		"/findPwd_link", "/find_uPwd", "/change_uPwd","/id_check", "/orderList_link", "/usersInfo_link","/users_delete",
+		"/users_update", "/update_link", "/updateuPwd_link", "/delete_link", "/check_uPwd_update"})
 
 public class UsersController extends HttpServlet
 {
@@ -207,22 +207,20 @@ public class UsersController extends HttpServlet
 			RequestDispatcher rd = req.getRequestDispatcher("join/usersInfo.jsp");
 			rd.forward(req, resp);
 		}
-		else if (action.equals("changewPwd_mp_link")) {
-			
-			RequestDispatcher rd = req.getRequestDispatcher("join/changeuPwd_mp.jsp");
-			rd.forward(req, resp);
-		}
 		else if(action.equals("users_delete"))
 		{
 			System.out.println("test");
 			String userId = req.getParameter("userId");
 			System.out.println(userId);
 			UsersDAO dao = new UsersDAOImpl();
-			boolean result = dao.deleteByUserId(userId);
+			Ybbs_QADAO dao1 = new Ybbs_QADAOImpl();
 			
+			List<Integer> gNum = dao1.selectById(userId);
+			dao1.deleteByGroup(gNum);
+			boolean result = dao.deleteByUserId(userId);
+		
 			HttpSession session = req.getSession();
 			session.removeAttribute("users");
-			
 			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 			rd.forward(req, resp);	
 		}
@@ -240,7 +238,39 @@ public class UsersController extends HttpServlet
 			UsersDAO dao = new UsersDAOImpl();
 			boolean result = dao.update(users);
 			
+			HttpSession session = req.getSession();
+			session.setAttribute("users", users);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("join/myPage.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("update_link"))
+		{	
+			RequestDispatcher rd = req.getRequestDispatcher("join/checkuPwd_update.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("updateuPwd_link"))
+		{	
+			RequestDispatcher rd = req.getRequestDispatcher("join/checkuPwd_updateuPwd.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("delete_link"))
+		{	
+			RequestDispatcher rd = req.getRequestDispatcher("join/checkuPwd_delete.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("check_uPwd_update"))
+		{	
+			UsersDAO dao = new UsersDAOImpl();
+			
+			String userId = req.getParameter("userId");
+			String uPwd = req.getParameter("uPwd");
+			
+			boolean result = dao.confirmuPwd(userId, uPwd);
+			
+			req.setAttribute("result", result);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("join/usersInfo.jsp");
 			rd.forward(req, resp);
 		}
 	}
