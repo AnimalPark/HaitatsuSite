@@ -8,21 +8,19 @@
 		<title>Restaurant Detail</title>
 	</head>
 	<body>
+		<button type="button" onclick="location.href='index.jsp'" >처음으로</button>
+		
 			<h4>상세보기</h4>
-			<form action="admin_rtrt_update" method="post">
-			   	가게고유번호<input type="text" name="rNum" value= "${restaurant.rNum}"/><br />
-				가게이름 <input type="text"  name="rName" value="${restaurant.rName}"/><br />
-				전화번호 <input type="text"  name="rPhoneNum" value= "${restaurant.rPhoneNum}"/><br />
-				카테고리 <input type="text"  name="cNum" value= "${restaurant.cNum}"/><br />
-				동네번호 <input type="text"  name="townNum" value= "${restaurant.townNum}"/><br />
-				평균별점 <input type="text"  name="starAvg" value= "${restaurant.starAvg}"/><br />
-				주소 <input type="text"  name="rAddr" value= "${restaurant.rAddr}"/><br />
+			  	가게이름 : ${restaurant.rName}<br />
+				전화번호 : ${restaurant.rPhoneNum}<br />
+				주소 : ${restaurant.rAddr}<br />
 			<c:if test="${users.authority eq 1}">
-				 <input type="submit" class="btn btn-primary" value="수정"/>
-				<button type="button" onclick="location.href='admin_rtrt_delete?rNum=${restaurant.rNum}'" >가게 정보 삭제</button>
+				<button type="button" onclick="location.href='admin_rtrt_mdf?rNum=${restaurant.rNum}'" >가게 정보 수정</button>
+				<button type="button" onclick="location.href='admin_rtrt_delete?rNum=${restaurant.rNum}'" >가게 삭제</button><br />
 			</c:if>
-			</form>
-		<a href="index.jsp">처음으로 돌아가기</a>
+			
+		
+		<hr />
 		<c:if test="${users.authority eq 1}">
 		<button type="button" onclick="location.href='menu_add?rNum=${restaurant.rNum}'" >메뉴추가</button>
 		</c:if>
