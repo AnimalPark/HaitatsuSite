@@ -52,8 +52,11 @@ public class Sql {
 					"FROM USERORDER " + 
 					"ORDER BY ONUM DESC) " + 
 			"WHERE ROWNUM = 1";
-	
-	
+	public static final String INSERT_COMMENT_SQL = "INSERT INTO COMMENTS VALUES(SEQ_COMMENT.NEXTVAL, ?, ?, ?, ?, SYSDATE)";
+	public static final String COMMENTS_SELECT_BY_RNUM_SQL = "SELECT * FROM COMMENTS WHERE RNUM = ? ORDER BY COMMADDR";
+	public static final String COMMENTS_GET_CURRVAL_SQL = "SELECT SEQ_COMMENT.CURRVAL AS COMMNUM FROM DUAL";
+	public static final String COMMENTS_SELECT_BY_COMMNUM_SQL = "SELECT * FROM COMMENTS WHERE COMMNUM = ?";
+	public static final String DELETE_COMMENT_SQL = "DELETE FROM COMMENTS WHERE COMMNUM = ?";
 	//==========================È²È£¿µ Sql¡é=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
 	public static final String RESTAURANT_SELECT_BY_NAME_SQL = "SELECT * FROM restaurant WHERE rName like ?";

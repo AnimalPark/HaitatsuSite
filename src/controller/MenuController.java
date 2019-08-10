@@ -9,16 +9,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.MenuDAO;
 import dao.MenuDAOImpl;
 import dao.RestaurantDAO;
 import dao.RestaurantDAOImpl;
+import model.Comments;
 import model.Menu;
 import model.Restaurant;
 
 @WebServlet(name = "MenuController", urlPatterns = { "/admin_menu_list", "/admin_menu_detail", "/admin_menu_insert",
-		"/admin_menu_update", "/admin_menu_delete", "/menu_add", "/menu_mode", "/comment_mode" })
+		"/admin_menu_update", "/admin_menu_delete", "/menu_add", "/menu_mode", "/comment_mode", "/comment_add","/comment_list","/deleteComment" })
 public class MenuController extends HttpServlet {
 
 	@Override
@@ -132,6 +134,55 @@ public class MenuController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("main/restaurant_detail2.jsp");
 			rd.forward(req, resp);
 
+		}
+		else if (action.equals("comment_add")) {
+			MenuDAOImpl mimpl = new MenuDAOImpl();
+			Comments comment = new Comments();
+			Comments resultByComment = null;
+			
+			comment.setRnum(Integer.parseInt(req.getParameter("rn")));
+			comment.setUserid(req.getParameter("userid"));
+			comment.setCommcontents(req.getParameter("comment"));
+
+			
+			resultByComment = mimpl.insert(comment);
+		
+
+			if(resultByComment != null) {
+				req.setAttribute("result", true);
+				req.setAttribute("message", "댓글추가 성공");
+				System.out.println("--"+resultByComment.toString()+"--");
+			}
+			else {
+				req.setAttribute("result", false);
+				req.setAttribute("message", "댓글추가 실패");
+			}
+			
+			req.setAttribute("recentComment", resultByComment);
+			RequestDispatcher rd = req.getRequestDispatcher("main/commentitem.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("comment_list")) {
+			MenuDAOImpl Mimpl = new MenuDAOImpl();
+			
+			HttpSession session = req.getSession();
+			Restaurant r = (Restaurant) session.getAttribute("detailR");
+			System.out.println(r.getrNum());
+			List<Comments> comments= Mimpl.selectByRnumComments(r.getrNum());
+	
+			req.setAttribute("comments", comments);
+
+			RequestDispatcher rd = req.getRequestDispatcher("main/commentlist.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("deleteComment")) {
+			MenuDAOImpl Mimpl = new MenuDAOImpl();
+			int chk = Integer.parseInt(req.getParameter("commnum"));
+			System.out.println("확인용 : " + chk);
+			Mimpl.delete(Integer.parseInt(req.getParameter("commnum")));
+
+			RequestDispatcher rd = req.getRequestDispatcher("comment_mode");
+			rd.forward(req, resp);
 		}
 
 	}

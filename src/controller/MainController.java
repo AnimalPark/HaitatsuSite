@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.MenuDAOImpl;
 import model.City;
+import model.Comments;
 import model.Menu;
 import model.Restaurant;
 import model.Selected_menu;
@@ -122,12 +123,14 @@ public class MainController extends HttpServlet {
 			
 			List<Selected_menu> order_lists = new ArrayList<Selected_menu>();
 			List<Menu> lists = Mimpl.menuSelectByRnum(rno);
+			List<Comments> comments_list = Mimpl.selectByRnumComments(rno);
 			r = Mimpl.selectByRnum(rno);
 			
 			HttpSession session = req.getSession();
 			session.setAttribute("detailR", r);
 			session.setAttribute("lists", lists);
 			session.setAttribute("order_lists", order_lists);
+			session.setAttribute("comments_list", comments_list);
 
 			RequestDispatcher rd = req.getRequestDispatcher("main/restaurant_detail.jsp");
 			rd.forward(req, resp);

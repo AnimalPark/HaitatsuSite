@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
@@ -16,6 +17,108 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script type="text/x-jquery-tmpl" id="itemTemplate">
+	<ul data_num = "\${commnum}" class = "comment_item">
+		<li>작성자: 
+			<span class="writer_user">\${userid}</span>
+		</li>
+		<li>내용: 
+			<span class="contents">\${commcontents}</span>
+		</li>
+		<li>날짜: 
+			<span class="date">\${star}</span>
+		</li>
+		<li>평점: 
+			<span class="date">\${commaddr}</span>
+		</li>
+		<li>
+			<input type="button" value="삭제" class = "delete_btn" />
+		</li>
+	<hr />
+	</ul>
+	</script>
+<script type="text/javascript">
+	function addNewItem(commnum, userid, commcontents, star, commaddr) {
+		var li_data = {
+			"commnum" : commnum,
+			"userid" : userid,
+			"commcontents" : commcontents,
+			"star" : star,
+			"commaddr" : commaddr
+		};
+		var new_li = $("#itemTemplate").tmpl(li_data);
+		$("#comment_list").prepend(new_li);
+	}
+
+	$(function() {
+		$.get("comment_list", {}, function(data) {
+			$(data).find("comment").each(function() {
+				var commnum = $(this).find("commnum").text();
+				var userid = $(this).find("userid").text();
+				var commcontents = $(this).find("commcontents").text();
+				var star = $(this).find("star").text();
+				var commaddr = $(this).find("commaddr").text();
+
+				addNewItem(commnum, userid, commcontents, star, commaddr);
+			});
+		}).fail(function() {
+			alert("덧글 목록을 불러오는데 실패하였습니다. 잠시후에 다시 시도해 주십시오.")
+		});
+
+		$("#comment_form").submit(function() {
+			if (!$("#user_name").val()) {
+				alert("입력하세요");
+				return false;
+			}
+
+			if (!$("#comment").val()) {
+				alert("내용을 입력하세요");
+				return false;
+			}
+
+			$.post("comment_add", $(this).serialize(), function(xml) {
+				var result = $(xml).find("result").text();
+				var message = $(xml).find("message").text();
+
+				if (result) {
+					alert(message);
+					var commnum = $(xml).find("commnum").text();
+					var userid = $(xml).find("userid").text();
+					var commcontents = $(xml).find("commcontents").text();
+					var star = $(xml).find("star").text();
+					var commaddr = $(xml).find("commaddr").text();
+
+					addNewItem(commnum, userid, commcontents, star, commaddr);
+
+					$("#comment").val("");
+				} else {
+					alert(message);
+				}
+			}).fail(function() {
+				alert("실패");
+			});
+			return false
+		});
+
+		$(document).on('click', '.delete_btn', function() {
+			if (confirm("정말로 선택하신 댓글을 삭제하시겠습니까?")) {
+				var num = $(this).parent().parent().attr("data_num");
+				var target = $(this).parents(".comment_item");//$(this).find("num").text();
+				target.remove();
+
+				$.post("deleteComment", {
+					"commnum" : num
+				}, function(xml) {
+
+				}).fail(function() {
+					alert("삭제 실패");
+				});
+			}
+		});
+	});
+</script>
 <script>
 	$(function() {
 		$("#order_click1").click(function() {
@@ -71,63 +174,21 @@
 		});
 	});
 </script>
-<script>
-	function getRecentDate() {
-		var dt = new Date();
 
-		var recentYear = dt.getFullYear();
-		var recentMonth = dt.getMonth() + 1;
-		var recentDay = dt.getDate();
-		var recentHour = dt.getHours();
-		var recentMinute = dt.getMinutes();
-		var recentSecond = dt.getSeconds();
-
-		if (recentMonth < 10)
-			recentMonth = "0" + recentMonth;
-		if (recentDay < 10)
-			recentDay = "0" + recentDay;
-		if (recentHour < 10)
-			recentHour = "0" + recentHour;
-		if (recentMinute < 10)
-			recentMinute = "0" + recentMinute;
-		if (recentSecond < 10)
-			recentSecond = "0" + recentSecond;
-
-		return recentYear + "-" + recentMonth + "-" + recentDay + " "
-				+ recentHour + ":" + recentMinute + ":" + recentSecond;
-	}
-	$(function() {
-		$("#save")
-				.click(
-						function() {
-							commentform();
-
-							function commentform() {
-								var recent = getRecentDate();
-								var u = $("input:eq(0)").val();
-								var c = $("textarea:eq(0)").val();
-
-								var remove = '<input type="button" name="rev" value="삭제하기" class = "delete_btn"/>';
-								var list = $("<strong>").html(
-										u + " / " + recent + " " + remove
-												+ "<br />" + c + "<hr />");
-
-								$("ul").append(list);
-							}
-							;
-
-							$(document).on("click", ".delete_btn", function() {
-								$(this).parent("strong").remove();
-							});
-						});
-	});
-</script>
 <meta charset="utf-8">
 
 </head>
 <body>
-	<a href="login_link">로그인</a>
-	<a href="sign_link">회원가입</a>
+	<c:if test="${users == null}">
+		<a href="login_link">로그인</a>
+		<a href="join_link">회원가입</a>
+	</c:if>
+	<c:if test="${users != null}">
+		<form action="user_logout">
+			<a href="logout_link">로그아웃</a>
+		</form>
+		<a href="myPage_link">마이페이지</a>
+	</c:if>
 	<a href="home_link">홈화면</a>
 	<a href="qa_board_link">Q/A 게시판</a>
 	<a href="ybbs_eventlist">이벤트 게시판</a>
@@ -148,20 +209,22 @@
 			<div class="container mt-3">
 				<h3>후기 남기기</h3>
 			</div>
-			<div class="container mt-3">
-				<label for="user">작성자:</label> <input type="text" id="user" /> <input
-					type="button" id="save" value="저장하기" />
-			</div>
-			<div class="container mt-3">
-				<label for="commenttext">덧글 내용:</label> <br />
-				<textarea id="comment" cols="60" rows="6"></textarea>
-			</div>
-			<div class="container mt-3">
-				<ul></ul>
-			</div>
+
+			<form id="comment_form">
+				<input type="hidden" name="rn" id="rn"
+					value="${detailR.rNum}" /> <input type="hidden" name="userid"
+					id="userid" value="${users.userId}" /> <label for="user_name">작성자</label>
+				<input type="text" name="user_name" id="user_name"
+					value="${users.userId}" disabled="disabled" /> <input
+					type="submit" value="저장하기" /> <br /> <br /> <label for="comment">덧글
+					내용</label>
+				<textarea name="comment" id="comment"></textarea>
+			</form>
+			<ul id="comment_list">
+				<!-- 여기에 동적 생성 요소가 들어가게 됩니다. -->
+			</ul>
 		</div>
-		<div
-			style="width: 500px; height: 500px; float: left;">
+		<div style="width: 500px; height: 500px; float: left;">
 
 			<c:if test="${!empty order_lists}">
 				<p>=============장바구니============</p>

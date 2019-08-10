@@ -29,8 +29,8 @@
 <script type="text/javascript">
 	var citylist = new Array('만안구', '동안구');
 	var townlist = new Array();
-	townlist[0] = new Array('안양1동','안양2동','안양3동');
-	townlist[1] = new Array('호계동','비산동');
+	townlist[0] = new Array('안양1동', '안양2동', '안양3동');
+	townlist[1] = new Array('호계동', '비산동');
 
 	function init(f) {
 		var city_sel = f.selectCity;
@@ -67,22 +67,39 @@
 </head>
 <body onload="init(this.form);">
 
-	<a href="login_link">로그인</a>
-	<a href="sign_link">회원가입</a>
+	<c:if test="${users == null}">
+		<a href="login_link">로그인</a>
+		<a href="join_link">회원가입</a>
+	</c:if>
+	<c:if test="${users != null}">
+		<form action="user_logout">
+			<a href="logout_link">로그아웃</a>
+		</form>
+		<a href="myPage_link">마이페이지</a>
+	</c:if>
+
 	<a href="home_link">홈화면</a>
 	<a href="qa_board_link">Q/A 게시판</a>
 	<a href="ybbs_eventlist">이벤트 게시판</a>
 
 	<br />
 	<br />
-	<input type="button" class = "button button1" value="한식" onclick="category1()">
-	<input type="button" class = "button button1" value="중식" onclick="category2()">
-	<input type="button" class = "button button1" value="일식" onclick="category3()">
-	<input type="button" class = "button button1" value="피자" onclick="category4()">
-	<input type="button" class = "button button1" value="치킨" onclick="category5()">
-	<input type="button" class = "button button1" value="분식" onclick="category6()">
-	<input type="button" class = "button button1" value="족발" onclick="category7()">
-	<input type="button" class = "button button1" value="간식" onclick="category8()">
+	<input type="button" class="button button1" value="한식"
+		onclick="category1()">
+	<input type="button" class="button button1" value="중식"
+		onclick="category2()">
+	<input type="button" class="button button1" value="일식"
+		onclick="category3()">
+	<input type="button" class="button button1" value="피자"
+		onclick="category4()">
+	<input type="button" class="button button1" value="치킨"
+		onclick="category5()">
+	<input type="button" class="button button1" value="분식"
+		onclick="category6()">
+	<input type="button" class="button button1" value="족발"
+		onclick="category7()">
+	<input type="button" class="button button1" value="간식"
+		onclick="category8()">
 	<br />
 	<form method="post" name="form" action="addr_search?catego=${categ}">
 		<select id="selectCity" name="selectCity"
