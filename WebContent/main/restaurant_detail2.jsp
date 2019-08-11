@@ -20,33 +20,35 @@
 <script type="text/javascript"
 	src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 <script type="text/x-jquery-tmpl" id="itemTemplate">
-	<ul data_num = "\${commnum}" class = "comment_item">
-		<li>작성자: 
-			<span class="writer_user">\${userid}</span>
-		</li>
-		<li>내용: 
-			<span class="contents">\${commcontents}</span>
-		</li>
-		<li>날짜: 
-			<span class="date">\${star}</span>
+	<ul data_num = "{{= commnum}}" class = "comment_item">
+		<li> 작성자: <span class="writer_user">{{= userid}}</span>
+		작성 시간: <span class="date">{{= commaddr}}</span>
 		</li>
 		<li>평점: 
-			<span class="date">\${commaddr}</span>
+			<span class="date">{{= star}}</span>
+		</li>		
+		<li>내용: 
+			<span class="contents">{{= commcontents}}</span>
 		</li>
+		
+		
+		{{if chk == true}}
 		<li>
 			<input type="button" value="삭제" class = "delete_btn" />
 		</li>
+		{{/if}}
 	<hr />
 	</ul>
 	</script>
 <script type="text/javascript">
-	function addNewItem(commnum, userid, commcontents, star, commaddr) {
+	function addNewItem(commnum, userid, commcontents, star, commaddr, chk) {
 		var li_data = {
 			"commnum" : commnum,
 			"userid" : userid,
 			"commcontents" : commcontents,
 			"star" : star,
-			"commaddr" : commaddr
+			"commaddr" : commaddr,
+			"chk" : chk
 		};
 		var new_li = $("#itemTemplate").tmpl(li_data);
 		$("#comment_list").prepend(new_li);
@@ -60,8 +62,14 @@
 				var commcontents = $(this).find("commcontents").text();
 				var star = $(this).find("star").text();
 				var commaddr = $(this).find("commaddr").text();
-
-				addNewItem(commnum, userid, commcontents, star, commaddr);
+				var loginid = $("#user_name").val();
+				var chk = false;
+				
+				if(userid == loginid){
+					chk = true;
+				}
+				
+				addNewItem(commnum, userid, commcontents, star, commaddr, chk);
 			});
 		}).fail(function() {
 			alert("덧글 목록을 불러오는데 실패하였습니다. 잠시후에 다시 시도해 주십시오.")
@@ -89,8 +97,14 @@
 					var commcontents = $(xml).find("commcontents").text();
 					var star = $(xml).find("star").text();
 					var commaddr = $(xml).find("commaddr").text();
-
-					addNewItem(commnum, userid, commcontents, star, commaddr);
+					var loginid = $("#user_name").val();
+					var chk = false;
+					
+					if(userid == loginid){
+						chk = true;
+					}
+					alert(chk);
+					addNewItem(commnum, userid, commcontents, star, commaddr, chk);
 
 					$("#comment").val("");
 				} else {
