@@ -66,15 +66,12 @@
 <meta charset="utf-8">
 </head>
 <body onload="init(this.form);">
-
 	<c:if test="${users == null}">
-		<a href="login_link">로그인</a>
+		<a href="user_login">로그인</a>
 		<a href="join_link">회원가입</a>
 	</c:if>
 	<c:if test="${users != null}">
-		<form action="user_logout">
-			<a href="logout_link">로그아웃</a>
-		</form>
+			<a href="user_logout">로그아웃</a>
 		<a href="myPage_link">마이페이지</a>
 	</c:if>
 

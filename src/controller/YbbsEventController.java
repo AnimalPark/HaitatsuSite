@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Ybbs_EventDAO;
 import dao.Ybbs_EventDAOImpl;
@@ -38,8 +39,9 @@ public class YbbsEventController extends HttpServlet {
 
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-
+		
 		String uri = req.getRequestURI();
+		HttpSession session = req.getSession();
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
 
@@ -71,7 +73,8 @@ public class YbbsEventController extends HttpServlet {
 
 			ybbsList = dao.selectAllEvent(pm.getPageRowResult().getRowStartNumber(),
 					pm.getPageRowResult().getRowEndNumber());
-
+			
+			session.setAttribute("caller","/ybbs_eventList?reqPage=1");
 			req.setAttribute("ybbsList", ybbsList);
 			req.setAttribute("pageGroupResult", pm.getPageGroupResultEvent(Sql.YBBS_SELECT_ALL_EVENT_COUNT));
 
