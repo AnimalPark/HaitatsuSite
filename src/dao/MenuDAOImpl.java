@@ -741,4 +741,43 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		
 		return addrTokens;
 	}
+
+	@Override
+	public List<Restaurant> selectByTownnumAndCnum(int cnum, String cityname, String townname) {
+		List<Restaurant> lists = new ArrayList<Restaurant>();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		System.out.println(cnum+":"+cityname+":"+townname);
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_TOWNNUM_AND_CATEGORY_SQL);
+			preparedStatement.setInt(3, cnum);
+			preparedStatement.setString(1, cityname);
+			preparedStatement.setString(2, townname);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				Restaurant restaurant = new Restaurant();
+
+				restaurant.setrNum(resultSet.getInt("RNUM"));
+				restaurant.setrName(resultSet.getString("RNAME"));
+				restaurant.setcNum(resultSet.getInt("CNUM"));
+				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
+				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
+
+				lists.add(restaurant);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return lists;
+	}
 }

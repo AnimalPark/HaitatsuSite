@@ -101,14 +101,13 @@ public class MainController extends HttpServlet {
 			int category = Integer.parseInt(req.getParameter("category"));
 			req.setAttribute("categ", category);
 			
-			List<Restaurant> lists = Mimpl.selectByCategory(category);
-			req.setAttribute("lists", lists);
-			
 			Users user = (Users) session.getAttribute("users");
 
 			List<String> tokens = Mimpl.useridToAddr(user.getUserId());
-			System.out.println(tokens.get(0));
-			System.out.println(tokens.get(1));
+			
+			List<Restaurant> lists = Mimpl.selectByTownnumAndCnum(category, tokens.get(0), tokens.get(1));
+			req.setAttribute("lists", lists);
+			
 			req.setAttribute("userCity", tokens.get(0));
 			req.setAttribute("userTown", tokens.get(1));
 			
@@ -124,14 +123,23 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		} else if (action.equals("addr_search")) {
+			HttpSession session = req.getSession();
 			Mimpl = new MenuDAOImpl();
 			String city = req.getParameter("selectCity");
 			String town = req.getParameter("selectTown");
-			String selctedCate = req.getParameter("catego");
+			int selctedCate = Integer.parseInt(req.getParameter("catego"));
 
+			Users user = (Users) session.getAttribute("users");
+
+			List<String> tokens = Mimpl.useridToAddr(user.getUserId());
+			System.out.println(tokens.get(0));
+			System.out.println(tokens.get(1));
+			req.setAttribute("userCity", tokens.get(0));
+			req.setAttribute("userTown", tokens.get(1));
+			
 			System.out.println(selctedCate);
 
-			List<Restaurant> lists = Mimpl.selectByTownnum(city, town);
+			List<Restaurant> lists = Mimpl.selectByTownnumAndCnum(selctedCate,city, town);
 
 			req.setAttribute("lists", lists);
 			RequestDispatcher rd = req.getRequestDispatcher("main/search.jsp");
