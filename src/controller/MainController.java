@@ -24,7 +24,7 @@ import model.Users;
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link",
 		"/home_link", "/search_link", "/addr_search", "/logout_link", "/admin_home_link", "/restaurant_detail",
 		"/order_confirm", "/ordermenu_add", "/return_detail", "/order_final", "/confirm_orders", "/myPage_link",
-		"/order_end" })
+		"/order_end" ,"/login_index_link"})
 
 public class MainController extends HttpServlet {
 
@@ -46,11 +46,18 @@ public class MainController extends HttpServlet {
 		String uri = req.getRequestURI();
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
-
-		if (action.equals("login_link")) {
-
+		
+		if(action.equals("login_index_link")) {
+			
 			HttpSession session = req.getSession();
 			session.removeAttribute("caller");
+			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
+			rd.forward(req, resp);
+			
+		}
+		
+		else if (action.equals("login_link")) {
+			
 			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
 		

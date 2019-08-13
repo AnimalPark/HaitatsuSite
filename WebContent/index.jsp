@@ -31,7 +31,7 @@
 </script>
 </c:if>
 	<c:if test="${users == null}">
-		<a href="login_link">로그인</a>
+		<a href=login_index_link>로그인</a>
 		<a href="join_link">회원가입</a>
 	</c:if>
 	<c:if test="${users != null}">
