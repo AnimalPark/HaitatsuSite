@@ -65,7 +65,8 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 			while (resultSet.next()) {
 
 				Restaurant restaurant = new Restaurant();
-
+				
+				restaurant.setrNum(resultSet.getInt("rNum"));
 				restaurant.setrName(resultSet.getString("rName"));
 				restaurant.setrPhoneNum(resultSet.getString("rPhoneNum"));
 				restaurant.setStarAvg(resultSet.getInt("starAvg"));
