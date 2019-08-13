@@ -97,7 +97,7 @@
 
 	<a href="home_link">홈화면</a>
 	<a href="qa_board_link">Q/A 게시판</a>
-	<a href="ybbs_eventlist">이벤트 게시판</a>
+	<a href="ybbs_eventList?reqPage=1">이벤트 게시판</a>
 
 	<br />
 	<br />
