@@ -27,11 +27,11 @@
 <body>
 <c:if test="${warning eq 0}">
 <script type="text/javascript">
-	alert("관리자 계정으로 로그인시에만 가능한 행동입니다.");
+	alert("관리자 계정으로 로그인시에만 가능한 기능입니다.");
 </script>
 </c:if>
 	<c:if test="${users == null}">
-		<a href="login_link">로그인</a>
+		<a href=login_index_link>로그인</a>
 		<a href="join_link">회원가입</a>
 	</c:if>
 	<c:if test="${users != null}">
@@ -97,5 +97,7 @@
 			return false;
 		}
 	</script>
+	<a href = "test2" >사진보자</a>
+	<a href = "test" >사진보자</a>
 </body>
 </html>

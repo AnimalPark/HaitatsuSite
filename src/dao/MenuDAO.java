@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.City;
@@ -10,10 +11,12 @@ import model.Town;
 
 public interface MenuDAO {
 	List<Restaurant> selectByCategory(int category);
+	List<Restaurant> selectByTownnumAndCnum(int cnum, String cityname, String townname);	
 	List<Restaurant> selectByTownnum(String cityname, String townname);	
 	Restaurant selectByRnum(int rnum);	
 	List<City> selectAllCity();
 	List<Town> selectAllTown();
+	List<String> useridToAddr(String userid);
 	
 	Menu menuSelectByMnum(int mnum);
 	List<Menu> menuDetailSelectByRnum(int rNum);

@@ -10,12 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.Ybbs_EventDAO;
-import dao.Ybbs_EventDAOImpl;
 import dao.Ybbs_QADAO;
 import dao.Ybbs_QADAOImpl;
-import model.Ybbs_Event;
 import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
@@ -38,7 +36,7 @@ public class YbbsController extends HttpServlet {
 
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-
+		HttpSession session = req.getSession();
 		String uri = req.getRequestURI();
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
@@ -83,7 +81,7 @@ public class YbbsController extends HttpServlet {
 			ybbs.setQanumber(Integer.parseInt(req.getParameter("qanumber")));
 			
 			dao.delete(ybbs.getQanumber());
-
+			
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
 			rd.forward(req, resp);
 			
@@ -137,6 +135,7 @@ public class YbbsController extends HttpServlet {
 			ybbsList = dao.selectAll(pm.getPageRowResult().getRowStartNumber(),
 					pm.getPageRowResult().getRowEndNumber());
 			
+			session.setAttribute("caller", "/ybbs_req_list?reqPage=1");
 			req.setAttribute("ybbsList", ybbsList);
 			req.setAttribute("pageGroupResult", pm.getPageGroupResult(Sql.YBBS_SELECT_ALL_COUNT));
 			

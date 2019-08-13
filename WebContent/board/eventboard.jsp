@@ -30,7 +30,7 @@ a:hover {text-d"WebContent/board/eventboard.jsp"ecoration: underline; color: red
     </li>
     <c:if test="${users == null}">
 	    <li class="nav1">
-	    	<a class="nav-link" href="user_login">로그인</a>
+	    	<a class="nav-link" href="login_link">로그인</a>
 	    </li>
     </c:if>
     <c:if test="${users != null}">

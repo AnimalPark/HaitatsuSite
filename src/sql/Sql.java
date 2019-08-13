@@ -35,6 +35,14 @@ public class Sql {
 	public static final String RESTAURANT_SELECT_BY_CATEGORY_SQL = "SELECT * FROM RESTAURANT WHERE CNUM = ?";
 	public static final String CITY_SELECT_ALL_SQL = "SELECT * FROM CITY";
 	public static final String TOWN_SELECT_ALL_SQL = "SELECT * FROM TOWN";
+	public static final String RESTAURANT_SELECT_BY_TOWNNUM_AND_CATEGORY_SQL = 	
+			"SELECT * " + 
+			"FROM RESTAURANT " + 
+			"WHERE TOWNNUM = (SELECT TOWNNUM " + 
+							"FROM TOWN " + 
+							"WHERE CITYNUM = (SELECT CITYNUM " + 
+											"FROM CITY " + 
+											"WHERE CITYNAME = ? ) AND TOWNNAME = ? ) AND CNUM = ?";
 	public static final String RESTAURANT_SELECT_BY_TOWNNUM_SQL = 	
 			"SELECT * " + 
 			"FROM RESTAURANT " + 
@@ -57,6 +65,7 @@ public class Sql {
 	public static final String COMMENTS_GET_CURRVAL_SQL = "SELECT SEQ_COMMENT.CURRVAL AS COMMNUM FROM DUAL";
 	public static final String COMMENTS_SELECT_BY_COMMNUM_SQL = "SELECT * FROM COMMENTS WHERE COMMNUM = ?";
 	public static final String DELETE_COMMENT_SQL = "DELETE FROM COMMENTS WHERE COMMNUM = ?";
+	public static final String USER_GET_ADDR_BY_USERID_SQL = "SELECT UADDR FROM USERS WHERE USERID = ?";
 	//==========================È²È£¿µ Sql¡é=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
 	public static final String RESTAURANT_SELECT_BY_NAME_SQL = "SELECT * FROM restaurant WHERE rName like ?";

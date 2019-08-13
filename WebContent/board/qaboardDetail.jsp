@@ -29,12 +29,12 @@ div {
     </li>
     <c:if test="${users == null}">
 	    <li class="nav1">
-	    	<a class="nav-link" href="user_login">로그인</a>
+	    	<a class="nav-link" href="login_link">로그인</a>
 	    </li>
     </c:if>
     <c:if test="${users != null}">
 		<li class="nav1">
-	    	<a class="nav-link" href="user_logout">로그아웃</a>
+	    	<a class="nav-link" href=user_logout>로그아웃</a>
 	    </li>
 	</c:if>
   </ul>
@@ -54,7 +54,7 @@ div {
 			<a href="ybbs_delete?qanumber=${ybbs.qanumber}">글 삭제</a><br />
 			<a href="ybbs_req_list?reqPage=1">목록으로</a>	<br/>	
 	</c:if>
-	<c:if test="${ybbs.userid != users.userId && ybbs_id != users.userId }">
+	<c:if test="${ybbs.userid != users.userId && ybbs_id != users.userId && users.authority != 1}">
 			<div>글 작성자만 읽을 수 있습니다</div>
 			<a href = "ybbs_req_list?reqPage=1">목록으로</a>
 		</c:if>
