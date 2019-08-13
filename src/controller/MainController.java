@@ -96,7 +96,6 @@ public class MainController extends HttpServlet {
 			List<Restaurant> lists = Mimpl.selectByCategory(category);
 			req.setAttribute("lists", lists);
 			
-			HttpSession session = req.getSession();
 			Users user = (Users) session.getAttribute("users");
 
 			List<String> tokens = Mimpl.useridToAddr(user.getUserId());
