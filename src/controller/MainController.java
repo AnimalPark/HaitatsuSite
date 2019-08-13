@@ -24,7 +24,7 @@ import model.Users;
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link",
 		"/home_link", "/search_link", "/addr_search", "/logout_link", "/admin_home_link", "/restaurant_detail",
 		"/order_confirm", "/ordermenu_add", "/return_detail", "/order_final", "/confirm_orders", "/myPage_link",
-		"/order_end" ,"/login_index_link"})
+		"/order_end" ,"/login_index_link","/test","/test2"})
 
 public class MainController extends HttpServlet {
 
