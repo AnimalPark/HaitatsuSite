@@ -13,17 +13,17 @@
 	</c:if>
 		<h3>Restaurant List</h3>
 	
-		<form action="admin_rtrt_search? "method="get">
+		<form action="admin_rtrt_search" method="get">
 			<input type="text" name="rName" placeholder="가게 이름 검색...">
 			<input type="submit" value="검색">
 		</form>
 			
-		<c:if test="${empty restaurant1}">
+		<c:if test="${empty restaurant}">
 			<hr />
 			검색된 결과가 존재하지 않습니다
 			<hr />
 		</c:if>
-		<c:if test="${!empty restaurant1}"></c:if>
+		<c:if test="${!empty restaurant}"></c:if>
 		
 		<table>
 			<thead>
