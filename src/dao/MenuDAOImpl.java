@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import addrToken.addrDivide;
 import model.City;
 import model.Comments;
 import model.Menu;
@@ -709,5 +710,35 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
 		return result;
+	}
+
+	@Override
+	public List<String> useridToAddr(String userid) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String addr = null;
+		List<String> addrTokens = new ArrayList<String>();
+		addrDivide div = new addrDivide();
+		System.out.println("+"+userid);
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.USER_GET_ADDR_BY_USERID_SQL);
+			preparedStatement.setString(1, userid);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				addr = resultSet.getString("UADDR");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		addrTokens = div.addrTokensGet(addr);
+		
+		return addrTokens;
 	}
 }

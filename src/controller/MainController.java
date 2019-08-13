@@ -100,13 +100,23 @@ public class MainController extends HttpServlet {
 			HttpSession session = req.getSession();
 			int category = Integer.parseInt(req.getParameter("category"));
 			req.setAttribute("categ", category);
+			
 			List<Restaurant> lists = Mimpl.selectByCategory(category);
 			req.setAttribute("lists", lists);
+			
+			Users user = (Users) session.getAttribute("users");
 
+			List<String> tokens = Mimpl.useridToAddr(user.getUserId());
+			System.out.println(tokens.get(0));
+			System.out.println(tokens.get(1));
+			req.setAttribute("userCity", tokens.get(0));
+			req.setAttribute("userTown", tokens.get(1));
+			
 			List<City> citylists = Mimpl.selectAllCity();
 			req.setAttribute("citylist", citylists);
 
 			List<Town> townlists = Mimpl.selectAllTown();
+			req.setAttribute("townlist", townlists);
 
 			session.setAttribute("caller", "/search_link?category="+category);
 			
@@ -242,6 +252,18 @@ public class MainController extends HttpServlet {
 			}
 
 			RequestDispatcher rd = req.getRequestDispatcher("order/finish.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("test")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("imageUpload/imgup.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("test2")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("imageUpload/upload.jsp");
 			rd.forward(req, resp);
 
 		}
