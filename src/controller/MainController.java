@@ -57,7 +57,7 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		} else if (action.equals("join_link")) {
-
+			
 			RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
 			rd.forward(req, resp);
 

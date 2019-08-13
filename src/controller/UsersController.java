@@ -22,8 +22,8 @@ import page.PageManager;
 import sql.Sql;
 
 @WebServlet(name = "UsersController", urlPatterns = {"/user_join", "/user_login", "/user_logout", "/find_userId", "/findId_link",
-		"/findPwd_link", "/find_uPwd", "/change_uPwd","/id_check", "/orderList_link", "/usersInfo_link","/users_delete",
-		"/users_update", "/update_link", "/updateuPwd_link", "/delete_link", "/check_uPwd_update"})
+		"/findPwd_link", "/find_uPwd", "/change_uPwd","/id_check", "/orderList_link", "/users_delete", "/update_link", 
+		"/users_update", "/users_update2", "/check_uPwd", "/updateInfo_link", "/updateuPwd_link", "/change_uPwd2"})
 
 public class UsersController extends HttpServlet
 {
@@ -38,7 +38,7 @@ public class UsersController extends HttpServlet
 	{
 		process(req, resp);
 	}
-
+	
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		req.setCharacterEncoding("utf-8");
@@ -181,18 +181,13 @@ public class UsersController extends HttpServlet
 		else if (action.equals("id_check")) {
 			UsersDAOImpl impl = new UsersDAOImpl();
 			String chkId = req.getParameter("id");
-			System.out.println("과연 출력이?" + chkId);
 			boolean chk = impl.check_userId(chkId);
-			System.out.println(chk);
 			if(!chk) {
-				System.out.println("true in");
 				req.setAttribute("msg", "사용할 수 있는 아이디입니다.");
 				RequestDispatcher rd = req.getRequestDispatcher("join/result.jsp");
-				rd.forward(req, resp);
-				
+				rd.forward(req, resp);			
 			}
 			else {
-				System.out.println("false in");
 				req.setAttribute("msg", "사용할 수 없는 아이디입니다.");
 				RequestDispatcher rd = req.getRequestDispatcher("join/result.jsp");
 				rd.forward(req, resp);
@@ -204,14 +199,8 @@ public class UsersController extends HttpServlet
 			RequestDispatcher rd = req.getRequestDispatcher("");
 			rd.forward(req, resp);
 		}
-		else if (action.equals("usersInfo_link")) {
+		else if(action.equals("users_delete")) {
 			
-			RequestDispatcher rd = req.getRequestDispatcher("join/usersInfo.jsp");
-			rd.forward(req, resp);
-		}
-		else if(action.equals("users_delete"))
-		{
-			System.out.println("test");
 			String userId = req.getParameter("userId");
 			System.out.println(userId);
 			UsersDAO dao = new UsersDAOImpl();
@@ -226,9 +215,10 @@ public class UsersController extends HttpServlet
 			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 			rd.forward(req, resp);	
 		}
-		else if(action.equals("users_update"))
-		{
+		else if(action.equals("users_update")) {
+
 			Users users = new Users();
+			UsersDAO dao = new UsersDAOImpl();
 			
 			users.setuName(req.getParameter("uName"));
 			String[] uAddrs = {req.getParameter("postcode"),req.getParameter("roadAddress"),req.getParameter("detailAddress")};
@@ -237,7 +227,6 @@ public class UsersController extends HttpServlet
 			users.setuPhonenum(req.getParameter("uPhonenum"));
 			users.setUserId(req.getParameter("userId"));
 			
-			UsersDAO dao = new UsersDAOImpl();
 			boolean result = dao.update(users);
 			
 			HttpSession session = req.getSession();
@@ -248,20 +237,10 @@ public class UsersController extends HttpServlet
 		}
 		else if (action.equals("update_link"))
 		{	
-			RequestDispatcher rd = req.getRequestDispatcher("join/checkuPwd_update.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("join/checkuPwd.jsp");
 			rd.forward(req, resp);
 		}
-		else if (action.equals("updateuPwd_link"))
-		{	
-			RequestDispatcher rd = req.getRequestDispatcher("join/checkuPwd_updateuPwd.jsp");
-			rd.forward(req, resp);
-		}
-		else if (action.equals("delete_link"))
-		{	
-			RequestDispatcher rd = req.getRequestDispatcher("join/checkuPwd_delete.jsp");
-			rd.forward(req, resp);
-		}
-		else if (action.equals("check_uPwd_update"))
+		else if (action.equals("check_uPwd"))
 		{	
 			UsersDAO dao = new UsersDAOImpl();
 			
@@ -272,7 +251,40 @@ public class UsersController extends HttpServlet
 			
 			req.setAttribute("result", result);
 			
+			if(result == false)
+			{
+				req.setAttribute("message", "비밀번호가 일치하지 않습니다.");
+				
+				RequestDispatcher rd = req.getRequestDispatcher("join/checkuPwd.jsp");
+				rd.forward(req, resp);
+			}
+			else
+			{
+				RequestDispatcher rd = req.getRequestDispatcher("join/updatePage.jsp");
+				rd.forward(req, resp);
+			}
+		}
+		else if (action.equals("updateInfo_link"))
+		{	
 			RequestDispatcher rd = req.getRequestDispatcher("join/usersInfo.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("updateuPwd_link"))
+		{	
+			RequestDispatcher rd = req.getRequestDispatcher("join/changeuPwd2.jsp");
+			rd.forward(req, resp);
+		}
+		else if (action.equals("change_uPwd2"))
+		{	
+			Users users = new Users();
+			
+			users.setuPwd(req.getParameter("uPwd"));
+			users.setUserId(req.getParameter("userId"));
+			
+			UsersDAO dao = new UsersDAOImpl();
+			boolean result = dao.update_pwd(users);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("join/myPage.jsp");
 			rd.forward(req, resp);
 		}
 	}

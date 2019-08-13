@@ -78,6 +78,8 @@ public class Sql {
 	private static final String USERS_SELECT_BY_UNAME_UPHONE_SQL = "SELECT * FROM users WHERE uName = ? AND uPhonenum = ?";
 	private static final String USERS_SELECT_BY_USERID_UNAME_UPHONE_SQL_SQL = "SELECT * FROM users WHERE userId= ? AND uName= ? AND uPhonenum = ?";
 	private static final String USERS_UPDATE_PWD_SQL = "UPDATE users SET uPwd = ? WHERE userId = ?";
+	private static final String USERS_UPDATE_SQL = "UPDATE users SET uName = ?, uAddr = ?, uPhonenum = ? WHERE userId = ?";
+	private static final String USERS_UPDATE_SQL2 = "UPDATE users SET uName = ?, uPwd = ?, uAddr = ?, uPhonenum = ? WHERE userId = ?";
 	private static final String USERS_SELECT_ALL_SQL = "SELECT * FROM users WHERE userId = ?";
 	private static final String USERS_SELECT_BY_USERID_SQL = "SELECT userId FROM users";
 	private static final String USERS_DELETE_SQL = "DELETE FROM users WHERE userId = ?";
