@@ -23,7 +23,7 @@ import model.Users;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link",
 		"/home_link", "/search_link", "/addr_search", "/logout_link", "/admin_home_link", "/restaurant_detail",
-		"/order_confirm", "/ordermenu_add", "/return_detail","/order_final","/confirm_orders","/myPage_link","/order_end"})
+		"/order_confirm", "/ordermenu_add", "/return_detail","/order_final","/confirm_orders","/myPage_link","/order_end","/test","/test2"})
 
 public class MainController extends HttpServlet {
 
@@ -88,9 +88,19 @@ public class MainController extends HttpServlet {
 
 			int category = Integer.parseInt(req.getParameter("category"));
 			req.setAttribute("categ", category);
+			
 			List<Restaurant> lists = Mimpl.selectByCategory(category);
 			req.setAttribute("lists", lists);
+			
+			HttpSession session = req.getSession();
+			Users user = (Users) session.getAttribute("users");
 
+			List<String> tokens = Mimpl.useridToAddr(user.getUserId());
+			System.out.println(tokens.get(0));
+			System.out.println(tokens.get(1));
+			req.setAttribute("userCity", tokens.get(0));
+			req.setAttribute("userTown", tokens.get(1));
+			
 			List<City> citylists = Mimpl.selectAllCity();
 			req.setAttribute("citylist", citylists);
 
@@ -232,6 +242,18 @@ public class MainController extends HttpServlet {
 			}
 			
 			RequestDispatcher rd = req.getRequestDispatcher("order/finish.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("test")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("imageUpload/imgup.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("test2")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("imageUpload/upload.jsp");
 			rd.forward(req, resp);
 
 		}

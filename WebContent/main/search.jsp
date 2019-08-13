@@ -27,33 +27,45 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-	var citylist = new Array('만안구', '동안구');
+	var citylist = new Array('영등포구', '마포구','용산구');
 	var townlist = new Array();
-	townlist[0] = new Array('안양1동', '안양2동', '안양3동');
-	townlist[1] = new Array('호계동', '비산동');
-
+	townlist[0] = new Array('양산로','영신로','노들로');
+	townlist[1] = new Array('와우산로','월드컵로');
+	townlist[2] = new Array('회나무로','이태원로');
+	
 	function init(f) {
 		var city_sel = f.selectCity;
 		var town_sel = f.selectTown;
 
-		city_sel.options[0] = new Option("선택", "");
-		town_sel.options[0] = new Option("선택", "");
+		city_sel.options[0] = new Option("전체", "");
+		town_sel.options[0] = new Option("전체", "");
 
 		for (var i = 0; i < citylist.length; i++) {
 			city_sel.options[i + 1] = new Option(citylist[i], citylist[i]);
 		}
+		var userCity = '${userCity}';
+		var index = -1;
+		for (var i = 0; i < citylist.length; i++) {
+			if(citylist[i] == userCity)
+				index = i+1;
+		}	
+		$("#selectCity option:eq("+index+")").prop("selected", true);
+		
+		itemChange(f);
 	}
 
 	function itemChange(f) {
 		var city_sel = f.selectCity;
+
 		var town_sel = f.selectTown;
 
 		var selectedCity = city_sel.selectedIndex;
+		
 		for (var i = town_sel.length; i >= 0; i--) {
 			town_sel.options[i] = null;
 		}
 
-		town_sel.options[0] = new Option("선택", "")
+		town_sel.options[0] = new Option("전체", "")
 		if (selectedCity != 0) {
 			for (var i = 0; i < townlist[selectedCity - 1].length; i++) {
 				town_sel.options[i + 1] = new Option(
@@ -61,6 +73,14 @@
 						townlist[selectedCity - 1][i]);
 			}
 		}
+		var userTown = '${userTown}';
+		var index = -1;
+		for (var i = 0; i < townlist[selectedCity - 1].length; i++) {
+			if(townlist[selectedCity - 1][i] == userTown){
+				index = i + 1;
+			}
+		}
+		$("#selectTown option:eq("+index+")").prop("selected", true);
 	}
 </script>
 <meta charset="utf-8">
@@ -102,10 +122,9 @@
 		onclick="category8()">
 	<br />
 	<form method="post" name="form" action="addr_search?catego=${categ}">
-		<select id="selectCity" name="selectCity"
-			onchange="itemChange(this.form);"></select> <select id="selectTown"
-			name="selectTown"></select> <input type="submit" name="Commit"
-			value="검색" />
+		<select id="selectCity" name="selectCity" onchange="itemChange(this.form);"></select> 
+		<select id="selectTown" name="selectTown"></select> 
+		<input type="submit" name="Commit" value="검색" />
 	</form>
 	<c:if test="${!empty lists}">
 		<table>

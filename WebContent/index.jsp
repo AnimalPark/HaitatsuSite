@@ -97,5 +97,7 @@
 			return false;
 		}
 	</script>
+	<a href = "test2" >사진보자</a>
+	<a href = "test" >사진보자</a>
 </body>
 </html>
