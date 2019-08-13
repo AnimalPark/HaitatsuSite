@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import model.City;
+import model.Comments;
 import model.Menu;
 import model.Restaurant;
 import model.Town;
@@ -31,4 +32,8 @@ public interface MenuDAO {
 	boolean insertOrderMenu(int mnum, int onum, int count);
 	
 	int nowOrderOnum();
+	public Comments insert(Comments comments);
+	Comments selectByNum(int commnum);
+	public boolean delete(int commnum);
+	List<Comments> selectByRnumComments(int rno);
 }

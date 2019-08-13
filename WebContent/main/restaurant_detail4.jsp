@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="true"%>
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
@@ -71,6 +72,31 @@
 		});
 	});
 </script>
+<script>
+	$(function() {
+		$("#save").click(function() {
+			commentform();
+
+			function commentform() {
+				var u = $("#userid").val();
+				var c = $("textarea:eq(0)").val();
+				var restaurant_number = $("#rnumber").val();
+
+				$.get("comment_add", {
+					"userid" : u,
+					"rn" : restaurant_number,
+					"text" : c
+				}, function() {
+					location.href = "comment_mode";
+					return false;
+				});
+			}
+			$(document).on("click", ".delete_btn", function() {
+				$(this).parent("strong").remove();
+			});
+		});
+	});
+</script>
 <meta charset="utf-8">
 
 </head>
@@ -97,25 +123,35 @@
 
 		<div
 			style="width: 500px; height: 500px; float: left; margin-right: 10px;">
+			<input type="button" value="메뉴" class="btn btn-secondary"
+				id="change1"> <input type="button" value="댓글"
+				class="btn btn-primary" id="change2">
 
-			<input type="button" value="메뉴" class="btn btn-primary" id="change1">
-			<input type="button" value="댓글" class="btn btn-secondary"
-				id="change2">
 
-
-			<p>메 뉴 리 스 트</p>
-			<c:if test="${!empty lists}">
-				<c:forEach var="list" items="${lists}">
-					<span>${list.mNum}</span>
-					<span>${list.rNum}</span>
-					<a href="order_confirm?mnum=${list.mNum}">${list.mName}</a>
-					<span>${list.mPrice}</span>
-					<span>${list.mSales}</span>
-					<br />
-				</c:forEach>
-			</c:if>
+			<div class="container mt-3">
+				<h3>후기 남기기</h3>
+			</div>
+			<input type="hidden" name="rnumber" id="rnumber"
+				value="${detailR.rNum}" /> <input type="hidden" name="userid"
+				id="userid" value="${users.userId}" />
+			<div class="container mt-3">
+				<label for="user">작성자:</label> ${users.userId}
+			</div>
+			<div class="container mt-3">
+				<label for="commenttext">덧글 내용:</label> <br />
+				<textarea id="comment" cols="60" rows="6"></textarea>
+				<input type="button" id="save" value="저장하기" />
+			</div>
+			<div class="container mt-3">
+				<c:if test="${!empty comments_list}">
+						<c:forEach var="commList" items="${comments_list}">
+							<strong>${commList.userid}  ${commList.commaddr}<br />${commList.commcontents} <hr /> </strong>
+						</c:forEach>
+				</c:if>
+			</div>
 		</div>
 		<div style="width: 500px; height: 500px; float: left;">
+
 			<c:if test="${!empty order_lists}">
 				<p>=============장바구니============</p>
 				<c:forEach var="o_list" items="${order_lists}">
@@ -134,5 +170,6 @@
 			</c:if>
 		</div>
 	</div>
+
 </body>
 </html>

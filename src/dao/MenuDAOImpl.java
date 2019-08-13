@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.City;
+import model.Comments;
 import model.Menu;
 import model.Restaurant;
 import model.Town;
@@ -159,28 +161,28 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.MENU_SELECT_ALL_MENU_SQL);
-			
+
 			while (resultSet.next()) {
 				Menu menu = new Menu();
-				
+
 				menu.setmNum(resultSet.getInt("mNum"));
 				menu.setrNum(resultSet.getInt("rNum"));
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
-				
-				menus.add(menu);				
+
+				menus.add(menu);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
-		
+
 		return menus;
 	}
 
@@ -190,16 +192,16 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.MENU_SELECT_BY_MNUM_SQL);
 			preparedStatement.setInt(1, mNum);
 			resultSet = preparedStatement.executeQuery();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
 		return menu;
@@ -210,29 +212,29 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		boolean result = false;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+
 		try {
-			
+
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.MENU_INSERT_MENU_SQL);
-			
+
 			preparedStatement.setInt(1, menu.getrNum());
 			preparedStatement.setString(2, menu.getmName());
 			preparedStatement.setInt(3, menu.getmPrice());
-			//preparedStatement.setInt(4, menu.getmSales());
-			
+			// preparedStatement.setInt(4, menu.getmSales());
+
 			int rowCount = preparedStatement.executeUpdate();
 
 			if (rowCount > 0) {
 				result = true;
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeDBObjects(null, preparedStatement, connection);
 		}
-		
+
 		return result;
 	}
 
@@ -242,30 +244,30 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		boolean result = false;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+
 		try {
-			
+
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.MENU_UPDATE_MENU_SQL);
-			
+
 			preparedStatement.setInt(1, menu.getrNum());
 			preparedStatement.setString(2, menu.getmName());
 			preparedStatement.setInt(3, menu.getmPrice());
 			preparedStatement.setInt(4, menu.getmSales());
 			preparedStatement.setInt(5, menu.getmNum());
-			
+
 			int rowCount = preparedStatement.executeUpdate();
 
 			if (rowCount > 0) {
 				result = true;
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			closeDBObjects(null, preparedStatement, connection);
 		}
-		
+
 		return result;
 	}
 
@@ -274,19 +276,19 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		boolean result = false;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+
 		try {
-			
+
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.MENU_DELETE_MENU_SQL);
 			preparedStatement.setInt(1, mNum);
-			
+
 			int rowCount = preparedStatement.executeUpdate();
 
 			if (rowCount > 0) {
 				result = true;
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -332,7 +334,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 	@Override
 	public List<Menu> menuSelectByRnum(int rnum) {
 		List<Menu> lists = new ArrayList<Menu>();
-		
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -351,7 +353,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
-				
+
 				lists.add(menu);
 			}
 
@@ -368,7 +370,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 	@Override
 	public Menu menuSelectByMnum(int mnum) {
 		Menu menu = null;
-		
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -379,7 +381,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			preparedStatement.setInt(1, mnum);
 			resultSet = preparedStatement.executeQuery();
 
-			if(resultSet.next()) {
+			if (resultSet.next()) {
 				menu = new Menu();
 
 				menu.setmNum(resultSet.getInt("mNum"));
@@ -387,7 +389,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
-				
+
 			}
 
 		} catch (SQLException e) {
@@ -399,6 +401,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 		return menu;
 	}
+
 	public String MnumToMname(int mnum) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -410,7 +413,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			preparedStatement.setInt(1, mnum);
 			resultSet = preparedStatement.executeQuery();
 
-			if(resultSet.next()) {
+			if (resultSet.next()) {
 				name = resultSet.getString("MNAME");
 			}
 
@@ -423,7 +426,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 		return name;
 	}
-	
+
 	public int priceOfMenu(int mnum) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -435,7 +438,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			preparedStatement.setInt(1, mnum);
 			resultSet = preparedStatement.executeQuery();
 
-			if(resultSet.next()) {
+			if (resultSet.next()) {
 				price = resultSet.getInt("MPRICE");
 			}
 
@@ -448,13 +451,13 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 		return price;
 	}
-	
+
 	@Override
 	public List<Menu> menuDetailSelectByRnum(int rNum) {
-		
+
 		List<Menu> menuList = new ArrayList<Menu>();
 		Menu menu = null;
-		
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -466,7 +469,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				
+
 				menu = new Menu();
 
 				menu.setmNum(resultSet.getInt("mNum"));
@@ -474,7 +477,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
-				
+
 				menuList.add(menu);
 			}
 
@@ -484,7 +487,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		} finally {
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
-		
+
 		return menuList;
 	}
 
@@ -548,7 +551,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 	@Override
 	public int nowOrderOnum() {
 		int onum = -1;
-		
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -568,7 +571,143 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		} finally {
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
-		
+
 		return onum;
+	}
+
+	@Override
+	public List<Comments> selectByRnumComments(int rno) {
+		List<Comments> lists = new ArrayList<Comments>();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.COMMENTS_SELECT_BY_RNUM_SQL);
+			preparedStatement.setInt(1, rno);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				Comments Comment = new Comments();
+
+				Comment.setCommnum(resultSet.getInt("COMMNUM"));
+				Comment.setRnum(resultSet.getInt("RNUM"));
+				Comment.setUserid(resultSet.getString("USERID"));
+				Comment.setCommcontents(resultSet.getString("COMMCONTENTS"));
+				Comment.setStar(resultSet.getInt("STAR"));
+				Comment.setCommaddr(resultSet.getString("COMMADDR"));
+
+				lists.add(Comment);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return lists;
+	}
+
+	@Override
+	public Comments insert(Comments comments) {
+		Comments selectByComment = null;
+		MenuDAOImpl Dimpl = new MenuDAOImpl();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+		int i = 0;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.INSERT_COMMENT_SQL);
+			preparedStatement.setInt(1, comments.getRnum());
+			preparedStatement.setString(2, comments.getUserid());
+			preparedStatement.setString(3, comments.getCommcontents());
+			preparedStatement.setInt(4, 5);
+
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				statement = connection.createStatement();
+
+				resultSet = statement.executeQuery(Sql.COMMENTS_GET_CURRVAL_SQL);
+				if (resultSet.next()) {
+					selectByComment = selectByNum(resultSet.getInt("COMMNUM"));
+					System.out.println("++"+selectByComment.toString()+"++");
+				}
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(resultSet, statement, null);
+			closeDBObjects(null, preparedStatement, connection);
+		}
+		return selectByComment;
+	}
+
+	@Override
+	public Comments selectByNum(int commnum) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		Comments comment = null;
+		
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.COMMENTS_SELECT_BY_COMMNUM_SQL);
+			preparedStatement.setInt(1, commnum);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				comment = new Comments();
+				comment.setCommnum(resultSet.getInt("COMMNUM"));
+				comment.setRnum(resultSet.getInt("RNUM"));
+				comment.setUserid(resultSet.getString("USERID"));
+				comment.setCommcontents(resultSet.getString("COMMCONTENTS"));
+				comment.setStar(resultSet.getInt("STAR"));
+				comment.setCommaddr(resultSet.getString("COMMADDR"));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		return comment;
+	}
+
+	@Override
+	public boolean delete(int commnum) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		boolean result = false;
+
+		try {
+			
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.DELETE_COMMENT_SQL);
+			preparedStatement.setInt(1, commnum);
+			int chk = preparedStatement.executeUpdate();
+			if (chk != 0)
+				result = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		return result;
 	}
 }
