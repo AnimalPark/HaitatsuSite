@@ -24,7 +24,7 @@ import model.Users;
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link",
 		"/home_link", "/search_link", "/addr_search", "/logout_link", "/admin_home_link", "/restaurant_detail",
 		"/order_confirm", "/ordermenu_add", "/return_detail", "/order_final", "/confirm_orders", "/myPage_link",
-		"/order_end" })
+		"/order_end" ,"/login_index_link","/test","/test2"})
 
 public class MainController extends HttpServlet {
 
@@ -46,11 +46,18 @@ public class MainController extends HttpServlet {
 		String uri = req.getRequestURI();
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
-
-		if (action.equals("login_link")) {
-
+		
+		if(action.equals("login_index_link")) {
+			
 			HttpSession session = req.getSession();
 			session.removeAttribute("caller");
+			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
+			rd.forward(req, resp);
+			
+		}
+		
+		else if (action.equals("login_link")) {
+			
 			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
 		
@@ -61,7 +68,7 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 		
 		} else if (action.equals("join_link")) {
-
+			
 			RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
 			rd.forward(req, resp);
 
@@ -93,13 +100,22 @@ public class MainController extends HttpServlet {
 			HttpSession session = req.getSession();
 			int category = Integer.parseInt(req.getParameter("category"));
 			req.setAttribute("categ", category);
-			List<Restaurant> lists = Mimpl.selectByCategory(category);
-			req.setAttribute("lists", lists);
+			
+			Users user = (Users) session.getAttribute("users");
 
+			List<String> tokens = Mimpl.useridToAddr(user.getUserId());
+			
+			List<Restaurant> lists = Mimpl.selectByTownnumAndCnum(category, tokens.get(0), tokens.get(1));
+			req.setAttribute("lists", lists);
+			
+			req.setAttribute("userCity", tokens.get(0));
+			req.setAttribute("userTown", tokens.get(1));
+			
 			List<City> citylists = Mimpl.selectAllCity();
 			req.setAttribute("citylist", citylists);
 
 			List<Town> townlists = Mimpl.selectAllTown();
+			req.setAttribute("townlist", townlists);
 
 			session.setAttribute("caller", "/search_link?category="+category);
 			
@@ -107,14 +123,23 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		} else if (action.equals("addr_search")) {
+			HttpSession session = req.getSession();
 			Mimpl = new MenuDAOImpl();
 			String city = req.getParameter("selectCity");
 			String town = req.getParameter("selectTown");
-			String selctedCate = req.getParameter("catego");
+			int selctedCate = Integer.parseInt(req.getParameter("catego"));
 
+			Users user = (Users) session.getAttribute("users");
+
+			List<String> tokens = Mimpl.useridToAddr(user.getUserId());
+			System.out.println(tokens.get(0));
+			System.out.println(tokens.get(1));
+			req.setAttribute("userCity", tokens.get(0));
+			req.setAttribute("userTown", tokens.get(1));
+			
 			System.out.println(selctedCate);
 
-			List<Restaurant> lists = Mimpl.selectByTownnum(city, town);
+			List<Restaurant> lists = Mimpl.selectByTownnumAndCnum(selctedCate,city, town);
 
 			req.setAttribute("lists", lists);
 			RequestDispatcher rd = req.getRequestDispatcher("main/search.jsp");
@@ -235,6 +260,18 @@ public class MainController extends HttpServlet {
 			}
 
 			RequestDispatcher rd = req.getRequestDispatcher("order/finish.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("test")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("imageUpload/imgup.jsp");
+			rd.forward(req, resp);
+
+		}
+		else if (action.equals("test2")) {
+
+			RequestDispatcher rd = req.getRequestDispatcher("imageUpload/upload.jsp");
 			rd.forward(req, resp);
 
 		}
