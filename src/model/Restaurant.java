@@ -8,6 +8,7 @@ public class Restaurant {
 	private int townNum;
 	private int starAvg;
 	private String rAddr;
+	private String fileName;
 
 	public int getrNum() {
 		return rNum;
@@ -63,6 +64,14 @@ public class Restaurant {
 
 	public void setrAddr(String rAddr) {
 		this.rAddr = rAddr;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	@Override
