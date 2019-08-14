@@ -45,23 +45,35 @@ public class UsersController extends HttpServlet
 		if (action.equals("user_join")) {
 			
 			req.setCharacterEncoding("utf-8");
+			
+			HttpSession session = req.getSession();
+			int i = (int) session.getAttribute("chkid");
+			System.out.println(i);
+			
+			if (i == 0) {
+				
+				RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
+				rd.forward(req, resp);	
+				
+			} else {
+				
+				UsersDAO dao = new UsersDAOImpl();
+				Users users = new Users();
 
-			UsersDAO dao = new UsersDAOImpl();
-			Users users = new Users();
+				users.setUserId(req.getParameter("userId"));
+				users.setuPwd(req.getParameter("uPwd"));
+				users.setuName(req.getParameter("uName"));
+				String[] uAddrs = { req.getParameter("postcode"), req.getParameter("roadAddress"),
+						req.getParameter("detailAddress") };
+				String addr = uAddrs[0] + " " + uAddrs[1] + " " + uAddrs[2];
+				users.setuAddr(addr);
+				users.setuPhonenum(req.getParameter("uPhonenum"));
 
-			users.setUserId(req.getParameter("userId"));
-			users.setuPwd(req.getParameter("uPwd"));
-			users.setuName(req.getParameter("uName"));
-			String[] uAddrs = { req.getParameter("postcode"), req.getParameter("roadAddress"),
-					req.getParameter("detailAddress") };
-			String addr = uAddrs[0] + " " + uAddrs[1] + " " + uAddrs[2];
-			users.setuAddr(addr);
-			users.setuPhonenum(req.getParameter("uPhonenum"));
-
-			boolean result = dao.insert(users);
-
-			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
-			rd.forward(req, resp);	
+				boolean result = dao.insert(users);
+				
+				RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
+				rd.forward(req, resp);	
+			}
 			
 		} else if (action.equals("user_login")) {
 			
@@ -195,13 +207,18 @@ public class UsersController extends HttpServlet
 			
 			if (!chk) {
 				
+				HttpSession session = req.getSession();
+				session.setAttribute("chkid", 1);
+				
 				req.setAttribute("msg", "사용할 수 있는 아이디입니다.");
+				
 				RequestDispatcher rd = req.getRequestDispatcher("join/result.jsp");
 				rd.forward(req, resp);
 				
 			} else {
 				
 				req.setAttribute("msg", "사용할 수 없는 아이디입니다.");
+				
 				RequestDispatcher rd = req.getRequestDispatcher("join/result.jsp");
 				rd.forward(req, resp);
 			}
@@ -218,7 +235,6 @@ public class UsersController extends HttpServlet
 		} else if (action.equals("users_delete")) {
 			
 			String userId = req.getParameter("userId");
-			System.out.println(userId);
 			UsersDAO dao = new UsersDAOImpl();
 			Ybbs_QADAO dao1 = new Ybbs_QADAOImpl();
 
@@ -270,7 +286,6 @@ public class UsersController extends HttpServlet
 			String uPwd = req.getParameter("uPwd");
 
 			boolean result = dao.confirmuPwd(userId, uPwd);
-			System.out.println(result);
 			
 			req.setAttribute("result", result);
 			
