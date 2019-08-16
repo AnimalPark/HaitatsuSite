@@ -166,6 +166,14 @@
             join.uPhonenum.focus();
             return false;
         }
+        //연락처 특수문자 제외 체크
+        if (join.uPhonenum.value.indexOf("-") >= 0)
+        {
+            alert("비밀번호에 -표시를 사용할 수 없습니다.")
+            join.uPhonenum.focus();
+            join.uPhonenum.select()
+            return false;
+        }
         if ('${chkid}' == 1){
         	alert("회원가입이 완료되었습니다.");
         }
@@ -246,7 +254,7 @@
         border-radius: 3px;
     }
 	.signup-form{
-		width: 400px;
+		width: 500px;
 		margin: 0 auto;
 		padding: 30px 0;
 	}
@@ -285,10 +293,7 @@
         padding: 30px;
     }
 	.signup-form .form-group{
-		margin-bottom: 20px;
-	}
-	.signup-form input[type="checkbox"]{
-		margin-top: 3px;
+		margin-bottom: 5px;
 	}
 	.signup-form .btn{        
         font-size: 16px;
@@ -300,7 +305,7 @@
 		padding-right: 10px;
 	}
 	.signup-form .row div:last-child{
-		padding-left: 10px;
+		padding-left: 100px;
 	}    	
     .signup-form a{
 		color: #fff;
@@ -326,38 +331,48 @@
 			<h2>회원가입</h2>
 			<p class="hint-text">회원가입을 위한 정보를 입력해 주세요.</p>
 			<div class="form-group">
-				<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요.">&nbsp; 
+				<h5>아이디</h5>
+				<div class="row">
+				<div class="col-xs-6"><input type="text" id="userId" name="userId" class="form-control" placeholder="6~12자의 영문 소문자와 숫자를 조합하여 사용하세요."></div>
+				<div class="col-xs-6"><input type="button" value="중복 확인 " id="btn_userId"></div>
+				</div>       
+				 	
+<!-- 				<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디를 입력해주세요.">&nbsp; 
 				<input type="button" value="중복 확인 " id="btn_userId">
 				<h5>6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.</h5>
 				<div class="console">
 				
-				</div>
+				</div> -->
 			</div>
 			<div class="form-group">
-				<input type="password" id="uPwd" name="uPwd" placeholder="비밀번호를 입력해주세요.">
-				<h5>숫자와 영문 대소문자를 조합하여 사용하실 수 있습니다.</h5>
+				<h5>비밀번호</h5>
+				<input type="password" id="uPwd" name="uPwd" class="form-control" placeholder="6~18자의 숫자와 영문 대소문자를 조합하여  사용하세요.">
 			</div>
 			<div class="form-group">
-				<input type="password" id="uPwd1" name="uPwd1" placeholder="비밀번호를 다시 한 번 입력해주세요."><br />
+				<h5>비밀번호 확인</h5>
+				<input type="password" id="uPwd1" name="uPwd1" class="form-control" placeholder="비밀번호를 다시 한 번 입력해주세요."><br />
 			</div>
 			<div class="form-group">
-				<input type="text" id="uName" name="uName" placeholder="이름을 입력해주세요."><br /> 
+				<h5>이름</h5>
+				<input type="text" id="uName" name="uName" class="form-control" placeholder="이름을 입력해주세요."><br /> 
 			</div>
 			<div class="form-group">
-				<input type="text" name="postcode" id="sample4_postcode" placeholder="주소를 검색해주세요.">&nbsp;
+				<h5>주소</h5>
+				<input type="text" name="postcode" id="sample4_postcode" class="form-control" placeholder="주소를 검색해주세요.">&nbsp;
 				<input type="button" onclick="sample4_execDaumPostcode()" value="주소 검색"><br> 
-				<input type="text" name="roadAddress" id="sample4_roadAddress" placeholder="도로명 주소"><br />
+				<input type="text" name="roadAddress" id="sample4_roadAddress" class="form-control" placeholder="도로명 주소"><br />
 				<span id="guide" style="color: #999; display: none"></span> 
-				<input type="text" name="detailAddress" id="sample4_detailAddress" placeholder="상세주소를 입력하세요."><br /> 
+				<input type="text" name="detailAddress" id="sample4_detailAddress" class="form-control" placeholder="상세주소를 입력하세요."><br /> 
 			</div>
 			<div class="form-group">
-				<input type="text" id="uPhonenum" name="uPhonenum" placeholder="연락처를 입력해주세요.(-제외)"><br />
+				<h5>연락처</h5>
+				<input type="text" id="uPhonenum" name="uPhonenum" class="form-control" placeholder="연락처를 입력해주세요.(-제외)"><br />
 			</div>
 			<div class="form-group">
 				<button class="btn btn-success btn-lg btn-block" type="submit" value="회원가입">회원가입</button>
 			</div>
-
 		</form>
+		<div class="text-center">이미 회원이십니까? <a href="login_link">로그인</a></div>
 	</div>
 </body>
 </html>

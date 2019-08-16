@@ -6,14 +6,16 @@
 <title>아이디 찾기</title>
 </head>
 <body>
-	<h3>아이디 찾기</h3>
+<div class = "login-form">
 	<a href="login_link">로그인 화면으로</a> <a href="findPwd_link">비밀번호 찾기</a>
 	<form method="post" action="find_userId" >
-		이름 : <input type="text" name="uName" id="uName"/><br />
-		연락처 : <input type="text" name="uPhonenum" id="uPhonenum" placeholder="ex) 01012345678"/><br />
-		<input type="submit" value="아이디 찾기">
+			<input type="text" name="uName" id="uName" placeholder="이름를 입력해주세요."/><br />
+			<input type="text" name="uPhonenum" id="uPhonenum" placeholder="ex) 01012345678"/><br />
+			<button class="btn btn-primary btn-block" type="submit" value="아이디 찾기">아이디 찾기</button>
+			<!-- <input type="submit" value="아이디 찾기"> -->
 	</form>
 	${message}<br />
 	${users.userId}
+</div>
 </body>
 </html>
