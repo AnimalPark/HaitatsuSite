@@ -72,7 +72,7 @@ function delchk(){
 	</a>
   <ul class="navbar-nav">
     <li class="nav">
-   	 <a class="nav-link" href="ybbs_eventList?reqPage=1">이벤트게시판 </a>
+   	 <a class="nav-link" href="ybbs_eventList?reqPage=1">Q/A게시판</a>
     </li>
     <c:if test="${users == null}">
 	    <li class="nav1">
@@ -120,9 +120,6 @@ function delchk(){
           	      			  </div>
           	      	 			 </div>
           	      			 		 </div>
-			  <button type="submit" class="btn btn-primary" style="margin:4px">글 수정</button>
-			<a href="ybbs_delete?qanumber=${ybbs.qanumber}" onclick="return delchk();"><button class="btn btn-primary" style="margin:4px">글 삭제</button></a>
-			<a href="ybbs_req_list?reqPage=1"><button class="btn btn-primary" style="margin:4px">목록으로</button></a>	
 	</c:if>
 	<c:if test="${ybbs.userid != users.userId && ybbs_id != users.userId && users.authority != 1}">
 			<div>글 작성자만 읽을 수 있습니다</div>
