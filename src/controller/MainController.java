@@ -72,7 +72,10 @@ public class MainController extends HttpServlet {
 			rd.forward(req, resp);
 
 		} else if (action.equals("join_link")) {
-
+			
+			HttpSession session = req.getSession();
+			session.setAttribute("chkid", 0);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
 			rd.forward(req, resp);
 

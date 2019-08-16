@@ -9,9 +9,14 @@
 	</head>
 	<body>
 			<h4>메뉴 등록</h4>
-			<form action="admin_menu_update" method="post">
+			
+			
+			
+			<form action="admin_menu_update"  method="post">
+						
 			<input type="hidden" name="mNum" value= "${menu.mNum}"/><br />
 			<input type="hidden"  name="rNum" value="${menu.rNum}"/><br />
+			<img src="filemanager/${menu.fileName}"/>
 			메뉴이름<input type="text"  name="mName" value= "${menu.mName}"/><br />
 			가격<input type="text"  name="mPrice" value= "${menu.mPrice}"/><br />
 

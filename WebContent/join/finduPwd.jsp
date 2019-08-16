@@ -11,7 +11,7 @@
 	<form method="post" action="find_uPwd" >
 		아이디 <input type="text" name="userId" id="userId"/><br />
 		이름 <input type="text" name="uName" id="uName"/><br />
-		연락처 <input type="text" name="uPhonenum" id="uPhonenum" placeholder="ex) 010-0000-0000"/><br />
+		연락처 <input type="text" name="uPhonenum" id="uPhonenum" placeholder="ex) 01012345678"/><br />
 		<input type="submit" value="비밀번호 찾기">
 	</form>
 	${message}<br />

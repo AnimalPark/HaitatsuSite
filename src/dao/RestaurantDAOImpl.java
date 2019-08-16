@@ -71,6 +71,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 				restaurant.setrPhoneNum(resultSet.getString("rPhoneNum"));
 				restaurant.setStarAvg(resultSet.getFloat("starAvg"));
 				restaurant.setrAddr(resultSet.getString("rAddr"));
+				restaurant.setFileName(resultSet.getString("filename"));
 				restaurants.add(restaurant);
 			}
 		} catch (Exception e) {
@@ -106,6 +107,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 				restaurant.setTownNum(resultSet.getInt("townNum"));
 				restaurant.setStarAvg(resultSet.getFloat("starAvg"));
 				restaurant.setrAddr(resultSet.getString("raddr"));
+				restaurant.setFileName(resultSet.getString("fileName"));
 			}
 
 		} catch (Exception e) {
@@ -135,6 +137,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 			preparedStatement.setInt(4, restaurant.getTownNum());
 			preparedStatement.setFloat(5, (float) 0.0);
 			preparedStatement.setString(6, restaurant.getrAddr());
+			preparedStatement.setString(7, restaurant.getFileName());
 
 			int rowCount = preparedStatement.executeUpdate();
 
