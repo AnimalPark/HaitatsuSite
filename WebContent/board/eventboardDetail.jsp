@@ -9,20 +9,67 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <title>이벤트게시판/디테일 페이지</title>
-<style>
-div {
-	border: 1px solid #bcbcbc;
-	width : 10%
-}
+<style type="text/css">
+a:link {text-decoration: none; color: #333333;}
+a:visited {text-decoration: none; color: #333333;}
+a:active {text-decoration: none; color: #333333;}
+a:hover {text-d"WebContent/board/eventboard.jsp"ecoration: underline; color: red;}
+body {
+        color: #333;
+        background: #fafafa;
+        font-family: "Patua One", sans-serif;
+    }
+    .contact-form {
+        padding: 20px;
+        margin: 15px 0;
+    }
+    .contact-form h1 {
+        color: #6dc97e;
+        font-weight: bold;
+        margin: 0 0 5px;
+    }
+    .contact-form .form-control, .contact-form .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .contact-form .form-control:focus {
+        border-color: #6dc97e;
+    }
+    .contact-form .btn-primary {
+        color: #fff;
+        min-width: 150px;
+        font-size: 16px;
+        background: #6dc97e;
+        border: none;
+    }
+    .contact-form .btn-primary:hover {
+        background: #15a487; 
+    }
+    .contact-form label {
+        opacity: 0.7;
+    }
+    .contact-form textarea {
+        resize: none;
+    }
+    .hint-text {
+        font-size: 15px;
+        padding-bottom: 20px;
+        opacity: 0.6;
+    }
+.container input[readonly] {background-color: white !important;}
+.container textarea[readonly] {background-color: white !important;}    
 </style>
+<script type="text/javascript">
+function delchk(){
+		return confirm("글 삭제시 복구가 불가능합니다.");
+}
+</script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
 	<a class="navbar-brand" href="index.jsp">
 	 <img src="image/Haitatsu.jpg" alt="Haitatsu" style="width:100px;">
 	</a>
-
   <ul class="navbar-nav">
     <li class="nav">
    	 <a class="nav-link" href="ybbs_req_list?reqPage=1">Q/A게시판 </a>
@@ -40,39 +87,58 @@ div {
   </ul>
 </nav>
 	<c:if test="${ybbs.userId == users.userId || users.authority == 1}">
-		<form action="ybbs_update.ad" method="post">
-			<div>작성자 :${ybbs.userId}</div>
-			<div>
-				<h1>${ybbs.evNumber}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.evSubject}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.evComment}</h1>
-			</div>
-			<a href="ybbs_event_goTo_update?evNumber=${ybbs.evNumber}">수정하러가기</a><br/>	
-			<a href="ybbs_delete_event.ad?evNumber=${ybbs.evNumber}">글 삭제하기</a><br />
-			<a href="ybbs_eventList?reqPage=1">뒤로가기</a>	
-		</form>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 m-auto">
+            <div class="contact-form">
+                    <div class="container">
+                    <h1>이벤트 게시글</h1><br/>
+                       <div class="form-group">
+                                <label for="inputName">작성자</label>
+                                <input type="text" class="form-control" id="inputName" name="userId"  value="${ybbs.userId}" readonly  style="width:30%"/>        
+                       </div>
+                    <div class="form-group">
+                        <label for="inputSubject">제목</label>
+                        <input type="text" class="form-control" id="inputSubject" name="evSubject" value="${ybbs.evSubject}" readonly  />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputMessage">내용</label>
+                        <textarea class="form-control" id="inputMessage" name="evComment" rows="10" style="width:100%"  readonly>${ybbs.evComment}</textarea>
+                    </div>
+                    <a href="ybbs_event_goTo_update.ad?evNumber=${ybbs.evNumber}"><button class="btn btn-primary" style="margin:4px">수정하러가기</button></a>
+					<a href="ybbs_delete_event.ad?evNumber=${ybbs.evNumber}" onclick="return delchk();"><button class="btn btn-primary" style="margin:4px">글 삭제하기</button></a>	
+					<a href="ybbs_eventList?reqPage=1"><button class="btn btn-primary" style="margin:4px">뒤로가기</button></a>	
+          	        </div>
+          	        </div>
+          	        </div>
+          	        </div>
+          	        </div>
 	</c:if>
-	<c:if test="${users.authority != 1 && ybbs.userId != users.userId}">
-		<form>
-			<div>작성자 :${ybbs.userId}</div>
-			<div>
-				<h1>${ybbs.evNumber}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.evSubject}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.evComment}</h1>
-			</div>
-			<div>
-				<h1>${ybbs.userId}</h1>
-			</div>
-			<a href="ybbs_eventList?reqPage=1">뒤로가기</a>	
-		</form>
+]<c:if test="${users.authority != 1 && ybbs.userId != users.userId}">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 m-auto">
+            <div class="contact-form">
+                    <div class="container">
+                    <h1>이벤트 게시글</h1><br/>
+                       <div class="form-group">
+                                <label for="inputName">작성자</label>
+                                <input type="text" class="form-control" id="inputName" name="userId"  value="${ybbs.userId}" readonly  style="width:30%"/>        
+                       </div>
+                    <div class="form-group">
+                        <label for="inputSubject">제목</label>
+                        <input type="text" class="form-control" id="inputSubject" name="evSubject" value="${ybbs.evSubject}" readonly  />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputMessage">내용</label>
+                        <textarea class="form-control" id="inputMessage" name="evComment" rows="10" style="width:100%"  readonly>${ybbs.evComment}</textarea>
+                    </div>
+					<a href="ybbs_eventList?reqPage=1"><button class="btn btn-primary" style="margin:4px">뒤로가기</button></a>	
+          	        </div>
+          	        </div>
+          	        </div>
+          	        </div>
+          	        </div>
 	</c:if>
 </body>
 </html>
