@@ -909,6 +909,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		}
 		
 		int comment_cnt = 0;
+		float avg = 0;
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_COMMENT_CNT_GET_SQL);
@@ -925,8 +926,14 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		} finally {
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
-		float avg = (float) sum / (float) comment_cnt;
-		System.out.println(sum+"/"+comment_cnt+"="+avg);
+		
+		try{
+			avg = (float) sum / (float) comment_cnt;
+			System.out.println(sum+"/"+comment_cnt+"="+avg);
+		}
+		catch(Exception e){
+			;
+		}
 		
 		try {
 
