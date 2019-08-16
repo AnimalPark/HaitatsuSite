@@ -211,7 +211,7 @@ body {
 	<br />
 	<div style="width: 700px; height: 500px; float: left; margin-right: 10px;">
 	<input type="button" class="button" value="            " style="background-image:url(image/event.png); background-size: 162px;"
-	 onclick="category1()">
+	 onclick="category0()">
 	<input type="button" class="button" value="한  식" style="background-image:url(image/category-05.png);"
 	 onclick="category1()">
 	<input type="button" class="button" value="중  식" style="background-image:url(image/category-04.png); 
@@ -255,6 +255,10 @@ body {
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
+		function category0() {
+			location.href = "ybbs_eventList?reqPage=1";
+			return false;
+		}
 		function category1() {
 			location.href = "search_link?category=1";
 			return false;
@@ -287,6 +291,7 @@ body {
 			location.href = "search_link?category=8";
 			return false;
 		}
+		
 	</script>
 </body>
 </html>
