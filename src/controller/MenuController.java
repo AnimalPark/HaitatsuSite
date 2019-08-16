@@ -20,7 +20,8 @@ import model.Menu;
 import model.Restaurant;
 
 @WebServlet(name = "MenuController", urlPatterns = { "/admin_menu_list", "/admin_menu_detail", "/admin_menu_insert",
-		"/admin_menu_update", "/admin_menu_delete", "/menu_add", "/menu_mode", "/comment_mode", "/comment_add","/comment_list","/deleteComment" })
+		"/admin_menu_update", "/admin_menu_delete", "/menu_add", "/menu_mode", "/comment_mode", "/comment_add","/comment_list","/deleteComment"
+		,"/commentWrite"})
 public class MenuController extends HttpServlet {
 
 	@Override
@@ -140,23 +141,28 @@ public class MenuController extends HttpServlet {
 			Comments comment = new Comments();
 			Comments resultByComment = null;
 			
+			int onum = Integer.parseInt(req.getParameter("on"));
 			comment.setRnum(Integer.parseInt(req.getParameter("rn")));
 			comment.setUserid(req.getParameter("userid"));
 			comment.setCommcontents(req.getParameter("comment"));
-
+			comment.setStar(Integer.parseInt(req.getParameter("star-input")));
+			comment.setOrder_str(req.getParameter("order_string"));
 			
 			resultByComment = mimpl.insert(comment);
-		
+			System.out.println(onum);
 
 			if(resultByComment != null) {
 				req.setAttribute("result", true);
 				req.setAttribute("message", "댓글추가 성공");
+				mimpl.orderCommentChk(onum);
 				System.out.println("--"+resultByComment.toString()+"--");
 			}
 			else {
 				req.setAttribute("result", false);
 				req.setAttribute("message", "댓글추가 실패");
 			}
+			
+			mimpl.settingRestaurantStaragv(comment.getRnum());
 			
 			req.setAttribute("recentComment", resultByComment);
 			RequestDispatcher rd = req.getRequestDispatcher("main/commentitem.jsp");
@@ -184,7 +190,16 @@ public class MenuController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("comment_mode");
 			rd.forward(req, resp);
 		}
-
+		else if (action.equals("commentWrite")) {
+			String rnum = req.getParameter("rno");
+			int onum = Integer.parseInt(req.getParameter("ono"));
+			String order_srt = req.getParameter("order_str");
+			req.setAttribute("rnum", rnum);
+			req.setAttribute("onum", onum);
+			req.setAttribute("order_str", order_srt);
+			RequestDispatcher rd = req.getRequestDispatcher("main/commentWrite.jsp");
+			rd.forward(req, resp);
+		}
 	}
 
 }

@@ -33,7 +33,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 				restaurant.setrPhoneNum(resultSet.getString("rPhoneNum"));
 				restaurant.setcNum(resultSet.getInt("cNum"));
 				restaurant.setTownNum(resultSet.getInt("townNum"));
-				restaurant.setStarAvg(resultSet.getInt("starAvg"));
+				restaurant.setStarAvg(resultSet.getFloat("starAvg"));
 				restaurant.setrAddr(resultSet.getString("rAddr"));
 
 				restaurants.add(restaurant);
@@ -69,7 +69,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 				restaurant.setrNum(resultSet.getInt("rNum"));
 				restaurant.setrName(resultSet.getString("rName"));
 				restaurant.setrPhoneNum(resultSet.getString("rPhoneNum"));
-				restaurant.setStarAvg(resultSet.getInt("starAvg"));
+				restaurant.setStarAvg(resultSet.getFloat("starAvg"));
 				restaurant.setrAddr(resultSet.getString("rAddr"));
 				restaurants.add(restaurant);
 			}
@@ -104,7 +104,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 				restaurant.setrPhoneNum(resultSet.getString("rPhoneNum"));
 				restaurant.setcNum(resultSet.getInt("cNum"));
 				restaurant.setTownNum(resultSet.getInt("townNum"));
-				restaurant.setStarAvg(resultSet.getInt("starAvg"));
+				restaurant.setStarAvg(resultSet.getFloat("starAvg"));
 				restaurant.setrAddr(resultSet.getString("raddr"));
 			}
 
@@ -133,7 +133,7 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 			preparedStatement.setString(2, restaurant.getrPhoneNum());
 			preparedStatement.setInt(3, restaurant.getcNum());
 			preparedStatement.setInt(4, restaurant.getTownNum());
-			preparedStatement.setInt(5, restaurant.getStarAvg());
+			preparedStatement.setFloat(5, (float) 0.0);
 			preparedStatement.setString(6, restaurant.getrAddr());
 
 			int rowCount = preparedStatement.executeUpdate();
@@ -166,9 +166,8 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 			preparedStatement.setString(2, restaurant.getrPhoneNum());
 			preparedStatement.setInt(3, restaurant.getcNum());
 			preparedStatement.setInt(4, restaurant.getTownNum());
-			preparedStatement.setInt(5, restaurant.getStarAvg());
-			preparedStatement.setString(6, restaurant.getrAddr());
-			preparedStatement.setInt(7, restaurant.getrNum());
+			preparedStatement.setString(5, restaurant.getrAddr());
+			preparedStatement.setInt(6, restaurant.getrNum());
 
 			int rowCount = preparedStatement.executeUpdate();
 

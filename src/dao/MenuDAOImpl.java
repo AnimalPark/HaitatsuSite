@@ -14,6 +14,8 @@ import model.Comments;
 import model.Menu;
 import model.Restaurant;
 import model.Town;
+import model.UserOrderList;
+import model.UserOrderListSub;
 import sql.Sql;
 
 public class MenuDAOImpl extends BaseDAO implements MenuDAO {
@@ -38,7 +40,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				restaurant.setrNum(resultSet.getInt("RNUM"));
 				restaurant.setrName(resultSet.getString("RNAME"));
 				restaurant.setcNum(resultSet.getInt("CNUM"));
-				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
+				restaurant.setStarAvg(resultSet.getFloat("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
 
 				lists.add(restaurant);
@@ -140,7 +142,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				restaurant.setrNum(resultSet.getInt("RNUM"));
 				restaurant.setrName(resultSet.getString("RNAME"));
 				restaurant.setcNum(resultSet.getInt("CNUM"));
-				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
+				restaurant.setStarAvg(resultSet.getFloat("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
 
 				lists.add(restaurant);
@@ -316,7 +318,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				restaurant.setrNum(resultSet.getInt("RNUM"));
 				restaurant.setrName(resultSet.getString("RNAME"));
 				restaurant.setcNum(resultSet.getInt("CNUM"));
-				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
+				restaurant.setStarAvg(resultSet.getFloat("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
 				restaurant.setrAddr(resultSet.getString("RADDR"));
 				restaurant.setrPhoneNum(resultSet.getString("RPHONENUM"));
@@ -599,6 +601,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				Comment.setCommcontents(resultSet.getString("COMMCONTENTS"));
 				Comment.setStar(resultSet.getInt("STAR"));
 				Comment.setCommaddr(resultSet.getString("COMMADDR"));
+				Comment.setOrder_str(resultSet.getString("ORDER_STR"));
 
 				lists.add(Comment);
 			}
@@ -609,21 +612,18 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		} finally {
 			closeDBObjects(resultSet, preparedStatement, connection);
 		}
-
 		return lists;
 	}
 
 	@Override
 	public Comments insert(Comments comments) {
 		Comments selectByComment = null;
-		MenuDAOImpl Dimpl = new MenuDAOImpl();
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		Statement statement = null;
 		ResultSet resultSet = null;
-		int i = 0;
 
 		try {
 			connection = getConnection();
@@ -631,7 +631,8 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			preparedStatement.setInt(1, comments.getRnum());
 			preparedStatement.setString(2, comments.getUserid());
 			preparedStatement.setString(3, comments.getCommcontents());
-			preparedStatement.setInt(4, 5);
+			preparedStatement.setInt(4, comments.getStar());
+			preparedStatement.setString(5, comments.getOrder_str());
 
 			int rowCount = preparedStatement.executeUpdate();
 
@@ -675,6 +676,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				comment.setCommcontents(resultSet.getString("COMMCONTENTS"));
 				comment.setStar(resultSet.getInt("STAR"));
 				comment.setCommaddr(resultSet.getString("COMMADDR"));
+				comment.setOrder_str(resultSet.getString("ORDER_STR"));
 
 			}
 
@@ -749,7 +751,6 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		System.out.println(cnum+":"+cityname+":"+townname);
 
 		try {
 			connection = getConnection();
@@ -765,7 +766,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				restaurant.setrNum(resultSet.getInt("RNUM"));
 				restaurant.setrName(resultSet.getString("RNAME"));
 				restaurant.setcNum(resultSet.getInt("CNUM"));
-				restaurant.setStarAvg(resultSet.getInt("STARAVG"));
+				restaurant.setStarAvg(resultSet.getFloat("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
 
 				lists.add(restaurant);
@@ -779,5 +780,171 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		}
 
 		return lists;
+	}
+
+	@Override
+	public List<UserOrderList> userOrderList(String userid) {
+		List<UserOrderList> lists = new ArrayList<UserOrderList>();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.USERORDER_SELECT_BY_USERID_SQL);
+			preparedStatement.setString(1, userid);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				UserOrderList list = new UserOrderList();
+
+				list.setoNum(resultSet.getInt("ONUM"));
+				list.setUserId(resultSet.getString("USERID"));
+				list.setoDate(resultSet.getString("ODATE"));
+				list.setDeliChk(resultSet.getInt("DELICHK"));
+				list.setComment_chk(resultSet.getInt("COMMENT_CHK"));
+
+				lists.add(list);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return lists;
+	}
+
+	@Override
+	public List<UserOrderListSub> orderInfoSub(int onum) {
+		List<UserOrderListSub> lists = new ArrayList<UserOrderListSub>();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.ORDERINFO_SELECT_BY_ONUM_SQL);
+			preparedStatement.setInt(1, onum);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				UserOrderListSub list = new UserOrderListSub();
+				list.setrNum(resultSet.getInt("RNUM"));
+				list.setrName(resultSet.getString("RNAME"));
+				list.setmName(resultSet.getString("MNAME"));
+				list.setCount(resultSet.getInt("COUNT"));
+				list.setmPrice(resultSet.getInt("MPRICE"));
+
+				lists.add(list);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return lists;
+	}
+
+	@Override
+	public boolean orderCommentChk(int onum) {
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.ORDERCOMMENT_CHK_SQL);
+
+			preparedStatement.setInt(1,onum);
+
+
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				result = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean settingRestaurantStaragv(int rnum) {
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		int sum = 0;
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_STAR_SUM_GET_SQL);
+			preparedStatement.setInt(1, rnum);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				sum = resultSet.getInt("SUM");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		
+		int comment_cnt = 0;
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_COMMENT_CNT_GET_SQL);
+			preparedStatement.setInt(1, rnum);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				comment_cnt = resultSet.getInt("COMMENT_CNT");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		float avg = (float) sum / (float) comment_cnt;
+		System.out.println(sum+"/"+comment_cnt+"="+avg);
+		
+		try {
+
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_STAR_AGV_UPDATE_SQL);
+			preparedStatement.setFloat(1, avg);
+			preparedStatement.setFloat(2, rnum);
+
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				result = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+		return result;	
 	}
 }

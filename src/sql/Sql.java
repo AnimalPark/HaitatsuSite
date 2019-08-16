@@ -52,7 +52,7 @@ public class Sql {
 											"FROM CITY " + 
 											"WHERE CITYNAME = ? ) AND TOWNNAME = ? )";
 	public static final String MENU_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE RNUM = ? ";
-	public static final String INSERT_USERORDER_SQL	 = "INSERT INTO USERORDER VALUES(SEQ_USERORDER.NEXTVAL, ?, SYSDATE, ?)";
+	public static final String INSERT_USERORDER_SQL	 = "INSERT INTO USERORDER VALUES(SEQ_USERORDER.NEXTVAL, ?, SYSDATE, ?, 0, 'dd')";
 	public static final String INSERT_ORDERMENU_SQL	 = "INSERT INTO ORDERMENU VALUES(?, ?, ?)";
 	public static final String NOW_ORDER_ONUM_SQL = 
 			"SELECT ONUM " + 
@@ -60,18 +60,25 @@ public class Sql {
 					"FROM USERORDER " + 
 					"ORDER BY ONUM DESC) " + 
 			"WHERE ROWNUM = 1";
-	public static final String INSERT_COMMENT_SQL = "INSERT INTO COMMENTS VALUES(SEQ_COMMENT.NEXTVAL, ?, ?, ?, ?, SYSDATE)";
+	public static final String INSERT_COMMENT_SQL = "INSERT INTO COMMENTS VALUES(SEQ_COMMENT.NEXTVAL, ?, ?, ?, ?, SYSDATE,?)";
 	public static final String COMMENTS_SELECT_BY_RNUM_SQL = "SELECT * FROM COMMENTS WHERE RNUM = ? ORDER BY COMMADDR";
 	public static final String COMMENTS_GET_CURRVAL_SQL = "SELECT SEQ_COMMENT.CURRVAL AS COMMNUM FROM DUAL";
 	public static final String COMMENTS_SELECT_BY_COMMNUM_SQL = "SELECT * FROM COMMENTS WHERE COMMNUM = ?";
 	public static final String DELETE_COMMENT_SQL = "DELETE FROM COMMENTS WHERE COMMNUM = ?";
 	public static final String USER_GET_ADDR_BY_USERID_SQL = "SELECT UADDR FROM USERS WHERE USERID = ?";
+	public static final String USERORDER_SELECT_BY_USERID_SQL = "SELECT * FROM USERORDER WHERE USERID = ? ORDER BY ODATE DESC";
+	public static final String ORDERINFO_SELECT_BY_ONUM_SQL = "SELECT RNUM, RNAME, MNAME, COUNT, MPRICE FROM ORDERMENU NATURAL JOIN MENU NATURAL JOIN RESTAURANT WHERE ONUM = ?";
+	public static final String ORDERCOMMENT_CHK_SQL = "UPDATE USERORDER SET COMMENT_CHK = 1 WHERE ONUM = ?";
+	public static final String RESTAURANT_STAR_SUM_GET_SQL = "SELECT SUM(STAR) AS SUM FROM COMMENTS WHERE RNUM = ?";
+	public static final String RESTAURANT_COMMENT_CNT_GET_SQL = "SELECT MAX(ROWNUM) AS COMMENT_CNT FROM COMMENTS WHERE RNUM = ?";
+	public static final String RESTAURANT_STAR_AGV_UPDATE_SQL = "UPDATE RESTAURANT SET STARAVG = ? WHERE RNUM = ?";
+	
 	//==========================È²È£¿µ Sql¡é=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
 	public static final String RESTAURANT_SELECT_BY_NAME_SQL = "SELECT * FROM restaurant WHERE rName like ?";
 	public static final String RESTAURANT_SELECT_BY_RNUM_SQL = "SELECT * FROM restaurant WHERE rNum = ?";
 	public static final String RESTAURANT_INSERT_RESTAURANT_SQL = "INSERT INTO restaurant values(seq_restaurant.nextval, ?,?,?,?,?,?)";
-	public static final String RESTAURANT_UPDATE_RESTAURANT_SQL = "UPDATE restaurant SET rName=?, rPhoneNum=?, cNum=?, townNum=?, starAvg=?, rAddr=? WHERE rNum=?";
+	public static final String RESTAURANT_UPDATE_RESTAURANT_SQL = "UPDATE restaurant SET rName=?, rPhoneNum=?, cNum=?, townNum=?, rAddr=? WHERE rNum=?";
 	public static final String RESTAURANT_DELETE_RESTAURANT_SQL = "DELETE FROM restaurant WHERE rNum=?";
 	
 	public static final String MENU_SELECT_ALL_MENU_SQL = "SELECT * FROM menu";

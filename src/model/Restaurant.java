@@ -6,7 +6,7 @@ public class Restaurant {
 	private String rPhoneNum;
 	private int cNum;
 	private int townNum;
-	private int starAvg;
+	private float starAvg;
 	private String rAddr;
 
 	public int getrNum() {
@@ -49,11 +49,11 @@ public class Restaurant {
 		this.townNum = townNum;
 	}
 
-	public int getStarAvg() {
+	public float getStarAvg() {
 		return starAvg;
 	}
 
-	public void setStarAvg(int starAvg) {
+	public void setStarAvg(float starAvg) {
 		this.starAvg = starAvg;
 	}
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
@@ -91,7 +92,7 @@
 	<br />
 	<div class="container">
 		<br /> <br /> <span>${detailR.rNum}</span> <span>${detailR.rName}</span>
-		<span>${detailR.cNum}</span> <span>${detailR.starAvg}</span> <span>${detailR.townNum}</span>
+		<span>${detailR.cNum}</span> <span><fmt:formatNumber value = "${detailR.starAvg}" pattern = ".0"/></span> <span>${detailR.townNum}</span>
 		<span>${detailR.rAddr}</span> <span>${detailR.rPhoneNum}</span>
 		<hr />
 
