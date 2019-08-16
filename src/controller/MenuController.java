@@ -73,12 +73,13 @@ public class MenuController extends HttpServlet {
 			Part part = req.getPart("filename");
 
 			/* get NewfileName */
-			String fileName = getFilename(part);
+			String mfileName = getFilename(part);
+			System.out.println("==="+mfileName);
 			//System.out.println(fileName);
 			
 			/* file save */
-			if (fileName != null && !fileName.isEmpty()) {
-				part.write(getServletContext().getRealPath("/WEB-INF") + "/" + fileName);
+			if (mfileName != null && !mfileName.isEmpty()) {
+				part.write(getServletContext().getRealPath("/WEB-INF") + "/" +mfileName);
 			}
 
 			
@@ -88,7 +89,7 @@ public class MenuController extends HttpServlet {
 			menu.setrNum(Integer.parseInt(req.getParameter("rNum")));
 			menu.setmName(req.getParameter("mName"));
 			menu.setmPrice(Integer.parseInt(req.getParameter("mPrice")));
-			menu.setFileName(fileName);
+			menu.setmFileName(mfileName);
 			// menu.setmSales(Integer.parseInt(req.getParameter("mSales")));
 
 			boolean result = dao.insertMenu(menu);

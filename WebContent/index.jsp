@@ -177,7 +177,7 @@ body {
 			class="collapse navbar-collapse justify-content-start">
 			<ul class="nav navbar-nav">
 				<c:if test="${users.authority eq 1}">
-					<li class="nav-item"><a href="admin/adminScreen.jsp"
+					<li class="nav-item"><a href="admin_home_link"
 						class="nav-link">관리자 화면으로</a></li>
 				</c:if>
 				<c:if test="${users == null}">
@@ -202,7 +202,6 @@ body {
 		<script type="text/javascript">
 			alert("관리자 계정으로 로그인시에만 가능한 기능입니다.");
 		</script>
-	</c:if>
 	</c:if>
 
 
