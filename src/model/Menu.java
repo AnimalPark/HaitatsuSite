@@ -6,15 +6,7 @@ public class Menu {
 	private String mName;
 	private int mPrice;
 	private int mSales;
-	private String fileName;
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+	private String mFileName;
 
 	public int getmNum() {
 		return mNum;
@@ -56,10 +48,12 @@ public class Menu {
 		this.mSales = mSales;
 	}
 
-	@Override
-	public String toString() {
-		return "Menu [mNum=" + mNum + ", rNum=" + rNum + ", mName=" + mName + ", mPrice=" + mPrice + ", mSales="
-				+ mSales + "]";
+	public String getmFileName() {
+		return mFileName;
+	}
+
+	public void setmFileName(String mFileName) {
+		this.mFileName = mFileName;
 	}
 
 }

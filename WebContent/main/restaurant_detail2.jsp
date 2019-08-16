@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC>
 <html>
@@ -24,8 +25,23 @@
 		<li> 작성자: <span class="writer_user">{{= userid}}</span>
 		작성 시간: <span class="date">{{= commaddr}}</span>
 		</li>
+		<li> 주문리스트: <span class="order_str">{{= order_str}}</span>	
 		<li>평점: 
-			<span class="date">{{= star}}</span>
+			{{if star == 1}}
+				<img src="img/score_one.jpg" width="80" height="20">
+			{{/if}}
+			{{if star == 2}}
+				<img src="img/score_two.jpg" width="80" height="20">
+			{{/if}}
+			{{if star == 3}}
+				<img src="img/score_three.jpg" width="80" height="20">
+			{{/if}}
+			{{if star == 4}}
+				<img src="img/score_four.jpg" width="80" height="20">
+			{{/if}}
+			{{if star == 5}}
+				<img src="img/score_five.jpg" width="80" height="20">
+			{{/if}}
 		</li>		
 		<li>내용: 
 			<span class="contents">{{= commcontents}}</span>
@@ -41,14 +57,15 @@
 	</ul>
 	</script>
 <script type="text/javascript">
-	function addNewItem(commnum, userid, commcontents, star, commaddr, chk) {
+	function addNewItem(commnum, userid, commcontents, star, commaddr, chk, order_str) {
 		var li_data = {
 			"commnum" : commnum,
 			"userid" : userid,
 			"commcontents" : commcontents,
 			"star" : star,
 			"commaddr" : commaddr,
-			"chk" : chk
+			"chk" : chk,
+			"order_str" : order_str
 		};
 		var new_li = $("#itemTemplate").tmpl(li_data);
 		$("#comment_list").prepend(new_li);
@@ -62,6 +79,7 @@
 				var commcontents = $(this).find("commcontents").text();
 				var star = $(this).find("star").text();
 				var commaddr = $(this).find("commaddr").text();
+				var order_str = $(this).find("order_str").text();
 				var loginid = $("#user_name").val();
 				var chk = false;
 				
@@ -69,7 +87,7 @@
 					chk = true;
 				}
 				
-				addNewItem(commnum, userid, commcontents, star, commaddr, chk);
+				addNewItem(commnum, userid, commcontents, star, commaddr, chk,order_str);
 			});
 		}).fail(function() {
 			alert("덧글 목록을 불러오는데 실패하였습니다. 잠시후에 다시 시도해 주십시오.")
@@ -209,30 +227,23 @@
 	<br />
 	<div class="container">
 		<br /> <br /> <span>${detailR.rNum}</span> <span>${detailR.rName}</span>
-		<span>${detailR.cNum}</span> <span>${detailR.starAvg}</span> <span>${detailR.townNum}</span>
+		<span>${detailR.cNum}</span> <span><fmt:formatNumber value = "${detailR.starAvg}" pattern = ".0"/></span> <span>${detailR.townNum}</span>
 		<span>${detailR.rAddr}</span> <span>${detailR.rPhoneNum}</span>
 		<hr />
 
-		<div
-			style="width: 500px; height: 500px; float: left; margin-right: 10px;">
+		<div style="width: 500px; height: 500px; float: left; margin-right: 10px;">
 			<input type="button" value="메뉴" class="btn btn-secondary"
 				id="change1"> <input type="button" value="댓글"
 				class="btn btn-primary" id="change2">
 
 
 			<div class="container mt-3">
-				<h3>후기 남기기</h3>
+				<h3>후기</h3>
 			</div>
 
 			<form id="comment_form">
-				<input type="hidden" name="rn" id="rn"
-					value="${detailR.rNum}" /> <input type="hidden" name="userid"
-					id="userid" value="${users.userId}" /> <label for="user_name">작성자</label>
-				<input type="text" name="user_name" id="user_name"
-					value="${users.userId}" disabled="disabled" /> <input
-					type="submit" value="저장하기" /> <br /> <br /> <label for="comment">덧글
-					내용</label>
-				<textarea name="comment" id="comment"></textarea>
+
+				<input type="hidden" name="user_name" id="user_name" value="${users.userId}" />
 			</form>
 			<ul id="comment_list">
 				<!-- 여기에 동적 생성 요소가 들어가게 됩니다. -->

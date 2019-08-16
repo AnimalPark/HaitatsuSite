@@ -16,7 +16,7 @@
 						
 			<input type="hidden" name="mNum" value= "${menu.mNum}"/><br />
 			<input type="hidden"  name="rNum" value="${menu.rNum}"/><br />
-			<img src="filemanager/${menu.fileName}"/>
+			<img src="filemanager/${menu.mFileName}"/>
 			메뉴이름<input type="text"  name="mName" value= "${menu.mName}"/><br />
 			가격<input type="text"  name="mPrice" value= "${menu.mPrice}"/><br />
 

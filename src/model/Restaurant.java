@@ -6,9 +6,9 @@ public class Restaurant {
 	private String rPhoneNum;
 	private int cNum;
 	private int townNum;
-	private int starAvg;
+	private float starAvg;
 	private String rAddr;
-	private String fileName;
+	private String rFileName;
 
 	public int getrNum() {
 		return rNum;
@@ -50,11 +50,11 @@ public class Restaurant {
 		this.townNum = townNum;
 	}
 
-	public int getStarAvg() {
+	public float getStarAvg() {
 		return starAvg;
 	}
 
-	public void setStarAvg(int starAvg) {
+	public void setStarAvg(float starAvg) {
 		this.starAvg = starAvg;
 	}
 
@@ -66,18 +66,12 @@ public class Restaurant {
 		this.rAddr = rAddr;
 	}
 
-	public String getFileName() {
-		return fileName;
+	public String getrFileName() {
+		return rFileName;
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
-	@Override
-	public String toString() {
-		return "Restaurant [rNum=" + rNum + ", rName=" + rName + ", rPhoneNum=" + rPhoneNum + ", cNum=" + cNum
-				+ ", townNum=" + townNum + ", starAvg=" + starAvg + ", rAddr=" + rAddr + "]";
+	public void setrFileName(String rFileName) {
+		this.rFileName = rFileName;
 	}
 
 }

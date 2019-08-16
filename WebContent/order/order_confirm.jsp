@@ -14,8 +14,15 @@
 			order_end();
 
 			function order_end() {
-				location.href = "order_end";
-				return false;
+				var d = '${delivery_check}';
+				if(d == 1){
+					location.href = "order_end";
+					return false;
+				}
+				else if(d == 0){
+					location.href = "mapMove";
+					return false;
+				}
 			};
 		});
 	});
@@ -42,6 +49,7 @@
 	</c:if>
 	<span>=================================</span>
 	<br />
+
 	<input type="button" value="주문 완료하기" id="order_end">
 
 

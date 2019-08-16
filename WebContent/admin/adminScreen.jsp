@@ -14,9 +14,7 @@
 
 	<a href="admin_home_link">홈화면</a>
 	<a href="admin_rtrt_list">음식점 리스트</a>
-	<c:if test="${users.authority eq 1}">
 	<a href="restaurant_add">음식점 추가</a>
-	</c:if>
 	<a href="ybbs_req_list?reqPage=1">Q/A 게시판</a>
 	<a href="ybbs_eventList?reqPage=1">이벤트 게시판</a>
 
