@@ -24,7 +24,7 @@ import model.Menu;
 import model.Restaurant;
 
 @WebServlet(name = "MenuController", urlPatterns = { "/admin_menu_list", "/admin_menu_detail", "/admin_menu_insert",
-		"/admin_menu_update", "/admin_menu_delete", "/menu_add", "/menu_mode", "/comment_mode", "/comment_add","/comment_list","/deleteComment" })
+		"/admin_menu_update", "/admin_menu_delete", "/menu_add", "/menu_mode", "/comment_mode", "/comment_add","/comment_list","/deleteComment","/commentWrite" })
 @MultipartConfig
 public class MenuController extends HttpServlet {
 

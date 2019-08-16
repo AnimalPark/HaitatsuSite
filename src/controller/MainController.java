@@ -261,28 +261,35 @@ public class MainController extends HttpServlet {
 			System.out.println("test");
 			Mimpl = new MenuDAOImpl();
 			HttpSession session = req.getSession();
-			Users user = (Users) session.getAttribute("users");
-			int chk = (int) session.getAttribute("delivery_check");
-			ArrayList<Selected_menu> order_lists = (ArrayList<Selected_menu>) session.getAttribute("order_lists");
+			try {
+				Users user = (Users) session.getAttribute("users");
+				int chk = (int) session.getAttribute("delivery_check");
+				ArrayList<Selected_menu> order_lists = (ArrayList<Selected_menu>) session.getAttribute("order_lists");
 
-			System.out.println("========");
-			System.out.println(user.getUserId());
-			for (Selected_menu m : order_lists) {
-				System.out.println(m.toString());
+				System.out.println("========");
+				System.out.println(user.getUserId());
+				for (Selected_menu m : order_lists) {
+					System.out.println(m.toString());
+				}
+				System.out.println("========");
+
+				Mimpl.insertUserOrder(user.getUserId(), chk);
+
+				int orderNumber = Mimpl.nowOrderOnum();
+
+				for (int i = 0; i < order_lists.size(); i++) {
+					Mimpl.insertOrderMenu(order_lists.get(i).getmNum(), orderNumber, order_lists.get(i).getCount());
+				}
+				session.removeAttribute("total_price");
+				session.removeAttribute("order_lists");
+				RequestDispatcher rd = req.getRequestDispatcher("order/finish.jsp");
+				rd.forward(req, resp);
 			}
-			System.out.println("========");
-
-			Mimpl.insertUserOrder(user.getUserId(), chk);
-
-			int orderNumber = Mimpl.nowOrderOnum();
-
-			for (int i = 0; i < order_lists.size(); i++) {
-				Mimpl.insertOrderMenu(order_lists.get(i).getmNum(), orderNumber, order_lists.get(i).getCount());
+			catch(Exception e){
+				RequestDispatcher rd = req.getRequestDispatcher("login_link");
+				rd.forward(req, resp);;
 			}
-			session.removeAttribute("total_price");
-			session.removeAttribute("order_lists");
-			RequestDispatcher rd = req.getRequestDispatcher("order/finish.jsp");
-			rd.forward(req, resp);
+			
 
 		} else if (action.equals("test")) {
 
