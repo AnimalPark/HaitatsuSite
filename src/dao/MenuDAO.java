@@ -8,6 +8,8 @@ import model.Comments;
 import model.Menu;
 import model.Restaurant;
 import model.Town;
+import model.UserOrderList;
+import model.UserOrderListSub;
 
 public interface MenuDAO {
 	List<Restaurant> selectByCategory(int category);
@@ -17,6 +19,9 @@ public interface MenuDAO {
 	List<City> selectAllCity();
 	List<Town> selectAllTown();
 	List<String> useridToAddr(String userid);
+	boolean settingRestaurantStaragv(int rnum);
+	
+	boolean orderCommentChk(int onum);
 	
 	Menu menuSelectByMnum(int mnum);
 	List<Menu> menuDetailSelectByRnum(int rNum);
@@ -39,4 +44,7 @@ public interface MenuDAO {
 	Comments selectByNum(int commnum);
 	public boolean delete(int commnum);
 	List<Comments> selectByRnumComments(int rno);
+	
+	List<UserOrderList> userOrderList(String userid);
+	List<UserOrderListSub> orderInfoSub(int onum);
 }

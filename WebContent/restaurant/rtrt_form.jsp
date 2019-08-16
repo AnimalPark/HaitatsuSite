@@ -9,9 +9,11 @@
 <title>Restaurant Form</title>
 </head>
 <body>
-	<form action="admin_rtrt_insert">
+	<form action="admin_rtrt_insert" enctype="multipart/form-data" method="post">
 		<h2>가게 등록</h2>
 		<hr>
+		
+		사진 첨부 <input type="file" name="filename"/><br /> 
 		Restaurant name<input type="text" name="rName"
 			placeholder="가게명을 입력하세요"><br /> Phone number<input
 			type="text" name="rPhoneNum" placeholder="대표전화번호를 입력하세요"><br />

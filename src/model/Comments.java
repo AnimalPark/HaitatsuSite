@@ -7,6 +7,13 @@ public class Comments {
 	private String commcontents;
 	private int star;
 	private String commaddr;
+	private String order_str;
+	public String getOrder_str() {
+		return order_str;
+	}
+	public void setOrder_str(String order_str) {
+		this.order_str = order_str;
+	}
 	public String getCommaddr() {
 		return commaddr;
 	}
@@ -46,7 +53,7 @@ public class Comments {
 	@Override
 	public String toString() {
 		return "Comments [commnum=" + commnum + ", rnum=" + rnum + ", userid=" + userid + ", commcontents="
-				+ commcontents + ", star=" + star + ", commaddr=" + commaddr + "]";
+				+ commcontents + ", star=" + star + ", commaddr=" + commaddr + ", order_str=" + order_str + "]";
 	}
 
 	

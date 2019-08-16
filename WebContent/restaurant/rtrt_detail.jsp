@@ -11,6 +11,7 @@
 		<button type="button" onclick="location.href='index.jsp'" >처음으로</button>
 		
 			<h4>상세보기</h4>
+				<img src="filemanager/${restaurant.rFileName}"/>
 			  	가게이름 : ${restaurant.rName}<br />
 				전화번호 : ${restaurant.rPhoneNum}<br />
 				주소 : ${restaurant.rAddr}<br />

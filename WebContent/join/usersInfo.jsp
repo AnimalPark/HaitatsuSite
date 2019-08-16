@@ -8,30 +8,6 @@
 
 	function validation()
 	{
-        //비밀번호 공백 체크
-        if (update.uPwd1.value.indexOf(" ") >= 0)
-        {
-            alert("비밀번호에 공백을 사용할 수 없습니다.")
-            update.uPwd.focus();
-            update.uPwd.select();
-            return false;
-        }
-        //비밀번호 길이 체크(6~18자 까지 허용)
-        if (update.uPwd1.value.length < 6 || update.uPwd1.value.length > 18)
-        {
-            alert("비밀번호를 6~18자까지 입력해주세요.")
-            update.uPwd1.focus();
-            update.uPwd1.select();
-            return false;
-        }
-        //비밀번호와 비밀번호 확인 일치여부 체크
-        if (update.uPwd1.value != join.uPwd2.value)
-        {
-            alert("비밀번호가 일치하지 않습니다")
-            update.uPwd2.value = ""
-            update.uPwd2.focus();
-            return false;
-        }
 	    //이름 입력여부 체크
 	    if (update.uName.value == "")
 	    {
@@ -87,7 +63,7 @@
 		}
 		else
 		{
-			alert("정상적으로 탈퇴가 안됨."); 
+			alert("탈퇴에 실패하였습니다."); 
 			location.href = "home_link"; 
 			return false; 
 		}
@@ -140,12 +116,12 @@
 	}
 </script>
 
-<title>회원 정보</title>
+<title>회원 정보 수정</title>
 </head>
 <body>
 	<div class="container">
-		<form method="post" action="users_update?userId=${users.userId}" name="update" onsubmit="return validation();"> 
 
+		<form method="post" action="users_update?userId=${users.userId}" name="update" onsubmit="return validation();"> 
 			아이디 : ${users.userId}<br />	
 			이름 : <input type="text" id="uName" name="uName" value="${users.uName}"><br />
 			주소 : <input type="text" name="postcode" id="sample4_postcode" placeholder="주소를 검색해주세요." readonly="readonly">&nbsp;

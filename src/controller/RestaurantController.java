@@ -1,15 +1,19 @@
 package controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import dao.MenuDAO;
 import dao.MenuDAOImpl;
@@ -21,6 +25,7 @@ import model.Restaurant;
 @WebServlet(name = "RestaurantController", urlPatterns = { "/admin_rtrt_list", "/admin_rtrt_search",
 		"/admin_rtrt_detail", "/admin_rtrt_update", "/admin_rtrt_delete", "/admin_rtrt_save", "/admin_rtrt_insert",
 		"/restaurant_add", "/admin_rtrt_mdf", "/admin_rtrt_go_detail" })
+@MultipartConfig
 public class RestaurantController extends HttpServlet {
 
 	@Override
@@ -80,6 +85,17 @@ public class RestaurantController extends HttpServlet {
 
 		} else if (action.equals("admin_rtrt_insert")) {
 			System.out.println("==============");
+			
+			Part part = req.getPart("filename");
+
+			/* get NewfileName */
+			String rfileName = getFilename(part);
+			//System.out.println(fileName);
+			
+			/* file save */
+			if (rfileName != null && !rfileName.isEmpty()) {
+				part.write(getServletContext().getRealPath("/WEB-INF") + "/" + rfileName);
+			}
 
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			Restaurant restaurant = new Restaurant();
@@ -89,6 +105,7 @@ public class RestaurantController extends HttpServlet {
 			restaurant.setTownNum(Integer.parseInt(req.getParameter("townNum")));
 			restaurant.setStarAvg(Integer.parseInt(req.getParameter("starAvg")));
 			restaurant.setrAddr(req.getParameter("rAddr"));
+			restaurant.setrFileName(rfileName);
 
 			boolean result = dao.insertRestaurant(restaurant);
 
@@ -155,6 +172,27 @@ public class RestaurantController extends HttpServlet {
 
 		}
 
+	}
+	/* return unique filename */
+	private String getFilename(Part part) {
+
+		String contentDispositionHeader = part.getHeader("content-disposition");
+
+		String[] elements = contentDispositionHeader.split(";");
+
+		for (String element : elements) {
+			if (element.trim().startsWith("filename")) {
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmSSS");
+				Date date = new Date();
+
+				String filename = sdf.format(date);
+				String extension = element.substring(element.indexOf('.'), element.length() - 1).trim();
+
+				return filename + extension;
+			}
+		}
+		return null;
 	}
 
 }
