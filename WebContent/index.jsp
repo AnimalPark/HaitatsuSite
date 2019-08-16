@@ -210,7 +210,7 @@ body {
 
 	<br />
 	<div style="width: 700px; height: 500px; float: left; margin-right: 10px;">
-	<input type="button" class="button" value="이벤트" style="background-image:url(image/event.jpg);"
+	<input type="button" class="button" value="            " style="background-image:url(image/event.png); background-size: 162px;"
 	 onclick="category1()">
 	<input type="button" class="button" value="한  식" style="background-image:url(image/category-05.png);"
 	 onclick="category1()">
