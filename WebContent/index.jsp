@@ -118,13 +118,17 @@ body {
 
 .button {
 	border: none;
-	padding: 100px 100px;
+	padding: 20px 80px 80px 20px;
 	text-decoration: none;
+	font-align: right;
 	display: inline-block;
-	font-size: 14px;
+	font-size: 20px;
 	margin: 4px 2px;
 	cursor: pointer;
+	font-weight:bold;
+	background-size: 140px;
 }
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -204,41 +208,29 @@ body {
 		</script>
 	</c:if>
 
-
 	<br />
+	<div style="width: 700px; height: 500px; float: left; margin-right: 10px;">
 	<input type="button" class="button" value="이벤트" style=
-	text-align:right;" onclick="category1()">
-	<input type="button" class="button" value="한식" style="background-image:url(image/category-05.png);" 
-	onclick="category1()">
-	<input type="button" class="button" value="중식" style="background-image:url(image/category-04.png); 
+	text-align:right; onclick="category1()">
+	<input type="button" class="button" value="한  식" style="background-image:url(image/category-05.png);
+	" onclick="category1()">
+	<input type="button" class="button" value="중  식" style="background-image:url(image/category-04.png); 
 	background-position:0px 0px;" onclick="category2()">
 	<br />
-	<input type="button" class="button" value="일식" style="background-image:url(image/category-06.png); 
+	<input type="button" class="button" value="일    식" style="background-image:url(image/category-06.png); 
 	background-position:0px 0px;"onclick="category3()">
-	<input type="button" class="button" value="피자" style="background-image:url(image/category-03.png); 
+	<input type="button" class="button" value="피  자" style="background-image:url(image/category-03.png); 
 	background-position:0px 0px;" onclick="category4()">
-	<input type="button" class="button" value="치킨"style="background-image:url(image/category-02.png); 
+	<input type="button" class="button" value="치  킨"style="background-image:url(image/category-02.png); 
 	background-position:0px 0px;" onclick="category5()">
 	<br />
-	<input type="button" class="button" value="분식" style="background-image:url(image/category-09.png); 
+	<input type="button" class="button" value="분    식" style="background-image:url(image/category-09.png); 
 	background-position:0px 0px;" onclick="category6()">
-	<input type="button" class="button" value="족발" style="background-image:url(image/category-07.png); 
+	<input type="button" class="button" value="족  발" style="background-image:url(image/category-07.png); 
 	background-position:0px 0px;" onclick="category7()">
-	<input type="button" class="button" value="간식" style="background-image:url(image/category-11.png); 
+	<input type="button" class="button" value="간  식" style="background-image:url(image/category-11.png); 
 	background-position:0px 0px;" onclick="category8()">
 	<br />
-	<div
-		style="width: 500px; height: 500px; float: left; margin-right: 10px;">
-		<input type="button" class="button" value="한식" onclick="category1()">
-		<input type="button" class="button" value="중식" onclick="category2()">
-		<input type="button" class="button" value="일식" onclick="category3()">
-		<br /> <input type="button" class="button" value="피자"
-			onclick="category4()"> <input type="button" class="button"
-			value="치킨" onclick="category5()"> <input type="button"
-			class="button" value="분식" onclick="category6()"> <br /> <input
-			type="button" class="button" value="족발" onclick="category7()">
-		<input type="button" class="button" value="간식" onclick="category8()">
-		<br /> <a href="test2">사진보자</a> <a href="test">사진보자</a>
 	</div>
 	<div style="width: 500px; height: 500px; float: left;">
 		<c:if test="${!empty order_lists}">
