@@ -192,8 +192,8 @@ body {
 				<li class="nav-item dropdown"><a data-toggle="dropdown"
 					class="nav-link dropdown-toggle" href="#">게시판 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#" class="ybbs_eventList?reqPage=1">이벤트 게시판</a></li>
-						<li><a href="#" class="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
+						<li><a href="ybbs_eventList?reqPage=1">이벤트 게시판</a></li>
+						<li><a href="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
 					</ul></li>
 				<c:if test="${users != null}">
 						<li class="nav-item"><a href="logout_link" class="nav-link">로그아웃</a></li>
@@ -210,10 +210,10 @@ body {
 
 	<br />
 	<div style="width: 700px; height: 500px; float: left; margin-right: 10px;">
-	<input type="button" class="button" value="이벤트" style=
-	text-align:right; onclick="category1()">
-	<input type="button" class="button" value="한  식" style="background-image:url(image/category-05.png);
-	" onclick="category1()">
+	<input type="button" class="button" value="이벤트" style="background-image:url(image/event.jpg);"
+	 onclick="category1()">
+	<input type="button" class="button" value="한  식" style="background-image:url(image/category-05.png);"
+	 onclick="category1()">
 	<input type="button" class="button" value="중  식" style="background-image:url(image/category-04.png); 
 	background-position:0px 0px;" onclick="category2()">
 	<br />
