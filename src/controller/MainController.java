@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +21,14 @@ import model.Menu;
 import model.Restaurant;
 import model.Selected_menu;
 import model.Town;
+import model.UserOrderList;
+import model.UserOrderListSub;
 import model.Users;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link",
 		"/home_link", "/search_link", "/addr_search", "/logout_link", "/admin_home_link", "/restaurant_detail",
 		"/order_confirm", "/ordermenu_add", "/return_detail", "/order_final", "/confirm_orders", "/myPage_link",
-		"/order_end" ,"/login_index_link","/test","/test2"})
+		"/order_end", "/login_index_link", "/test", "/test2","/user_orderlist"})
 
 public class MainController extends HttpServlet {
 
@@ -46,28 +50,31 @@ public class MainController extends HttpServlet {
 		String uri = req.getRequestURI();
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
-		
-		if(action.equals("login_index_link")) {
-			
+
+		if (action.equals("login_index_link")) {
+
 			HttpSession session = req.getSession();
 			session.removeAttribute("caller");
 			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
-			
+
 		}
-		
+
 		else if (action.equals("login_link")) {
-			
+
 			RequestDispatcher rd = req.getRequestDispatcher("join/login.jsp");
 			rd.forward(req, resp);
-		
+
 		} else if (action.equals("logout_link")) {
 			HttpSession session = req.getSession();
 			session.removeAttribute("caller");
 			RequestDispatcher rd = req.getRequestDispatcher("user_logout");
 			rd.forward(req, resp);
-		
+
 		} else if (action.equals("join_link")) {
+			
+			HttpSession session = req.getSession();
+			session.setAttribute("chkid", 0);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("join/join.jsp");
 			rd.forward(req, resp);
@@ -96,52 +103,52 @@ public class MainController extends HttpServlet {
 
 		else if (action.equals("search_link")) {
 			Mimpl = new MenuDAOImpl();
-			
+
 			HttpSession session = req.getSession();
 			int category = Integer.parseInt(req.getParameter("category"));
 			req.setAttribute("categ", category);
-			
-			Users user = (Users) session.getAttribute("users");
 
-			List<String> tokens = Mimpl.useridToAddr(user.getUserId());
-			
-			List<Restaurant> lists = Mimpl.selectByTownnumAndCnum(category, tokens.get(0), tokens.get(1));
-			req.setAttribute("lists", lists);
-			
-			req.setAttribute("userCity", tokens.get(0));
-			req.setAttribute("userTown", tokens.get(1));
-			
+			try {
+				Users user = (Users) session.getAttribute("users");
+				List<String> tokens = Mimpl.useridToAddr(user.getUserId());
+
+				List<Restaurant> lists = Mimpl.selectByTownnumAndCnum(category, tokens.get(0), tokens.get(1));
+				req.setAttribute("lists", lists);
+
+				req.setAttribute("userCity", tokens.get(0));
+				req.setAttribute("userTown", tokens.get(1));
+			} catch (Exception e) {
+				List<Restaurant> lists = Mimpl.selectByCategory(category);
+				req.setAttribute("lists", lists);
+				req.setAttribute("userCity", "전체");
+				req.setAttribute("userTown", "전체");
+			}
+
 			List<City> citylists = Mimpl.selectAllCity();
 			req.setAttribute("citylist", citylists);
 
 			List<Town> townlists = Mimpl.selectAllTown();
 			req.setAttribute("townlist", townlists);
 
-			session.setAttribute("caller", "/search_link?category="+category);
-			
+			session.setAttribute("caller", "/search_link?category=" + category);
+
 			RequestDispatcher rd = req.getRequestDispatcher("main/search.jsp");
 			rd.forward(req, resp);
 
 		} else if (action.equals("addr_search")) {
-			HttpSession session = req.getSession();
 			Mimpl = new MenuDAOImpl();
 			String city = req.getParameter("selectCity");
 			String town = req.getParameter("selectTown");
 			int selctedCate = Integer.parseInt(req.getParameter("catego"));
 
-			Users user = (Users) session.getAttribute("users");
 
-			List<String> tokens = Mimpl.useridToAddr(user.getUserId());
-			System.out.println(tokens.get(0));
-			System.out.println(tokens.get(1));
-			req.setAttribute("userCity", tokens.get(0));
-			req.setAttribute("userTown", tokens.get(1));
+			req.setAttribute("userCity", city);
+			req.setAttribute("userTown", town);
 			
-			System.out.println(selctedCate);
-
-			List<Restaurant> lists = Mimpl.selectByTownnumAndCnum(selctedCate,city, town);
-
+			List<Restaurant> lists = Mimpl.selectByTownnumAndCnum(selctedCate, city, town);
 			req.setAttribute("lists", lists);
+			req.setAttribute("categ", selctedCate);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("main/search.jsp");
 			rd.forward(req, resp);
 
@@ -152,15 +159,14 @@ public class MainController extends HttpServlet {
 			int rno = Integer.parseInt(req.getParameter("rno"));
 			Restaurant r = new Restaurant();
 
-			List<Selected_menu> order_lists = new ArrayList<Selected_menu>();
 			List<Menu> lists = Mimpl.menuSelectByRnum(rno);
 			List<Comments> comments_list = Mimpl.selectByRnumComments(rno);
 			r = Mimpl.selectByRnum(rno);
 
 			HttpSession session = req.getSession();
+
 			session.setAttribute("detailR", r);
 			session.setAttribute("lists", lists);
-			session.setAttribute("order_lists", order_lists);
 			session.setAttribute("comments_list", comments_list);
 
 			RequestDispatcher rd = req.getRequestDispatcher("main/restaurant_detail.jsp");
@@ -181,10 +187,25 @@ public class MainController extends HttpServlet {
 			int menuNum = Integer.parseInt(req.getParameter("num"));
 			int menuCnt = Integer.parseInt(req.getParameter("cnt"));
 			boolean cnt_plus_chk = false;
+			HttpSession session = req.getSession();
+
+			Restaurant r = (Restaurant) session.getAttribute("detailR");
+			if ((List<Selected_menu>) session.getAttribute("order_lists") == null) {
+				List<Selected_menu> order_lists = new ArrayList<Selected_menu>();
+				session.setAttribute("order_restaurant", r.getrName());
+				session.setAttribute("order_lists", order_lists);
+			} else {
+				if (r.getrName() != (String) session.getAttribute("order_restaurant")) {
+					session.removeAttribute("order_lists");
+					session.removeAttribute("order_restaurant");
+					List<Selected_menu> order_lists = new ArrayList<Selected_menu>();
+					session.setAttribute("order_restaurant", r.getrName());
+					session.setAttribute("order_lists", order_lists);
+				}
+			}
 
 			Selected_menu m = new Selected_menu();
 
-			HttpSession session = req.getSession();
 			ArrayList<Selected_menu> order_lists = (ArrayList<Selected_menu>) session.getAttribute("order_lists");
 			int price = 0;
 			MenuDAOImpl impl = new MenuDAOImpl();
@@ -240,40 +261,71 @@ public class MainController extends HttpServlet {
 			System.out.println("test");
 			Mimpl = new MenuDAOImpl();
 			HttpSession session = req.getSession();
-			Users user = (Users) session.getAttribute("users");
-			int chk = (int) session.getAttribute("delivery_check");
-			ArrayList<Selected_menu> order_lists = (ArrayList<Selected_menu>) session.getAttribute("order_lists");
+			try {
+				Users user = (Users) session.getAttribute("users");
+				int chk = (int) session.getAttribute("delivery_check");
+				ArrayList<Selected_menu> order_lists = (ArrayList<Selected_menu>) session.getAttribute("order_lists");
 
-			System.out.println("========");
-			System.out.println(user.getUserId());
-			for (Selected_menu m : order_lists) {
-				System.out.println(m.toString());
+				System.out.println("========");
+				System.out.println(user.getUserId());
+				for (Selected_menu m : order_lists) {
+					System.out.println(m.toString());
+				}
+				System.out.println("========");
+
+				Mimpl.insertUserOrder(user.getUserId(), chk);
+
+				int orderNumber = Mimpl.nowOrderOnum();
+
+				for (int i = 0; i < order_lists.size(); i++) {
+					Mimpl.insertOrderMenu(order_lists.get(i).getmNum(), orderNumber, order_lists.get(i).getCount());
+				}
+				session.removeAttribute("total_price");
+				session.removeAttribute("order_lists");
+				RequestDispatcher rd = req.getRequestDispatcher("order/finish.jsp");
+				rd.forward(req, resp);
 			}
-			System.out.println("========");
-
-			Mimpl.insertUserOrder(user.getUserId(), chk);
-
-			int orderNumber = Mimpl.nowOrderOnum();
-
-			for (int i = 0; i < order_lists.size(); i++) {
-				Mimpl.insertOrderMenu(order_lists.get(i).getmNum(), orderNumber, order_lists.get(i).getCount());
+			catch(Exception e){
+				RequestDispatcher rd = req.getRequestDispatcher("login_link");
+				rd.forward(req, resp);;
 			}
+			
 
-			RequestDispatcher rd = req.getRequestDispatcher("order/finish.jsp");
-			rd.forward(req, resp);
-
-		}
-		else if (action.equals("test")) {
+		} else if (action.equals("test")) {
 
 			RequestDispatcher rd = req.getRequestDispatcher("imageUpload/imgup.jsp");
 			rd.forward(req, resp);
 
-		}
-		else if (action.equals("test2")) {
+		} else if (action.equals("test2")) {
 
 			RequestDispatcher rd = req.getRequestDispatcher("imageUpload/upload.jsp");
 			rd.forward(req, resp);
 
+		}
+		else if(action.equals("user_orderlist")) {
+			MenuDAOImpl impl = new MenuDAOImpl();
+			
+			HttpSession session = req.getSession();
+			Users user = (Users) session.getAttribute("users");
+			List<UserOrderList> list = impl.userOrderList(user.getUserId());
+			for(int index = 0; index < list.size(); index++) {
+				List<UserOrderListSub> subList = impl.orderInfoSub(list.get(index).getoNum());
+				list.get(index).setOrderRName(subList.get(0).getrName());
+				list.get(index).setOrderRNum(subList.get(0).getrNum());
+				String orderFullList = "";
+				int total = 0;
+				for(int index_sub = 0; index_sub < subList.size(); index_sub++) {
+					orderFullList = orderFullList + subList.get(index_sub).getmName() + ":" + subList.get(index_sub).getCount() + "개 ";
+					total += subList.get(index_sub).getCount() * subList.get(index_sub).getmPrice();
+				}
+				list.get(index).setOrderListName(orderFullList);
+				list.get(index).setTotalPrice(total);
+			}
+			req.setAttribute("order_list", list);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("userOrderList.jsp");
+			rd.forward(req, resp);
+			
 		}
 	}
 }

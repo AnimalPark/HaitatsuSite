@@ -14,6 +14,7 @@
 			<commcontents>${comment.commcontents}</commcontents>
 			<star>${comment.star}</star> 
 			<commaddr>${comment.commaddr}</commaddr> 
+			<order_str>${comment.order_str}</order_str>
 		</comment>
 	</c:forEach> 
 </comments>

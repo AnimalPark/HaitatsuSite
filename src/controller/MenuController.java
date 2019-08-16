@@ -1,4 +1,4 @@
-package controller;
+ï»¿package controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -24,7 +24,7 @@ import model.Menu;
 import model.Restaurant;
 
 @WebServlet(name = "MenuController", urlPatterns = { "/admin_menu_list", "/admin_menu_detail", "/admin_menu_insert",
-		"/admin_menu_update", "/admin_menu_delete", "/menu_add", "/menu_mode", "/comment_mode", "/comment_add","/comment_list","/deleteComment" })
+		"/admin_menu_update", "/admin_menu_delete", "/menu_add", "/menu_mode", "/comment_mode", "/comment_add","/comment_list","/deleteComment","/commentWrite" })
 @MultipartConfig
 public class MenuController extends HttpServlet {
 
@@ -160,23 +160,28 @@ public class MenuController extends HttpServlet {
 			Comments comment = new Comments();
 			Comments resultByComment = null;
 			
+			int onum = Integer.parseInt(req.getParameter("on"));
 			comment.setRnum(Integer.parseInt(req.getParameter("rn")));
 			comment.setUserid(req.getParameter("userid"));
 			comment.setCommcontents(req.getParameter("comment"));
-
+			comment.setStar(Integer.parseInt(req.getParameter("star-input")));
+			comment.setOrder_str(req.getParameter("order_string"));
 			
 			resultByComment = mimpl.insert(comment);
-		
+			System.out.println(onum);
 
 			if(resultByComment != null) {
 				req.setAttribute("result", true);
-				req.setAttribute("message", "´ñ±ÛÃß°¡ ¼º°ø");
+				req.setAttribute("message", "ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
+				mimpl.orderCommentChk(onum);
 				System.out.println("--"+resultByComment.toString()+"--");
 			}
 			else {
 				req.setAttribute("result", false);
-				req.setAttribute("message", "´ñ±ÛÃß°¡ ½ÇÆÐ");
+				req.setAttribute("message", "ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
+			
+			mimpl.settingRestaurantStaragv(comment.getRnum());
 			
 			req.setAttribute("recentComment", resultByComment);
 			RequestDispatcher rd = req.getRequestDispatcher("main/commentitem.jsp");
@@ -198,13 +203,22 @@ public class MenuController extends HttpServlet {
 		else if (action.equals("deleteComment")) {
 			MenuDAOImpl Mimpl = new MenuDAOImpl();
 			int chk = Integer.parseInt(req.getParameter("commnum"));
-			System.out.println("È®ÀÎ¿ë : " + chk);
+			System.out.println("È®ï¿½Î¿ï¿½ : " + chk);
 			Mimpl.delete(Integer.parseInt(req.getParameter("commnum")));
 
 			RequestDispatcher rd = req.getRequestDispatcher("comment_mode");
 			rd.forward(req, resp);
 		}
-
+		else if (action.equals("commentWrite")) {
+			String rnum = req.getParameter("rno");
+			int onum = Integer.parseInt(req.getParameter("ono"));
+			String order_srt = req.getParameter("order_str");
+			req.setAttribute("rnum", rnum);
+			req.setAttribute("onum", onum);
+			req.setAttribute("order_str", order_srt);
+			RequestDispatcher rd = req.getRequestDispatcher("main/commentWrite.jsp");
+			rd.forward(req, resp);
+		}
 	}
 	
 	/* return unique filename */

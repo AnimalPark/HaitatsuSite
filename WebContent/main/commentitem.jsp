@@ -15,5 +15,6 @@
 			<commcontents>${recentComment.commcontents}</commcontents>
 			<star>${recentComment.star}</star> 
 			<commaddr>${recentComment.commaddr}</commaddr>
+			<order_str>${recentComment.order_str}</order_str>
 		</item>
 </comments>
