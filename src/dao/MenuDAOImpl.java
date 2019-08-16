@@ -224,7 +224,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			preparedStatement.setInt(1, menu.getrNum());
 			preparedStatement.setString(2, menu.getmName());
 			preparedStatement.setInt(3, menu.getmPrice());
-			preparedStatement.setString(4, menu.getFileName());
+			preparedStatement.setString(4, menu.getmFileName());
 
 			int rowCount = preparedStatement.executeUpdate();
 
@@ -392,7 +392,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
-				menu.setFileName(resultSet.getString("filename"));
+				menu.setmFileName(resultSet.getString("mfilename"));
 
 			}
 

@@ -303,13 +303,16 @@ public class MainController extends HttpServlet {
 
 		}
 		else if(action.equals("user_orderlist")) {
+			System.out.println("¿À³ª¿ä");
 			MenuDAOImpl impl = new MenuDAOImpl();
 			
 			HttpSession session = req.getSession();
 			Users user = (Users) session.getAttribute("users");
 			List<UserOrderList> list = impl.userOrderList(user.getUserId());
+			System.out.println(list.size());
 			for(int index = 0; index < list.size(); index++) {
 				List<UserOrderListSub> subList = impl.orderInfoSub(list.get(index).getoNum());
+				
 				list.get(index).setOrderRName(subList.get(0).getrName());
 				list.get(index).setOrderRNum(subList.get(0).getrNum());
 				String orderFullList = "";

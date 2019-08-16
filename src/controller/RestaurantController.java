@@ -89,12 +89,12 @@ public class RestaurantController extends HttpServlet {
 			Part part = req.getPart("filename");
 
 			/* get NewfileName */
-			String fileName = getFilename(part);
+			String rfileName = getFilename(part);
 			//System.out.println(fileName);
 			
 			/* file save */
-			if (fileName != null && !fileName.isEmpty()) {
-				part.write(getServletContext().getRealPath("/WEB-INF") + "/" + fileName);
+			if (rfileName != null && !rfileName.isEmpty()) {
+				part.write(getServletContext().getRealPath("/WEB-INF") + "/" + rfileName);
 			}
 
 			RestaurantDAO dao = new RestaurantDAOImpl();
@@ -105,7 +105,7 @@ public class RestaurantController extends HttpServlet {
 			restaurant.setTownNum(Integer.parseInt(req.getParameter("townNum")));
 			restaurant.setStarAvg(Integer.parseInt(req.getParameter("starAvg")));
 			restaurant.setrAddr(req.getParameter("rAddr"));
-			restaurant.setFileName(fileName);
+			restaurant.setrFileName(rfileName);
 
 			boolean result = dao.insertRestaurant(restaurant);
 
