@@ -76,7 +76,7 @@ public class YbbsEventController extends HttpServlet {
 			
 			session.setAttribute("caller","/ybbs_eventList?reqPage=1");
 			req.setAttribute("ybbsList", ybbsList);
-			req.setAttribute("pageGrou pResult", pm.getPageGroupResultEvent(Sql.YBBS_SELECT_ALL_EVENT_COUNT));
+			req.setAttribute("pageGroupResult", pm.getPageGroupResultEvent(Sql.YBBS_SELECT_ALL_EVENT_COUNT));
 
 			RequestDispatcher rd = req.getRequestDispatcher("board/eventboard.jsp");
 			rd.forward(req, resp);
