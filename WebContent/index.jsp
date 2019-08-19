@@ -99,6 +99,9 @@ body {
 	color: #333;
 }
 
+
+
+
 .navbar .navbar-form {
 	border: none;
 	justify-content-end;
@@ -125,10 +128,9 @@ body {
 	font-size: 20px;
 	margin: 4px 2px;
 	cursor: pointer;
-	font-weight:bold;
+	font-weight: bold;
 	background-size: 140px;
 }
-
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -196,8 +198,16 @@ body {
 						<li><a href="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
 					</ul></li>
 				<c:if test="${users != null}">
-						<li class="nav-item"><a href="logout_link" class="nav-link">로그아웃</a></li>
-					<li class="nav-item"><a href="myPage_link" class="nav-link">마이페이지</a></li>
+					<li class="nav-item"><a href="logout_link" class="nav-link">로그아웃</a></li>
+
+					<li class="nav-item dropdown"><a data-toggle="dropdown"
+						class="nav-link dropdown-toggle" href="myPage_link">마이페이지 <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">주문내역</a></li>
+							<li><a href="#">개인정보 수정</a></li>
+							<li><a href="#">비밀번호 변경</a></li>
+						</ul>
 				</c:if>
 			</ul>
 		</div>
@@ -209,28 +219,34 @@ body {
 	</c:if>
 
 	<br />
-	<div style="width: 700px; height: 500px; float: left; margin-right: 10px;">
-	<input type="button" class="button" value="            " style="background-image:url(image/event.png); background-size: 162px;"
-	 onclick="category0()">
-	<input type="button" class="button" value="한  식" style="background-image:url(image/category-05.png);"
-	 onclick="category1()">
-	<input type="button" class="button" value="중  식" style="background-image:url(image/category-04.png); 
-	background-position:0px 0px;" onclick="category2()">
-	<br />
-	<input type="button" class="button" value="일    식" style="background-image:url(image/category-06.png); 
-	background-position:0px 0px;"onclick="category3()">
-	<input type="button" class="button" value="피  자" style="background-image:url(image/category-03.png); 
-	background-position:0px 0px;" onclick="category4()">
-	<input type="button" class="button" value="치  킨"style="background-image:url(image/category-02.png); 
-	background-position:0px 0px;" onclick="category5()">
-	<br />
-	<input type="button" class="button" value="분    식" style="background-image:url(image/category-09.png); 
-	background-position:0px 0px;" onclick="category6()">
-	<input type="button" class="button" value="족  발" style="background-image:url(image/category-07.png); 
-	background-position:0px 0px;" onclick="category7()">
-	<input type="button" class="button" value="간  식" style="background-image:url(image/category-11.png); 
-	background-position:0px 0px;" onclick="category8()">
-	<br />
+	<div
+		style="width: 700px; height: 500px; float: left; margin-right: 10px;">
+		<input type="button" class="button" value="            "
+			style="background-image: url(image/event.png); background-size: 162px;"
+			onclick="category0()"> <input type="button" class="button"
+			value="한  식" style="background-image: url(image/category-05.png);"
+			onclick="category1()"> <input type="button" class="button"
+			value="중  식"
+			style="background-image: url(image/category-04.png); background-position: 0px 0px;"
+			onclick="category2()"> <br /> <input type="button"
+			class="button" value="일    식"
+			style="background-image: url(image/category-06.png); background-position: 0px 0px;"
+			onclick="category3()"> <input type="button" class="button"
+			value="피  자"
+			style="background-image: url(image/category-03.png); background-position: 0px 0px;"
+			onclick="category4()"> <input type="button" class="button"
+			value="치  킨"
+			style="background-image: url(image/category-02.png); background-position: 0px 0px;"
+			onclick="category5()"> <br /> <input type="button"
+			class="button" value="분    식"
+			style="background-image: url(image/category-09.png); background-position: 0px 0px;"
+			onclick="category6()"> <input type="button" class="button"
+			value="족  발"
+			style="background-image: url(image/category-07.png); background-position: 0px 0px;"
+			onclick="category7()"> <input type="button" class="button"
+			value="간  식"
+			style="background-image: url(image/category-11.png); background-position: 0px 0px;"
+			onclick="category8()"> <br />
 	</div>
 	<div style="width: 500px; height: 500px; float: left;">
 		<c:if test="${!empty order_lists}">
@@ -291,7 +307,6 @@ body {
 			location.href = "search_link?category=8";
 			return false;
 		}
-		
 	</script>
 </body>
 </html>
