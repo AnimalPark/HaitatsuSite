@@ -104,6 +104,7 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 				ybbs.setUserid(resultSet.getString("userid"));
 				ybbs.setQasubject(resultSet.getString("qasubject"));
 				ybbs.setQacomment(resultSet.getString("qacomment"));
+				ybbs.setQagroup(resultSet.getInt("qagroup"));
 			}
 		} catch (SQLException e) {
 
