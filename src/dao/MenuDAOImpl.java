@@ -177,7 +177,8 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
-
+				menu.setmSales(resultSet.getInt("mSales"));
+				menu.setmFileName(resultSet.getString("mFileName"));
 				menus.add(menu);
 			}
 		} catch (Exception e) {
@@ -356,6 +357,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
+				menu.setmFileName(resultSet.getString("mFileName"));
 
 				lists.add(menu);
 			}
@@ -481,6 +483,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
+				menu.setmFileName(resultSet.getString("mFileName"));
 
 				menuList.add(menu);
 			}

@@ -176,7 +176,7 @@ body {
 
 	<nav class="navbar navbar-default navbar-expand-lg navbar-light">
 		<div class="navbar-header d-flex col">
-			<a class="navbar-brand" href="#">Haitatsu<b>Site</b></a>
+			<a class="navbar-brand" href="index.jsp">Haitatsu<b>Site</b></a>
 		</div>
 		<!-- Collection of nav links, forms, and other content for toggling -->
 		<div id="navbarCollapse"
@@ -198,7 +198,7 @@ body {
 						<li><a href="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
 					</ul></li>
 				<c:if test="${users != null}">
-					<li class="nav-item"><a href="logout_link" class="nav-link">로그아웃</a></li>
+					<li class="nav-item"><a href="user_logout" class="nav-link">로그아웃</a></li>
 
 					<li class="nav-item dropdown"><a data-toggle="dropdown"
 						class="nav-link dropdown-toggle" href="myPage_link">마이페이지 <b

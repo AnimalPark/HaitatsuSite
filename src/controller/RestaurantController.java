@@ -122,7 +122,6 @@ public class RestaurantController extends HttpServlet {
 			restaurant.setrPhoneNum(req.getParameter("rPhoneNum"));
 			restaurant.setcNum(Integer.parseInt(req.getParameter("cNum")));
 			restaurant.setTownNum(Integer.parseInt(req.getParameter("townNum")));
-			restaurant.setStarAvg(Integer.parseInt(req.getParameter("starAvg")));
 			restaurant.setrAddr(req.getParameter("rAddr"));
 
 			boolean result = dao.updateRestaurant(restaurant);
