@@ -78,9 +78,10 @@ public class YbbsController extends HttpServlet {
 			
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			Ybbs_QA ybbs = new Ybbs_QA();
-			ybbs.setQanumber(Integer.parseInt(req.getParameter("qanumber")));
 			
-			dao.delete(ybbs.getQanumber());
+			ybbs.setQagroup(Integer.parseInt(req.getParameter("qagroup")));
+			
+			dao.delete(ybbs.getQagroup());
 			
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
 			rd.forward(req, resp);

@@ -47,7 +47,13 @@ public class UsersController extends HttpServlet
 			req.setCharacterEncoding("utf-8");
 			
 			HttpSession session = req.getSession();
-			int i = (int) session.getAttribute("chkid");
+			int i = 0;
+			try{
+				i = (int) session.getAttribute("chkid");
+			}
+			catch(Exception e) {
+				i = 0;
+			}
 			System.out.println(i);
 			
 			if (i == 0) {

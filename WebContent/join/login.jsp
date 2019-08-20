@@ -14,8 +14,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <style type="text/css">
 	body{
-		color: #fff;
-		background: #63738a;
+		color: #636363;
+		background: #eeeeee;
 		font-family: 'Roboto', sans-serif;
 	}
     .form-control{
@@ -29,18 +29,18 @@
     .form-control, .btn{        
         border-radius: 3px;
     }
-	.join-form{
+	.login-form{
 		width: 400px;
 		margin: 0 auto;
 		padding: 30px 0;
 	}
-	.join-form h2{
+	.login-form h3{
 		color: #636363; 
         margin: 0 0 15px;
 		position: relative;
 		text-align: center;
     }
-	.join-form h2:before, .join-form h2:after{
+	.login-form h3:before, .login-form h3:after{
 		content: "";
 		height: 2px;
 		width: 30%;
@@ -49,18 +49,18 @@
 		top: 50%;
 		z-index: 2;
 	}	
-	.join-form h2:before{
+	.login-form h3:before{
 		left: 0;
 	}
-	.join-form h2:after{
+	.login-form h3:after{
 		right: 0;
 	}
-    .join-form .hint-text{
+    .login-form .hint-text{
 		color: #999;
 		margin-bottom: 30px;
 		text-align: center;
 	}
-    .join-form form{
+    .login-form form{
 		color: #999;
 		border-radius: 3px;
     	margin-bottom: 15px;
@@ -68,36 +68,36 @@
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
         padding: 30px;
     }
-	.join-form .form-group{
+	.login-form .form-group{
 		margin-bottom: 5px;
 	}
-	.join-form .btn{        
+	.login-form .btn{        
         font-size: 16px;
         font-weight: bold;		
 		min-width: 140px;
         outline: none !important;
     }	
-    .join-form a{
-		color: #fff;
+    .login-form a{
+		color: #636363;
 		text-decoration: underline;
 	}
-    .join-form a:hover{
+    .login-form a:hover{
 		text-decoration: none;
 	}
-	.join-form form a{
+	.login-form form a{
 		color: #636363; 
 		text-decoration: none;
 	}	
-	.join-form form a:hover{
+	.login-form form a:hover{
 		text-decoration: underline;
 	}  
 </style>
 
 </head>
 <body>
-	<div class="join-form">
+	<div class="login-form">
 		<form method="post" action="user_login" >
-		<h2>로그인</h2>
+		<h3>로그인</h3>
 			<div class="form-group">
 				<input type="text" name="userId" id="userId" class="form-control" placeholder="아이디"/> <br />
 			</div>
