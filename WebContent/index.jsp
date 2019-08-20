@@ -98,10 +98,6 @@ body {
 .navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:active {
 	color: #333;
 }
-
-
-
-
 .navbar .navbar-form {
 	border: none;
 	justify-content-end;
