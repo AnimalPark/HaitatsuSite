@@ -15,6 +15,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
+a:link {text-decoration: none; color: #333333;}
+a:visited {text-decoration: none; color: #333333;}
+a:active {text-decoration: none; color: #333333;}
+a:hover {text-d"WebContent/board/qaboard.jsp"ecoration: underline; color: red;}	
     body {
         color: #566787;
         background: #f7f5f2;
@@ -23,7 +27,7 @@
 	}
 	.table-wrapper {
         background: #fff;
-        padding: 20px 25px 50px 25px;
+        padding: 20px 25px 40px 25px;
         margin: 30px auto;
 		border-radius: 3px;
         box-shadow: 0 3px 5px rgba(0,0,0,.05);
@@ -159,7 +163,6 @@
 	border: none;
 	justify-content-end;
 }
-    
 </style>
 <script type="text/javascript">
 function delchk(){
@@ -188,7 +191,7 @@ function delchk(){
 					class="nav-link dropdown-toggle" href="#">게시판 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="ybbs_eventList?reqPage=1">이벤트 게시판</a></li>
-						<li><a href="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
+						<li><a href="ybbs_QaList?reqPage=1">Q/A 게시판</a></li>
 					</ul></li>
 				<c:if test="${users != null}">
 					<li class="nav-item"><a href="user_logout" class="nav-link">로그아웃</a></li>
@@ -230,51 +233,49 @@ function delchk(){
 		<c:forEach var="ybbsList" items="${ybbsList}">
 		<tbody>	
 			<tr>
-				<td>${ybbsList.qanumber}</td>
-				<c:if test="${ybbsList.qalevel eq 0}">
-					<td><a href="ybbs_detail.do?qanumber=${ybbsList.qanumber}">${ybbsList.qasubject}</a></td>
+				<td>${ybbsList.qaNumber}</td>
+				<c:if test="${ybbsList.qaLevel eq 0}">
+					<td><a href="ybbs_detail.do?qaNumber=${ybbsList.qaNumber}">${ybbsList.qaSubject}</a></td>
 				</c:if>
-				<c:if test="${ybbsList.qalevel eq 1}">
-					<td><a href="ybbs_detail.do?qanumber=${ybbsList.qanumber}" style="color: red">&nbsp;&nbsp;&nbsp;↳&nbsp;${ybbsList.qasubject}</a></td>
+				<c:if test="${ybbsList.qaLevel eq 1}">
+					<td><a href="ybbs_detail.do?qaNumber=${ybbsList.qaNumber}" style="color: red">&nbsp;&nbsp;&nbsp;↳&nbsp;${ybbsList.qaSubject}</a></td>
 				</c:if>
-				<td>${ybbsList.userid}</td>
-				<td>${ybbsList.qadate}</td>
-				<td>${ybbsList.qavisited}</td>
+				<td>${ybbsList.userId}</td>
+				<td>${ybbsList.qaDate}</td>
+				<td>${ybbsList.qaVisited}</td>
 					<td>
-					<c:if test="${ybbsList.userid == users.userId || users.authority eq 1}">
-	          	        <a href="ybbs_goTo_update?qanumber=${ybbsList.qanumber}" class="edit" title="글 수정" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-	            	    <a href="ybbs_delete?qagroup=${ybbsList.qagroup}" onclick="return delchk();" class="delete" title="글 삭제" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+					<c:if test="${ybbsList.userId == users.userId || users.authority eq 1}">
+	          	        <a href="ybbs_goTo_update?qaNumber=${ybbsList.qaNumber}" class="edit" title="글 수정" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+	            	    <a href="ybbs_delete?qaGroup=${ybbsList.qaGroup}" onclick="return delchk();" class="delete" title="글 삭제" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
 	                </c:if>
 	                </td>
 			</tr>
 		</tbody>
 		</c:forEach>
 	</table> 
-	<a href="ybbs_go_to_insert.do">글쓰기</a>
+	<a href="ybbs_go_to_insert.do"><button class="btn btn-primary" style="margin:4px; min-width: 4	 0px;">글쓰기</button></a>
+  </div>
 </div>
-</div>
-
-	  
 <div class="text-center">
   <ul class="pagination justify-content-center">
     <c:if test="${pageGroupResult.beforePage}">
     	<li class="page-item">
-    		<a href="ybbs_req_list?reqPage=${pageGroupResult.groupStartNumber-1}">
+    		<a href="ybbs_QaList?reqPage=${pageGroupResult.groupStartNumber-1}">
     		<i class="fa fa-long-arrow-left"></i>Previous</a>
     	</li>
     </c:if>
   	<c:forEach var="index" begin="${pageGroupResult.groupStartNumber}" end="${pageGroupResult.groupEndNumber}">
 		<c:choose>	
 			<c:when test="${pageGroupResult.selectPageNumber == index}"> 
-   				 <li class="page-item active"><a class="page-link" href="ybbs_req_list?reqPage=${index}">${index}</a></li>
+   				 <li class="page-item active"><a class="page-link" href="ybbs_QaList?reqPage=${index}">${index}</a></li>
     		</c:when>
 		<c:otherwise>
-				 <li class="page-item"><a class="page-link" href="ybbs_req_list?reqPage=${index}">${index}</a></li>
+				 <li class="page-item"><a class="page-link" href="ybbs_QaList?reqPage=${index}">${index}</a></li>
 		</c:otherwise>		 
  		</c:choose>
 	</c:forEach>
 	<c:if test="${pageGroupResult.afterPage}">
-		<li class="page-item"><a class="page-link" href="ybbs_req_list?reqPage=${pageGroupResult.groupEndNumber+1}">
+		<li class="page-item"><a class="page-link" href="ybbs_QaList?reqPage=${pageGroupResult.groupEndNumber+1}">
 			Next<i class="fa fa-long-arrow-right"></i></a></li>
 	</c:if>
 	</ul>

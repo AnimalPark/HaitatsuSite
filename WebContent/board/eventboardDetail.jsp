@@ -1,63 +1,106 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html >
 <html>
 <head>
 <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>이벤트게시판/디테일 페이지</title>
 <style type="text/css">
-a:link {text-decoration: none; color: #333333;}
-a:visited {text-decoration: none; color: #333333;}
-a:active {text-decoration: none; color: #333333;}
-a:hover {text-d"WebContent/board/eventboard.jsp"ecoration: underline; color: red;}
+a:link {
+	text-decoration: none;
+	color: #333333;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #333333;
+}
+
+a:active {
+	text-decoration: none;
+	color: #333333;
+}
+
+a:hover {
+	text-d "WebContent/board/eventboardDetail.jsp"ecoration: underline;
+	color: red;
+}
+
 body {
-        color: #333;
-        background: #fafafa;
-        font-family: "Patua One", sans-serif;
-        margin: 0 auto;
-    }
-    .contact-form {
-        padding: 20px;
-        margin: 15px 0;
-    }
-    .contact-form h4 {
-        color: #6dc97e;
-        font-weight: bold;
-        margin: 0 0 5px;
-    }
-    .contact-form .form-control, .contact-form .btn {
-        min-height: 38px;
-        border-radius: 2px;
-    }
-    .contact-form .form-control:focus {
-        border-color: #6dc97e;
-    }
-    .contact-form .btn-primary {
-        color: #fff;
-        min-width: 150px;
-        font-size: 16px;
-        background: #6dc97e;
-        border: none;
-    }
-    .contact-form .btn-primary:hover {
-        background: #15a487; 
-    }
-    .contact-form label {
-        opacity: 0.7;
-    }
-    .contact-form textarea {
-        resize: none;
-    }
-    .hint-text {
-        font-size: 15px;
-        padding-bottom: 20px;
-        opacity: 0.6;
-    }
-     .navbar-header.col {
+	color: #333;
+	background: #fafafa;
+	font-family: "Patua One", sans-serif;
+	margin: 0 auto;
+}
+
+.contact-form .btn-primary {
+	color: #fff;
+	min-width: 50px;
+	font-size: 10px;
+	background: #6dc97e;
+	border: none;
+}
+
+.contact-form {
+	padding: 20px;
+	margin: 15px 0;
+}
+
+.contact-form h4 {
+	color: #6dc97e;
+	font-weight: bold;
+	margin: 0 0 5px;
+}
+
+.contact-form .form-control, .contact-form .btn {
+	min-height: 38px;
+	border-radius: 2px;
+}
+
+.contact-form .form-control:focus {
+	border-color: #6dc97e;
+}
+
+.contact-form .btn-primary {
+	color: #fff;
+	min-width: 150px;
+	font-size: 16px;
+	background: #6dc97e;
+	border: none;
+}
+
+.contact-form .btn-primary:hover {
+	background: #15a487;
+}
+
+.contact-form label {
+	opacity: 0.7;
+}
+
+.contact-form textarea {
+	resize: none;
+}
+
+.hint-text {
+	font-size: 15px;
+	padding-bottom: 20px;
+	opacity: 0.6;
+}
+
+.navbar-header.col {
 	padding: 0 !important;
 }
 
@@ -126,21 +169,28 @@ body {
 .navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:active {
 	color: #333;
 }
+
 .navbar .navbar-form {
 	border: none;
 	justify-content-end;
 }
-.container input[readonly] {background-color: white !important;}
-.container textarea[readonly] {background-color: white !important;}    
+
+.container input[readonly] {
+	background-color: white !important;
+}
+
+.container textarea[readonly] {
+	background-color: white !important;
+}
 </style>
 <script type="text/javascript">
-function delchk(){
+	function delchk() {
 		return confirm("글 삭제시 복구가 불가능합니다.");
-}
+	}
 </script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-expand-lg navbar-light">
+	<nav class="navbar navbar-default navbar-expand-lg navbar-light">
 		<div class="navbar-header d-flex col">
 			<a class="navbar-brand" href="index.jsp">Haitatsu<b>Site</b></a>
 		</div>
@@ -160,7 +210,7 @@ function delchk(){
 					class="nav-link dropdown-toggle" href="#">게시판 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="ybbs_eventList?reqPage=1">이벤트 게시판</a></li>
-						<li><a href="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
+						<li><a href="ybbs_QaList?reqPage=1">Q/A 게시판</a></li>
 					</ul></li>
 				<c:if test="${users != null}">
 					<li class="nav-item"><a href="user_logout" class="nav-link">로그아웃</a></li>
@@ -178,48 +228,61 @@ function delchk(){
 		</div>
 	</nav>
 	<c:if test="${ybbs.userId == users.userId || users.authority == 1}">
-  <div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1 m-auto">
-            <div class="contact-form">
-                    <div class="container">
-                    <h4 style="text-align:center;">♥ 이 달의 이벤트 ♥</h4><br/>
-                    <div class="form-group" style="text-align:center;">
-                        <label for="inputSubject">제목</label>
-                        <input type="text" class="form-control" id="inputSubject" name="evSubject" style="text-align:center;" value="${ybbs.evSubject}" readonly  />
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" id="inputMessage" name="evComment" rows="20" style="width:100%"  readonly>${ybbs.evComment}</textarea>
-                    </div>
-                    <a href="ybbs_event_goTo_update.ad?evNumber=${ybbs.evNumber}"><button class="btn btn-primary" style="margin:4px">수정하러가기</button></a>
-					<a href="ybbs_delete_event.ad?evNumber=${ybbs.evNumber}" onclick="return delchk();"><button class="btn btn-primary" style="margin:4px">글 삭제하기</button></a>	
-					<a href="ybbs_eventList?reqPage=1"><button class="btn btn-primary" style="margin:4px">뒤로가기</button></a>	
-          	        </div>
-          	        </div>
-          	        </div>
-          	        </div>
-          	        </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1 m-auto">
+					<div class="contact-form">
+						<div class="container">
+							<h4 style="text-align: left;">♥ 이 달의 이벤트 ♥</h4>
+							<br />
+							<div class="form-group">
+								<label for="inputSubject">제목</label> <input type="text"
+									class="form-control" id="inputSubject" name="evSubject"
+									value="${ybbs.evSubject}" style="width: 75%" readonly />
+							</div>
+							<div class="form-group">
+								<label for="inputMessage">내용</label>
+								<textarea class="form-control" id="inputMessage"
+									name="evComment" rows="15" style="width: 75%" readonly>${ybbs.evComment}</textarea>
+							</div>
+							<a href="ybbs_event_goTo_update.ad?evNumber=${ybbs.evNumber}"><button
+									class="btn btn-primary" style="margin: 4px; min-width: 50px;">글
+									수정</button></a> <a href="ybbs_delete_event.ad?evNumber=${ybbs.evNumber}"
+								onclick="return delchk();"><button class="btn btn-primary"
+									style="margin: 4px; min-width: 50px;">글 삭제</button></a> <a
+								href="ybbs_eventList?reqPage=1"><button
+									class="btn btn-primary" style="margin: 4px; min-width: 50px;">목록으로</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</c:if>
-]<c:if test="${users.authority != 1 && ybbs.userId != users.userId}">
-  <div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1 m-auto">
-            <div class="contact-form">
-                    <div class="container">
-                    <h4 style="text-align:center;">♥ 이 달의 이벤트 ♥</h4><br/>
-                    <div class="form-group" style="text-align:center;">
-                        <label for="inputSubject">제목</label>
-                        <input type="text" class="form-control" id="inputSubject" name="evSubject" style="text-align:center;" value="${ybbs.evSubject}" readonly  />
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" id="inputMessage" name="evComment" rows="20" style="width:100%"  readonly>${ybbs.evComment}</textarea>
-                    </div>
-					<a href="ybbs_eventList?reqPage=1"><button class="btn btn-primary" style="margin:4px">뒤로가기</button></a>	
-          	        </div>
-          	        </div>
-          	        </div>
-          	        </div>
-          	        </div>
+	]
+	<c:if test="${users.authority != 1 && ybbs.userId != users.userId}">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1 m-auto">
+					<div class="contact-form">
+						<div class="container">
+							<h4 style="text-align: center;">♥ 이 달의 이벤트 ♥</h4>
+							<br />
+							<div class="form-group" style="text-align: center;">
+								<label for="inputSubject">제목</label> <input type="text"
+									class="form-control" id="inputSubject" name="evSubject"
+									style="text-align: center;" value="${ybbs.evSubject}" readonly />
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" id="inputMessage"
+									name="evComment" rows="20" style="width: 100%" readonly>${ybbs.evComment}</textarea>
+							</div>
+							<a href="ybbs_eventList?reqPage=1"><button
+									class="btn btn-primary" style="margin: 4px; min-width: 50px;">목록으로</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</c:if>
 </body>
 </html>

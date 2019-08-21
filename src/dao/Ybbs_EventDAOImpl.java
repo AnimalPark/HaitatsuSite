@@ -36,7 +36,7 @@ public class Ybbs_EventDAOImpl extends BaseDAO implements Ybbs_EventDAO {
 				ybbs.setEvNumber(resultSet.getInt("evNumber"));
 				ybbs.setEvSubject(resultSet.getString("evSubject"));
 				ybbs.setEvComment(resultSet.getString("evComment"));
-				ybbs.setEvDate(resultSet.getString("evDate"));
+				ybbs.setEvDate(resultSet.getString("evDate").substring(2, 16));
 				ybbs.setEvVisited(resultSet.getInt("evVisited"));
 				ybbs.setUserId(resultSet.getString("userId"));
 				ybbsList.add(ybbs);
