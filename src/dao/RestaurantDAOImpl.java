@@ -135,9 +135,9 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 			preparedStatement.setString(2, restaurant.getrPhoneNum());
 			preparedStatement.setInt(3, restaurant.getcNum());
 			preparedStatement.setInt(4, restaurant.getTownNum());
-			preparedStatement.setFloat(5, (float) 0.0);
-			preparedStatement.setString(6, restaurant.getrAddr());
-			preparedStatement.setString(7, restaurant.getrFileName());
+			//preparedStatement.setFloat(5, (float) 0.0);
+			preparedStatement.setString(5, restaurant.getrAddr());
+			preparedStatement.setString(6, restaurant.getrFileName());
 
 			int rowCount = preparedStatement.executeUpdate();
 
