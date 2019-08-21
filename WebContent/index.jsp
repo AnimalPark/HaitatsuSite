@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>처음화면</title>
 <link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"

@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap Elegant Account Login Form with Avatar Icon</title>
+<title>가게 정보</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
@@ -22,15 +22,9 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
 body {
 	color: #566787;
@@ -39,8 +33,83 @@ body {
 	font-size: 13px;
 }
 
-.table-wrapper {
+.navbar-header.col {
+	padding: 0 !important;
+}
+
+.navbar {
+	font-size: 12px;
 	background: #fff;
+	padding-left: 16px;
+	padding-right: 16px;
+	border-bottom: 1px solid #d6d6d6;
+	box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+}
+
+.navbar .navbar-brand {
+	color: #555;
+	padding-left: 0;
+	font-size: 20px;
+	padding-right: 50px;
+	font-family: 'Raleway', sans-serif;
+	text-transform: uppercase;
+}
+
+.navbar .navbar-brand b {
+	font-weight: bold;
+	color: #f04f01;
+}
+
+.navbar ul.nav li {
+	font-size: 96%;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.navbar ul.nav li.active a, .navbar ul.nav li.active a:hover, .navbar ul.nav li.active a:focus
+	{
+	color: #f04f01 !important;
+	background: transparent !important;
+}
+
+.navbar .nav-item i {
+	font-size: 18px;
+	navbar-form: pull-right;
+}
+
+.navbar .dropdown-item i {
+	font-size: 16px;
+	min-width: 22px;
+}
+
+.navbar .nav-item.open>a {
+	background: none !important;
+}
+
+.navbar .dropdown-menu {
+	border-radius: 1px;
+	border-color: #e5e5e5;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+.navbar .dropdown-menu li a {
+	color: #777;
+	padding: 8px 20px;
+	line-height: normal;
+	font-size: 14px;
+}
+
+.navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:active {
+	color: #333;
+}
+
+.navbar .navbar-form {
+	border: none;
+	justify-content-end;
+}
+
+.table-wrapper {
+	background: #F8ECE0;
 	padding: 20px 25px;
 	margin: 30px auto;
 	border-radius: 3px;
@@ -211,7 +280,7 @@ table.table .avatar {
 }
 
 .login-form .btn {
-	background: #4aba70;
+	background: #f04f01;
 	border: none;
 	line-height: normal;
 }
@@ -243,16 +312,56 @@ table.table .avatar {
 </script>
 </head>
 <body>
+
+	<nav class="navbar navbar-default navbar-expand-lg navbar-light">
+		<div class="navbar-header d-flex col">
+			<a class="navbar-brand" href="index.jsp">Haitatsu<b>Site</b></a>
+		</div>
+		<!-- Collection of nav links, forms, and other content for toggling -->
+		<div id="navbarCollapse"
+			class="collapse navbar-collapse justify-content-start">
+			<ul class="nav navbar-nav">
+				<c:if test="${users.authority eq 1}">
+					<li class="nav-item"><a href="admin_home_link"
+						class="nav-link">관리자 화면으로</a></li>
+				</c:if>
+				<c:if test="${users == null}">
+					<li class="nav-item"><a href="login_index_link"
+						class="nav-link">로그인</a></li>
+					<li class="nav-item"><a href="join_link" class="nav-link">회원가입</a></li>
+				</c:if>
+				<li class="nav-item dropdown"><a data-toggle="dropdown"
+					class="nav-link dropdown-toggle" href="#">게시판 <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="ybbs_eventList?reqPage=1">이벤트 게시판</a></li>
+						<li><a href="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
+					</ul></li>
+				<c:if test="${users != null}">
+					<li class="nav-item"><a href="user_logout" class="nav-link">로그아웃</a></li>
+
+					<li class="nav-item dropdown"><a data-toggle="dropdown"
+						class="nav-link dropdown-toggle" href="myPage_link">마이페이지 <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">주문내역</a></li>
+							<li><a href="#">개인정보 수정</a></li>
+							<li><a href="#">비밀번호 변경</a></li>
+						</ul>
+				</c:if>
+			</ul>
+		</div>
+	</nav>
+
+
 	<div class="login-form">
 		<form action="/examples/actions/confirmation.php" method="post">
 			<div class="avatar">
 				<img src="filemanager/${restaurant.rFileName}" class="avatar"
 					alt="Avatar">
 			</div>
-			<h4 class="modal-title"> ${restaurant.rName} </h4>
+			<h4 class="modal-title">${restaurant.rName}</h4>
 			<div class="form-group">
-전화번호 : ${restaurant.rPhoneNum}<br />
-				주소 : ${restaurant.rAddr}<br />
+				전화번호 : ${restaurant.rPhoneNum}<br /> 주소 : ${restaurant.rAddr}<br />
 			</div>
 			<c:if test="${users.authority eq 1}">
 				<button type="button" class="btn btn-primary btn-block btn-lg"
@@ -266,10 +375,17 @@ table.table .avatar {
 		</form>
 
 	</div>
+	<c:if test="${users.authority eq 1}">
+		<button class="btn btn-primary btn-block btn-lg" type="button"
+			style="background: #FF8000; width: 180px; color: #000000; position: relative; left: 990px;"
+			onclick="location.href='menu_add?rNum=${restaurant.rNum}'">
+			<img class="btn-img" style="width: 50px; height: 50px;"
+				src="image/chicken.png">메뉴 추가
+		</button>
+	</c:if>
 	<div class="container">
 
 		<div class="table-wrapper">
-
 			<table class="table table-striped table-hover">
 
 				<thead>
@@ -299,10 +415,7 @@ table.table .avatar {
 					</c:forEach>
 				</tbody>
 			</table>
-			<c:if test="${users.authority eq 1}">
-				<button type="button"
-					onclick="location.href='menu_add?rNum=${restaurant.rNum}'">메뉴추가</button>
-			</c:if>
+
 		</div>
 	</div>
 </body>

@@ -29,6 +29,442 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <style type="text/css">
+.table-title {
+	color: #fff;
+	background: #4b5366;
+	padding: 16px 25px;
+	margin: -20px -25px 10px;
+	border-radius: 3px 3px 0 0;
+}
+
+body {
+	font-family: "Open Sans", sans-serif;
+}
+
+h2 {
+	color: #000;
+	font-size: 26px;
+	font-weight: 300;
+	text-align: center;
+	text-transform: uppercase;
+	position: relative;
+	margin: 30px 0 80px;
+}
+
+h2 b {
+	color: #000;
+}
+
+h2::after {
+	content: "";
+	width: 100px;
+	position: absolute;
+	margin: 0 auto;
+	height: 4px;
+	background: rgba(0, 0, 0, 0.2);
+	left: 0;
+	right: 0;
+	bottom: -20px;
+}
+
+.carousel {
+	margin: 50px auto;
+	padding: 0 30px;
+}
+
+.carousel .item {
+	min-height: 330px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.carousel .item .img-box {
+	height: 180px;
+	width: 100%;
+	position: relative;
+}
+
+.carousel .item img {
+	max-width: 100%;
+	max-height: 100%;
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}
+
+.carousel .item h4 {
+	font-size: 15px;
+	margin: 0 px 0;
+}
+
+.carousel .item .btn {
+	color: #333;
+	border-radius: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-weight: bold;
+	background: none;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	margin-top: 5px;
+	line-height: 16px;
+}
+
+.carousel .item .btn:hover, .carousel .item .btn:focus {
+	color: #fff;
+	background: #000;
+	border-color: #000;
+	box-shadow: none;
+}
+
+.carousel .item .btn i {
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+.carousel .thumb-wrapper {
+	text-align: center;
+}
+
+.carousel .thumb-content {
+	padding: 15px;
+}
+
+.carousel .carousel-control {
+	height: 100px;
+	width: 40px;
+	background: none;
+	margin: auto 0;
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.carousel .carousel-control i {
+	font-size: 30px;
+	position: absolute;
+	top: 50%;
+	display: inline-block;
+	margin: -16px 0 0 0;
+	z-index: 5;
+	left: 0;
+	right: 0;
+	color: rgba(0, 0, 0, 0.8);
+	text-shadow: none;
+	font-weight: bold;
+}
+
+.carousel .item-price {
+	font-size: 13px;
+	padding: 2px 0;
+}
+
+.carousel .item-price strike {
+	color: #999;
+	margin-right: 5px;
+}
+
+.carousel .item-price span {
+	color: #86bd57;
+	font-size: 110%;
+}
+
+.carousel .carousel-control.left i {
+	margin-left: -3px;
+}
+
+.carousel .carousel-control.left i {
+	margin-right: -3px;
+}
+
+.carousel .carousel-indicators {
+	bottom: -50px;
+}
+
+.carousel-indicators li, .carousel-indicators li.active {
+	width: 10px;
+	height: 10px;
+	margin: 4px;
+	border-radius: 50%;
+	border-color: transparent;
+}
+
+.carousel-indicators li {
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-indicators li.active {
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.star-rating li {
+	padding: 0;
+}
+
+.star-rating i {
+	font-size: 14px;
+	color: #ffc000;
+}
+</style>
+
+<style type="text/css">
+body {
+	color: #566787;
+	background: #f5f5f5;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 13px;
+}
+
+.table-wrapper {
+	background: #fff;
+	padding: 20px 25px;
+	margin: 30px auto;
+	border-radius: 3px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.table-wrapper .btn {
+	float: right;
+	color: #333;
+	background-color: #fff;
+	border-radius: 3px;
+	border: none;
+	outline: none !important;
+	margin-left: 10px;
+}
+
+.table-wrapper .btn:hover {
+	color: #333;
+	background: #f2f2f2;
+}
+
+.table-wrapper .btn.btn-primary {
+	color: #fff;
+	background: #03A9F4;
+}
+
+.table-wrapper .btn.btn-primary:hover {
+	background: #03a3e7;
+}
+
+.table-title .btn {
+	font-size: 13px;
+	border: none;
+}
+
+.table-title .btn i {
+	float: left;
+	font-size: 21px;
+	margin-right: 5px;
+}
+
+.table-title .btn span {
+	float: left;
+	margin-top: 2px;
+}
+
+.table-title {
+	color: #fff;
+	background: #4b5366;
+	padding: 16px 25px;
+	margin: -20px -25px 10px;
+	border-radius: 3px 3px 0 0;
+}
+
+.table-title h2 {
+	margin: 5px 0 0;
+	font-size: 24px;
+}
+
+.show-entries select.form-control {
+	width: 60px;
+	margin: 0 5px;
+}
+
+.table-filter .filter-group {
+	float: right;
+	margin-left: 15px;
+}
+
+.table-filter input, .table-filter select {
+	height: 34px;
+	border-radius: 3px;
+	border-color: #ddd;
+	box-shadow: none;
+}
+
+.table-filter {
+	padding: 5px 0 15px;
+	border-bottom: 1px solid #e9e9e9;
+	margin-bottom: 5px;
+}
+
+.table-filter .btn {
+	height: 34px;
+}
+
+.table-filter label {
+	font-weight: normal;
+	margin-left: 10px;
+}
+
+.table-filter select, .table-filter input {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.table-filter input {
+	width: 200px;
+	display: inline-block;
+}
+
+.filter-group select.form-control {
+	width: 110px;
+}
+
+.filter-icon {
+	float: right;
+	margin-top: 7px;
+}
+
+.filter-icon i {
+	font-size: 18px;
+	opacity: 0.7;
+}
+
+table.table tr th, table.table tr td {
+	border-color: #e9e9e9;
+	padding: 12px 15px;
+	vertical-align: middle;
+}
+
+table.table tr th:first-child {
+	width: 110px;
+}
+
+table.table tr th:last-child {
+	width: 120px;
+}
+
+table.table-striped tbody tr:nth-of-type(odd) {
+	background-color: #fcfcfc;
+}
+
+table.table-striped.table-hover tbody tr:hover {
+	background: #f5f5f5;
+}
+
+table.table th i {
+	font-size: 13px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+
+table.table td a {
+	font-weight: bold;
+	color: #566787;
+	display: inline-block;
+	text-decoration: none;
+}
+
+table.table td a:hover {
+	color: #2196F3;
+}
+
+table.table td a.view {
+	width: 30px;
+	height: 30px;
+	color: #2196F3;
+	border: 2px solid;
+	border-radius: 30px;
+	text-align: center;
+}
+
+table.table td a.view i {
+	font-size: 22px;
+	margin: 2px 0 0 1px;
+}
+
+table.table .avatar {
+	border-radius: 50%;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.status {
+	font-size: 30px;
+	margin: 2px 2px 0 0;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 10px;
+}
+
+.text-success {
+	color: #10c469;
+}
+
+.text-info {
+	color: #62c9e8;
+}
+
+.text-warning {
+	color: #FFC107;
+}
+
+.text-danger {
+	color: #ff5b5b;
+}
+
+.pagination {
+	float: right;
+	margin: 0 0 5px;
+}
+
+.pagination li a {
+	border: none;
+	font-size: 13px;
+	min-width: 30px;
+	min-height: 30px;
+	color: #999;
+	margin: 0 2px;
+	line-height: 30px;
+	border-radius: 2px !important;
+	text-align: center;
+	padding: 0 6px;
+}
+
+.pagination li a:hover {
+	color: #666;
+}
+
+.pagination li.active a {
+	background: #03A9F4;
+}
+
+.pagination li.active a:hover {
+	background: #0397d6;
+}
+
+.pagination li.disabled i {
+	color: #ccc;
+}
+
+.pagination li i {
+	font-size: 16px;
+	padding-top: 6px
+}
+
+.hint-text {
+	float: left;
+	margin-top: 10px;
+	font-size: 13px;
+}
+</style>
+
+
+<style type="text/css">
 body {
 	font-family: "Open Sans", sans-serif;
 }
@@ -649,19 +1085,42 @@ body {
 		</script>
 	</c:if>
 
-	<br />
-	<br />
-	<span>${detailR.rNum}</span>
-	<span>${detailR.rName}</span>
-	<span>${detailR.cNum}</span>
-	<span><fmt:formatNumber value="${detailR.starAvg}" pattern=".0" /></span>
-	<span>${detailR.townNum}</span>
-	<span>${detailR.rAddr}</span>
-	<span>${detailR.rPhoneNum}</span>
-	<hr />
 	<div class="container">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">카테고리</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="search_link?category=1">한식</a></li>
+					<li><a href="search_link?category=2">중식</a></li>
+					<li><a href="search_link?category=3">일식</a></li>
+					<li><a href="search_link?category=4">피자</a></li>
+					<li><a href="search_link?category=5">치킨</a></li>
+					<li><a href="search_link?category=6">분식</a></li>
+					<li><a href="search_link?category=7">족발</a></li>
+					<li><a href="search_link?category=8">간식</a></li>
+				</ul>
+			</div>
+		</nav>
 		<div
 			style="width: 750px; height: 500px; float: left; margin-right: 5px;">
+			<div class="w3-bar">
+				<img src="filemanager/${detailR.rFileName}"
+					class="img-responsive img-fluid" alt="Avatar" width="150px"
+					height="100px"> <br />
+				<div class="star-rating">
+					<ul class="list-inline">
+						<span>>>${detailR.rName}</span>
+						<li class="list-inline-item"><i class="fa fa-star"></i></li>
+						<span><fmt:formatNumber value="${detailR.starAvg}"
+								pattern=".0" /></span>
+						<p>>>주소 : ${detailR.rAddr}</p>
+						<span>>>연락처 : ${detailR.rPhoneNum}</span>
+					</ul>
+				</div>
+			</div>
+
 			<div class="w3-bar">
 				<input type="button" value="메뉴"
 					class="w3-bar-item w3-button w3-black" style="width: 50%"
@@ -680,8 +1139,6 @@ body {
 
 			<div id="comment_list"></div>
 		</div>
-
-
 		<div
 			style="width: 300px; height: 500px; float: left; margin-left: 30px;">
 			<c:if test="${!empty order_lists}">

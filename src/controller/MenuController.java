@@ -112,7 +112,7 @@ public class MenuController extends HttpServlet {
 			menu.setmPrice(Integer.parseInt(req.getParameter("mPrice")));
 			// menu.setmSales(Integer.parseInt(req.getParameter("mSales")));
 
-			boolean result = dao.insertMenu(menu);
+			boolean result = dao.updateMenu(menu);
 			int rNum = Integer.parseInt(req.getParameter("rNum"));
 
 			// RequestDispatcher rd =
@@ -173,13 +173,13 @@ public class MenuController extends HttpServlet {
 
 			if(resultByComment != null) {
 				req.setAttribute("result", true);
-				req.setAttribute("message", "�����߰� ����");
+				req.setAttribute("message", "후기 남기기 성공");
 				mimpl.orderCommentChk(onum);
 				System.out.println("--"+resultByComment.toString()+"--");
 			}
 			else {
 				req.setAttribute("result", false);
-				req.setAttribute("message", "�����߰� ����");
+				req.setAttribute("message", "후기 남기기 실패");
 			}
 			
 			mimpl.settingRestaurantStaragv(comment.getRnum());
