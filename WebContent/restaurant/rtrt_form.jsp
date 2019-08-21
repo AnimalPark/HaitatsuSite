@@ -17,7 +17,7 @@
 <style type="text/css">
 body {
 	color: #fff;
-	background: #344a71;
+	background: #eeeeee;
 	font-family: 'Roboto', sans-serif;
 }
 

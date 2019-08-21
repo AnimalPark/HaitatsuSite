@@ -113,7 +113,7 @@ body {
 
 .table-title {
 	color: #fff;
-	background: #40b2cd;
+	background: #f04f01;
 	padding: 16px 25px;
 	margin: -20px -25px 10px;
 	border-radius: 3px 3px 0 0;
@@ -197,7 +197,7 @@ table.table th:last-child {
 }
 
 table.table td a {
-	color: #a0a5b1;
+	color: #03A9F4;
 	display: inline-block;
 	margin: 0 5px;
 }
@@ -283,7 +283,11 @@ table.table td i {
 
 
 	<div class="container">
+	<button class="btn btn-primary btn-block btn-lg"  type="button" style="background:#FF8000;width:180px; color:#000000;position:relative; left:960px;" onclick="location.href='restaurant_add'">
+	<img class="btn-img" style="width: 50px; height: 50px;" src="image/restaurant.png">음식점 추가</button>
+
 		<div class="table-wrapper">
+		
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
@@ -336,9 +340,7 @@ table.table td i {
 					</c:forEach>
 				</tbody>
 			</table>
-			<button type="button" onclick="location.href='index.jsp'">처음화면으로</button>
-			<button type="button" onclick="location.href='restaurant_add'">가게
-				정보 추가</button>
+			
 		</div>
 	</div>
 </body>
