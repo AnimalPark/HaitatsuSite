@@ -40,9 +40,11 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				restaurant.setrNum(resultSet.getInt("RNUM"));
 				restaurant.setrName(resultSet.getString("RNAME"));
 				restaurant.setcNum(resultSet.getInt("CNUM"));
+				restaurant.setrAddr(resultSet.getString("RADDR"));
 				restaurant.setStarAvg(resultSet.getFloat("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
-
+				restaurant.setrFileName(resultSet.getString("RFILENAME"));
+				restaurant.setrPhoneNum(resultSet.getString("RPHONENUM"));
 				lists.add(restaurant);
 			}
 
@@ -142,8 +144,11 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				restaurant.setrNum(resultSet.getInt("RNUM"));
 				restaurant.setrName(resultSet.getString("RNAME"));
 				restaurant.setcNum(resultSet.getInt("CNUM"));
+				restaurant.setrAddr(resultSet.getString("RADDR"));
 				restaurant.setStarAvg(resultSet.getFloat("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
+				restaurant.setrFileName(resultSet.getString("RFILENAME"));
+				restaurant.setrPhoneNum(resultSet.getString("RPHONENUM"));
 
 				lists.add(restaurant);
 			}
@@ -177,7 +182,8 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
-
+				menu.setmSales(resultSet.getInt("mSales"));
+				menu.setmFileName(resultSet.getString("mFileName"));
 				menus.add(menu);
 			}
 		} catch (Exception e) {
@@ -356,6 +362,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
+				menu.setmFileName(resultSet.getString("mFileName"));
 
 				lists.add(menu);
 			}
@@ -481,6 +488,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				menu.setmName(resultSet.getString("mName"));
 				menu.setmPrice(resultSet.getInt("mPrice"));
 				menu.setmSales(resultSet.getInt("mSales"));
+				menu.setmFileName(resultSet.getString("mFileName"));
 
 				menuList.add(menu);
 			}
@@ -767,8 +775,11 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				restaurant.setrNum(resultSet.getInt("RNUM"));
 				restaurant.setrName(resultSet.getString("RNAME"));
 				restaurant.setcNum(resultSet.getInt("CNUM"));
+				restaurant.setrAddr(resultSet.getString("RADDR"));
 				restaurant.setStarAvg(resultSet.getFloat("STARAVG"));
 				restaurant.setTownNum(resultSet.getInt("TOWNNUM"));
+				restaurant.setrFileName(resultSet.getString("RFILENAME"));
+				restaurant.setrPhoneNum(resultSet.getString("RPHONENUM"));
 
 				lists.add(restaurant);
 			}
@@ -940,7 +951,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_STAR_AGV_UPDATE_SQL);
 			preparedStatement.setFloat(1, avg);
-			preparedStatement.setFloat(2, rnum);
+			preparedStatement.setInt(2, rnum);
 
 			int rowCount = preparedStatement.executeUpdate();
 
@@ -954,5 +965,39 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 			closeDBObjects(null, preparedStatement, connection);
 		}
 		return result;	
+	}
+	public Restaurant selectByrNum(int rNum) {
+		Restaurant restaurant = new Restaurant();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_RNUM_SQL);
+			preparedStatement.setInt(1, rNum);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				restaurant = new Restaurant();
+
+				restaurant.setrNum(resultSet.getInt("rNum"));
+				restaurant.setrName(resultSet.getString("rName"));
+				restaurant.setrPhoneNum(resultSet.getString("rPhoneNum"));
+				restaurant.setcNum(resultSet.getInt("cNum"));
+				restaurant.setTownNum(resultSet.getInt("townNum"));
+				restaurant.setStarAvg(resultSet.getFloat("starAvg"));
+				restaurant.setrAddr(resultSet.getString("raddr"));
+				restaurant.setrFileName(resultSet.getString("rFileName"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return restaurant;
 	}
 }

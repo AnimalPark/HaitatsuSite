@@ -20,6 +20,7 @@ public interface MenuDAO {
 	List<Town> selectAllTown();
 	List<String> useridToAddr(String userid);
 	boolean settingRestaurantStaragv(int rnum);
+	public Restaurant selectByrNum(int rNum);
 	
 	boolean orderCommentChk(int onum);
 	

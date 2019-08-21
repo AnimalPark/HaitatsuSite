@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>처음화면</title>
 <link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -98,10 +98,6 @@ body {
 .navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:active {
 	color: #333;
 }
-
-
-
-
 .navbar .navbar-form {
 	border: none;
 	justify-content-end;
@@ -173,12 +169,10 @@ body {
 
 </head>
 <body>
-
 	<nav class="navbar navbar-default navbar-expand-lg navbar-light">
 		<div class="navbar-header d-flex col">
-			<a class="navbar-brand" href="#">Haitatsu<b>Site</b></a>
+			<a class="navbar-brand" href="index.jsp">Haitatsu<b>Site</b></a>
 		</div>
-		<!-- Collection of nav links, forms, and other content for toggling -->
 		<div id="navbarCollapse"
 			class="collapse navbar-collapse justify-content-start">
 			<ul class="nav navbar-nav">
@@ -195,10 +189,10 @@ body {
 					class="nav-link dropdown-toggle" href="#">게시판 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="ybbs_eventList?reqPage=1">이벤트 게시판</a></li>
-						<li><a href="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
+						<li><a href="ybbs_QaList?reqPage=1">Q/A 게시판</a></li>
 					</ul></li>
 				<c:if test="${users != null}">
-					<li class="nav-item"><a href="logout_link" class="nav-link">로그아웃</a></li>
+					<li class="nav-item"><a href="user_logout" class="nav-link">로그아웃</a></li>
 
 					<li class="nav-item dropdown"><a data-toggle="dropdown"
 						class="nav-link dropdown-toggle" href="myPage_link">마이페이지 <b

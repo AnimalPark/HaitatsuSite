@@ -18,8 +18,8 @@ import model.Ybbs_QA;
 import page.PageManager;
 import sql.Sql;
 
-@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_go_to_insert.do","/ybbs_insert","/ybbs_detail.do","/ybbs_delete","/ybbs_update","/ybbs_reply.ad","/ybbs_reply_form.ad",
-		"/ybbs_req_list", "/ybbs_goTo_update"})
+@WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_go_to_insert.do","/ybbs_insert","/ybbs_detail.do","/ybbs_delete","/ybbs_update",
+		"/ybbs_reply.ad","/ybbs_reply_form.ad","/ybbs_QaList", "/ybbs_goTo_update"})
 
 public class YbbsController extends HttpServlet {
 
@@ -49,24 +49,24 @@ public class YbbsController extends HttpServlet {
 		} else if (action.equals("ybbs_insert")) {
 
 			Ybbs_QA ybbs = new Ybbs_QA();
-			ybbs.setQasubject(req.getParameter("qasubject"));
-			ybbs.setQacomment(req.getParameter("qacomment"));
-			ybbs.setUserid(req.getParameter("userid"));
+			ybbs.setQaSubject(req.getParameter("qaSubject"));
+			ybbs.setQaComment(req.getParameter("qaComment"));
+			ybbs.setUserId(req.getParameter("userId"));
 
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			dao.Insert(ybbs);
 	
-			resp.sendRedirect("ybbs_req_list?reqPage=1");
+			resp.sendRedirect("ybbs_QaList?reqPage=1");
 
 		}else if (action.equals("ybbs_detail.do")) {
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
-			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
+			int qaNumber = Integer.parseInt(req.getParameter("qaNumber"));
 
-			ybbs = dao.selectByNo(qanumber);
-			dao.updateVisited(qanumber);		
-			String ybbsId = dao.validChk(qanumber);
+			ybbs = dao.selectByNo(qaNumber);
+			dao.updateVisited(qaNumber);		
+			String ybbsId = dao.validChk(qaNumber);
 			
 			req.setAttribute("ybbs", ybbs);
 			req.setAttribute("ybbs_id", ybbsId);
@@ -78,52 +78,53 @@ public class YbbsController extends HttpServlet {
 			
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			Ybbs_QA ybbs = new Ybbs_QA();
-			ybbs.setQanumber(Integer.parseInt(req.getParameter("qanumber")));
 			
-			dao.delete(ybbs.getQanumber());
+			ybbs.setQaGroup(Integer.parseInt(req.getParameter("qaGroup")));
 			
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
+			dao.delete(ybbs.getQaGroup());
+			
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_QaList?reqPage=1");
 			rd.forward(req, resp);
 			
 		} else if (action.equals("ybbs_update")) {
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
 			
-			ybbs.setQanumber(Integer.parseInt(req.getParameter("qanumber")));
-			ybbs.setQasubject(req.getParameter("qasubject"));
-			ybbs.setQacomment(req.getParameter("qacomment"));
+			ybbs.setQaNumber(Integer.parseInt(req.getParameter("qaNumber")));
+			ybbs.setQaSubject(req.getParameter("qaSubject"));
+			ybbs.setQaComment(req.getParameter("qaComment"));
 			
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			dao.update(ybbs);
 
-			resp.sendRedirect("ybbs_req_list?reqPage=1");
+			resp.sendRedirect("ybbs_QaList?reqPage=1");
 			
 		}  else if (action.equals("ybbs_reply.ad")) {
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
 			
-			ybbs.setQasubject(req.getParameter("qasubject"));
-			ybbs.setQacomment(req.getParameter("qacomment"));
-			ybbs.setQagroup(Integer.parseInt(req.getParameter("qagroup")));
-			ybbs.setUserid(req.getParameter("userid"));
+			ybbs.setQaSubject(req.getParameter("qaSubject"));
+			ybbs.setQaComment(req.getParameter("qaComment"));
+			ybbs.setQaGroup(Integer.parseInt(req.getParameter("qaGroup")));
+			ybbs.setUserId(req.getParameter("userId"));
 			
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
 			
 			dao.insertReply(ybbs);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("ybbs_req_list?reqPage=1");
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_QaList?reqPage=1");
 			rd.forward(req, resp);
 			
 		} else if (action.equals("ybbs_reply_form.ad")) {
 			
-			int qanumber = Integer.parseInt(req.getParameter("qanumber"));
+			int qaNumber = Integer.parseInt(req.getParameter("qaNumber"));
 			
-			req.setAttribute("num", qanumber);
+			req.setAttribute("num", qaNumber);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardReply.jsp");
 			rd.forward(req, resp);
 			
-		} else if (action.equals("ybbs_req_list")) {
+		} else if (action.equals("ybbs_QaList")) {
 			
 			int requestPage = Integer.parseInt(req.getParameter("reqPage"));
 			PageManager pm = new PageManager(requestPage);
@@ -135,7 +136,7 @@ public class YbbsController extends HttpServlet {
 			ybbsList = dao.selectAll(pm.getPageRowResult().getRowStartNumber(),
 					pm.getPageRowResult().getRowEndNumber());
 			
-			session.setAttribute("caller", "/ybbs_req_list?reqPage=1");
+			session.setAttribute("caller", "/ybbs_QaList?reqPage=1");
 			req.setAttribute("ybbsList", ybbsList);
 			req.setAttribute("pageGroupResult", pm.getPageGroupResult(Sql.YBBS_SELECT_ALL_COUNT));
 			
@@ -144,7 +145,7 @@ public class YbbsController extends HttpServlet {
 		
 		}else if (action.equals("ybbs_goTo_update")) {
 			
-			int num = Integer.parseInt(req.getParameter("qanumber"));
+			int num = Integer.parseInt(req.getParameter("qaNumber"));
 			
 			Ybbs_QA ybbs = new Ybbs_QA();
 			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
