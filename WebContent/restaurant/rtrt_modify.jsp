@@ -166,9 +166,11 @@ body {
 }
 
 .login-form .btn {
-	background: #4aba70;
+	background: #f04f01;
 	border: none;
 	line-height: normal;
+	text-align : center;
+	width : 300px; height: 10px; 
 }
 
 .login-form .btn:hover, .login-form .btn:focus {
@@ -223,7 +225,7 @@ body {
 	</nav>
 
 	<div class="login-form">
-		<form action="admin_rtrt_update" method="get">
+		<form action="admin_rtrt_update" method="post">
 			<div class="avatar">
 				<img src="filemanager/${restaurant.rFileName}" class="avatar"
 					alt="Avatar">
@@ -251,11 +253,13 @@ body {
 			</div>
 
 			<c:if test="${users.authority eq 1}">
-				<input type="submit" value="수정" />
-				<button type="button"
+				<button type="submit" style="margin-left: 70px;" class="btn btn-primary btn-block btn-lg" >수정</button>
+				<button type="button" style="margin-left: 70px;" class="btn btn-primary btn-block btn-lg"
 					onclick="location.href='admin_rtrt_delete?rNum=${restaurant.rNum}'">가게
 					정보 삭제</button>
 			</c:if>
+
+  
 
 		</form>
 	</div>

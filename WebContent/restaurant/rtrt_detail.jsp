@@ -109,7 +109,7 @@ body {
 }
 
 .table-wrapper {
-	background: #fff;
+	background: #F8ECE0;
 	padding: 20px 25px;
 	margin: 30px auto;
 	border-radius: 3px;
@@ -280,7 +280,7 @@ table.table .avatar {
 }
 
 .login-form .btn {
-	background: #4aba70;
+	background: #f04f01;
 	border: none;
 	line-height: normal;
 }
@@ -375,10 +375,17 @@ table.table .avatar {
 		</form>
 
 	</div>
+	<c:if test="${users.authority eq 1}">
+		<button class="btn btn-primary btn-block btn-lg" type="button"
+			style="background: #FF8000; width: 180px; color: #000000; position: relative; left: 990px;"
+			onclick="location.href='menu_add?rNum=${restaurant.rNum}'">
+			<img class="btn-img" style="width: 50px; height: 50px;"
+				src="image/chicken.png">메뉴 추가
+		</button>
+	</c:if>
 	<div class="container">
 
 		<div class="table-wrapper">
-
 			<table class="table table-striped table-hover">
 
 				<thead>
@@ -408,10 +415,7 @@ table.table .avatar {
 					</c:forEach>
 				</tbody>
 			</table>
-			<c:if test="${users.authority eq 1}">
-				<button type="button"
-					onclick="location.href='menu_add?rNum=${restaurant.rNum}'">메뉴추가</button>
-			</c:if>
+
 		</div>
 	</div>
 </body>

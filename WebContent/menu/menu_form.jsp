@@ -123,7 +123,7 @@ body {
 	color: #333;
 	margin: 0 0 30px 0;
 	display: inline-block;
-	padding: 0 30px 10px 0;
+	padding: 0 30px 10px 20px;
 	border-bottom: 3px solid #5cd3b4;
 }
 
@@ -223,7 +223,7 @@ body {
 		<form action="admin_menu_insert" enctype="multipart/form-data"
 			method="post" class="form-horizontal">
 			<div class="col-xs-8 col-xs-offset-4">
-				<h2>Sign Up</h2>
+				<h2>메뉴 추가</h2>
 			</div>
 			<input type="hidden" name="rNum" value="${restaurant.rNum}">
 			<div class="form-group">

@@ -120,7 +120,7 @@ h2::after {
 	margin: 0 auto;
 	height: 4px;
 	border-radius: 1px;
-	background: #7ac400;
+	background:#f04f01;
 	left: 0;
 	right: 0;
 	bottom: -20px;

@@ -113,7 +113,7 @@ body {
 
 .table-title {
 	color: #fff;
-	background: #40b2cd;
+	background: #f04f01;
 	padding: 16px 25px;
 	margin: -20px -25px 10px;
 	border-radius: 3px 3px 0 0;
@@ -197,7 +197,7 @@ table.table th:last-child {
 }
 
 table.table td a {
-	color: #a0a5b1;
+	color: #03A9F4;
 	display: inline-block;
 	margin: 0 5px;
 }
@@ -283,7 +283,11 @@ table.table td i {
 
 
 	<div class="container">
+	<button class="btn btn-primary btn-block btn-lg"  type="button" style="background:#FF8000;width:180px; color:#000000;position:relative; left:960px;" onclick="location.href='restaurant_add'">
+	<img class="btn-img" style="width: 50px; height: 50px;" src="image/restaurant.png">음식점 추가</button>
+
 		<div class="table-wrapper">
+		
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
@@ -336,55 +340,9 @@ table.table td i {
 					</c:forEach>
 				</tbody>
 			</table>
-			<button type="button" onclick="location.href='index.jsp'">처음화면으로</button>
-			<button type="button" onclick="location.href='restaurant_add'">가게
-				정보 추가</button>
+			
 		</div>
 	</div>
-	<%-- ////////////////////////////////////////////////
-	<c:if test="${users.authority eq 1}">
-	<h1>${users.userId}관리자 계정으로 로그인됨</h1>
-	</c:if>
-		<h3>Restaurant List</h3>
-	
-		<form action="admin_rtrt_search" method="post">
-			<input type="text" name="rName" placeholder="가게 이름 검색...">
-			<input type="submit" value="검색">
-		</form>
-			
-		<c:if test="${empty restaurant}">
-			<hr />
-			검색된 결과가 존재하지 않습니다
-			<hr />
-		</c:if>
-		<c:if test="${!empty restaurant}"></c:if>
-		
-		<table>
-			<thead>
-				<tr>
-					<td>가게이름</td>
-					
-					<td>/  전화번호</td>
-					
-					<td>/  평균별점</td>
-					
-					<td>/  주소</td>
-				</tr>
-			</thead>
-				
-		<c:forEach var="restaurant" items="${restaurant}">
-			<tr>
-				<td><a href="admin_rtrt_detail?rNum=${restaurant.rNum}">${restaurant.rName}</a></td>
-				<td>${restaurant.rPhoneNum}</td>
-				<td>${restaurant.starAvg}</td>
-				<td>${restaurant.rAddr}</td>
-			</tr>	
-		</c:forEach>
-		</table>
 
-   		<button type="button" onclick="location.href='index.jsp'" >처음화면으로</button>
-   		<c:if test="${users.authority eq 1}">
-   	 	<button type="button" onclick="location.href='restaurant_add'">가게 정보 추가</button>
-		</c:if> --%>
 </body>
 </html>
