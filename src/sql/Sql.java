@@ -60,6 +60,13 @@ public class Sql {
 					"FROM USERORDER " + 
 					"ORDER BY ONUM DESC) " + 
 			"WHERE ROWNUM = 1";
+	public static final String MENU_SELECT_BY_RNUM_AND_ORDER_BY_MSALES = 
+			"SELECT MNUM, RNUM, MNAME, MPRICE, MSALES, MFILENAME, ROWNUM "+            
+			"FROM    (SELECT * "+  
+			"        FROM MENU "+  
+			"        WHERE RNUM = ? "+
+			"        ORDER BY MSALES DESC)";
+
 	public static final String INSERT_COMMENT_SQL = "INSERT INTO COMMENTS VALUES(SEQ_COMMENT.NEXTVAL, ?, ?, ?, ?, SYSDATE,?)";
 	public static final String COMMENTS_SELECT_BY_RNUM_SQL = "SELECT * FROM COMMENTS WHERE RNUM = ? ORDER BY COMMADDR";
 	public static final String COMMENTS_GET_CURRVAL_SQL = "SELECT SEQ_COMMENT.CURRVAL AS COMMNUM FROM DUAL";
@@ -72,7 +79,6 @@ public class Sql {
 	public static final String RESTAURANT_STAR_SUM_GET_SQL = "SELECT SUM(STAR) AS SUM FROM COMMENTS WHERE RNUM = ?";
 	public static final String RESTAURANT_COMMENT_CNT_GET_SQL = "SELECT MAX(ROWNUM) AS COMMENT_CNT FROM COMMENTS WHERE RNUM = ?";
 	public static final String RESTAURANT_STAR_AGV_UPDATE_SQL = "UPDATE RESTAURANT SET STARAVG = ? WHERE RNUM = ?";
-	
 	//==========================Ȳȣ�� Sql��=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
 	public static final String RESTAURANT_SELECT_BY_NAME_SQL = "SELECT * FROM restaurant WHERE rName like ?";
@@ -83,7 +89,7 @@ public class Sql {
 	
 	public static final String MENU_SELECT_ALL_MENU_SQL = "SELECT * FROM menu";
 	public static final String MENU_SELECT_BY_MNUM_SQL = "SELECT * FROM menu WHERE mnum = ?";
-	public static final String MENU_DETAIL_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE rnum = ?";
+	public static final String MENU_DETAIL_SELECT_BY_RNUM_SQL = "SELECT * FROM menu WHERE rnum = ? ORDER BY MSALES DESC";
 	public static final String MENU_INSERT_MENU_SQL = "INSERT INTO menu values(seq_menu.nextval, ?, ?, ?, 0,?)";
 	public static final String MENU_UPDATE_MENU_SQL = "UPDATE menu SET rNum=?, mName=?, mPrice=?, mSales=? WHERE  mNum=?";
 	public static final String MENU_DELETE_MENU_SQL = "DELETE FROM menu WHERE mNum=?";

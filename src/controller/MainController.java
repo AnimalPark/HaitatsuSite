@@ -159,9 +159,9 @@ public class MainController extends HttpServlet {
 			int rno = Integer.parseInt(req.getParameter("rno"));
 			Restaurant r = new Restaurant();
 
-			List<Menu> lists = Mimpl.menuSelectByRnum(rno);
+			List<Menu> lists = Mimpl.menuDetailSelectByRnum(rno);
 			List<Comments> comments_list = Mimpl.selectByRnumComments(rno);
-			r = Mimpl.selectByRnum(rno);
+			r = Mimpl.selectByrNum(rno);
 
 			HttpSession session = req.getSession();
 
