@@ -1111,12 +1111,12 @@ body {
 					height="100px"> <br />
 				<div class="star-rating">
 					<ul class="list-inline">
-						<span>${detailR.rName}</span>
+						<span>>>${detailR.rName}</span>
 						<li class="list-inline-item"><i class="fa fa-star"></i></li>
 						<span><fmt:formatNumber value="${detailR.starAvg}"
 								pattern=".0" /></span>
-						<p>주소 : ${detailR.rAddr}</p>
-						<span>연락처 : ${detailR.rPhoneNum}</span>
+						<p>>>주소 : ${detailR.rAddr}</p>
+						<span>>>연락처 : ${detailR.rPhoneNum}</span>
 					</ul>
 				</div>
 			</div>
