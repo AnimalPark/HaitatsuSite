@@ -112,7 +112,7 @@ public class MenuController extends HttpServlet {
 			menu.setmPrice(Integer.parseInt(req.getParameter("mPrice")));
 			// menu.setmSales(Integer.parseInt(req.getParameter("mSales")));
 
-			boolean result = dao.insertMenu(menu);
+			boolean result = dao.updateMenu(menu);
 			int rNum = Integer.parseInt(req.getParameter("rNum"));
 
 			// RequestDispatcher rd =
