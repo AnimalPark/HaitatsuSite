@@ -113,7 +113,7 @@ body {
 
 .table-title {
 	color: #fff;
-	background: #f04f01;
+	background: #1C1C1C;
 	padding: 16px 25px;
 	margin: -20px -25px 10px;
 	border-radius: 3px 3px 0 0;
@@ -197,7 +197,7 @@ table.table th:last-child {
 }
 
 table.table td a {
-	color: #03A9F4;
+	color: #070719;
 	display: inline-block;
 	margin: 0 5px;
 }
@@ -283,8 +283,8 @@ table.table td i {
 
 
 	<div class="container">
-	<button class="btn btn-primary btn-block btn-lg"  type="button" style="background:#FF8000;width:180px; color:#000000;position:relative; left:960px;" onclick="location.href='restaurant_add'">
-	<img class="btn-img" style="width: 50px; height: 50px;" src="image/restaurant.png">음식점 추가</button>
+	<button class="btn btn-primary btn-block btn-lg"  type="button" style=" background:#6E6E6E; width:180px; color:#FFFFFF;position:relative;bottom:-30px; left:960px;" onclick="location.href='restaurant_add'">
+	<img class="btn-img" style="width: 30px; height: 30px;" src="image/restaurant.png">음식점 추가</button>
 
 		<div class="table-wrapper">
 		
