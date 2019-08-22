@@ -145,13 +145,6 @@
             join.uName.focus();
             return false;
         }
-        //우편번호 입력여부 체크
-        if (join.postcode.value == "")
-        {
-            alert("주소를 입력하세요.")
-            join.postcode.focus();
-            return false;
-        }
         //상세주소 입력여부 체크
         if (join.detailAddress.value == "")
         {
@@ -204,7 +197,6 @@
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
 
-                document.getElementById('sample4_postcode').value = data.zonecode;
                 document.getElementById("sample4_roadAddress").value = roadAddr;
 
                 var guideTextBox = document.getElementById("guide");
@@ -336,13 +328,6 @@
 				<div class="col-xs-6"><input type="text" id="userId" name="userId" class="form-control" placeholder="6~12자의 영문 소문자와 숫자를 조합하여 사용하세요."></div>
 				<div class="col-xs-6"><input type="button" class="btn" value="중복 확인 " id="btn_userId"></div>
 			</div>       
-				 	
-<!-- 				<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디를 입력해주세요.">&nbsp; 
-				<input type="button" value="중복 확인 " id="btn_userId">
-				<h5>6~12자리의 영문 소문자, 숫자를 조합하여 사용하실 수 있습니다.</h5>
-				<div class="console">
-				
-				</div> -->
 			<div class="form-group">
 				<h5>비밀번호</h5>
 				<input type="password" id="uPwd" name="uPwd" class="form-control" placeholder="6~18자의 숫자와 영문 대소문자를 조합하여  사용하세요.">
@@ -358,14 +343,9 @@
 			<div class="form-group">
 				<h5>주소</h5>
 				<div class="row">
-					<div class="col-xs-6"><input type="text" name="postcode" id="sample4_postcode" class="form-control" placeholder="주소를 검색해주세요."></div>
+					<div class="col-xs-6"><input type="text" name="roadAddress" id="sample4_roadAddress" class="form-control" placeholder="도로명 주소"></div>
 					<div class="col-xs-3"><input type="button" class="btn" onclick="sample4_execDaumPostcode()" value="주소 검색"></div>
 				</div>       
-			</div>
-				<!-- <input type="text" name="postcode" id="sample4_postcode" class="form-control" placeholder="주소를 검색해주세요.">&nbsp;
-				<input type="button" class="btn" onclick="sample4_execDaumPostcode()" value="주소 검색"><br>  -->
-			<div class="form-group">	
-				<input type="text" name="roadAddress" id="sample4_roadAddress" class="form-control" placeholder="도로명 주소"><br />
 			</div>
 			<div class="form-group">	
 				<span id="guide" style="color: #999; display: none"></span> 

@@ -946,7 +946,8 @@ body {
 							class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="user_orderlist">주문내역</a></li>
-							<li><a href="#">개인정보 수정</a></li>
+							<li><a href="#">회원정보 보기</a></li>
+							<li><a href="#">회원정보 수정</a></li>
 							<li><a href="#">비밀번호 변경</a></li>
 						</ul>
 				</c:if>
