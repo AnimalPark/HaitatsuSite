@@ -243,7 +243,7 @@ body {
 								<div class="form-group">
 									<label for="inputMessage">내용</label>
 									<textarea class="form-control" id="inputMessage"
-										name="qaComment" rows="10" style="width: 75%" readonly>${ybbs.qaComment}</textarea>
+										name="qaComment" rows="20" style="width: 75%" readonly>${ybbs.qaComment}</textarea>
 								</div>
 								<button class="btn btn-primary"
 									style="margin: 4px; min-width: 50px;">글 수정</button>
@@ -253,7 +253,7 @@ body {
 									style="margin: 4px; min-width: 50px;">글 삭제</button></a> <a
 								href="ybbs_QaList?reqPage=1"><button class="btn btn-primary"
 									style="margin: 4px; min-width: 50px;">목록으로</button></a>
-							<c:if test="${users.authority eq 1}">
+							<c:if test="${users.authority eq 1 && ybbs.qaLevel != 1}">
 								<a href="ybbs_reply_form.ad?qaNumber=${ybbs.qaNumber}"><button
 										class="btn btn-primary" style="margin: 4px; min-width: 50px;">답변작성</button></a>
 							</c:if>
@@ -293,11 +293,11 @@ body {
 							<div class="form-group">
 								<label for="inputMessage">내용</label>
 								<textarea class="form-control" id="inputMessage"
-									name="qaComment" rows="10" style="width: 100%" readonly>${ybbs.qaComment}</textarea>
+									name="qaComment" rows="20" style="width: 100%" readonly>${ybbs.qaComment}</textarea>
 							</div>
 							<a href="ybbs_goTo_update?qaNumber=${ybbs.qaNumber}"><button
 									class="btn btn-primary" style="margin: 4px; min-width: 50px;">글
-									수정</button></a> <a href="ybbs_delete?qaNumber=${ybbs.qaNumber}"
+									수정</button></a> <a href="ybbs_delete_reply?qaNumber=${ybbsList.qaNumber}"
 								onclick="return delchk();"><button class="btn btn-primary"
 									style="margin: 4px; min-width: 50px;">글 삭제</button></a> <a
 								href="ybbs_QaList?reqPage=1"><button class="btn btn-primary"
