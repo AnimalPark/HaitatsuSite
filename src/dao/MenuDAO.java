@@ -22,6 +22,9 @@ public interface MenuDAO {
 	boolean settingRestaurantStaragv(int rnum);
 	public Restaurant selectByrNum(int rNum);
 	
+	public boolean menuSalesUpdate(int msales, int mnum);
+	public int getMsales(int mnum);
+	
 	boolean orderCommentChk(int onum);
 	
 	Menu menuSelectByMnum(int mnum);
@@ -48,4 +51,5 @@ public interface MenuDAO {
 	
 	List<UserOrderList> userOrderList(String userid);
 	List<UserOrderListSub> orderInfoSub(int onum);
+	
 }

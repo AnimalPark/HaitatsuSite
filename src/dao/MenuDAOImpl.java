@@ -1000,4 +1000,59 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 		return restaurant;
 	}
+	
+	@Override
+	public boolean menuSalesUpdate(int msales, int mnum) {
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.MENU_SALES_UPDATE_SQL);
+
+			preparedStatement.setInt(1, msales);
+			preparedStatement.setInt(2, mnum);
+
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				result = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+
+		return result;
+	}
+	@Override
+	public int getMsales(int mnum) {
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+			int sales = 0;
+			try {
+				connection = getConnection();
+				preparedStatement = connection.prepareStatement(Sql.GET_MENU_SALES_SQL);
+				preparedStatement.setInt(1, mnum);
+				resultSet = preparedStatement.executeQuery();
+
+				while (resultSet.next()) {
+					sales = resultSet.getInt("MSALES");
+
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+
+			} finally {
+				closeDBObjects(resultSet, preparedStatement, connection);
+			}
+
+			return sales;
+	}
 }
