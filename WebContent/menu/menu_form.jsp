@@ -277,7 +277,7 @@ border:1px solid #777;}
 			</div>
 			<div class="file_input">
 				<input type="text" readonly="readonly" id="file_route"> <label>
-					사진 추가 <input type="file"
+					사진 추가 <input type="file" name="filename"
 					onchange="javascript:document.getElementById('file_route').value=this.value">
 				</label>
 			</div>
