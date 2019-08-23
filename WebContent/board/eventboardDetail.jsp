@@ -243,38 +243,38 @@ body {
 							<div class="form-group">
 								<label for="inputMessage">내용</label>
 								<textarea class="form-control" id="inputMessage"
-									name="evComment" rows="15" style="width: 75%" readonly>${ybbs.evComment}</textarea>
+									name="evComment" rows="20" style="width: 75%" readonly>${ybbs.evComment}</textarea>
 							</div>
-							<a href="ybbs_event_goTo_update.ad?evNumber=${ybbs.evNumber}"><button
-									class="btn btn-primary" style="margin: 4px; min-width: 50px;">글
-									수정</button></a> <a href="ybbs_delete_event.ad?evNumber=${ybbs.evNumber}"
+							<a href="ybbs_event_goTo_update.ad?evNumber=${ybbs.evNumber}">
+							<button class="btn btn-primary" style="margin: 4px; min-width: 50px;">글 수정</button></a> 
+							<a href="ybbs_delete_event.ad?evNumber=${ybbs.evNumber}"
 								onclick="return delchk();"><button class="btn btn-primary"
-									style="margin: 4px; min-width: 50px;">글 삭제</button></a> <a
-								href="ybbs_eventList?reqPage=1"><button
-									class="btn btn-primary" style="margin: 4px; min-width: 50px;">목록으로</button></a>
+									style="margin: 4px; min-width: 50px;">글 삭제</button></a> 
+							<a href="ybbs_eventList?reqPage=1"><button
+								class="btn btn-primary" style="margin: 4px; min-width: 50px;">목록으로</button></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</c:if>
-	]
 	<c:if test="${users.authority != 1 && ybbs.userId != users.userId}">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1 m-auto">
 					<div class="contact-form">
 						<div class="container">
-							<h4 style="text-align: center;">♥ 이 달의 이벤트 ♥</h4>
+							<h4 style="text-align: left;">♥ 이 달의 이벤트 ♥</h4>
 							<br />
-							<div class="form-group" style="text-align: center;">
+							<div class="form-group">
 								<label for="inputSubject">제목</label> <input type="text"
 									class="form-control" id="inputSubject" name="evSubject"
-									style="text-align: center;" value="${ybbs.evSubject}" readonly />
+									value="${ybbs.evSubject}" style="width: 75%" readonly />
 							</div>
 							<div class="form-group">
+								<label for="inputMessage">내용</label>
 								<textarea class="form-control" id="inputMessage"
-									name="evComment" rows="20" style="width: 100%" readonly>${ybbs.evComment}</textarea>
+									name="evComment" rows="20" style="width: 75%" readonly>${ybbs.evComment}</textarea>
 							</div>
 							<a href="ybbs_eventList?reqPage=1"><button
 									class="btn btn-primary" style="margin: 4px; min-width: 50px;">목록으로</button></a>

@@ -19,7 +19,8 @@ public interface Ybbs_QADAO {
 
 	void update(Ybbs_QA ybbs);
 
-	void delete(int qanumber);
+	void delete(int qaGroup);
+	void deleteReply(int qanumber);
 	void deleteByGroup(List<Integer> qagroup);
 	
 	void updateVisited(int qanumber);
