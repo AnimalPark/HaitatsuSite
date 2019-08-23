@@ -9,11 +9,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+	rel="stylesheet">
 <title>가게 추가</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
 body {
 	color: #fff;
@@ -175,40 +179,42 @@ body {
 	text-decoration: underline;
 }
 
-.file_input label{
-position:relative;
-cursor:pointer;
-display:inline-block;
-vertical-align:middle;
-overflow:hidden;
-width:100px;
-height:30px;
-background:#777;
-color:#fff;
-text-align:center;
-line-height:30px;}
+.file_input label {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	overflow: hidden;
+	width: 100px;
+	height: 30px;
+	background: #777;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+}
 
-.file_input label input{
-position:absolution;
-width:0;
-height:0;
-overflow:hidden;}
+.file_input label input {
+	position: absolution;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
 
-.file_input input[type=text]{
-vertical-align:middle;
-display:inline-block;
-width:300px;
-height:28px;
-font-size:11px;
-padding:0;
-border:0;
-border:1px solid #777;}
-
+.file_input input[type=text] {
+	vertical-align: middle;
+	display: inline-block;
+	width: 300px;
+	height: 28px;
+	font-size: 11px;
+	padding: 0;
+	border: 0;
+	border: 1px solid #777;
+}
 </style>
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-expand-lg navbar-light">
+	<nav class="navbar navbar-default navbar-expand-lg navbar-light">
 		<div class="navbar-header d-flex col">
 			<a class="navbar-brand" href="index.jsp">Haitatsu<b>Site</b></a>
 		</div>
@@ -248,63 +254,62 @@ border:1px solid #777;}
 	</nav>
 
 
-<div class="signup-form">
-    <form action="admin_rtrt_insert" enctype="multipart/form-data" method="post">
-		<h2>가게 등록</h2>
-		<hr>
-        <div class="form-group">
-			<label>가게이름</label>
-        	<input type="text" class="form-control" name="rName" required="required">
-        </div>
-        <div class="form-group">
-			<label>전화번호</label>
-        	<input type="text" class="form-control" name="rPhoneNum" required="required">
-        </div>
-		<div class="form-group">
-			<label>음식 카테고리</label>
-            <select name="cNum" class="form-control" required="required">
-            <option>-------업종선택-------</option>
-			<option value="1">한식</option>
-			<option value="2">중식</option>
-			<option value="3">일식</option>
-			<option value="4">피자</option>
-			<option value="5">치킨</option>
-			<option value="6">분식</option>
-			<option value="7">족발</option>
-			<option value="8">간식</option>
-			</select>
-        </div>
-		<div class="form-group">
-			<label>지역</label>
-            <select name="townNum" class="form-control" required="required">
-            <option>-------지역선택-------</option>
-			<option value="1">영등포구 양산로</option>
-			<option value="2">영등포구 영신로</option>
-			<option value="3">영등포구 노들로</option>
-			<option value="4">마포구 와우산로</option>
-			<option value="5">마포구 월드컵로</option>
-			<option value="6">용산구 회나무로</option>
-			<option value="7">용산구 이태원로</option>
-			</select>
-        </div>
-        <div class="form-group">
-			<label>상세 주소</label>
-            <input type="text" class="form-control" name="confirm_password" required="required">
-        </div>
-		<div class="file_input">
-		<input type="text" readonly="readonly" id="file_route">
-		<label>
-		사진 추가
-		<input type="file" name="filename" onchange="javascript:document.getElementById('file_route').value=this.value">
-		</label>
-		</div>
-		<br>
-		
-		<div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block btn-lg">등록</button>
-        </div>
-    </form>
-</div>
+	<div class="signup-form">
+		<form action="admin_rtrt_insert" enctype="multipart/form-data"
+			method="post">
+			<h2>가게 등록</h2>
+			<hr>
+			<div class="form-group">
+				<label>가게이름</label> <input type="text" class="form-control"
+					name="rName" required="required">
+			</div>
+			<div class="form-group">
+				<label>전화번호</label> <input type="text" class="form-control"
+					name="rPhoneNum" required="required">
+			</div>
+			<div class="form-group">
+				<label>음식 카테고리</label> <select name="cNum" class="form-control"
+					required="required">
+					<option>-------업종선택-------</option>
+					<option value="1">한식</option>
+					<option value="2">중식</option>
+					<option value="3">일식</option>
+					<option value="4">피자</option>
+					<option value="5">치킨</option>
+					<option value="6">분식</option>
+					<option value="7">족발</option>
+					<option value="8">간식</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>지역</label> <select name="townNum" class="form-control"
+					required="required">
+					<option>-------지역선택-------</option>
+					<option value="1">영등포구 양산로</option>
+					<option value="2">영등포구 영신로</option>
+					<option value="3">영등포구 노들로</option>
+					<option value="4">마포구 와우산로</option>
+					<option value="5">마포구 월드컵로</option>
+					<option value="6">용산구 회나무로</option>
+					<option value="7">용산구 이태원로</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>상세 주소</label> <input type="text" class="form-control"
+					name="rAddr" required="required">
+			</div>
+			<div class="file_input">
+				<input type="text" readonly="readonly" id="file_route"> <label>
+					사진 추가 <input type="file" name="filename"
+					onchange="javascript:document.getElementById('file_route').value=this.value">
+				</label>
+			</div>
+			<br>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-block btn-lg">등록</button>
+			</div>
+		</form>
+	</div>
 </body>
 </html>
-
