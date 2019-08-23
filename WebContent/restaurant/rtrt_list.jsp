@@ -332,9 +332,9 @@ table.table td i {
 							<td>${restaurant.rPhoneNum}</td>
 							<td>${restaurant.starAvg}</td>
 							<td>${restaurant.rAddr}</td>
-							<td><a href="#" class="edit" title="Edit"
+							<td><a href="admin_rtrt_detail?rNum=${restaurant.rNum}" class="edit" title="정보수정"
 								data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-								<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
+								<a href="admin_rtrt_delete?rNum=${restaurant.rNum}" class="delete" title="가게정보삭제" data-toggle="tooltip"><i
 									class="material-icons">&#xE872;</i></a></td>
 						</tr>
 					</c:forEach>

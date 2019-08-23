@@ -166,11 +166,11 @@ body {
 }
 
 .login-form .btn {
-	background: #f04f01;
+	background: #5cd3b4;
 	border: none;
 	line-height: normal;
 	text-align : center;
-	width : 300px; height: 10px; 
+	width : 440px; height: 10px; 
 }
 
 .login-form .btn:hover, .login-form .btn:focus {
@@ -232,12 +232,12 @@ body {
 			</div>
 			<h4 class="modal-title">가게 정보 수정</h4>
 			<div class="form-group">
-				<input type="hidden" name="rNum" value="${restaurant.rNum}" /> 가게이름<input
-					type="text" class="form-control" name="rName"
-					value="${restaurant.rName}" required="required"> 전화번호<input
-					type="text" class="form-control" name="rPhoneNum"
-					value="${restaurant.rPhoneNum}" required="required"> 카테고리 <select
-					name="cNum" class="form-control" required="required">
+				<input type="hidden" name="rNum" value="${restaurant.rNum}" /> 
+				가게이름<input type="text" class="form-control" name="rName"
+				value="${restaurant.rName}" required="required"> 
+				전화번호<input type="text" class="form-control" name="rPhoneNum"
+				value="${restaurant.rPhoneNum}" required="required"> 
+				카테고리 <select name="cNum" class="form-control" required="required">
 					<option>업종을 선택하세요</option>
 					<option value="1">한식</option>
 					<option value="2">중식</option>
@@ -247,14 +247,16 @@ body {
 					<option value="6">분식</option>
 					<option value="7">족발</option>
 					<option value="8">간식</option>
-				</select> <input type="hidden" name="townNum" value="${restaurant.townNum}" />
+				</select> 
+				<input type="hidden" name="townNum" value="${restaurant.townNum}" />
 				<input type="hidden" name="starAvg" value="${restaurant.starAvg}" />
 				<input type="hidden" name="rAddr" value="${restaurant.rAddr}" />
+				<input type="hidden" name="rFileName" value="${restaurant.rFileName}" />
 			</div>
 
 			<c:if test="${users.authority eq 1}">
-				<button type="submit" style="margin-left: 70px;" class="btn btn-primary btn-block btn-lg" >수정</button>
-				<button type="button" style="margin-left: 70px;" class="btn btn-primary btn-block btn-lg"
+				<button type="submit" class="btn btn-primary btn-block btn-lg" >수정</button>
+				<button type="button" class="btn btn-primary btn-block btn-lg"
 					onclick="location.href='admin_rtrt_delete?rNum=${restaurant.rNum}'">가게
 					정보 삭제</button>
 			</c:if>

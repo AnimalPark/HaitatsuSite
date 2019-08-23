@@ -152,7 +152,7 @@ body {
 	background: #5cd3b4;
 	border: none;
 	margin-top: 20px;
-	min-width: 140px;
+	min-width: 255px;
 }
 
 .signup-form .btn:hover, .signup-form .btn:focus {

@@ -280,7 +280,7 @@ table.table .avatar {
 }
 
 .login-form .btn {
-	background: #f04f01;
+	background: #5cd3b4;
 	border: none;
 	line-height: normal;
 }
@@ -354,7 +354,7 @@ table.table .avatar {
 
 
 	<div class="login-form">
-		<form action="/examples/actions/confirmation.php" method="post">
+		<form action="admin_rtrt_mdf?rNum=${restaurant.rNum}" method="post">
 			<div class="avatar">
 				<img src="filemanager/${restaurant.rFileName}" class="avatar"
 					alt="Avatar">
@@ -364,8 +364,7 @@ table.table .avatar {
 				전화번호 : ${restaurant.rPhoneNum}<br /> 주소 : ${restaurant.rAddr}<br />
 			</div>
 			<c:if test="${users.authority eq 1}">
-				<button type="button" class="btn btn-primary btn-block btn-lg"
-					onclick="location.href='admin_rtrt_mdf?rNum=${restaurant.rNum}'">가게
+				<button type="submit" class="btn btn-primary btn-block btn-lg">가게
 					정보 수정</button>
 				<button type="button" class="btn btn-primary btn-block btn-lg"
 					onclick="location.href='admin_rtrt_delete?rNum=${restaurant.rNum}'">가게
@@ -377,9 +376,9 @@ table.table .avatar {
 	</div>
 	<c:if test="${users.authority eq 1}">
 		<button class="btn btn-primary btn-block btn-lg" type="button"
-			style="background: #FF8000; width: 180px; color: #000000; position: relative; left: 990px;"
+			style="background: #6E6E6E; width: 180px; color: #FFFFFF; position: relative; left:40px; bottom:-20px;"
 			onclick="location.href='menu_add?rNum=${restaurant.rNum}'">
-			<img class="btn-img" style="width: 50px; height: 50px;"
+			<img class="btn-img" style="width: 30px; height: 30px;"
 				src="image/chicken.png">메뉴 추가
 		</button>
 	</c:if>
@@ -409,7 +408,7 @@ table.table .avatar {
 								<td><a href="admin_menu_detail?mNum=${menu.mNum}">${menu.mName}</a></td>
 							</c:if>
 							<td>${menu.mPrice}</td>
-							<td><a href="#" class="view" title="View Details"
+							<td><a href="admin_menu_detail?mNum=${menu.mNum}" class="view" title="메뉴 상세보기"
 								data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
 						</tr>
 					</c:forEach>
