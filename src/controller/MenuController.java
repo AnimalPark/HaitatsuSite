@@ -96,10 +96,8 @@ public class MenuController extends HttpServlet {
 
 			int rNum = Integer.parseInt(req.getParameter("rNum"));
 
-			// RequestDispatcher rd =
-			// req.getRequestDispatcher("admin_rtrt_detail?rNum="+rNum);
-			// rd.forward(req, resp);
-			resp.sendRedirect("admin_rtrt_detail?rNum=" + rNum);
+			RequestDispatcher rd = req.getRequestDispatcher("admin_rtrt_detail?rNum="+rNum);
+			rd.forward(req, resp);
 			
 		} else if (action.equals("admin_menu_update")) {
 
