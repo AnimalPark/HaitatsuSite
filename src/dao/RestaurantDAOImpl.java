@@ -215,4 +215,58 @@ public class RestaurantDAOImpl extends BaseDAO implements RestaurantDAO {
 		return result;
 	}
 
+	@Override
+	public int restaurantOrderCount(int rNum) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int cnt = 0;
+		
+		try {
+
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_MENUS_ORDER_CNT_SQL);
+			preparedStatement.setInt(1,rNum);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {			
+				cnt = resultSet.getInt("cnt");
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+
+		return cnt;
+	}
+
+	@Override
+	public boolean restaurantOrderlistsDelete(int rNum) {
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.ORDERD_MENUS_RESTAURANT_DELETE_SQL);
+
+			preparedStatement.setInt(1, rNum);
+
+			int rowCount = preparedStatement.executeUpdate();
+
+			if (rowCount > 0) {
+				result = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+
+		return result;
+	}
+
 }

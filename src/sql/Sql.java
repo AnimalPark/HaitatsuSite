@@ -79,6 +79,10 @@ public class Sql {
 	public static final String RESTAURANT_STAR_SUM_GET_SQL = "SELECT SUM(STAR) AS SUM FROM COMMENTS WHERE RNUM = ?";
 	public static final String RESTAURANT_COMMENT_CNT_GET_SQL = "SELECT MAX(ROWNUM) AS COMMENT_CNT FROM COMMENTS WHERE RNUM = ?";
 	public static final String RESTAURANT_STAR_AGV_UPDATE_SQL = "UPDATE RESTAURANT SET STARAVG = ? WHERE RNUM = ?";
+	public static final String ORDERD_MENUS_RESTAURANT_DELETE_SQL = 
+	         "delete from ordermenu where mnum = (select mnum from RESTAURANT where rnum = ? )";
+	   public static final String RESTAURANT_MENUS_ORDER_CNT_SQL = 
+	         "select count(*) as cnt from ordermenu where mnum = (select mnum from RESTAURANT where rnum = ? )";
 	//==========================Ȳȣ�� Sql��=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
 	public static final String RESTAURANT_SELECT_BY_NAME_SQL = "SELECT * FROM restaurant WHERE rName like ?";

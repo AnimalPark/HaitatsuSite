@@ -133,10 +133,22 @@ public class RestaurantController extends HttpServlet {
 
 			RestaurantDAO dao = new RestaurantDAOImpl();
 			Restaurant restaurant = new Restaurant();
+			boolean result = false;
 
 			restaurant.setrNum(Integer.parseInt(req.getParameter("rNum")));
-			boolean result = dao.deleteRestaurant(Integer.parseInt(req.getParameter("rNum")));
-
+			int rNum = restaurant.getrNum();
+			
+			int cnt = dao.restaurantOrderCount(rNum);
+			
+			if(cnt == 0) {
+				result = dao.deleteRestaurant(Integer.parseInt(req.getParameter("rNum")));
+			}
+			else if(cnt > 0) {
+				dao.restaurantOrderlistsDelete(rNum);
+				result = dao.deleteRestaurant(Integer.parseInt(req.getParameter("rNum")));
+			}
+			
+			
 			RequestDispatcher rd = req.getRequestDispatcher("admin_rtrt_list");
 			rd.forward(req, resp);
 

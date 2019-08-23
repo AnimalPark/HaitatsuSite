@@ -248,14 +248,13 @@ body {
 			<label>지역</label>
             <select name="townNum" class="form-control" required="required">
             <option>-------지역선택-------</option>
-			<option value="1">안양1동</option>
-			<option value="2">안양2동</option>
-			<option value="3">안양3동</option>
-			<option value="4">호계동</option>
-			<option value="5">비산동</option>
-			<option value="6">모택동</option>
-			<option value="7">고길동</option>
-			<option value="8">춘하추동</option>
+			<option value="1">영등포구 양산로</option>
+			<option value="2">영등포구 영신로</option>
+			<option value="3">영등포구 노들로</option>
+			<option value="4">마포구 와우산로</option>
+			<option value="5">마포구 월드컵로</option>
+			<option value="6">용산구 회나무로</option>
+			<option value="7">용산구 이태원로</option>
 			</select>
         </div>
         <div class="form-group">

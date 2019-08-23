@@ -13,4 +13,6 @@ public interface RestaurantDAO {
 	boolean updateRestaurant(Restaurant restaurant);
 	boolean deleteRestaurant(int rNum);
 	
+	int restaurantOrderCount(int rNum);
+	boolean restaurantOrderlistsDelete(int rNum);
 }
