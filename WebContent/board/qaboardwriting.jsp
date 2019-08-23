@@ -100,7 +100,7 @@ body {
 					<br />
 					<p class="hint-text">문의사항을 작성해주세요</p>
 					<form action="ybbs_insert" method="post">
-						<input type="hidden" class="form-control" name="userid"
+						<input type="hidden" class="form-control" name="userId"
 							value="${users.userId}" />
 						<div class="row">
 							<div class="col-sm-4">
@@ -113,11 +113,11 @@ body {
 						</div>
 						<div class="form-group">
 							<label for="inputSubject">제목</label> <input type="text"
-								class="form-control" id="inputSubject" name="qasubject" required>
+								class="form-control" id="inputSubject" name="qaSubject" required>
 						</div>
 						<div class="form-group">
 							<label for="inputMessage">내용</label>
-							<textarea class="form-control" id="inputMessage" name="qacomment"
+							<textarea class="form-control" id="inputMessage" name="qaComment"
 								rows="10" style="width: 100%" required></textarea>
 						</div>
 						<button type="submit" class="btn btn-primary"

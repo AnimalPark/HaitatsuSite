@@ -101,7 +101,7 @@
         border-radius: 3px;
     }
 	.finduPwd-form{
-		width: 400px;
+		width: 550px;
 		margin: 0 auto;
 		padding: 30px 0;
 	}
@@ -169,9 +169,11 @@
 <div class = "finduPwd-form">
 	<form method="post" action="change_uPwd2?userId=${users.userId}" name="change" onsubmit="return validation();">
 		<h3>비밀번호 변경</h3>
-		<p class="hint-text">주기적인(6개월) 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요.</p>
+		<p class="hint-text">주기적인(6개월) 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요.<br />
+		6~18자리의 영문 대소문자, 숫자를 조합하여 사용하실 수 있습니다.</p>
+		<br />
 		<div class="form-group">
-			<input type="password" id="uPwd" name="uPwd" class="form-control" placeholder="비밀번호를 입력해주세요.">※6~18자리의 영문 대소문자, 숫자를 조합하여 사용하실 수 있습니다.<br />
+			<input type="password" id="uPwd" name="uPwd" class="form-control" placeholder="비밀번호를 입력해주세요."><br />
 		</div>
 		<div class="form-group">
 			<input type="password" id="uPwd1" name="uPwd1" class="form-control" placeholder="비밀번호를 다시 한 번 입력해주세요."><br />

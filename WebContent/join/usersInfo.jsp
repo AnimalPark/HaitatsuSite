@@ -96,7 +96,8 @@
 </head>
 <body>
 <div class = "info-form">
-<h3>회원정보</h3>
+<form method="post" action=""> 
+<h3>회원정보</h3><br />
 	<div class="form-group">
 		아이디 : ${users.userId}
 	</div>
@@ -109,9 +110,11 @@
 	<div class="form-group">
 		연락처 : ${users.uPhonenum}
 	</div>
+	<br /><br /><br />
 	<div class="text-center">
-		<a href="findId_link">개인정보 수정</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="findPwd_link">비밀번호 변경</a>
+		<a href="updateInfo_link">회원정보 수정</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="updateuPwd_link">비밀번호 변경</a>
 	</div>
+</form>
 </div>
 </body>
 </html>

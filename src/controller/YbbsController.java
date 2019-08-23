@@ -19,7 +19,7 @@ import page.PageManager;
 import sql.Sql;
 
 @WebServlet(name = "YbbsController", urlPatterns = {"/ybbs_go_to_insert.do","/ybbs_insert","/ybbs_detail.do","/ybbs_delete","/ybbs_update",
-		"/ybbs_reply.ad","/ybbs_reply_form.ad","/ybbs_QaList", "/ybbs_goTo_update"})
+		"/ybbs_reply.ad","/ybbs_reply_form.ad","/ybbs_QaList", "/ybbs_goTo_update", "/ybbs_delete_reply"})
 
 public class YbbsController extends HttpServlet {
 
@@ -82,6 +82,18 @@ public class YbbsController extends HttpServlet {
 			ybbs.setQaGroup(Integer.parseInt(req.getParameter("qaGroup")));
 			
 			dao.delete(ybbs.getQaGroup());
+			
+			RequestDispatcher rd = req.getRequestDispatcher("ybbs_QaList?reqPage=1");
+			rd.forward(req, resp);
+			
+		} else if (action.equals("ybbs_delete_reply")) {
+			
+			Ybbs_QADAO dao = new Ybbs_QADAOImpl();
+			Ybbs_QA ybbs = new Ybbs_QA();
+			
+			ybbs.setQaNumber(Integer.parseInt(req.getParameter("qaNumber")));
+			
+			dao.deleteReply(ybbs.getQaNumber());
 			
 			RequestDispatcher rd = req.getRequestDispatcher("ybbs_QaList?reqPage=1");
 			rd.forward(req, resp);

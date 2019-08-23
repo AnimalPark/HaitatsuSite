@@ -244,9 +244,13 @@ function delchk(){
 				<td>${ybbsList.qaDate}</td>
 				<td>${ybbsList.qaVisited}</td>
 					<td>
-					<c:if test="${ybbsList.userId == users.userId || users.authority eq 1}">
+					<c:if test="${(ybbsList.userId == users.userId || users.authority eq 1) && ybbsList.qaLevel eq 0 }">
 	          	        <a href="ybbs_goTo_update?qaNumber=${ybbsList.qaNumber}" class="edit" title="글 수정" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
 	            	    <a href="ybbs_delete?qaGroup=${ybbsList.qaGroup}" onclick="return delchk();" class="delete" title="글 삭제" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+	                </c:if>
+	                <c:if test="${(ybbsList.userId == users.userId || users.authority eq 1) && ybbsList.qaLevel eq 1 }">
+	          	        <a href="ybbs_goTo_update?qaNumber=${ybbsList.qaNumber}" class="edit" title="글 수정" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+	            	    <a href="ybbs_delete_reply?qaNumber=${ybbsList.qaNumber}" onclick="return delchk();" class="delete" title="글 삭제" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
 	                </c:if>
 	                </td>
 			</tr>

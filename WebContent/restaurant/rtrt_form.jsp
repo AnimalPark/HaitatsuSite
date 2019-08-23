@@ -111,7 +111,7 @@ body {
 }
 
 .signup-form {
-	width: 400px;
+	width: 500px;
 	margin: 0 auto;
 	padding: 30px 0;
 }
@@ -174,6 +174,36 @@ body {
 .signup-form form a:hover {
 	text-decoration: underline;
 }
+
+.file_input label{
+position:relative;
+cursor:pointer;
+display:inline-block;
+vertical-align:middle;
+overflow:hidden;
+width:100px;
+height:30px;
+background:#777;
+color:#fff;
+text-align:center;
+line-height:30px;}
+
+.file_input label input{
+position:absolution;
+width:0;
+height:0;
+overflow:hidden;}
+
+.file_input input[type=text]{
+vertical-align:middle;
+display:inline-block;
+width:300px;
+height:28px;
+font-size:11px;
+padding:0;
+border:0;
+border:1px solid #777;}
+
 </style>
 </head>
 <body>
@@ -261,9 +291,17 @@ body {
 			<label>상세 주소</label>
             <input type="text" class="form-control" name="confirm_password" required="required">
         </div>
-		<input type="file" name="filename"/><br /> 
+		<div class="file_input">
+		<input type="text" readonly="readonly" id="file_route">
+		<label>
+		사진 추가
+		<input type="file" name="filename" onchange="javascript:document.getElementById('file_route').value=this.value">
+		</label>
+		</div>
+		<br>
+		
 		<div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">등록</button>
         </div>
     </form>
 </div>

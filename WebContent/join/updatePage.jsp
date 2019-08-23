@@ -205,8 +205,8 @@
 		</div>
 		<div class="form-group">
 			<div class="row">
-				<h5>주소</h5>
-				<div class="col-xs-6"><input type="text" name="roadAddress" id="sample4_roadAddress" class="form-control" placeholder="도로명 주소" readonly="readonly"></div>
+				<h5>&nbsp;주소</h5>
+				<div class="col-xs-6"><input type="text" name="roadAddress" id="sample4_roadAddress" class="form-control" value="${roadAddr}"readonly="readonly"></div>
 				<div class="col-xs-3"><input type="button" class="btn" onclick="sample4_execDaumPostcode()" value="주소 검색"><br /></div>
 			</div>
 		</div> 
@@ -214,7 +214,7 @@
 			<span id="guide" style="color: #999; display: none"></span> 
 		</div>
 		<div class="form-group">
-			<input type="text" name="detailAddress" id="sample4_detailAddress" class="form-control" placeholder="상세주소를 입력하세요."><br /> 
+			<input type="text" name="detailAddress" id="sample4_detailAddress" class="form-control" value="${detailAddr}"><br /> 
 		</div>
 		<div class="form-group">
 			<h5>연락처</h5>
