@@ -281,7 +281,7 @@ h2::after {
 }
 
 .carousel .item .img-box {
-	height: 180px;
+	height: 220px;
 	width: 100%;
 	position: relative;
 }
