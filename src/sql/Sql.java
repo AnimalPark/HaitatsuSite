@@ -82,8 +82,10 @@ public class Sql {
 	public static final String RESTAURANT_STAR_AGV_UPDATE_SQL = "UPDATE RESTAURANT SET STARAVG = ? WHERE RNUM = ?";
 	public static final String ORDERD_MENUS_RESTAURANT_DELETE_SQL = 
 	         "delete from ordermenu where mnum = (select mnum from RESTAURANT where rnum = ? )";
-	   public static final String RESTAURANT_MENUS_ORDER_CNT_SQL = 
+	public static final String RESTAURANT_MENUS_ORDER_CNT_SQL = 
 	         "select count(*) as cnt from ordermenu where mnum = (select mnum from RESTAURANT where rnum = ? )";
+	public static final String MENU_SALES_UPDATE_SQL = "UPDATE MENU SET MSALES=? WHERE MNUM=?";
+	public static final String GET_MENU_SALES_SQL = "SELECT MSALES FROM MENU WHERE MNUM = ?";
 	//==========================Ȳȣ�� Sql��=======================================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
 	public static final String RESTAURANT_SELECT_BY_NAME_SQL = "SELECT * FROM restaurant WHERE rName like ?";
