@@ -100,11 +100,12 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 
 			while (resultSet.next()) {
 				if (resultSet.getInt("qaNumber") == qaNumber)
-					ybbs.setQaNumber(resultSet.getInt("qaNumber"));
+				ybbs.setQaNumber(resultSet.getInt("qaNumber"));
 				ybbs.setUserId(resultSet.getString("userId"));
 				ybbs.setQaSubject(resultSet.getString("qaSubject"));
 				ybbs.setQaComment(resultSet.getString("qaComment"));
 				ybbs.setQaGroup(resultSet.getInt("qaGroup"));
+				ybbs.setQaLevel(resultSet.getInt("qaLevel"));
 			}
 		} catch (SQLException e) {
 
@@ -144,7 +145,7 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 	}
 
 	@Override
-	public void delete(int qaNumber) {
+	public void delete(int qaGroup) {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -152,6 +153,25 @@ public class Ybbs_QADAOImpl extends BaseDAO implements Ybbs_QADAO {
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.YBBS_DELETE_SQL);
+			preparedStatement.setInt(1, qaGroup);
+
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(null, preparedStatement, connection);
+		}
+
+	}public void deleteReply(int qaNumber) {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(Sql.YBBS_DELETE_REPLY_SQL);
 			preparedStatement.setInt(1, qaNumber);
 
 			preparedStatement.executeUpdate();

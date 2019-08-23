@@ -28,7 +28,7 @@ import model.Users;
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link",
 		"/home_link", "/search_link", "/addr_search", "/logout_link", "/admin_home_link", "/restaurant_detail",
 		"/order_confirm", "/ordermenu_add", "/return_detail", "/order_final", "/confirm_orders", "/myPage_link",
-		"/order_end", "/login_index_link", "/test", "/test2","/user_orderlist"})
+		"/order_end", "/login_index_link", "/test", "/test2", "/user_orderlist" })
 
 public class MainController extends HttpServlet {
 
@@ -303,18 +303,22 @@ public class MainController extends HttpServlet {
 
 		}
 		else if(action.equals("user_orderlist")) {
-			System.out.println("¿À³ª¿ä");
 			MenuDAOImpl impl = new MenuDAOImpl();
 			
 			HttpSession session = req.getSession();
+			
+			try {
 			Users user = (Users) session.getAttribute("users");
 			List<UserOrderList> list = impl.userOrderList(user.getUserId());
-			System.out.println(list.size());
 			for(int index = 0; index < list.size(); index++) {
 				List<UserOrderListSub> subList = impl.orderInfoSub(list.get(index).getoNum());
-				
-				list.get(index).setOrderRName(subList.get(0).getrName());
-				list.get(index).setOrderRNum(subList.get(0).getrNum());
+				for(UserOrderListSub a : subList) {
+					System.out.println(a.toString());
+				}
+				if(subList.size() != 0) {
+					list.get(index).setOrderRName(subList.get(0).getrName());
+					list.get(index).setOrderRNum(subList.get(0).getrNum());
+				}
 				String orderFullList = "";
 				int total = 0;
 				for(int index_sub = 0; index_sub < subList.size(); index_sub++) {
@@ -328,6 +332,11 @@ public class MainController extends HttpServlet {
 			
 			RequestDispatcher rd = req.getRequestDispatcher("userOrderList.jsp");
 			rd.forward(req, resp);
+			}
+			catch(Exception e) {
+				RequestDispatcher rd = req.getRequestDispatcher("login_link");
+				rd.forward(req, resp);
+			}
 			
 		}
 	}

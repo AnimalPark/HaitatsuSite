@@ -114,7 +114,7 @@ body {
 }
 
 .signup-form {
-	width: 600px;
+	width: 500px;
 	margin: 0 auto;
 	padding: 30px 0;
 }
@@ -123,7 +123,8 @@ body {
 	color: #333;
 	margin: 0 0 30px 0;
 	display: inline-block;
-	padding: 0 30px 10px 20px;
+	padding: 0 10px 10px 20px;
+	padding-left:10px;
 	border-bottom: 3px solid #5cd3b4;
 }
 
@@ -151,7 +152,7 @@ body {
 	background: #5cd3b4;
 	border: none;
 	margin-top: 20px;
-	min-width: 140px;
+	min-width: 450px;
 }
 
 .signup-form .btn:hover, .signup-form .btn:focus {
@@ -176,6 +177,40 @@ body {
 .signup-form form a:hover {
 	text-decoration: underline;
 }
+
+.file_input label{
+position:relative;
+left:80px;
+cursor:pointer;
+display:inline-block;
+vertical-align:middle;
+overflow:hidden;
+width:80px;
+height:30px;
+background:#777;
+color:#fff;
+text-align:center;
+line-height:30px;}
+
+.file_input label input{
+position:absolution;
+left:50px;
+width:0;
+height:0;
+overflow:hidden;}
+
+.file_input input[type=text]{
+vertical-align:middle;
+position:relative;
+left:80px;
+display:inline-block;
+width:200px;
+height:28px;
+font-size:11px;
+padding:0;
+border:0;
+border:1px solid #777;}
+
 </style>
 </head>
 <body>
@@ -227,20 +262,25 @@ body {
 			</div>
 			<input type="hidden" name="rNum" value="${restaurant.rNum}">
 			<div class="form-group">
-				<label class="control-label col-xs-2">메뉴이름</label>
+				<label class="control-label col-xs-3">메뉴이름</label>
 				<div class="col-xs-6">
 					<input type="text" class="form-control" name="mName"
 						placeholder="메뉴명을 입력하세요" required="required">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-xs-2">가격</label>
+				<label class="control-label col-xs-3">가격</label>
 				<div class="col-xs-6">
 					<input type="text" class="form-control" name="mPrice"
 						placeholder="가격을 입력하세요" required="required">
 				</div>
 			</div>
-			<input type="file" name="filename" />
+			<div class="file_input">
+				<input type="text" readonly="readonly" id="file_route"> <label>
+					사진 추가 <input type="file"
+					onchange="javascript:document.getElementById('file_route').value=this.value">
+				</label>
+			</div>
 			<button type="submit" class="btn btn-primary btn-lg">등록</button>
 	</div>
 	</form>
