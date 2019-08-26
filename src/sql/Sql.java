@@ -24,11 +24,7 @@ public class Sql {
     public static final String YBBS_PAGE_EVENT_SQL = "SELECT * from (SELECT ROWNUM RN,ybbss.* FROM (SELECT * FROM YBBS_EVENT ORDER BY EVDATE DESC) ybbss) WHERE RN BETWEEN ? AND ?";
     public static final String YBBS_SELECT_ALL_COUNT ="SELECT COUNT(*) AS cnt FROM YBBS_QA";
     public static final String YBBS_SELECT_ALL_EVENT_COUNT ="SELECT COUNT(*) AS cnt FROM YBBS_EVENT";
-    public static final String YBBS_CHK_VALID="SELECT USERID " + 
-																    	   "FROM YBBS_QA " + 
-																    	   "WHERE QAGROUP = ( SELECT QAGROUP " + 
-																    	   									"FROM YBBS_QA " + 
-																    	   									"WHERE QANUMBER = ?)";	
+    public static final String YBBS_CHK_VALID="SELECT users.USERID FROM YBBS_QA inner join USERS on ybbs_qa.userid = users.userid WHERE Ybbs_qa.QAGROUP = ( SELECT QAGROUP FROM YBBS_QA WHERE QANUMBER = ?) AND USERS.authority != 1";
     
     
 	
