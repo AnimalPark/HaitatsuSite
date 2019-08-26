@@ -5,4 +5,5 @@
 
 <idcheck>
 	<result>${msg}</result>
+	<chk>${chkid}</chk>
 </idcheck>
