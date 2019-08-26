@@ -965,7 +965,15 @@ body {
 					</ul></li>
 				<c:if test="${users != null}">
 					<li class="nav-item"><a href="logout_link" class="nav-link">로그아웃</a></li>
-					<li class="nav-item"><a href="myPage_link" class="nav-link">마이페이지</a></li>
+					<li class="nav-item dropdown"><a data-toggle="dropdown"
+						class="nav-link dropdown-toggle" href="myPage_link">마이페이지 <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="user_orderlist">주문내역</a></li>
+							<li><a href="update_link?type=1">회원정보 보기</a></li>
+							<li><a href="update_link?type=2">회원정보 수정</a></li>
+							<li><a href="update_link?type=3">비밀번호 변경</a></li>
+						</ul></li>
 				</c:if>
 			</ul>
 		</div>

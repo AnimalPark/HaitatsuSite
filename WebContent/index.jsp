@@ -949,7 +949,7 @@ body {
 							<li><a href="update_link?type=1">회원정보 보기</a></li>
 							<li><a href="update_link?type=2">회원정보 수정</a></li>
 							<li><a href="update_link?type=3">비밀번호 변경</a></li>
-						</ul>
+						</ul></li>
 				</c:if>
 			</ul>
 		</div>
