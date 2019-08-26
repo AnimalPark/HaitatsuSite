@@ -317,7 +317,6 @@ table.table .avatar {
 		<div class="navbar-header d-flex col">
 			<a class="navbar-brand" href="index.jsp">Haitatsu<b>Site</b></a>
 		</div>
-		<!-- Collection of nav links, forms, and other content for toggling -->
 		<div id="navbarCollapse"
 			class="collapse navbar-collapse justify-content-start">
 			<ul class="nav navbar-nav">
@@ -334,7 +333,7 @@ table.table .avatar {
 					class="nav-link dropdown-toggle" href="#">게시판 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="ybbs_eventList?reqPage=1">이벤트 게시판</a></li>
-						<li><a href="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
+						<li><a href="ybbs_QaList?reqPage=1">Q/A 게시판</a></li>
 					</ul></li>
 				<c:if test="${users != null}">
 					<li class="nav-item"><a href="user_logout" class="nav-link">로그아웃</a></li>
@@ -343,15 +342,15 @@ table.table .avatar {
 						class="nav-link dropdown-toggle" href="myPage_link">마이페이지 <b
 							class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">주문내역</a></li>
-							<li><a href="#">개인정보 수정</a></li>
-							<li><a href="#">비밀번호 변경</a></li>
-						</ul>
+							<li><a href="user_orderlist">주문내역</a></li>
+							<li><a href="update_link?type=1">회원정보 보기</a></li>
+							<li><a href="update_link?type=2">회원정보 수정</a></li>
+							<li><a href="update_link?type=3">비밀번호 변경</a></li>
+						</ul></li>
 				</c:if>
 			</ul>
 		</div>
 	</nav>
-
 
 	<div class="login-form">
 		<form action="admin_rtrt_mdf?rNum=${restaurant.rNum}" method="post">
@@ -374,16 +373,16 @@ table.table .avatar {
 		</form>
 
 	</div>
-	<c:if test="${users.authority eq 1}">
+	
+	<div class="container">
+<c:if test="${users.authority eq 1}">
 		<button class="btn btn-primary btn-block btn-lg" type="button"
-			style="background: #6E6E6E; width: 180px; color: #FFFFFF; position: relative; left:40px; bottom:-20px;"
+			style="background: #6E6E6E; width: 180px; color: #FFFFFF; position: relative; bottom:-20px;"
 			onclick="location.href='menu_add?rNum=${restaurant.rNum}'">
 			<img class="btn-img" style="width: 30px; height: 30px;"
 				src="image/chicken.png">메뉴 추가
 		</button>
 	</c:if>
-	<div class="container">
-
 		<div class="table-wrapper">
 			<table class="table table-striped table-hover">
 
@@ -392,7 +391,7 @@ table.table .avatar {
 						<th>#</th>
 						<th>메뉴이름</th>
 						<th>가격</th>
-						<th>action</th>
+						<th>수정</th>
 					</tr>
 				</thead>
 				<tbody>
