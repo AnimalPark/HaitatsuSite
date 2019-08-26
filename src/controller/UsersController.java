@@ -127,7 +127,7 @@ public class UsersController extends HttpServlet {
 
 			} else {
 
-				RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 				rd.forward(req, resp);
 			}
 		} else if (action.equals("findId_link")) {
