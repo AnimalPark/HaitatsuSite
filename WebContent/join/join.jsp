@@ -529,7 +529,6 @@ body {
 					<button class="btn btn-success btn-lg btn-block" type="submit"
 						value="회원가입">회원가입</button>
 				</div>
-			</div>
 		</form>
 	</div>
 	<div class="text-center">

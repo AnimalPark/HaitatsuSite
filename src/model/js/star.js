@@ -1,4 +1,4 @@
-/*별점 : .star-input*/
+ /*별점 : .star-input*/
 /*출처 : http://codepen.io/naradesign/pen/zxPbOw*/
 var starRating = function(){
 var $star = $(".star-input"),

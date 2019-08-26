@@ -246,7 +246,6 @@ table.table td i {
 		<div class="navbar-header d-flex col">
 			<a class="navbar-brand" href="index.jsp">Haitatsu<b>Site</b></a>
 		</div>
-		<!-- Collection of nav links, forms, and other content for toggling -->
 		<div id="navbarCollapse"
 			class="collapse navbar-collapse justify-content-start">
 			<ul class="nav navbar-nav">
@@ -263,7 +262,7 @@ table.table td i {
 					class="nav-link dropdown-toggle" href="#">게시판 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="ybbs_eventList?reqPage=1">이벤트 게시판</a></li>
-						<li><a href="ybbs_req_list?reqPage=1">Q/A 게시판</a></li>
+						<li><a href="ybbs_QaList?reqPage=1">Q/A 게시판</a></li>
 					</ul></li>
 				<c:if test="${users != null}">
 					<li class="nav-item"><a href="user_logout" class="nav-link">로그아웃</a></li>
@@ -272,15 +271,15 @@ table.table td i {
 						class="nav-link dropdown-toggle" href="myPage_link">마이페이지 <b
 							class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">주문내역</a></li>
-							<li><a href="#">개인정보 수정</a></li>
-							<li><a href="#">비밀번호 변경</a></li>
-						</ul>
+							<li><a href="user_orderlist">주문내역</a></li>
+							<li><a href="update_link?type=1">회원정보 보기</a></li>
+							<li><a href="update_link?type=2">회원정보 수정</a></li>
+							<li><a href="update_link?type=3">비밀번호 변경</a></li>
+						</ul></li>
 				</c:if>
 			</ul>
 		</div>
 	</nav>
-
 
 	<div class="container">
 	<button class="btn btn-primary btn-block btn-lg"  type="button" style=" background:#6E6E6E; width:180px; color:#FFFFFF;position:relative;bottom:-30px; left:960px;" onclick="location.href='restaurant_add'">
@@ -321,7 +320,7 @@ table.table td i {
 						<th>전화번호</th>
 						<th>평균별점</th>
 						<th>주소</th>
-						<th>Actions</th>
+						<th>정보수정</th>
 					</tr>
 				</thead>
 
@@ -332,7 +331,7 @@ table.table td i {
 							<td>${restaurant.rPhoneNum}</td>
 							<td>${restaurant.starAvg}</td>
 							<td>${restaurant.rAddr}</td>
-							<td><a href="admin_rtrt_detail?rNum=${restaurant.rNum}" class="edit" title="정보수정"
+							<td><a href="admin_rtrt_detail?rNum=${restaurant.rNum}" class="edit" title="가게정보보기"
 								data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
 								<a href="admin_rtrt_delete?rNum=${restaurant.rNum}" class="delete" title="가게정보삭제" data-toggle="tooltip"><i
 									class="material-icons">&#xE872;</i></a></td>

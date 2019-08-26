@@ -69,8 +69,9 @@ public class YbbsController extends HttpServlet {
 			String ybbsId = dao.validChk(qaNumber);
 			
 			req.setAttribute("ybbs", ybbs);
-			req.setAttribute("ybbs_id", ybbsId);
+			req.setAttribute("ybbsId", ybbsId);
 			
+			System.out.println(ybbsId);
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardDetail.jsp");
 			rd.forward(req, resp);
 			

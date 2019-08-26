@@ -10,18 +10,18 @@ public interface Ybbs_QADAO {
 
 	List<Ybbs_QA> selectAll();
 	List<Ybbs_QA> selectAll(int rowStartNumber , int rowEndNumber);
-	List<Integer> selectById(String userid);
-	String validChk(int qanumber);
+	List<Integer> selectById(String userId);
+	String validChk(int qaNumber);
 	
-	Ybbs_QA selectByNo(int no);
+	Ybbs_QA selectByNo(int qaNumber);
 
 	void insertReply(Ybbs_QA ybbs);
 
 	void update(Ybbs_QA ybbs);
 
 	void delete(int qaGroup);
-	void deleteReply(int qanumber);
-	void deleteByGroup(List<Integer> qagroup);
+	void deleteReply(int qaNumber);
+	void deleteByGroup(List<Integer> qaGroup);
 	
-	void updateVisited(int qanumber);
+	void updateVisited(int qaNumber);
 }
