@@ -37,19 +37,18 @@
 <script>
 		$(function() { $("#btn_userId").click(function() {
 							id_check();
-
 							function id_check() {
 								var input_val = $("input:eq(0)").val();
 								if(!input_val){
 									alert("아이디를 입력하세요");
 									return false;
 								}
-
 								var url = "id_check";
 								$.get(url, {"id" : input_val}, function(xml){
 									var result = $(xml).find("result").text();
+									var chk = $(xml).find("chk").text();
 									alert(result);
-									$(".console").html(result);
+									$("#chkid").val(chk);
 								});
 							};
 						});
@@ -186,16 +185,18 @@
         //연락처 특수문자 제외 체크
         if (join.uPhonenum.value.indexOf("-") >= 0)
         {
-            alert("비밀번호에 -표시를 사용할 수 없습니다.")
+            alert("연락처에 -표시를 사용할 수 없습니다.")
             join.uPhonenum.focus();
             join.uPhonenum.select()
             return false;
         }
-        if ('${chkid}' == 1){
-        	alert("회원가입이 완료되었습니다.");
+        var chkid = $("#chkid").val();
+        if (chkid == 1){
+        	alert("회원가입이 완료되었습니다.")
         }
         else{
-        	alert("사용 가능한 아이디가 아니거나 아이디 중복검사를 실행하지 않았습니다.")
+        	alert("사용 가능한 아이디가 아니거나 아이디 중복검사를 실행하지 않았습니다.");
+        	return false;
         }
     }
     
@@ -207,7 +208,6 @@
             {
                 var roadAddr = data.roadAddress;
                 var extraRoadAddr = '';
-
                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname))
                 {
                     extraRoadAddr += data.bname;
@@ -220,16 +220,13 @@
                 {
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
-
                 document.getElementById("sample4_roadAddress").value = roadAddr;
-
                 var guideTextBox = document.getElementById("guide");
                 if(data.autoRoadAddress)
                 {
                     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
                     guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
                     guideTextBox.style.display = 'block';
-
                 } else if(data.autoJibunAddress)
                 {
                     var expJibunAddr = data.autoJibunAddress;
@@ -243,7 +240,6 @@
             }
         }).open();
 	}
-
 </script>
 
 <title>회원가입</title>
@@ -482,7 +478,8 @@ body {
 				<div class="row">
 					<div class="col-xs-6">
 						<input type="text" id="userId" name="userId" class="form-control"
-							placeholder="6~12자의 영문 소문자와 숫자를 조합하여 사용하세요.">
+							placeholder="6~12자의 영문 소문자와 숫자를 조합하여 사용하세요."> <input
+							type="hidden" id="chkid" name = "chkid">
 					</div>
 					<div class="col-xs-6">
 						<input type="button" class="btn" value="중복 확인 " id="btn_userId">
