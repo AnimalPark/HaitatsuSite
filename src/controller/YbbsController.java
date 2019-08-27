@@ -71,7 +71,7 @@ public class YbbsController extends HttpServlet {
 			req.setAttribute("ybbs", ybbs);
 			req.setAttribute("ybbsId", ybbsId);
 			
-			System.out.println(ybbsId);
+		
 			RequestDispatcher rd = req.getRequestDispatcher("board/qaboardDetail.jsp");
 			rd.forward(req, resp);
 			
