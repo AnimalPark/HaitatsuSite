@@ -286,7 +286,7 @@ h2::after {
 										</div></a>
 								</div>
 								<div class="col-sm-3">
-									<a href="ybbs_req_list?reqPage=1">
+									<a href="ybbs_QaList?reqPage=1">
 										<div class="thumb-wrapper">
 											<div class="img-box">
 												<img src="image/board.jpg" class="img-responsive img-fluid"
