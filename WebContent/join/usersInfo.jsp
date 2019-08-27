@@ -96,19 +96,19 @@
 </head>
 <body>
 <div class = "info-form">
-<form method="post" action=""> 
+<form method="post" action="users_Info"> 
 <h3>회원정보</h3><br />
 	<div class="form-group">
-		아이디 : ${users.userId}
+		아이디 : <input type="text" name="id" value="${users.userId}"/><br />
 	</div>
 	<div class="form-group">
-		이름 : ${users.uName}
+		이름 : <input type="text" name="id" value="${users.uName}"/><br />
 	</div>
 	<div class="form-group">
-		주소 : ${users.uAddr}
+		주소 : <input type="text" name="id" value="${roadAddr}+${detailAddr}"/><br />
 	</div>
 	<div class="form-group">
-		연락처 : ${users.uPhonenum}
+		연락처 : <input type="text" name="id" value="${users.uPhonenum}"/><br />
 	</div>
 	<br /><br /><br />
 	<div class="text-center">

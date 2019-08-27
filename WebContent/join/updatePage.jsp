@@ -225,6 +225,7 @@
 		</div>
 	</form>
 </div>
-<button onclick="delete_check();">탈퇴하기</button>
+<div class="text-center"><a onclick="delete_check();">탈퇴하기</a></div>
+<!-- <button onclick="delete_check();">탈퇴하기</button> -->
 </body>
 </html>
