@@ -183,7 +183,7 @@ body {
 						class="nav-link">관리자 화면으로</a></li>
 				</c:if>
 				<c:if test="${users == null}">
-					<li class="nav-item"><a href="login_index_link"
+					<li class="nav-item"><a href="login_link"
 						class="nav-link">로그인</a></li>
 					<li class="nav-item"><a href="join_link" class="nav-link">회원가입</a></li>
 				</c:if>

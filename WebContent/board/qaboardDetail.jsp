@@ -193,7 +193,7 @@ body {
 						class="nav-link">관리자 화면으로</a></li>
 				</c:if>
 				<c:if test="${users == null}">
-					<li class="nav-item"><a href="login_index_link"
+					<li class="nav-item"><a href="login_link"
 						class="nav-link">로그인</a></li>
 					<li class="nav-item"><a href="join_link" class="nav-link">회원가입</a></li>
 				</c:if>
@@ -218,7 +218,7 @@ body {
 			</ul>
 		</div>
 	</nav>
-	<c:if test="${ybbs.userId == users.userId || users.authority eq 1}">
+	<c:if test="${(ybbs.userId == users.userId || users.authority == 1) && ybbs.qaLevel eq 0}">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1 m-auto">
@@ -253,10 +253,10 @@ body {
 									style="margin: 4px; min-width: 50px;">글 삭제</button></a> <a
 								href="ybbs_QaList?reqPage=1"><button class="btn btn-primary"
 									style="margin: 4px; min-width: 50px;">목록으로</button></a>
-							<c:if test="${users.authority eq 1 && ybbs.qaLevel != 1}">
+								<c:if test="${(users.authority eq 1) && (ybbs.qaLevel eq 0)}">
 								<a href="ybbs_reply_form.ad?qaNumber=${ybbs.qaNumber}"><button
 										class="btn btn-primary" style="margin: 4px; min-width: 50px;">답변작성</button></a>
-							</c:if>
+								</c:if>
 						</div>
 					</div>
 				</div>
@@ -264,7 +264,7 @@ body {
 		</div>
 	</c:if>
 	<c:if
-		test="${ybbs.userId != users.userId && ybbs_id != users.userId && users.authority != 1}">
+		test="${(ybbs.userId != users.userId && ybbsId != users.userId) && users.authority != 1}">
 		<div class="form-group">
 			<textarea class="form-control" rows="10"
 				style="width: 100%; text-align: center;" readonly>글 작성자만 읽을 수 있습니다</textarea>
@@ -272,43 +272,50 @@ body {
 		<a href="ybbs_QaList?reqPage=1"><button class="btn btn-primary"
 				style="margin: 4px; text-align: center;">목록으로</button></a>
 	</c:if>
-	<c:if test="${ybbs_id == users.userId && ybbs.userId != users.userId }">
+	<c:if test="${(ybbsId == users.userId || ybbs.userId == users.userId) && (ybbs.qaLevel == 1)}">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1 m-auto">
 					<div class="contact-form">
 						<div class="container">
-							<h1>QA 게시글</h1>
+							<h3>Q/A 게시글</h3>
 							<br />
-							<div class="form-group">
-								<label for="inputName">작성자</label> <input type="text"
-									class="form-control" id="inputName" name="userId"
-									value="${ybbs.userId}" readonly style="width: 30%" />
-							</div>
-							<div class="form-group">
-								<label for="inputSubject">제목</label> <input type="text"
-									class="form-control" id="inputSubject" name="qaSubject"
-									value="${ybbs.qaSubject}" readonly />
-							</div>
-							<div class="form-group">
-								<label for="inputMessage">내용</label>
-								<textarea class="form-control" id="inputMessage"
-									name="qaComment" rows="20" style="width: 100%" readonly>${ybbs.qaComment}</textarea>
-							</div>
-							<a href="ybbs_goTo_update?qaNumber=${ybbs.qaNumber}"><button
-									class="btn btn-primary" style="margin: 4px; min-width: 50px;">글
-									수정</button></a> <a href="ybbs_delete_reply?qaNumber=${ybbsList.qaNumber}"
-								onclick="return delchk();"><button class="btn btn-primary"
-									style="margin: 4px; min-width: 50px;">글 삭제</button></a> <a
-								href="ybbs_QaList?reqPage=1"><button class="btn btn-primary"
+							<form action="ybbs_goTo_update" method="post"
+								style="display: inline;">
+								<input type="hidden" name="qaNumber" value="${ybbs.qaNumber}" />
+								<input type="hidden" name="qaGroup" value="${ybbs.qaGroup}" />
+								<div class="form-group">
+									<label for="inputName">작성자</label> <input type="text"
+										class="form-control" id="inputName" name="userId"
+										value="${ybbs.userId}" readonly style="width: 30%" />
+								</div>
+								<div class="form-group">
+									<label for="inputSubject">제목</label> <input type="text"
+										class="form-control" id="inputSubject" name="qaSubject"
+										value="${ybbs.qaSubject}" style="width: 75%" readonly />
+								</div>
+								<div class="form-group">
+									<label for="inputMessage">내용</label>
+									<textarea class="form-control" id="inputMessage"
+										name="qaComment" rows="20" style="width: 75%" readonly>${ybbs.qaComment}</textarea>
+								</div>
+								<c:if test="${users.authority eq 1}">
+								<button class="btn btn-primary"
+									style="margin: 4px; min-width: 50px;">글 수정</button>
+								</c:if>
+							</form>
+							<a href="ybbs_QaList?reqPage=1"><button class="btn btn-primary"
 									style="margin: 4px; min-width: 50px;">목록으로</button></a>
+							<c:if test="${users.authority eq 1}">
+								<a href="ybbs_delete_reply?qaNumber=${ybbs.qaNumber}"
+								onclick="return delchk();"><button class="btn btn-primary"
+									style="margin: 4px; min-width: 50px;">글 삭제</button></a>
+								</c:if>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<a href="ybbs_QaList?reqPage=1"><button class="btn btn-primary"
-				style="margin: 4px; min-width: 50px;">목록으로</button></a>
 	</c:if>
 </body>
 </html>

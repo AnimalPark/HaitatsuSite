@@ -45,10 +45,9 @@ public class UsersController extends HttpServlet {
 
 			req.setCharacterEncoding("utf-8");
 
-			HttpSession session = req.getSession();
 			int i = 0;
 			try {
-				i = (int) session.getAttribute("chkid");
+				i = Integer.parseInt(req.getParameter("chkid")); 
 			} catch (Exception e) {
 				i = 0;
 			}
@@ -127,7 +126,7 @@ public class UsersController extends HttpServlet {
 
 			} else {
 
-				RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 				rd.forward(req, resp);
 			}
 		} else if (action.equals("findId_link")) {
@@ -209,17 +208,13 @@ public class UsersController extends HttpServlet {
 			boolean chk = impl.check_userId(chkId);
 
 			if (!chk) {
-
-				HttpSession session = req.getSession();
-				session.setAttribute("chkid", 1);
-
+				req.setAttribute("chkid", 1);
 				req.setAttribute("msg", "사용할 수 있는 아이디입니다.");
-
 				RequestDispatcher rd = req.getRequestDispatcher("join/result.jsp");
 				rd.forward(req, resp);
 
 			} else {
-
+				req.setAttribute("chkid", 0);
 				req.setAttribute("msg", "사용할 수 없는 아이디입니다.");
 
 				RequestDispatcher rd = req.getRequestDispatcher("join/result.jsp");
