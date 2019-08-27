@@ -184,7 +184,7 @@ body {
 						class="nav-link">관리자 화면으로</a></li>
 				</c:if>
 				<c:if test="${users == null}">
-					<li class="nav-item"><a href="login_link"
+					<li class="nav-item"><a href="login_index_link"
 						class="nav-link">로그인</a></li>
 					<li class="nav-item"><a href="join_link" class="nav-link">회원가입</a></li>
 				</c:if>
@@ -201,9 +201,10 @@ body {
 						class="nav-link dropdown-toggle" href="myPage_link">마이페이지 <b
 							class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">주문내역</a></li>
-							<li><a href="#">개인정보 수정</a></li>
-							<li><a href="#">비밀번호 변경</a></li>
+							<li><a href="user_orderlist">주문내역</a></li>
+							<li><a href="update_link?type=1">회원정보 보기</a></li>
+							<li><a href="update_link?type=2">회원정보 수정</a></li>
+							<li><a href="update_link?type=3">비밀번호 변경</a></li>
 						</ul>
 				</c:if>
 			</ul>
