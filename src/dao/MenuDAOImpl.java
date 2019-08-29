@@ -651,7 +651,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 				resultSet = statement.executeQuery(Sql.COMMENTS_GET_CURRVAL_SQL);
 				if (resultSet.next()) {
 					selectByComment = selectByNum(resultSet.getInt("COMMNUM"));
-					System.out.println("++"+selectByComment.toString()+"++");
+		
 				}
 			}
 		} catch (SQLException e) {
@@ -731,7 +731,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		String addr = null;
 		List<String> addrTokens = new ArrayList<String>();
 		addrDivide div = new addrDivide();
-		System.out.println("+"+userid);
+
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.USER_GET_ADDR_BY_USERID_SQL);
@@ -952,7 +952,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		
 		try{
 			avg = (float) sum / (float) comment_cnt;
-			System.out.println(sum+"/"+comment_cnt+"="+avg);
+
 		}
 		catch(Exception e){
 			;

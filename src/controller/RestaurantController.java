@@ -84,7 +84,7 @@ public class RestaurantController extends HttpServlet {
 			rd.forward(req, resp);
 
 		} else if (action.equals("admin_rtrt_insert")) {
-			System.out.println("==============");
+
 			
 			Part part = req.getPart("filename");
 

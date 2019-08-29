@@ -183,7 +183,6 @@ public class MainController extends HttpServlet {
 		}
 
 		else if (action.equals("ordermenu_add")) {
-			System.out.println("check");
 			int menuNum = Integer.parseInt(req.getParameter("num"));
 			int menuCnt = Integer.parseInt(req.getParameter("cnt"));
 			boolean cnt_plus_chk = false;
@@ -231,7 +230,6 @@ public class MainController extends HttpServlet {
 			for (Selected_menu mi : order_lists)
 				price += mi.getPrice();
 
-			System.out.println(menuNum + " " + menuCnt);
 			session.setAttribute("caller", "index.jsp");
 			session.setAttribute("total_price", price);
 			session.setAttribute("order_lists", order_lists);
@@ -307,9 +305,7 @@ public class MainController extends HttpServlet {
 			List<UserOrderList> list = impl.userOrderList(user.getUserId());
 			for(int index = 0; index < list.size(); index++) {
 				List<UserOrderListSub> subList = impl.orderInfoSub(list.get(index).getoNum());
-				for(UserOrderListSub a : subList) {
-					System.out.println(a.toString());
-				}
+
 				if(subList.size() != 0) {
 					list.get(index).setOrderRName(subList.get(0).getrName());
 					list.get(index).setOrderRNum(subList.get(0).getrNum());

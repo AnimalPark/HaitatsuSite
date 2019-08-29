@@ -58,7 +58,7 @@ public class MenuController extends HttpServlet {
 		} else if (action.equals("admin_menu_detail")) {
 
 			int mNum = Integer.parseInt(req.getParameter("mNum"));
-			System.out.println(mNum);
+
 			MenuDAO dao = new MenuDAOImpl();
 
 			Menu menu = dao.menuSelectByMnum(mNum);
@@ -169,13 +169,13 @@ public class MenuController extends HttpServlet {
 			comment.setOrder_str(req.getParameter("order_string"));
 			
 			resultByComment = mimpl.insert(comment);
-			System.out.println(onum);
+
 
 			if(resultByComment != null) {
 				req.setAttribute("result", true);
 				req.setAttribute("message", "후기 남기기 성공");
 				mimpl.orderCommentChk(onum);
-				System.out.println("--"+resultByComment.toString()+"--");
+
 			}
 			else {
 				req.setAttribute("result", false);
@@ -193,7 +193,7 @@ public class MenuController extends HttpServlet {
 			
 			HttpSession session = req.getSession();
 			Restaurant r = (Restaurant) session.getAttribute("detailR");
-			System.out.println(r.getrNum());
+
 			List<Comments> comments= Mimpl.selectByRnumComments(r.getrNum());
 	
 			req.setAttribute("comments", comments);
@@ -204,7 +204,7 @@ public class MenuController extends HttpServlet {
 		else if (action.equals("deleteComment")) {
 			MenuDAOImpl Mimpl = new MenuDAOImpl();
 			int chk = Integer.parseInt(req.getParameter("commnum"));
-			System.out.println("Ȯ�ο� : " + chk);
+
 			Mimpl.delete(Integer.parseInt(req.getParameter("commnum")));
 
 			RequestDispatcher rd = req.getRequestDispatcher("comment_mode");

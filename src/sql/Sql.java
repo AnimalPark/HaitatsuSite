@@ -1,6 +1,9 @@
 ﻿package sql;
 
 public class Sql {
+	
+	
+	//==============================Ha Ryun's SQL============================
 	public static final String YBBS_INSERT_SQL = "INSERT INTO YBBS_QA VALUES "
 			+ "(SEQ_QA_NO.NEXTVAL,?,?,SYSDATE,0,?,SEQ_QA_NO.CURRVAL,0)";
 	public static final String YBBS_INSERT_REPLY_SQL = "INSERT INTO YBBS_QA VALUES "
@@ -27,8 +30,7 @@ public class Sql {
     public static final String YBBS_CHK_VALID="SELECT users.USERID FROM YBBS_QA inner join USERS on ybbs_qa.userid = users.userid WHERE Ybbs_qa.QAGROUP = ( SELECT QAGROUP FROM YBBS_QA WHERE QANUMBER = ?) AND USERS.authority != 1";
     
     
-	
-	//==========================�ڼ��� Sql=======================================
+  //==============================Park SeongHyeok's SQL============================	
 	public static final String RESTAURANT_SELECT_BY_CATEGORY_SQL = "SELECT * FROM RESTAURANT WHERE CNUM = ?";
 	public static final String CITY_SELECT_ALL_SQL = "SELECT * FROM CITY";
 	public static final String TOWN_SELECT_ALL_SQL = "SELECT * FROM TOWN";
@@ -90,7 +92,11 @@ public class Sql {
 	         "select count(*) as cnt from ordermenu where mnum = (select mnum from RESTAURANT where rnum = ? )";
 	public static final String MENU_SALES_UPDATE_SQL = "UPDATE MENU SET MSALES=? WHERE MNUM=?";
 	public static final String GET_MENU_SALES_SQL = "SELECT MSALES FROM MENU WHERE MNUM = ?";
-	//==========================Ȳȣ�� Sql��=======================================
+	
+	
+	
+	
+	//==============================Hwang HoYoung's SQL============================
 	public static final String RESTAURANT_SELECT_ALL_SQL = "SELECT * FROM restaurant";
 	public static final String RESTAURANT_SELECT_BY_NAME_SQL = "SELECT * FROM restaurant WHERE rName like ?";
 	public static final String RESTAURANT_SELECT_BY_RNUM_SQL = "SELECT * FROM restaurant WHERE rNum = ?";
@@ -105,15 +111,18 @@ public class Sql {
 	public static final String MENU_UPDATE_MENU_SQL = "UPDATE menu SET rNum=?, mName=?, mPrice=?, mSales=? WHERE  mNum=?";
 	public static final String MENU_DELETE_MENU_SQL = "DELETE FROM menu WHERE mNum=?";
 	
-	//==========================õ�ٿ� Sql��=======================================
-	private static final String USERS_INSERT_SQL = "INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)";
-	private static final String USERS_SELECT_BY_USERID_PWD_SQL = "SELECT userId, uPwd, uName, uAddr, uPhonenum, authority FROM users WHERE userId = ? AND uPwd = ?";
-	private static final String USERS_SELECT_BY_UNAME_UPHONE_SQL = "SELECT * FROM users WHERE uName = ? AND uPhonenum = ?";
-	private static final String USERS_SELECT_BY_USERID_UNAME_UPHONE_SQL_SQL = "SELECT * FROM users WHERE userId= ? AND uName= ? AND uPhonenum = ?";
-	private static final String USERS_UPDATE_PWD_SQL = "UPDATE users SET uPwd = ? WHERE userId = ?";
-	private static final String USERS_UPDATE_SQL = "UPDATE users SET uName = ?, uAddr = ?, uPhonenum = ? WHERE userId = ?";
-	private static final String USERS_UPDATE_SQL2 = "UPDATE users SET uName = ?, uPwd = ?, uAddr = ?, uPhonenum = ? WHERE userId = ?";
-	private static final String USERS_SELECT_ALL_SQL = "SELECT * FROM users WHERE userId = ?";
-	private static final String USERS_SELECT_BY_USERID_SQL = "SELECT userId FROM users";
-	private static final String USERS_DELETE_SQL = "DELETE FROM users WHERE userId = ?";
+	
+	
+	
+	//==============================Cheon DaYeon's SQL============================	
+	public static final String USERS_INSERT_SQL = "INSERT INTO users VALUES(?, ?, ?, ?, ?, 0)";	
+	public static final String USERS_SELECT_BY_USERID_SQL = "SELECT userId, uName, uAddr, uPhonenum FROM users WHERE userId = ?";
+	public static final String USERS_SELECT_BY_USERID_PWD_SQL = "SELECT userId, uPwd, uName, uAddr, uPhonenum, authority FROM users WHERE userId = ? AND uPwd = ?";
+	public static final String USERS_SELECT_BY_UNAME_UPHONE_SQL = "SELECT * FROM users WHERE uName = ? AND uPhonenum = ?";
+	public static final String USERS_SELECT_BY_USERID_UNAME_UPHONE_SQL_SQL = "SELECT * FROM users WHERE userId= ? AND uName= ? AND uPhonenum = ?";
+	public static final String USERS_UPDATE_PWD_SQL = "UPDATE users SET uPwd = ? WHERE userId = ?";
+	public static final String USERS_UPDATE_SQL = "UPDATE users SET uName = ?, uAddr = ?, uPhonenum = ? WHERE userId = ?";
+	public static final String USERS_SELECT_BY_USERID = "SELECT userId FROM users WHERE userId LIKE ?";
+	public static final String USERS_DELETE_SQL = "DELETE FROM users WHERE userId = ?";
+	public static final String USERS_AUTHORITY_SQL = "SELECT AUTHORITY FROM USERS WHERE USERID = ? ";
 }
