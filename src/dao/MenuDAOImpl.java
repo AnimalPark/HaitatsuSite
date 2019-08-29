@@ -763,12 +763,24 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 
 		try {
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_TOWNNUM_AND_CATEGORY_SQL);
-			preparedStatement.setInt(3, cnum);
-			preparedStatement.setString(1, cityname);
-			preparedStatement.setString(2, townname);
-			resultSet = preparedStatement.executeQuery();
-
+			if(cityname.equals("전체")) {
+				preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_CATEGORY_SQL);
+				preparedStatement.setInt(1, cnum);
+				resultSet = preparedStatement.executeQuery();
+			}
+			else if(townname.equals("전체")) {
+				preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_CITYNUM_AND_CATEGORY_SQL);
+				preparedStatement.setInt(2, cnum);
+				preparedStatement.setString(1, cityname);
+				resultSet = preparedStatement.executeQuery();
+			}
+			else {
+				preparedStatement = connection.prepareStatement(Sql.RESTAURANT_SELECT_BY_TOWNNUM_AND_CATEGORY_SQL);
+				preparedStatement.setInt(3, cnum);
+				preparedStatement.setString(1, cityname);
+				preparedStatement.setString(2, townname);
+				resultSet = preparedStatement.executeQuery();
+			}
 			while (resultSet.next()) {
 				Restaurant restaurant = new Restaurant();
 

@@ -40,6 +40,14 @@ public class Sql {
 							"WHERE CITYNUM = (SELECT CITYNUM " + 
 											"FROM CITY " + 
 											"WHERE CITYNAME = ? ) AND TOWNNAME = ? ) AND CNUM = ?";
+	public static final String RESTAURANT_SELECT_BY_CITYNUM_AND_CATEGORY_SQL = 	
+			"SELECT * " + 
+			"FROM RESTAURANT " + 
+			"WHERE TOWNNUM IN (SELECT TOWNNUM " + 
+							"FROM TOWN " + 
+							"WHERE CITYNUM = (SELECT CITYNUM " + 
+											"FROM CITY " + 
+											"WHERE CITYNAME = ? )) AND CNUM = ?";
 	public static final String RESTAURANT_SELECT_BY_TOWNNUM_SQL = 	
 			"SELECT * " + 
 			"FROM RESTAURANT " + 
