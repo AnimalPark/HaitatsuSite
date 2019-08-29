@@ -234,12 +234,6 @@ table.table .avatar {
 .login-form a {
 	color: #4aba70;
 }
-</style>
-
-<style type="text/css">
-body {
-	font-family: "Open Sans", sans-serif;
-}
 
 h2 {
 	color: #000;
@@ -406,14 +400,6 @@ h2::after {
 .star-rating i {
 	font-size: 14px;
 	color: #ffc000;
-}
-</style>
-<style type="text/css">
-body {
-	color: #566787;
-	background: #f5f5f5;
-	font-family: 'Varela Round', sans-serif;
-	font-size: 13px;
 }
 
 .table-wrapper {
@@ -660,13 +646,6 @@ table.table .avatar {
 	margin-top: 10px;
 	font-size: 13px;
 }
-</style>
-<style type="text/css">
-body {
-	color: #404E67;
-	background: #F5F7FA;
-	font-family: 'Open Sans', sans-serif;
-}
 
 .table-wrapper {
 	width: 350px;
@@ -763,11 +742,9 @@ table.table .form-control.error {
 table.table td .add {
 	display: none;
 }
-</style>
 
-<style type="text/css">
 body {
-	background: #FFFFFF;
+	background: #F2F2F2;
 	font-family: 'Open Sans', sans-serif;
 }
 

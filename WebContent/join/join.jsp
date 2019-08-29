@@ -185,14 +185,14 @@
         //연락처 특수문자 제외 체크
         if (join.uPhonenum.value.indexOf("-") >= 0)
         {
-            alert("비밀번호에 -표시를 사용할 수 없습니다.")
+            alert("연락처에 -표시를 사용할 수 없습니다.")
             join.uPhonenum.focus();
             join.uPhonenum.select()
             return false;
         }
         var chkid = $("#chkid").val();
         if (chkid == 1){
-        	alert("회원가입이 완료되었습니다.");
+        	alert("회원가입이 완료되었습니다.")
         }
         else{
         	alert("사용 가능한 아이디가 아니거나 아이디 중복검사를 실행하지 않았습니다.");

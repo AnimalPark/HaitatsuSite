@@ -20,7 +20,7 @@ import model.Users;
 @WebServlet(name = "UsersController", urlPatterns = { "/user_join", "/user_login", "/user_logout", "/find_userId",
 		"/findId_link", "/findPwd_link", "/find_uPwd", "/change_uPwd", "/id_check", "/orderList_link",
 		"/usersInfo_link", "/users_delete", "/users_update", "/update_link", "/updateuPwd_link", "/delete_link",
-		"/check_uPwd", "/updateInfo_link", "/change_uPwd2" })
+		"/check_uPwd", "/updateInfo_link", "/change_uPwd2", "/users_Info"})
 
 public class UsersController extends HttpServlet {
 	@Override
@@ -51,7 +51,7 @@ public class UsersController extends HttpServlet {
 			} catch (Exception e) {
 				i = 0;
 			}
-			System.out.println(i);
+			/*System.out.println(i);*/
 
 			if (i == 0) {
 
@@ -338,6 +338,17 @@ public class UsersController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("join/updatePage.jsp");
 			rd.forward(req, resp);
 
+		} else if (action.equals("users_Info")) {
+			
+			String userId =req.getParameter("userId");
+		
+			UsersDAO dao = new UsersDAOImpl();
+			Users users = dao.selectByUserId(userId);
+			
+			req.setAttribute("users", users);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("join/usersInfo.jsp");
+			rd.forward(req, resp);
 		}
 	}
 }

@@ -261,5 +261,11 @@ body {
 			</div>
 		</form>
 	</div>
+	<br /><br /><br />
+	<div class="text-center">
+		<a href="updateInfo_link">회원정보 수정</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="updateuPwd_link">비밀번호 변경</a>
+	</div>
+</form>
+</div>
 </body>
 </html>

@@ -11,6 +11,8 @@ import model.Users;
 
 public class UsersDAOImpl extends BaseDAO implements UsersDAO {
 	private static final String USERS_INSERT_SQL = "INSERT INTO users VALUES(?, ?, ?, ?, ?, 0)";
+	
+	private static final String USERS_SELECT_BY_USERID_SQL = "SELECT userId, uName, uAddr, uPhonenum FROM users WHERE userId = ?";
 
 	private static final String USERS_SELECT_BY_USERID_PWD_SQL = "SELECT userId, uPwd, uName, uAddr, uPhonenum, authority FROM users WHERE userId = ? AND uPwd = ?";
 
@@ -318,5 +320,35 @@ public class UsersDAOImpl extends BaseDAO implements UsersDAO {
 		}
 		
 		return authority;
+	}
+
+	@Override
+	public Users selectByUserId(String userId){
+		Users users = null;
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement(USERS_SELECT_BY_USERID_SQL);
+			preparedStatement.setString(1, userId);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				users = new Users();
+
+				users.setUserId(resultSet.getString("userId"));
+				users.setuName(resultSet.getString("uName"));
+				users.setuAddr(resultSet.getString("uAddr"));
+				users.setuPhonenum(resultSet.getString("uPhonenum"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDBObjects(resultSet, preparedStatement, connection);
+		}
+		return users;
 	}
 }
