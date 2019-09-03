@@ -1,12 +1,9 @@
 # HaitatsuSite
 色々な飲食店の中で一つを選んで料理注文をするデリバリーサイト
 
-IDE
-      Eclipse 4.7 oxygen
-      SQL Developer 19.1.0
+IDE : Eclipse 4.7 oxygen , SQL Developer 19.1.0
 ⁠
-Develop Language
-      java - Jdk1.8.0_211
+Develop Language : java - Jdk1.8.0_211
 ⁠
 ⁠Database Management System
       oracle 11g
