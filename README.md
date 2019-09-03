@@ -10,13 +10,13 @@ Database Management System : oracle 11g
 ⁠Script Language : javascript   
 ⁠
 ⁠Web Server Program/Servlet container : Apache Tomcat v9.0  
-⁠
+⁠  
 Library related Web : jquery - templates, jstl - el  
-⁠
+⁠  
 Data Access API : jdbc 6  
-⁠
+⁠  
 Open Source Web Framework : Bootstrap 3,4,CSS ref  
-⁠
+⁠  
 ⁠Google Chrome 76.0.3809.100 で最適化される。  
 
 ⁠⁠Cloud storage⁠ : Github  ⁠
