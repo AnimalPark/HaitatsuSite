@@ -178,7 +178,7 @@ public class MainController extends HttpServlet {
 			int mno = Integer.parseInt(req.getParameter("mnum"));
 			req.setAttribute("mno", mno);
 
-			RequestDispatcher rd = req.getRequestDispatcher("test2.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("order/menuadd.jsp");
 			rd.forward(req, resp);
 		}
 

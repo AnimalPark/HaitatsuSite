@@ -267,7 +267,7 @@ div.fixed {
 	<div class="text-center">
 		<!-- Button HTML (to Trigger Modal) -->
 		<h2>결제가 완료 되었습니다.</h2>
-
+		<a href="home_link">홈화면</a>
 		<div id="map" style="position: relative; bottom:100px; width: 50%; height: 250px;" class="fixed"></div>
 	</div><br><br>
 
