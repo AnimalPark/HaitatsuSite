@@ -173,7 +173,7 @@ public class MenuDAOImpl extends BaseDAO implements MenuDAO {
 		try {
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(Sql.MENU_SELECT_ALL_MENU_SQL);
-
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Menu menu = new Menu();
 

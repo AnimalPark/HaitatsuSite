@@ -24,6 +24,7 @@ import model.Town;
 import model.UserOrderList;
 import model.UserOrderListSub;
 import model.Users;
+import sun.print.resources.serviceui_it;
 
 @WebServlet(name = "MainController", urlPatterns = { "/login_link", "/join_link", "/qa_board_link", "/event_board_link",
 		"/home_link", "/search_link", "/addr_search", "/logout_link", "/admin_home_link", "/restaurant_detail",
@@ -50,7 +51,7 @@ public class MainController extends HttpServlet {
 		String uri = req.getRequestURI();
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex + 1);
-
+		
 		if (action.equals("login_index_link")) {
 
 			HttpSession session = req.getSession();
